@@ -5,8 +5,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {UserContext} from '~/Context/User';
 
 import Loading from '~/Screens/Loading';
-
 import Login from '~/Screens/Login';
+import Link from '~/Screens/Link';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +29,25 @@ const LoginNavigator = () => {
     );
 };
 
+const LinkNavigator = () => {
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name = "Link"
+                component = {Link}
+                options={{
+                    title: 'PC 연동',
+                    headerTransparent: true,
+                    headerTintColor: '#333333',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                }}
+            />
+        </Stack.Navigator>
+    )
+}
+
 export default () => {
     const {isLoading, userInfo} = useContext<IUserContext>(UserContext);
 
@@ -40,7 +59,11 @@ export default () => {
     }
     return (
         <NavigationContainer>
-            {userInfo ? <LoginNavigator /> : <LoginNavigator />}
+            {
+            userInfo ? <LoginNavigator /> : <LoginNavigator />
+            // <LinkNavigator/>
+            }
+
         </NavigationContainer>
     );
 };
