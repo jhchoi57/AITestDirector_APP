@@ -4,7 +4,7 @@ import Styled from 'styled-components/native';
 
 const Container = Styled.View`
     flex: 1;
-    background-color: #141414;
+    background-color: white;
     align-items: center;
     justify-content: center;
 `;

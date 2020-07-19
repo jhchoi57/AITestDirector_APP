@@ -5,8 +5,10 @@ interface IUserInfo {
 
 interface IUserContext {
     isLoading: boolean;
-    userInfo: IUserInfo | undefined;
+    isLinked: boolean;
+    userInfo: IUserInfo;
     login: (email: string, password: string) => void;
+    link: (email: string) => void;
     getUserInfo: () => void;
     logout: () => void;
 }

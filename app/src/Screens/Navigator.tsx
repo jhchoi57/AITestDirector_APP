@@ -7,6 +7,8 @@ import {UserContext} from '~/Context/User';
 import Loading from '~/Screens/Loading';
 import Login from '~/Screens/Login';
 import Link from '~/Screens/Link';
+import Video from '~/Screens/Video';
+import LoadingVideo from '~/Screens/LoadingVideo';
 
 const Stack = createStackNavigator();
 
@@ -37,6 +39,33 @@ const LinkNavigator = () => {
                 component = {Link}
                 options={{
                     title: 'PC 연동',
+                    headerTitleAlign: "center",
+                    headerTransparent: true,
+                    headerTintColor: '#333333',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                }}
+            />
+            <Stack.Screen
+                name = "Loading"
+                component = {LoadingVideo}
+                options={{
+                    title: 'Loading',
+                    headerTitleAlign: "center",
+                    headerTransparent: true,
+                    headerTintColor: '#333333',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                }}
+            />
+            <Stack.Screen
+                name = "Video"
+                component = {Video}
+                options={{
+                    title: 'Video',
+                    headerTitleAlign: "center",
                     headerTransparent: true,
                     headerTintColor: '#333333',
                     headerTitleStyle: {
@@ -45,14 +74,11 @@ const LinkNavigator = () => {
                 }}
             />
         </Stack.Navigator>
-    )
-}
+    );
+};
 
 export default () => {
     const {isLoading, userInfo} = useContext<IUserContext>(UserContext);
-
-    console.log(isLoading);
-    console.log(userInfo);
 
     if(isLoading === false) {
         return <Loading />;
@@ -60,7 +86,7 @@ export default () => {
     return (
         <NavigationContainer>
             {
-            userInfo ? <LoginNavigator /> : <LoginNavigator />
+            userInfo.email !== '' ? <LinkNavigator/> : <LoginNavigator />
             // <LinkNavigator/>
             }
 
