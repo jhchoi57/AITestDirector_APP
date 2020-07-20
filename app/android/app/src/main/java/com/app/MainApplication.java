@@ -1,5 +1,6 @@
 package com.app;
 
+import org.reactnative.camera.RNCameraPackage;
 import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;

@@ -2,7 +2,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import {Dimensions} from 'react-native';
 import Styled from 'styled-components/native';
 import {RouteProp} from '@react-navigation/native';
-
+import {RNCamera} from 'react-native-camera';
 
 const View = Styled.View`
     flex: 1;
@@ -21,10 +21,17 @@ interface Props {
 }
 
 const Video = ({route}: Props) => {
-
+    const cameraRef = React.useRef(null);
     return (
         <>
-            <TextEx>비디오 입니다.</TextEx>
+            <RNCamera
+              ref={cameraRef}
+              type={RNCamera.Constants.Type.front}
+              style={{
+                width: Dimensions.get("window").width,
+                height: Dimensions.get("window").height,
+              }}
+              captureAudio={true} />
         </>
     );
 };

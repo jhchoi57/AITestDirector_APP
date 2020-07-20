@@ -20,7 +20,7 @@ interface Props {
 const UserContextProvider = ({children}: Props) => {
     const [userInfo, setUserInfo] = useState<IUserInfo>({email: '', name: ''});
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [isLinked, setIsLinked] = useState<boolean>(false);
+    const [isLinked, setIsLinked] = useState<boolean>(true);
     const IP = '58.122.109.234';
     const PORT = 8080;
 
