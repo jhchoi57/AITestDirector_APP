@@ -1,0 +1,10 @@
+C:\Users\seung\Desktop\svapp\program\program\bin\Debug\program.exe.config
+C:\Users\seung\Desktop\svapp\program\program\bin\Debug\program.exe
+C:\Users\seung\Desktop\svapp\program\program\bin\Debug\program.pdb
+C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.csprojAssemblyReference.cache
+C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.Form1.resources
+C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.Properties.Resources.resources
+C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.csproj.GenerateResource.cache
+C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.csproj.CoreCompileInputs.cache
+C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.exe
+C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.pdb
