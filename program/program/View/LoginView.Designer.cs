@@ -254,9 +254,9 @@ namespace program.View
             string email = emailTextBox.Text;
             string password = passwordTextBox.Text;
 
-            if (email == "example@sejong.ac.kr" || password == "**********")
+            if (email == "example@sejong.ac.kr" || !email.Contains("@") || password == "**********")
             {
-                MessageBox.Show("아이디와 비밀번호를 정확히 입력하세요.");
+                MessageBox.Show("이메일과 비밀번호를 정확히 입력하세요.");
             }
             MessageBox.Show(email + password);
 
