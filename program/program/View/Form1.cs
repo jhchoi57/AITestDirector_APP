@@ -15,11 +15,11 @@ namespace program
         public Form1()
         {
             InitializeComponent();
-            
+
             // 프로그램의 상단바 및 테두리를 없애는 코드
-            //this.FormBorderStyle = FormBorderStyle.None;
-
-
+            this.FormBorderStyle = FormBorderStyle.None;
+            // 화면 크기를 모니터 크기에 맞춤
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }
