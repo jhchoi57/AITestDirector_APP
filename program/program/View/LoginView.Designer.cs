@@ -49,7 +49,7 @@ namespace program.View
             privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicLight.ttf");
             privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicUltraLight.ttf");
             Font labelFont = new Font(privateFont.Families[1], 14f);
-            Font textBoxFont = new Font(privateFont.Families[1], 12f);
+            Font textBoxFont = new Font(privateFont.Families[1], 10f);
             Font copyrightFont = new Font(privateFont.Families[2], 8f);
 
             // Labels
@@ -65,6 +65,7 @@ namespace program.View
             this.exitButton = new System.Windows.Forms.Button();
             this.minimizeButton = new System.Windows.Forms.Button();
             this.loginButton = new System.Windows.Forms.Button();
+            this.registerButton = new System.Windows.Forms.Button();
 
             this.SuspendLayout();
             // 
@@ -148,7 +149,7 @@ namespace program.View
 
             // Email TextBox setting
             this.emailTextBox.Size = new Size(230, 25);
-            this.emailTextBox.Location = new Point(6, 5);
+            this.emailTextBox.Location = new Point(6, 7);
             this.emailTextBox.AutoSize = false;
             this.emailTextBox.Font = textBoxFont;
             this.emailTextBox.BorderStyle = BorderStyle.None;
@@ -171,7 +172,7 @@ namespace program.View
 
             // Password TextBox setting
             this.passwordTextBox.Size = new Size(230, 25);
-            this.passwordTextBox.Location = new Point(6, 5);
+            this.passwordTextBox.Location = new Point(6, 7);
             this.passwordTextBox.AutoSize = false;
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Font = textBoxFont;
@@ -181,9 +182,9 @@ namespace program.View
             this.passwordTextBox.Leave += this.PasswordTextBox_Leave;
 
             // Login Button setting
-            this.loginButton.Size = new Size(240, 40);
+            this.loginButton.Size = new Size(240, 34);
             this.loginButton.BackColor = Color.FromArgb(158, 33, 59);
-            this.loginButton.Location = new Point(40, 315);
+            this.loginButton.Location = new Point(40, 305);
             this.loginButton.Font = labelFont;
             this.loginButton.Text = "로그인";
             this.loginButton.ForeColor = Color.White;
@@ -193,6 +194,21 @@ namespace program.View
             this.loginButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.loginPanel.Controls.Add(this.loginButton);
             this.loginButton.Click += LoginButton_Click;
+
+            // register Button setting
+            this.registerButton.Size = new Size(240, 34);
+            this.registerButton.BackColor = Color.FromArgb(4, 165, 246);
+            this.registerButton.Location = new Point(40, 350);
+            this.registerButton.Font = labelFont;
+            this.registerButton.Text = "회원가입";
+            this.registerButton.ForeColor = Color.White;
+            this.registerButton.TabStop = false;
+            this.registerButton.FlatStyle = FlatStyle.Flat;
+            this.registerButton.FlatAppearance.BorderSize = 0;
+            this.registerButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.loginPanel.Controls.Add(this.registerButton);
+            this.registerButton.Click += RegisterButton_Click;
+
 
             // Copyright Label setting
             this.copyrightLabel.Text = "ⓒ CROFO  from Sejong Univ.";
@@ -263,6 +279,14 @@ namespace program.View
             // 서버와 연동 
         }
 
+        // Register Button Click
+        private void RegisterButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("회원가입 창!");
+
+            // 회원가입 폼 생성 후 컨트롤러로 화면 이동
+        }
+
         private void LoginView_Load(object sender, EventArgs e)
         {
             emailTextBox.Text = "example@sejong.ac.kr";
@@ -292,5 +316,6 @@ namespace program.View
         private System.Windows.Forms.Button exitButton;
         private System.Windows.Forms.Button minimizeButton;
         private System.Windows.Forms.Button loginButton;
+        private System.Windows.Forms.Button registerButton;
     }
 }
