@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Specialized;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace program.View
 {
-    partial class LoginView
+    partial class SignupView
     {
         /// <summary>
         /// Required designer variable.
@@ -36,19 +31,6 @@ namespace program.View
         private void InitializeComponent()
         {
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.imagePanel = new System.Windows.Forms.Panel();
-            this.loginPanel = new System.Windows.Forms.Panel();
-            this.exitButton = new System.Windows.Forms.Button();
-            this.minimizeButton = new System.Windows.Forms.Button();
-            this.emailLabel = new System.Windows.Forms.Label();
-            this.emailPanel = new System.Windows.Forms.Panel();
-            this.emailTextBox = new System.Windows.Forms.TextBox();
-            this.passwordLabel = new System.Windows.Forms.Label();
-            this.passwordPanel = new System.Windows.Forms.Panel();
-            this.passwordTextBox = new System.Windows.Forms.TextBox();
-            this.loginButton = new System.Windows.Forms.Button();
-            this.registerButton = new System.Windows.Forms.Button();
-            this.copyrightLabel = new System.Windows.Forms.Label();
             this.signupPanel = new System.Windows.Forms.Panel();
             this.signupCancelButton = new System.Windows.Forms.Button();
             this.signupButton = new System.Windows.Forms.Button();
@@ -72,10 +54,8 @@ namespace program.View
             this.signupNameLabel = new System.Windows.Forms.Label();
             this.signupNamePanel = new System.Windows.Forms.Panel();
             this.signupNameTextBox = new System.Windows.Forms.TextBox();
+            this.signupImagePanel = new System.Windows.Forms.Panel();
             this.mainPanel.SuspendLayout();
-            this.loginPanel.SuspendLayout();
-            this.emailPanel.SuspendLayout();
-            this.passwordPanel.SuspendLayout();
             this.signupPanel.SuspendLayout();
             this.signupEmailAuthPanel.SuspendLayout();
             this.signupBirthPanel.SuspendLayout();
@@ -88,155 +68,11 @@ namespace program.View
             // mainPanel
             // 
             this.mainPanel.Controls.Add(this.signupPanel);
-            this.mainPanel.Controls.Add(this.imagePanel);
-            this.mainPanel.Controls.Add(this.loginPanel);
+            this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(960, 640);
             this.mainPanel.TabIndex = 0;
-            // 
-            // imagePanel
-            // 
-            this.imagePanel.BackColor = System.Drawing.Color.Yellow;
-            this.imagePanel.Location = new System.Drawing.Point(0, 0);
-            this.imagePanel.Name = "imagePanel";
-            this.imagePanel.Size = new System.Drawing.Size(640, 640);
-            this.imagePanel.TabIndex = 0;
-            this.imagePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.imagePanel_Paint);
-            // 
-            // loginPanel
-            // 
-            this.loginPanel.BackColor = System.Drawing.Color.White;
-            this.loginPanel.Controls.Add(this.exitButton);
-            this.loginPanel.Controls.Add(this.minimizeButton);
-            this.loginPanel.Controls.Add(this.emailLabel);
-            this.loginPanel.Controls.Add(this.emailPanel);
-            this.loginPanel.Controls.Add(this.passwordLabel);
-            this.loginPanel.Controls.Add(this.passwordPanel);
-            this.loginPanel.Controls.Add(this.loginButton);
-            this.loginPanel.Controls.Add(this.registerButton);
-            this.loginPanel.Controls.Add(this.copyrightLabel);
-            this.loginPanel.Location = new System.Drawing.Point(640, 0);
-            this.loginPanel.Name = "loginPanel";
-            this.loginPanel.Size = new System.Drawing.Size(320, 640);
-            this.loginPanel.TabIndex = 1;
-            // 
-            // exitButton
-            // 
-            this.exitButton.FlatAppearance.BorderSize = 0;
-            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exitButton.Location = new System.Drawing.Point(290, 0);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(30, 28);
-            this.exitButton.TabIndex = 0;
-            this.exitButton.TabStop = false;
-            this.exitButton.Text = "✕";
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click_1);
-            // 
-            // minimizeButton
-            // 
-            this.minimizeButton.FlatAppearance.BorderSize = 0;
-            this.minimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minimizeButton.Location = new System.Drawing.Point(260, 0);
-            this.minimizeButton.Name = "minimizeButton";
-            this.minimizeButton.Size = new System.Drawing.Size(30, 28);
-            this.minimizeButton.TabIndex = 1;
-            this.minimizeButton.TabStop = false;
-            this.minimizeButton.Text = "_";
-            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click_1);
-            // 
-            // emailLabel
-            // 
-            this.emailLabel.Location = new System.Drawing.Point(40, 160);
-            this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(61, 21);
-            this.emailLabel.TabIndex = 2;
-            this.emailLabel.Text = "이메일";
-            // 
-            // emailPanel
-            // 
-            this.emailPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.emailPanel.Controls.Add(this.emailTextBox);
-            this.emailPanel.Location = new System.Drawing.Point(40, 188);
-            this.emailPanel.Name = "emailPanel";
-            this.emailPanel.Size = new System.Drawing.Size(240, 31);
-            this.emailPanel.TabIndex = 3;
-            // 
-            // emailTextBox
-            // 
-            this.emailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.emailTextBox.Location = new System.Drawing.Point(6, 7);
-            this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.Size = new System.Drawing.Size(230, 14);
-            this.emailTextBox.TabIndex = 0;
-            this.emailTextBox.Enter += new System.EventHandler(this.emailTextBox_Enter_1);
-            this.emailTextBox.Leave += new System.EventHandler(this.emailTextBox_Leave_1);
-            // 
-            // passwordLabel
-            // 
-            this.passwordLabel.Location = new System.Drawing.Point(40, 230);
-            this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(78, 21);
-            this.passwordLabel.TabIndex = 4;
-            this.passwordLabel.Text = "비밀번호";
-            // 
-            // passwordPanel
-            // 
-            this.passwordPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.passwordPanel.Controls.Add(this.passwordTextBox);
-            this.passwordPanel.Location = new System.Drawing.Point(40, 258);
-            this.passwordPanel.Name = "passwordPanel";
-            this.passwordPanel.Size = new System.Drawing.Size(240, 31);
-            this.passwordPanel.TabIndex = 5;
-            // 
-            // passwordTextBox
-            // 
-            this.passwordTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.passwordTextBox.Location = new System.Drawing.Point(6, 7);
-            this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.PasswordChar = '*';
-            this.passwordTextBox.Size = new System.Drawing.Size(230, 14);
-            this.passwordTextBox.TabIndex = 0;
-            this.passwordTextBox.Enter += new System.EventHandler(this.passwordTextBox_Enter_1);
-            this.passwordTextBox.Leave += new System.EventHandler(this.passwordTextBox_Leave_1);
-            // 
-            // loginButton
-            // 
-            this.loginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(33)))), ((int)(((byte)(59)))));
-            this.loginButton.FlatAppearance.BorderSize = 0;
-            this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginButton.ForeColor = System.Drawing.Color.White;
-            this.loginButton.Location = new System.Drawing.Point(40, 305);
-            this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(240, 34);
-            this.loginButton.TabIndex = 6;
-            this.loginButton.TabStop = false;
-            this.loginButton.Text = "로그인";
-            this.loginButton.UseVisualStyleBackColor = false;
-            this.loginButton.Click += new System.EventHandler(this.loginButton_Click_1);
-            // 
-            // registerButton
-            // 
-            this.registerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(165)))), ((int)(((byte)(246)))));
-            this.registerButton.FlatAppearance.BorderSize = 0;
-            this.registerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.registerButton.ForeColor = System.Drawing.Color.White;
-            this.registerButton.Location = new System.Drawing.Point(40, 350);
-            this.registerButton.Name = "registerButton";
-            this.registerButton.Size = new System.Drawing.Size(240, 34);
-            this.registerButton.TabIndex = 7;
-            this.registerButton.TabStop = false;
-            this.registerButton.Text = "회원가입";
-            this.registerButton.UseVisualStyleBackColor = false;
-            this.registerButton.Click += new System.EventHandler(this.registerButton_Click_1);
-            // 
-            // copyrightLabel
-            // 
-            this.copyrightLabel.Location = new System.Drawing.Point(85, 610);
-            this.copyrightLabel.Name = "copyrightLabel";
-            this.copyrightLabel.Size = new System.Drawing.Size(150, 15);
-            this.copyrightLabel.TabIndex = 8;
-            this.copyrightLabel.Text = "ⓒ CROFO  from Sejong Univ.";
             // 
             // signupPanel
             // 
@@ -260,8 +96,7 @@ namespace program.View
             this.signupPanel.Location = new System.Drawing.Point(640, 0);
             this.signupPanel.Name = "signupPanel";
             this.signupPanel.Size = new System.Drawing.Size(320, 640);
-            this.signupPanel.TabIndex = 1;
-            this.signupPanel.Visible = false;
+            this.signupPanel.TabIndex = 0;
             // 
             // signupCancelButton
             // 
@@ -276,7 +111,7 @@ namespace program.View
             this.signupCancelButton.TabStop = false;
             this.signupCancelButton.Text = "취소";
             this.signupCancelButton.UseVisualStyleBackColor = false;
-            this.signupCancelButton.Click += new System.EventHandler(this.signupCancelButton_Click);
+            this.signupCancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // signupButton
             // 
@@ -291,7 +126,6 @@ namespace program.View
             this.signupButton.TabStop = false;
             this.signupButton.Text = "회원가입";
             this.signupButton.UseVisualStyleBackColor = false;
-            this.signupButton.Click += new System.EventHandler(this.signupButton_Click);
             // 
             // signupPositionLabel
             // 
@@ -305,7 +139,7 @@ namespace program.View
             // 
             this.signupEmailAuthLabel.Location = new System.Drawing.Point(40, 390);
             this.signupEmailAuthLabel.Name = "signupEmailAuthLabel";
-            this.signupEmailAuthLabel.Size = new System.Drawing.Size(110, 21);
+            this.signupEmailAuthLabel.Size = new System.Drawing.Size(69, 21);
             this.signupEmailAuthLabel.TabIndex = 4;
             this.signupEmailAuthLabel.Text = "이메일 인증";
             // 
@@ -321,7 +155,7 @@ namespace program.View
             // 
             this.signupBirthLabel.Location = new System.Drawing.Point(40, 320);
             this.signupBirthLabel.Name = "signupBirthLabel";
-            this.signupBirthLabel.Size = new System.Drawing.Size(98, 21);
+            this.signupBirthLabel.Size = new System.Drawing.Size(61, 21);
             this.signupBirthLabel.TabIndex = 4;
             this.signupBirthLabel.Text = "생년월일";
             // 
@@ -346,7 +180,7 @@ namespace program.View
             // 
             this.signupPasswordCheckLabel.Location = new System.Drawing.Point(40, 250);
             this.signupPasswordCheckLabel.Name = "signupPasswordCheckLabel";
-            this.signupPasswordCheckLabel.Size = new System.Drawing.Size(130, 21);
+            this.signupPasswordCheckLabel.Size = new System.Drawing.Size(83, 21);
             this.signupPasswordCheckLabel.TabIndex = 4;
             this.signupPasswordCheckLabel.Text = "비밀번호 확인";
             // 
@@ -361,18 +195,16 @@ namespace program.View
             // 
             // signupBirthPicker
             // 
-            this.signupBirthPicker.CalendarFont = new System.Drawing.Font("굴림", 9F);
-            this.signupBirthPicker.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.signupBirthPicker.Location = new System.Drawing.Point(0, 0);
+            this.signupBirthPicker.Location = new System.Drawing.Point(19, 3);
             this.signupBirthPicker.Name = "signupBirthPicker";
-            this.signupBirthPicker.Size = new System.Drawing.Size(238, 21);
+            this.signupBirthPicker.Size = new System.Drawing.Size(204, 21);
             this.signupBirthPicker.TabIndex = 0;
             // 
             // signupPasswordLabel
             // 
             this.signupPasswordLabel.Location = new System.Drawing.Point(40, 180);
             this.signupPasswordLabel.Name = "signupPasswordLabel";
-            this.signupPasswordLabel.Size = new System.Drawing.Size(83, 21);
+            this.signupPasswordLabel.Size = new System.Drawing.Size(61, 21);
             this.signupPasswordLabel.TabIndex = 4;
             this.signupPasswordLabel.Text = "비밀번호";
             // 
@@ -460,22 +292,24 @@ namespace program.View
             this.signupNameTextBox.Size = new System.Drawing.Size(230, 14);
             this.signupNameTextBox.TabIndex = 0;
             // 
-            // LoginView
+            // signupImagePanel
+            // 
+            this.signupImagePanel.BackColor = System.Drawing.Color.Yellow;
+            this.signupImagePanel.Location = new System.Drawing.Point(0, 0);
+            this.signupImagePanel.Name = "signupImagePanel";
+            this.signupImagePanel.Size = new System.Drawing.Size(640, 640);
+            this.signupImagePanel.TabIndex = 1;
+            // 
+            // SignupView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(960, 640);
+            this.Controls.Add(this.signupImagePanel);
             this.Controls.Add(this.mainPanel);
-            this.Name = "LoginView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LoginView";
-            this.Load += new System.EventHandler(this.LoginView_Load_1);
+            this.Name = "SignupView";
+            this.Text = "SignupView";
             this.mainPanel.ResumeLayout(false);
-            this.loginPanel.ResumeLayout(false);
-            this.emailPanel.ResumeLayout(false);
-            this.emailPanel.PerformLayout();
-            this.passwordPanel.ResumeLayout(false);
-            this.passwordPanel.PerformLayout();
             this.signupPanel.ResumeLayout(false);
             this.signupEmailAuthPanel.ResumeLayout(false);
             this.signupEmailAuthPanel.PerformLayout();
@@ -491,54 +325,33 @@ namespace program.View
             this.ResumeLayout(false);
 
         }
-        
+
         #endregion
 
-        // Panels 
         private System.Windows.Forms.Panel mainPanel;
-        private System.Windows.Forms.Panel loginPanel;
-        private System.Windows.Forms.Panel imagePanel;
-        private System.Windows.Forms.Panel emailPanel;
-        private System.Windows.Forms.Panel passwordPanel;
-
-
-        // Labels
-        private System.Windows.Forms.Label emailLabel;
-        private System.Windows.Forms.Label passwordLabel;
-        private System.Windows.Forms.Label copyrightLabel;
-
-
-        // TextBoxs
-        private System.Windows.Forms.TextBox emailTextBox;
-        private System.Windows.Forms.TextBox passwordTextBox;
-
-        // Buttons
-        private System.Windows.Forms.Button exitButton;
-        private System.Windows.Forms.Button minimizeButton;
-        private System.Windows.Forms.Button loginButton;
-        private System.Windows.Forms.Button registerButton;
-        private Panel signupPanel;
-        private Button signupCancelButton;
-        private Button signupButton;
-        private Label signupPositionLabel;
-        private Label signupEmailAuthLabel;
-        private Panel signupPositionPanel;
-        private Label signupBirthLabel;
-        private Panel signupEmailAuthPanel;
-        private TextBox signupEmailAuthTextBox;
-        private Label signupPasswordCheckLabel;
-        private Panel signupBirthPanel;
-        private DateTimePicker signupBirthPicker;
-        private Label signupPasswordLabel;
-        private Panel signupPasswordCheckPanel;
-        private TextBox signupPasswordCheckTextBox;
-        private Label signupEmailLabel;
-        private Panel signupPasswordPanel;
-        private TextBox signupPasswordTextBox;
-        private Panel signupEmailPanel;
-        private TextBox signupEmailTextBox;
-        private Label signupNameLabel;
-        private Panel signupNamePanel;
-        private TextBox signupNameTextBox;
+        private System.Windows.Forms.Panel signupImagePanel;
+        private System.Windows.Forms.Panel signupPanel;
+        private System.Windows.Forms.Label signupPositionLabel;
+        private System.Windows.Forms.Label signupEmailAuthLabel;
+        private System.Windows.Forms.Panel signupPositionPanel;
+        private System.Windows.Forms.Label signupBirthLabel;
+        private System.Windows.Forms.Panel signupEmailAuthPanel;
+        private System.Windows.Forms.TextBox signupEmailAuthTextBox;
+        private System.Windows.Forms.Label signupPasswordCheckLabel;
+        private System.Windows.Forms.Panel signupBirthPanel;
+        private System.Windows.Forms.Label signupPasswordLabel;
+        private System.Windows.Forms.Panel signupPasswordCheckPanel;
+        private System.Windows.Forms.TextBox signupPasswordCheckTextBox;
+        private System.Windows.Forms.Label signupEmailLabel;
+        private System.Windows.Forms.Panel signupPasswordPanel;
+        private System.Windows.Forms.TextBox signupPasswordTextBox;
+        private System.Windows.Forms.Panel signupEmailPanel;
+        private System.Windows.Forms.TextBox signupEmailTextBox;
+        private System.Windows.Forms.Label signupNameLabel;
+        private System.Windows.Forms.Panel signupNamePanel;
+        private System.Windows.Forms.TextBox signupNameTextBox;
+        private System.Windows.Forms.DateTimePicker signupBirthPicker;
+        private System.Windows.Forms.Button signupButton;
+        private System.Windows.Forms.Button signupCancelButton;
     }
 }
