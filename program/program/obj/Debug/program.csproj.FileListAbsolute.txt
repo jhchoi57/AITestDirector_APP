@@ -14,7 +14,6 @@ C:\Users\enoug\Desktop\AITestDirector_APP\program\program\bin\Debug\program.pdb
 C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.csprojAssemblyReference.cache
 C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.Properties.Resources.resources
 C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.View.LoginView.resources
-C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.View.SignupView.resources
 C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.csproj.GenerateResource.cache
 C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.csproj.CoreCompileInputs.cache
 C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.exe
