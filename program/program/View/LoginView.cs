@@ -13,6 +13,8 @@ namespace program.View
 {
     public partial class LoginView : Form
     {
+        private Boolean emailAuthCheck = false;
+        
         public LoginView()
         {
             InitializeComponent();
@@ -99,7 +101,20 @@ namespace program.View
             // 로그인 패널 가리고 회원가입 패널 보여줌
             loginPanel.Visible = false;
             signupPanel.Visible = true;
-            
+
+            // 회원가입 패널 초기화
+            signupUnivTextBox.Text = null;
+            signupStdNumTextBox.Text = null;
+            signupNameTextBox.Text = null;
+            signupEmailTextBox.Text = null;
+            signupEmailAuthTextBox.Text = null;
+            signupPasswordTextBox.Text = null;
+            signupPasswordCheckTextBox.Text = null;
+            signupBirthPicker.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            signupPositionComboBox.Text = null;
+            // 이메일 인증도 초기화
+            emailAuthCheck = false;
+
         }
 
         // 로그인 뷰 로드
@@ -148,9 +163,17 @@ namespace program.View
             signupPasswordCheckLabel.Font = labelFont;
             signupEmailAuthLabel.Font = labelFont;
             signupBirthLabel.Font = labelFont;
+            signupUnivLabel.Font = labelFont;
+            signupStdNumLabel.Font = labelFont;
             signupPositionLabel.Font = labelFont;
+            signupMinimizeButton.Font = labelFont;
+            signupExitButton.Font = labelFont;
 
-
+            // ComboBox setting
+            signupPositionComboBox.Items.Clear();
+            signupPositionComboBox.Items.Add("학생");
+            signupPositionComboBox.Items.Add("교수");
+            signupPositionComboBox.Items.Add("조교");
         }
 
         private void signupCancelButton_Click(object sender, EventArgs e)
@@ -162,7 +185,80 @@ namespace program.View
 
         private void signupButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("회원가입 이벤트!");
+            string univ = signupUnivTextBox.Text;
+            string stdNum = signupStdNumTextBox.Text;
+            string name = signupNameTextBox.Text;
+            string email = signupEmailTextBox.Text;
+            string emailAuth = signupEmailAuthTextBox.Text;
+            string password = signupPasswordTextBox.Text;
+            string passwordCheck = signupPasswordCheckTextBox.Text;
+            string birth = signupBirthPicker.Value.ToString("yyMMdd");
+            string position = signupPositionComboBox.Text;
+
+            // 학생/교수/조교 선택 확인
+            if (position.Length == 0) MessageBox.Show("구분을 선택해주세요.");
+
+            // 학생이면 학번 입력했는지 확인
+            else if (position.Equals("학생") && stdNum.Length == 0) MessageBox.Show("학번을 입력해주세요.");
+                        
+            // 학교 선택 확인
+            else if (univ.Length == 0) MessageBox.Show("학교를 선택해주세요.");
+
+            // 이름 입력 확인
+            else if (name.Length == 0) MessageBox.Show("이름을 입력해주세요.");
+
+            // 이메일 입력 확인
+            else if (email.Length == 0) MessageBox.Show("이메일을 입력해주세요.");
+
+            // 비밀번호 입력 확인
+            else if (password.Length == 0) MessageBox.Show("비밀번호를 입력해주세요.");
+
+            // 비밀번호 확인 입력 확인
+            else if (passwordCheck.Length == 0) MessageBox.Show("비밀번호 확인을 입력해주세요.");
+
+            // 비밀번호 - 비밀번호 확인 입력이 같은지 확인
+            else if (!password.Equals(passwordCheck)) MessageBox.Show("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+
+            // 이메일 인증 확인
+            else if (emailAuthCheck == false) MessageBox.Show("이메일 인증을 완료해주세요.");
+
+            else
+            {
+                MessageBox.Show("회원가입 이벤트!\n" +
+                "학교: " + univ + "\n" +
+                "학번: " + stdNum + "\n" +
+                "이름: " + name + "\n" +
+                "이메일: " + email + "\n" +
+                "이메일 인증: " + emailAuth + "\n" +
+                "비밀번호: " + password + "\n" +
+                "비밀번호 확인: " + passwordCheck + "\n" +
+                "생년월일: " + birth + "\n" +
+                "구분: " + position + "\n"
+                );
+            }
+        }
+
+        private void signupPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void signupUnivButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("학교 검색!!!");
+
+            signupUnivTextBox.Text = "세종대학교";
+        }
+
+        private void signupEmailAuthButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("이메일 인증!!!");
+            emailAuthCheck = true;
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
