@@ -37,6 +37,8 @@ namespace program.View
         {
             this.mainPanel = new System.Windows.Forms.Panel();
             this.signupPanel = new System.Windows.Forms.Panel();
+            this.signupExitButton = new System.Windows.Forms.Button();
+            this.signupMinimizeButton = new System.Windows.Forms.Button();
             this.signupPositionComboBox = new System.Windows.Forms.ComboBox();
             this.signupPositionLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -68,10 +70,10 @@ namespace program.View
             this.signupNameLabel = new System.Windows.Forms.Label();
             this.signupNamePanel = new System.Windows.Forms.Panel();
             this.signupNameTextBox = new System.Windows.Forms.TextBox();
-            this.exitButton = new System.Windows.Forms.Button();
-            this.minimizeButton = new System.Windows.Forms.Button();
             this.imagePanel = new System.Windows.Forms.Panel();
             this.loginPanel = new System.Windows.Forms.Panel();
+            this.exitButton = new System.Windows.Forms.Button();
+            this.minimizeButton = new System.Windows.Forms.Button();
             this.emailLabel = new System.Windows.Forms.Label();
             this.emailPanel = new System.Windows.Forms.Panel();
             this.emailTextBox = new System.Windows.Forms.TextBox();
@@ -81,8 +83,6 @@ namespace program.View
             this.loginButton = new System.Windows.Forms.Button();
             this.registerButton = new System.Windows.Forms.Button();
             this.copyrightLabel = new System.Windows.Forms.Label();
-            this.signupMinimizeButton = new System.Windows.Forms.Button();
-            this.signupExitButton = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.signupPanel.SuspendLayout();
             this.signupStdNumPanel.SuspendLayout();
@@ -142,6 +142,30 @@ namespace program.View
             this.signupPanel.TabIndex = 1;
             this.signupPanel.Visible = false;
             this.signupPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.signupPanel_Paint);
+            // 
+            // signupExitButton
+            // 
+            this.signupExitButton.FlatAppearance.BorderSize = 0;
+            this.signupExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.signupExitButton.Location = new System.Drawing.Point(290, 0);
+            this.signupExitButton.Name = "signupExitButton";
+            this.signupExitButton.Size = new System.Drawing.Size(30, 28);
+            this.signupExitButton.TabIndex = 0;
+            this.signupExitButton.TabStop = false;
+            this.signupExitButton.Text = "✕";
+            this.signupExitButton.Click += new System.EventHandler(this.exitButton_Click_1);
+            // 
+            // signupMinimizeButton
+            // 
+            this.signupMinimizeButton.FlatAppearance.BorderSize = 0;
+            this.signupMinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.signupMinimizeButton.Location = new System.Drawing.Point(260, 0);
+            this.signupMinimizeButton.Name = "signupMinimizeButton";
+            this.signupMinimizeButton.Size = new System.Drawing.Size(30, 28);
+            this.signupMinimizeButton.TabIndex = 1;
+            this.signupMinimizeButton.TabStop = false;
+            this.signupMinimizeButton.Text = "_";
+            this.signupMinimizeButton.Click += new System.EventHandler(this.minimizeButton_Click_1);
             // 
             // signupPositionComboBox
             // 
@@ -433,30 +457,6 @@ namespace program.View
             this.signupNameTextBox.Size = new System.Drawing.Size(230, 14);
             this.signupNameTextBox.TabIndex = 0;
             // 
-            // exitButton
-            // 
-            this.exitButton.FlatAppearance.BorderSize = 0;
-            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exitButton.Location = new System.Drawing.Point(290, 0);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(30, 28);
-            this.exitButton.TabIndex = 0;
-            this.exitButton.TabStop = false;
-            this.exitButton.Text = "✕";
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click_1);
-            // 
-            // minimizeButton
-            // 
-            this.minimizeButton.FlatAppearance.BorderSize = 0;
-            this.minimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minimizeButton.Location = new System.Drawing.Point(260, 0);
-            this.minimizeButton.Name = "minimizeButton";
-            this.minimizeButton.Size = new System.Drawing.Size(30, 28);
-            this.minimizeButton.TabIndex = 1;
-            this.minimizeButton.TabStop = false;
-            this.minimizeButton.Text = "_";
-            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click_1);
-            // 
             // imagePanel
             // 
             this.imagePanel.BackColor = System.Drawing.Color.Yellow;
@@ -482,6 +482,30 @@ namespace program.View
             this.loginPanel.Name = "loginPanel";
             this.loginPanel.Size = new System.Drawing.Size(320, 640);
             this.loginPanel.TabIndex = 1;
+            // 
+            // exitButton
+            // 
+            this.exitButton.FlatAppearance.BorderSize = 0;
+            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exitButton.Location = new System.Drawing.Point(290, 0);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(30, 28);
+            this.exitButton.TabIndex = 0;
+            this.exitButton.TabStop = false;
+            this.exitButton.Text = "✕";
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click_1);
+            // 
+            // minimizeButton
+            // 
+            this.minimizeButton.FlatAppearance.BorderSize = 0;
+            this.minimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.minimizeButton.Location = new System.Drawing.Point(260, 0);
+            this.minimizeButton.Name = "minimizeButton";
+            this.minimizeButton.Size = new System.Drawing.Size(30, 28);
+            this.minimizeButton.TabIndex = 1;
+            this.minimizeButton.TabStop = false;
+            this.minimizeButton.Text = "_";
+            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click_1);
             // 
             // emailLabel
             // 
@@ -575,30 +599,6 @@ namespace program.View
             this.copyrightLabel.Size = new System.Drawing.Size(150, 15);
             this.copyrightLabel.TabIndex = 8;
             this.copyrightLabel.Text = "ⓒ CROFO  from Sejong Univ.";
-            // 
-            // signupMinimizeButton
-            // 
-            this.signupMinimizeButton.FlatAppearance.BorderSize = 0;
-            this.signupMinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.signupMinimizeButton.Location = new System.Drawing.Point(260, 0);
-            this.signupMinimizeButton.Name = "signupMinimizeButton";
-            this.signupMinimizeButton.Size = new System.Drawing.Size(30, 28);
-            this.signupMinimizeButton.TabIndex = 1;
-            this.signupMinimizeButton.TabStop = false;
-            this.signupMinimizeButton.Text = "_";
-            this.signupMinimizeButton.Click += new System.EventHandler(this.minimizeButton_Click_1);
-            // 
-            // signupExitButton
-            // 
-            this.signupExitButton.FlatAppearance.BorderSize = 0;
-            this.signupExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.signupExitButton.Location = new System.Drawing.Point(290, 0);
-            this.signupExitButton.Name = "signupExitButton";
-            this.signupExitButton.Size = new System.Drawing.Size(30, 28);
-            this.signupExitButton.TabIndex = 0;
-            this.signupExitButton.TabStop = false;
-            this.signupExitButton.Text = "✕";
-            this.signupExitButton.Click += new System.EventHandler(this.exitButton_Click_1);
             // 
             // LoginView
             // 
