@@ -1,4 +1,8 @@
-﻿namespace program.View
+﻿using System.Drawing;
+using System.Runtime.CompilerServices;
+using System.Windows.Forms;
+
+namespace program.View
 {
     partial class StudentHomeView
     {
@@ -37,13 +41,12 @@
             this.SuspendLayout();
             // 
             // signupExitButton
-            // 
+            //
             this.signupExitButton.FlatAppearance.BorderSize = 0;
             this.signupExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.signupExitButton.Location = new System.Drawing.Point(1234, 0);
+            this.signupExitButton.Location = new System.Drawing.Point(349, 0);
             this.signupExitButton.Name = "signupExitButton";
             this.signupExitButton.Size = new System.Drawing.Size(30, 28);
-            this.signupExitButton.TabIndex = 2;
             this.signupExitButton.TabStop = false;
             this.signupExitButton.Text = "✕";
             this.signupExitButton.Click += new System.EventHandler(this.signupExitButton_Click);
@@ -52,10 +55,9 @@
             // 
             this.signupMinimizeButton.FlatAppearance.BorderSize = 0;
             this.signupMinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.signupMinimizeButton.Location = new System.Drawing.Point(1204, 0);
+            this.signupMinimizeButton.Location = new System.Drawing.Point(319, 0);
             this.signupMinimizeButton.Name = "signupMinimizeButton";
             this.signupMinimizeButton.Size = new System.Drawing.Size(30, 28);
-            this.signupMinimizeButton.TabIndex = 3;
             this.signupMinimizeButton.TabStop = false;
             this.signupMinimizeButton.Text = "_";
             this.signupMinimizeButton.Click += new System.EventHandler(this.signupMinimizeButton_Click);
@@ -64,34 +66,31 @@
             // 
             this.mainPanel.Controls.Add(this.testPanel);
             this.mainPanel.Controls.Add(this.myPagePanel);
-            this.mainPanel.Controls.Add(this.signupExitButton);
-            this.mainPanel.Controls.Add(this.signupMinimizeButton);
-            this.mainPanel.Location = new System.Drawing.Point(0, 0);
-            this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1264, 682);
-            this.mainPanel.TabIndex = 4;
+            this.mainPanel.BackColor = Color.White;
+            this.mainPanel.Name = "mainPanel";
             // 
             // myPagePanel
             // 
             this.myPagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.myPagePanel.Location = new System.Drawing.Point(812, 51);
+            this.myPagePanel.Location = new System.Drawing.Point(885, 0);
             this.myPagePanel.Name = "myPagePanel";
-            this.myPagePanel.Size = new System.Drawing.Size(349, 584);
-            this.myPagePanel.TabIndex = 5;
+            this.myPagePanel.Size = new System.Drawing.Size(379, 682);
+            this.myPagePanel.Controls.Add(this.signupExitButton);
+            this.myPagePanel.Controls.Add(this.signupMinimizeButton);
             // 
             // testPanel
             // 
             this.testPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.testPanel.Location = new System.Drawing.Point(101, 51);
+            this.testPanel.Location = new System.Drawing.Point(0, 0);
             this.testPanel.Name = "testPanel";
-            this.testPanel.Size = new System.Drawing.Size(714, 584);
-            this.testPanel.TabIndex = 6;
+            this.testPanel.Size = new System.Drawing.Size(885, 682);
             // 
             // StudentHomeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.ClientSize = new System.Drawing.Size(1264, 682);
             this.Controls.Add(this.mainPanel);
             this.Name = "StudentHomeView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

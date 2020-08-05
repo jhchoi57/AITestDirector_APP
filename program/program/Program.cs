@@ -16,7 +16,7 @@ namespace program
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new View.LoginView());
+            Application.Run(new View.StudentHomeView());
             //Application.Run(new View.StudentHomeView());
         }
     }
