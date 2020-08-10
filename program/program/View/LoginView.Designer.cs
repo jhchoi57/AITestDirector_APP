@@ -100,7 +100,6 @@ namespace program.View
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.signupPanel);
             this.mainPanel.Controls.Add(this.imagePanel);
             this.mainPanel.Controls.Add(this.loginPanel);
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
@@ -136,7 +135,7 @@ namespace program.View
             this.signupPanel.Controls.Add(this.signupEmailPanel);
             this.signupPanel.Controls.Add(this.signupNameLabel);
             this.signupPanel.Controls.Add(this.signupNamePanel);
-            this.signupPanel.Location = new System.Drawing.Point(640, 0);
+            this.signupPanel.Location = new System.Drawing.Point(0, 0);
             this.signupPanel.Name = "signupPanel";
             this.signupPanel.Size = new System.Drawing.Size(320, 640);
             this.signupPanel.TabIndex = 1;
@@ -469,6 +468,7 @@ namespace program.View
             // loginPanel
             // 
             this.loginPanel.BackColor = System.Drawing.Color.White;
+            this.loginPanel.Controls.Add(this.signupPanel);
             this.loginPanel.Controls.Add(this.exitButton);
             this.loginPanel.Controls.Add(this.minimizeButton);
             this.loginPanel.Controls.Add(this.emailLabel);
