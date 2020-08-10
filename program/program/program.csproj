@@ -46,6 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\Controller.cs" />
+    <Compile Include="Model\Exams\Lecture.cs" />
+    <Compile Include="Model\Users\Assistant.cs" />
+    <Compile Include="Model\Exams\MainQuestion.cs" />
+    <Compile Include="Model\Users\Professor.cs" />
+    <Compile Include="Model\Users\Student.cs" />
+    <Compile Include="Model\Exams\SubQuestion.cs" />
+    <Compile Include="Model\Exams\Exam.cs" />
+    <Compile Include="Model\Users\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="View\StudentHomeView.cs">
@@ -92,10 +101,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\" />
-    <Folder Include="Model\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="src\Assets\Images\Login.jpg" />
   </ItemGroup>

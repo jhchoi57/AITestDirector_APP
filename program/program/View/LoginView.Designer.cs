@@ -36,6 +36,8 @@ namespace program.View
         private void InitializeComponent()
         {
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.imagePanel = new System.Windows.Forms.Panel();
+            this.loginPanel = new System.Windows.Forms.Panel();
             this.signupPanel = new System.Windows.Forms.Panel();
             this.signupExitButton = new System.Windows.Forms.Button();
             this.signupMinimizeButton = new System.Windows.Forms.Button();
@@ -70,8 +72,6 @@ namespace program.View
             this.signupNameLabel = new System.Windows.Forms.Label();
             this.signupNamePanel = new System.Windows.Forms.Panel();
             this.signupNameTextBox = new System.Windows.Forms.TextBox();
-            this.imagePanel = new System.Windows.Forms.Panel();
-            this.loginPanel = new System.Windows.Forms.Panel();
             this.exitButton = new System.Windows.Forms.Button();
             this.minimizeButton = new System.Windows.Forms.Button();
             this.emailLabel = new System.Windows.Forms.Label();
@@ -84,6 +84,7 @@ namespace program.View
             this.registerButton = new System.Windows.Forms.Button();
             this.copyrightLabel = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
+            this.loginPanel.SuspendLayout();
             this.signupPanel.SuspendLayout();
             this.signupStdNumPanel.SuspendLayout();
             this.signupUnivPanel.SuspendLayout();
@@ -93,7 +94,6 @@ namespace program.View
             this.signupPasswordPanel.SuspendLayout();
             this.signupEmailPanel.SuspendLayout();
             this.signupNamePanel.SuspendLayout();
-            this.loginPanel.SuspendLayout();
             this.emailPanel.SuspendLayout();
             this.passwordPanel.SuspendLayout();
             this.SuspendLayout();
@@ -106,6 +106,33 @@ namespace program.View
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(960, 640);
             this.mainPanel.TabIndex = 0;
+            // 
+            // imagePanel
+            // 
+            this.imagePanel.BackColor = System.Drawing.Color.Yellow;
+            this.imagePanel.Location = new System.Drawing.Point(0, 0);
+            this.imagePanel.Name = "imagePanel";
+            this.imagePanel.Size = new System.Drawing.Size(640, 640);
+            this.imagePanel.TabIndex = 0;
+            this.imagePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.imagePanel_Paint);
+            // 
+            // loginPanel
+            // 
+            this.loginPanel.BackColor = System.Drawing.Color.White;
+            this.loginPanel.Controls.Add(this.signupPanel);
+            this.loginPanel.Controls.Add(this.exitButton);
+            this.loginPanel.Controls.Add(this.minimizeButton);
+            this.loginPanel.Controls.Add(this.emailLabel);
+            this.loginPanel.Controls.Add(this.emailPanel);
+            this.loginPanel.Controls.Add(this.passwordLabel);
+            this.loginPanel.Controls.Add(this.passwordPanel);
+            this.loginPanel.Controls.Add(this.loginButton);
+            this.loginPanel.Controls.Add(this.registerButton);
+            this.loginPanel.Controls.Add(this.copyrightLabel);
+            this.loginPanel.Location = new System.Drawing.Point(640, 0);
+            this.loginPanel.Name = "loginPanel";
+            this.loginPanel.Size = new System.Drawing.Size(320, 640);
+            this.loginPanel.TabIndex = 1;
             // 
             // signupPanel
             // 
@@ -456,33 +483,6 @@ namespace program.View
             this.signupNameTextBox.Size = new System.Drawing.Size(230, 14);
             this.signupNameTextBox.TabIndex = 0;
             // 
-            // imagePanel
-            // 
-            this.imagePanel.BackColor = System.Drawing.Color.Yellow;
-            this.imagePanel.Location = new System.Drawing.Point(0, 0);
-            this.imagePanel.Name = "imagePanel";
-            this.imagePanel.Size = new System.Drawing.Size(640, 640);
-            this.imagePanel.TabIndex = 0;
-            this.imagePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.imagePanel_Paint);
-            // 
-            // loginPanel
-            // 
-            this.loginPanel.BackColor = System.Drawing.Color.White;
-            this.loginPanel.Controls.Add(this.signupPanel);
-            this.loginPanel.Controls.Add(this.exitButton);
-            this.loginPanel.Controls.Add(this.minimizeButton);
-            this.loginPanel.Controls.Add(this.emailLabel);
-            this.loginPanel.Controls.Add(this.emailPanel);
-            this.loginPanel.Controls.Add(this.passwordLabel);
-            this.loginPanel.Controls.Add(this.passwordPanel);
-            this.loginPanel.Controls.Add(this.loginButton);
-            this.loginPanel.Controls.Add(this.registerButton);
-            this.loginPanel.Controls.Add(this.copyrightLabel);
-            this.loginPanel.Location = new System.Drawing.Point(640, 0);
-            this.loginPanel.Name = "loginPanel";
-            this.loginPanel.Size = new System.Drawing.Size(320, 640);
-            this.loginPanel.TabIndex = 1;
-            // 
             // exitButton
             // 
             this.exitButton.FlatAppearance.BorderSize = 0;
@@ -611,6 +611,7 @@ namespace program.View
             this.Text = "LoginView";
             this.Load += new System.EventHandler(this.LoginView_Load_1);
             this.mainPanel.ResumeLayout(false);
+            this.loginPanel.ResumeLayout(false);
             this.signupPanel.ResumeLayout(false);
             this.signupStdNumPanel.ResumeLayout(false);
             this.signupStdNumPanel.PerformLayout();
@@ -627,7 +628,6 @@ namespace program.View
             this.signupEmailPanel.PerformLayout();
             this.signupNamePanel.ResumeLayout(false);
             this.signupNamePanel.PerformLayout();
-            this.loginPanel.ResumeLayout(false);
             this.emailPanel.ResumeLayout(false);
             this.emailPanel.PerformLayout();
             this.passwordPanel.ResumeLayout(false);
