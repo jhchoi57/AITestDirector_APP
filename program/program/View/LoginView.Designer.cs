@@ -652,7 +652,7 @@ namespace program.View
         private System.Windows.Forms.Label copyrightLabel;
 
 
-        // TextBoxs
+        // TextBoxes
         private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.TextBox passwordTextBox;
 

@@ -143,7 +143,7 @@ namespace program.View
             privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicBold.ttf");
             privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicLight.ttf");
             privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicUltraLight.ttf");
-            Font labelFont = new Font(privateFont.Families[1], 14f);
+            Font labelFont = new Font(privateFont.Families[1], 13f);
             Font textBoxFont = new Font(privateFont.Families[1], 10f);
             Font copyrightFont = new Font(privateFont.Families[2], 8f);
 
