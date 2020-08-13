@@ -34,8 +34,9 @@ namespace program.View
             Font font = new Font(privateFont.Families[1], 10f);
             Font labelFont = new Font(privateFont.Families[1], 13f);
             Font textBoxFont = new Font(privateFont.Families[1], 12f);
-            Font copyrightFont = new Font(privateFont.Families[2], 8f);
+            Font smallFont = new Font(privateFont.Families[1], 8f);
             string[] lectureItems = { "운영체제", "컴퓨터구조론", "C프로그래밍및실습" };
+            string[] questionItems = { "○/✕", "단답형", "서술형", "선다형", "빈 칸" };
 
             this.exitButton.Font = labelFont;
             this.minimizeButton.Font = labelFont;
@@ -63,6 +64,8 @@ namespace program.View
             this.wholePageLabel.Font = textBoxFont;
             this.addQuestionButton.Font = textBoxFont;
             this.removeQuestionButton.Font = textBoxFont;
+            this.mainQuestionTextBox.Font = textBoxFont;
+            this.mainQuestionLabel.Font = textBoxFont;
 
             this.startDateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.startDateTimePicker.Format = DateTimePickerFormat.Custom;
@@ -72,6 +75,8 @@ namespace program.View
             this.examLectureNameComboBox.Items.AddRange(lectureItems);
             this.examLectureNameComboBox.SelectedIndex = 0;
 
+            this.questionKindComboBox.Items.AddRange(questionItems);
+            this.questionKindComboBox.SelectedIndex = 0;
         }
 
         // 나가기 버튼
@@ -86,6 +91,31 @@ namespace program.View
             this.WindowState = FormWindowState.Minimized;
         }
 
-            
+        private void mainQuestionTextBox_LostFocus_1(object sender, EventArgs e)
+        {
+            string str = this.mainQuestionTextBox.Text.Replace(" ", "");
+            str = str.Replace("\r", "");
+            str = str.Replace("\n", "");
+            if (str != "")
+            {
+                this.mainQuestionTextBox.Visible = false;
+                this.mainQuestionLabel.Visible = true;
+                this.mainQuestionLabel.Text = this.mainQuestionTextBox.Text;
+            }
+        }
+
+        private void mainQuestionLabel_Click_1(object sender, EventArgs e)
+        {
+            this.mainQuestionLabel.Visible = false;
+            this.mainQuestionTextBox.Visible = true;
+            this.mainQuestionTextBox.Focus();
+
+        }
+
+        private void mainQuestionPanel_ControlRemoved_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("컨트롤이 삭제되었습니다.");
+        }
+
     }
 }

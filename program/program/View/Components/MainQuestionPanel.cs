@@ -5,13 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace program.View
+namespace program.View.Components
 {
-    class MakeExamPanel : Panel
+    class MainQuestionPanel : Panel
     {
-        public MakeExamPanel() : base()
-        {
 
-        }
     }
 }
