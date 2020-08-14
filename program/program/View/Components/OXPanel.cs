@@ -116,7 +116,6 @@ namespace program.View
             deleteButton = new QuestionDeleteButton();
             deleteButton.Location = new Point(605, 8);
             this.Controls.Add(deleteButton);
-            deleteButton.Click += deleteButton_Click_1;
         }
 
         private void questionTextBox_LostFocus_1 (object sender, EventArgs e)
@@ -137,6 +136,7 @@ namespace program.View
                 oButton.Location = new Point(460, (height - oButton.Height) / 2);
                 xButton.Location = new Point(490, (height - xButton.Height) / 2);
                 examScorePanel.Location = new Point(520, (height - examScorePanel.Height) / 2);
+                deleteButton.Location = new Point(605, (height - deleteButton.Height) / 2);
             }
         }
 
@@ -146,6 +146,7 @@ namespace program.View
             oButton.Location = new Point(460, 8);
             xButton.Location = new Point(490, 8);
             examScorePanel.Location = new Point(520, 8);
+            deleteButton.Location = new Point(605, 8);
             questionTextBox.Visible = true;
             questionLabel.Visible = false;
             questionTextBox.Focus();
@@ -167,11 +168,6 @@ namespace program.View
             xButton.BackColor = Color.Black;
             oButton.ForeColor = Color.Black;
             oButton.BackColor = Color.White;
-        }
-
-        private void deleteButton_Click_1 (object sender, EventArgs e)
-        {
-            this.Parent.Controls.Remove(this);
         }
     }
 }

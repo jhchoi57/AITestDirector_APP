@@ -338,7 +338,7 @@ namespace program.View
             this.removeQuestionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pageNavigationPanel.Controls.Add(this.removeQuestionButton);
 
-
+            /*
             // mainQuestionPanel
             this.mainQuestionPanel = new Panel();
             this.mainQuestionPanel.BackColor = Color.White;
@@ -378,23 +378,26 @@ namespace program.View
             this.oxPanel.Location = new Point(100, 200);
             this.mainQuestionPanel.Controls.Add(this.oxPanel);
 
-            // questionKindLabel
-            this.questionKindLabel = new Label();
-            this.questionKindLabel.Location = new Point(450, 15);
-            this.questionKindLabel.Size = new Size(82, 21);
-            this.questionKindLabel.Text = "출제 유형:";
-            this.questionKindLabel.Font = CustomFonts.LabelFont;
-            this.mainQuestionPanel.Controls.Add(this.questionKindLabel);
+            // questionKindPanel
+            this.questionKindPanel = new QuestionKindPanel();
+            this.questionKindPanel.Location = new Point(385, 11);
+            this.mainQuestionPanel.Controls.Add(this.questionKindPanel);
 
-            // questionKindComboBox
-            this.questionKindComboBox = new ComboBox();
-            this.questionKindComboBox.Location = new System.Drawing.Point(532, 11);
-            this.questionKindComboBox.Name = "questionKindComboBox";
-            this.questionKindComboBox.Size = new System.Drawing.Size(75, 20);
-            this.questionKindComboBox.TabIndex = 3;
-            this.questionKindComboBox.Font = CustomFonts.LabelFont;
-            this.questionKindComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mainQuestionPanel.Controls.Add(this.questionKindComboBox);
+            // addSubQuestionButton
+            this.addSubQuestionButton = new AddSubQuestionButton();
+            this.addSubQuestionButton.Location = new Point(560, 11);
+            this.mainQuestionPanel.Controls.Add(this.addSubQuestionButton);
+
+            // totalScorePanel
+            this.totalScorePanel = new ScorePanel();
+            this.totalScorePanel.Location = new Point(670, 11);
+            this.mainQuestionPanel.Controls.Add(this.totalScorePanel);
+            */
+
+            this.mainQuestionPanel = new MainQuestionPanel();
+            this.mainQuestionPanel.Location = new Point(30, 30);
+            this.examPanel.Controls.Add(this.mainQuestionPanel);
+
 
             // 
             // MakeExamView
@@ -426,9 +429,11 @@ namespace program.View
         private Panel examTimePanel;
         private Panel pageNavigationPanel;
         private Panel nowPagePanel;
-        private Panel mainQuestionPanel; 
-        private Panel subQuestionPanel;
+        //private Panel mainQuestionPanel; 
+        private QuestionKindPanel questionKindPanel;
         private OXPanel oxPanel;
+        private ScorePanel totalScorePanel;
+        private MainQuestionPanel mainQuestionPanel;
 
 
         // Buttons
@@ -441,10 +446,10 @@ namespace program.View
         private Button addQuestionButton;
         private Button removeQuestionButton;
         private Button mainQuestionButton;
+        private AddSubQuestionButton addSubQuestionButton;
 
         // ComboBoxes
         private ComboBox examLectureNameComboBox;
-        private ComboBox questionKindComboBox;
 
         // TextBoxes
         private TextBox examNameTextBox;
@@ -466,7 +471,6 @@ namespace program.View
         private Label pageSlashLabel;
         private Label wholePageLabel;
         private Label mainQuestionLabel;
-        private Label questionKindLabel;
 
         // DateTimePicker
         private DateTimePicker startDateTimePicker;

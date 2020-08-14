@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -58,11 +59,17 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\Windows\Forms\FlaStyle.cs" />
+    <Compile Include="View\Components\AddSubQuestionButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="View\Components\CustomFonts.cs" />
     <Compile Include="View\Components\MainQuestionPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\Components\QuestionDeleteButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Components\QuestionKindPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\Components\ScorePanel.cs">
