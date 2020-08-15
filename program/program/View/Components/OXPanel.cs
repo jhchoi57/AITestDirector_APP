@@ -10,18 +10,11 @@ using System.Xml;
 
 namespace program.View
 {
-    class OXPanel : Panel
+    class OXPanel : SubQuestionPanel
     {
         private Boolean answer { get; set; }
         private Button oButton { get; set; }
         private Button xButton { get; set; }
-        private TextBox questionTextBox { get; set; }
-
-        private Label questionLabel { get; set; }
-
-        private ScorePanel examScorePanel { get; set; }
-
-        private QuestionDeleteButton deleteButton { get; set; }
 
         public Boolean Answer
         {
@@ -41,31 +34,7 @@ namespace program.View
             set { xButton = value; }
         }
 
-        public TextBox QuestionTextBox
-        {
-            get { return questionTextBox; }
-            set { questionTextBox = value; }
-        }
-
-        public Label QuestionLabel
-        {
-            get { return questionLabel; }
-            set { questionLabel = value; }
-        }
-
-        public ScorePanel ExamScorePanel
-        {
-            get { return examScorePanel; }
-            set { examScorePanel = value; }
-        }
-
-        public QuestionDeleteButton DeleteButton
-        {
-            get { return deleteButton; }
-            set { deleteButton = value; }
-        }
-
-        public OXPanel(CustomFonts customFonts) : base()
+        public OXPanel(CustomFonts customFonts) : base(customFonts)
         {
             this.Size = new System.Drawing.Size(645, 45);
 
@@ -93,63 +62,49 @@ namespace program.View
             this.Controls.Add(xButton);
             xButton.Click += xButton_Click_1;
 
-            questionTextBox = new TextBox();
-            questionTextBox.Size = new System.Drawing.Size(450, 45);
-            questionTextBox.Multiline = true;
-            questionTextBox.ScrollBars = ScrollBars.Vertical;
-            questionTextBox.Font = customFonts.TextBoxFont();
-            this.Controls.Add(questionTextBox);
-            questionTextBox.LostFocus += questionTextBox_LostFocus_1;
+            QuestionTextBox.Size = new System.Drawing.Size(450, 45);
+            QuestionTextBox.LostFocus += questionTextBox_LostFocus_1;
 
-            questionLabel = new Label();
-            questionLabel.AutoSize = true;
-            questionLabel.MaximumSize = new System.Drawing.Size(500, 0);
-            questionLabel.Visible = false;
-            questionLabel.Font = customFonts.TextBoxFont();
-            this.Controls.Add(questionLabel);
-            questionLabel.Click += questionLabel_Click_1;
+            QuestionLabel.MaximumSize = new System.Drawing.Size(500, 0);
+            QuestionLabel.Click += questionLabel_Click_1;
 
-            examScorePanel = new ScorePanel(customFonts);
-            examScorePanel.Location = new Point(520, 8);
-            this.Controls.Add(examScorePanel);
+            ExamScorePanel.Location = new Point(520, 8);
 
-            deleteButton = new QuestionDeleteButton(customFonts);
-            deleteButton.Location = new Point(605, 8);
-            this.Controls.Add(deleteButton);
+            DeleteButton.Location = new Point(605, 8);
         }
 
         private void questionTextBox_LostFocus_1 (object sender, EventArgs e)
         {
-            string str = questionTextBox.Text.Replace(" ", "");
+            string str = QuestionTextBox.Text.Replace(" ", "");
             str = str.Replace("\r", "");
             str = str.Replace("\n", "");
             if (str != "")
             {
                 int margin = 10;
                 int height;
-                questionTextBox.Visible = false;
-                questionLabel.Visible = true;
-                questionLabel.Text = questionTextBox.Text;
-                height = margin * 2 + questionLabel.Height;
+                QuestionTextBox.Visible = false;
+                QuestionLabel.Visible = true;
+                QuestionLabel.Text = QuestionTextBox.Text;
+                height = margin * 2 + QuestionLabel.Height;
                 this.Height = height;
-                questionLabel.Location = new Point(0, 10);
+                QuestionLabel.Location = new Point(0, 10);
                 oButton.Location = new Point(460, (height - oButton.Height) / 2);
                 xButton.Location = new Point(490, (height - xButton.Height) / 2);
-                examScorePanel.Location = new Point(520, (height - examScorePanel.Height) / 2);
-                deleteButton.Location = new Point(605, (height - deleteButton.Height) / 2);
+                ExamScorePanel.Location = new Point(520, (height - ExamScorePanel.Height) / 2);
+                DeleteButton.Location = new Point(605, (height - DeleteButton.Height) / 2);
             }
         }
 
         private void questionLabel_Click_1 (object sender, EventArgs e)
         {
-            this.Height = questionTextBox.Height;
+            this.Height = QuestionTextBox.Height;
             oButton.Location = new Point(460, 8);
             xButton.Location = new Point(490, 8);
-            examScorePanel.Location = new Point(520, 8);
-            deleteButton.Location = new Point(605, 8);
-            questionTextBox.Visible = true;
-            questionLabel.Visible = false;
-            questionTextBox.Focus();
+            ExamScorePanel.Location = new Point(520, 8);
+            DeleteButton.Location = new Point(605, 8);
+            QuestionTextBox.Visible = true;
+            QuestionLabel.Visible = false;
+            QuestionTextBox.Focus();
         }
 
         private void oButton_Click_1 (object sender, EventArgs e)

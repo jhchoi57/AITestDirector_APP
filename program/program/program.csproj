@@ -59,11 +59,26 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="System\Windows\Forms\FlaStyle.cs" />
+    <Compile Include="View\Components\AddExampleButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="View\Components\AddSubQuestionButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\Components\CustomFonts.cs" />
+    <Compile Include="View\Components\EssayAnswerPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Components\EssayQuestionPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="View\Components\MainQuestionPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Components\MultipleChoicePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Components\MultipleChoiceQuestionPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\Components\QuestionDeleteButton.cs">
@@ -73,6 +88,13 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\Components\ScorePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Components\ShortAnswerPanel.cs" />
+    <Compile Include="View\Components\ShortAnswerQuestionPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Components\SubQuestionPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\MakeExamView.cs">

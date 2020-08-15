@@ -383,12 +383,13 @@ namespace program.View
             this.pageSlashLabel.Text = "/";
             // 
             // wholePageLabel
-            // 
-            this.wholePageLabel.Location = new System.Drawing.Point(449, 12);
-            this.wholePageLabel.Name = "wholePageLabel";
-            this.wholePageLabel.Size = new System.Drawing.Size(36, 21);
-            this.wholePageLabel.TabIndex = 4;
-            this.wholePageLabel.Text = "55";
+            //
+            this.wholePageLabel = new Label();
+            this.wholePageLabel.Size = new Size(36, 21);
+            this.wholePageLabel.Location = new Point(449, 12);
+            this.wholePageLabel.Text = "1";
+            this.pageNavigationPanel.Controls.Add(this.wholePageLabel);
+
             // 
             // addQuestionButton
             // 

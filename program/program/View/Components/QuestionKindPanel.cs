@@ -49,5 +49,6 @@ namespace program.View.Components
             questionKindComboBox.Items.AddRange(questionItems);
             questionKindComboBox.SelectedIndex = 0;
         }
+
     }
 }
