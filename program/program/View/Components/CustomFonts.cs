@@ -8,48 +8,36 @@ using System.Threading.Tasks;
 
 namespace program.View.Components
 {
-    public static class CustomFonts
+    public class CustomFonts
     {
-        private static Font normalFont { get; set; }
-        private static Font labelFont { get; set; }
-        private static Font textBoxFont { get; set; }
-        private static Font smallFont { get; set; }
-
-        public static Font NormalFont
+        private static PrivateFontCollection privateFont;
+        public Font NormalFont()
         {
-            get { return normalFont; }
-            set { normalFont = value; }
+            return new Font(privateFont.Families[1], 10f);
         }
 
-        public static Font LabelFont
+        public Font LabelFont()
         {
-            get { return labelFont; }
-            set { labelFont = value; }
+            return new Font(privateFont.Families[1], 13f);
         }
 
-        public static Font TextBoxFont
+        public Font TextBoxFont()
         {
-            get { return textBoxFont; }
-            set { textBoxFont = value; }
+            return new Font(privateFont.Families[1], 12f);
         }
 
-        public static Font SmallFont
+        public Font SmallFont()
         {
-            get { return smallFont; }
-            set { smallFont = value; }
+            return new Font(privateFont.Families[1], 8f);
         }
 
         static CustomFonts()
         {
-            PrivateFontCollection privateFont = new PrivateFontCollection();
+            privateFont = new PrivateFontCollection();
             privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothic.ttf");
             privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicBold.ttf");
             privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicLight.ttf");
             privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicUltraLight.ttf");
-            normalFont = new Font(privateFont.Families[1], 10f);
-            labelFont = new Font(privateFont.Families[1], 13f);
-            textBoxFont = new Font(privateFont.Families[1], 12f);
-            smallFont = new Font(privateFont.Families[1], 8f);
         }
     }
 }

@@ -338,67 +338,6 @@ namespace program.View
             this.removeQuestionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pageNavigationPanel.Controls.Add(this.removeQuestionButton);
 
-            /*
-            // mainQuestionPanel
-            this.mainQuestionPanel = new Panel();
-            this.mainQuestionPanel.BackColor = Color.White;
-            this.mainQuestionPanel.Width = 800;
-            this.mainQuestionPanel.Height = 900;
-            this.mainQuestionPanel.Location = new Point(30, 30);
-            this.examPanel.Controls.Add(this.mainQuestionPanel);
-            this.mainQuestionPanel.ControlRemoved += mainQuestionPanel_ControlRemoved_1;
-
-            // mainQuestionTextBox
-            this.mainQuestionTextBox = new TextBox();
-            this.mainQuestionTextBox.Location = new Point(50, 50);
-            this.mainQuestionTextBox.Size = new Size(700, 100);
-            this.mainQuestionTextBox.AutoSize = true;
-            this.mainQuestionTextBox.Multiline = true;
-            this.mainQuestionTextBox.ScrollBars = ScrollBars.Vertical;
-            this.mainQuestionPanel.Controls.Add(this.mainQuestionTextBox);
-            this.mainQuestionTextBox.LostFocus += this.mainQuestionTextBox_LostFocus_1;
-
-            // mainQuestionLabel
-            this.mainQuestionLabel = new Label();
-            this.mainQuestionLabel.Location = new Point(50, 53);
-            this.mainQuestionLabel.Visible = false;
-            this.mainQuestionLabel.MaximumSize = new Size(700, 0);
-            this.mainQuestionLabel.AutoSize = true;
-            this.mainQuestionPanel.Controls.Add(this.mainQuestionLabel);
-            this.mainQuestionLabel.Click += this.mainQuestionLabel_Click_1;
-
-            // mainQuestionButton
-            this.mainQuestionButton = new Button();
-            this.mainQuestionButton.Location = new Point(0, 400);
-            this.mainQuestionButton.Text = "Button";
-            this.mainQuestionPanel.Controls.Add(this.mainQuestionButton);
-
-            // oxPanel
-            this.oxPanel = new OXPanel();
-            this.oxPanel.Location = new Point(100, 200);
-            this.mainQuestionPanel.Controls.Add(this.oxPanel);
-
-            // questionKindPanel
-            this.questionKindPanel = new QuestionKindPanel();
-            this.questionKindPanel.Location = new Point(385, 11);
-            this.mainQuestionPanel.Controls.Add(this.questionKindPanel);
-
-            // addSubQuestionButton
-            this.addSubQuestionButton = new AddSubQuestionButton();
-            this.addSubQuestionButton.Location = new Point(560, 11);
-            this.mainQuestionPanel.Controls.Add(this.addSubQuestionButton);
-
-            // totalScorePanel
-            this.totalScorePanel = new ScorePanel();
-            this.totalScorePanel.Location = new Point(670, 11);
-            this.mainQuestionPanel.Controls.Add(this.totalScorePanel);
-            */
-
-            this.mainQuestionPanel = new MainQuestionPanel();
-            this.mainQuestionPanel.Location = new Point(30, 30);
-            this.examPanel.Controls.Add(this.mainQuestionPanel);
-
-
             // 
             // MakeExamView
             // 
@@ -429,12 +368,7 @@ namespace program.View
         private Panel examTimePanel;
         private Panel pageNavigationPanel;
         private Panel nowPagePanel;
-        //private Panel mainQuestionPanel; 
-        private QuestionKindPanel questionKindPanel;
-        private OXPanel oxPanel;
-        private ScorePanel totalScorePanel;
         private MainQuestionPanel mainQuestionPanel;
-
 
         // Buttons
         private Button exitButton;
@@ -445,8 +379,6 @@ namespace program.View
         private Button pageRightButton;
         private Button addQuestionButton;
         private Button removeQuestionButton;
-        private Button mainQuestionButton;
-        private AddSubQuestionButton addSubQuestionButton;
 
         // ComboBoxes
         private ComboBox examLectureNameComboBox;
@@ -456,7 +388,6 @@ namespace program.View
         private TextBox examPercentTextBox;
         private TextBox examTimeTextBox;
         private TextBox nowPageTextBox;
-        private TextBox mainQuestionTextBox;
 
         // Labels
         private Label examLectureNameLabel;
@@ -470,7 +401,6 @@ namespace program.View
         private Label examTimeLabel2;
         private Label pageSlashLabel;
         private Label wholePageLabel;
-        private Label mainQuestionLabel;
 
         // DateTimePicker
         private DateTimePicker startDateTimePicker;

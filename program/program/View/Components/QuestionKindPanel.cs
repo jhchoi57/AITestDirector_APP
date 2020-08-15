@@ -25,7 +25,7 @@ namespace program.View.Components
             set { questionKindComboBox = value; }
         }
 
-        public QuestionKindPanel() : base()
+        public QuestionKindPanel(CustomFonts customFonts) : base()
         {
             string[] questionItems = { "○/✕", "단답형", "서술형", "선다형", "빈 칸" };
 
@@ -35,14 +35,14 @@ namespace program.View.Components
             questionKindLabel.Location = new Point(0, 4);
             questionKindLabel.Size = new Size(82, 21);
             questionKindLabel.Text = "출제 유형:";
-            questionKindLabel.Font = CustomFonts.LabelFont;
+            questionKindLabel.Font = customFonts.LabelFont();
             Controls.Add(this.questionKindLabel);
 
             questionKindComboBox = new ComboBox();
             questionKindComboBox.Location = new System.Drawing.Point(82, 0);
             questionKindComboBox.Name = "questionKindComboBox";
             questionKindComboBox.Size = new System.Drawing.Size(75, 20);
-            questionKindComboBox.Font = CustomFonts.LabelFont;
+            questionKindComboBox.Font = customFonts.LabelFont();
             questionKindComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Controls.Add(this.questionKindComboBox);
 

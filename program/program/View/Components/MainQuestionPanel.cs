@@ -16,6 +16,8 @@ namespace program.View.Components
         private Label mainQuestionLabel { get; set; }
         private TextBox mainQuestionTextBox { get; set; }
         private List<OXPanel> oxPanelList { get; set; }
+
+        private CustomFonts customFonts;
         public ScorePanel TotalScorePanel
         {
             get { return totalScorePanel; }
@@ -38,22 +40,25 @@ namespace program.View.Components
         }
         
 
-        public MainQuestionPanel() : base()
+        public MainQuestionPanel(CustomFonts customFonts) : base()
         {
             this.Size = new Size(800, 500);
             this.BackColor = Color.White;
             this.ControlRemoved += ControlRemoved_1;
 
-            questionKindPanel = new QuestionKindPanel();
+            this.customFonts = customFonts;
+
+            questionKindPanel = new QuestionKindPanel(customFonts);
             questionKindPanel.Location = new Point(385, 11);
             this.Controls.Add(questionKindPanel);
+            questionKindPanel.QuestionKindComboBox.SelectedIndexChanged += questionKindComboBox_SelectedIndexChanged_1;
 
-            addSubQuestionButton = new AddSubQuestionButton();
+            addSubQuestionButton = new AddSubQuestionButton(customFonts);
             addSubQuestionButton.Location = new Point(560, 11);
             this.Controls.Add(addSubQuestionButton);
             addSubQuestionButton.Click += addSubQuestionButton_Click_1;
 
-            totalScorePanel = new ScorePanel();
+            totalScorePanel = new ScorePanel(customFonts);
             totalScorePanel.Location = new Point(670, 11);
             this.Controls.Add(totalScorePanel);
 
@@ -63,7 +68,7 @@ namespace program.View.Components
             mainQuestionTextBox.AutoSize = true;
             mainQuestionTextBox.Multiline = true;
             mainQuestionTextBox.ScrollBars = ScrollBars.Vertical;
-            mainQuestionTextBox.Font = CustomFonts.TextBoxFont;
+            mainQuestionTextBox.Font = customFonts.TextBoxFont();
             this.Controls.Add(mainQuestionTextBox);
             mainQuestionTextBox.LostFocus += mainQuestionTextBox_LostFocus_1;
 
@@ -72,7 +77,7 @@ namespace program.View.Components
             mainQuestionLabel.Visible = false;
             mainQuestionLabel.MaximumSize = new Size(700, 0);
             mainQuestionLabel.AutoSize = true;
-            mainQuestionLabel.Font = CustomFonts.TextBoxFont;
+            mainQuestionLabel.Font = customFonts.TextBoxFont();
             this.Controls.Add(mainQuestionLabel);
             mainQuestionLabel.Click += mainQuestionLabel_Click_1;
 
@@ -111,10 +116,11 @@ namespace program.View.Components
         {
             int index = questionKindPanel.QuestionKindComboBox.SelectedIndex;
             int count;
+            Panel parentPanel = (Panel)this.Parent;
 
             if (index == 0)
             {
-                OXPanel oxPanel = new OXPanel();
+                OXPanel oxPanel = new OXPanel(customFonts);
                 count = oxPanelList.Count;
                 if (count == 0)
                 {
@@ -141,6 +147,7 @@ namespace program.View.Components
             }
 
             questionKindPanel.QuestionKindComboBox.Enabled = false;
+            parentPanel.AutoScrollPosition = new Point(0, parentPanel.Height);
         }
 
         private void subQuestionDeleteButton_Click_1(object sender, EventArgs e)
@@ -228,6 +235,46 @@ namespace program.View.Components
                 moveListItems(index, idx + 1);
             }
             
+        }
+
+        private void questionKindComboBox_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            int index = questionKindPanel.QuestionKindComboBox.SelectedIndex;
+            if (index == 0)
+            {
+                mainQuestionTextBox.Text = "○/✕ 문제입니다. 각각의 문제의 올바른 답 버튼을 눌러주세요.";
+                mainQuestionTextBox.Visible = true;
+                mainQuestionLabel.Text = "○/✕ 문제입니다. 각각의 문제의 올바른 답 버튼을 눌러주세요.";
+                mainQuestionLabel.Visible = false;
+            }
+            else if (index == 1)
+            {
+                mainQuestionTextBox.Text = "단답형 문제입니다. 각각의 문제에 맞는 답을 기입해주세요.";
+                mainQuestionTextBox.Visible = true;
+                mainQuestionLabel.Text = "단답형 문제입니다. 각각의 문제에 맞는 답을 기입해주세요.";
+                mainQuestionLabel.Visible = false;
+            }
+            else if (index == 2)
+            {
+                mainQuestionTextBox.Text = "서술형 문제입니다. 각각의 문제에 올바른 서술형 답을 기입해주세요.";
+                mainQuestionTextBox.Visible = true;
+                mainQuestionLabel.Text = "서술형 문제입니다. 각각의 문제에 올바른 서술형 답을 기입해주세요.";
+                mainQuestionLabel.Visible = false;
+            }
+            else if (index == 3)
+            {
+                mainQuestionTextBox.Text = "객관식(선다형) 문제입니다. 각각의 문제에 올바른 답을 체크해주세요.";
+                mainQuestionTextBox.Visible = true;
+                mainQuestionLabel.Text = "객관식(선다형) 문제입니다. 각각의 문제에 올바른 답을 체크해주세요.";
+                mainQuestionLabel.Visible = false;
+            }
+            else
+            {
+                mainQuestionTextBox.Text = "빈 칸 채우기 문제입니다. 각각의 문제에 올바른 답을 채워주세요.";
+                mainQuestionTextBox.Visible = true;
+                mainQuestionLabel.Text = "빈 칸 채우기 문제입니다. 각각의 문제에 올바른 답을 채워주세요.";
+                mainQuestionLabel.Visible = false;
+            }
         }
 
         private void ControlRemoved_1(object sender, EventArgs e)

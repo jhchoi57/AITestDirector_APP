@@ -1,4 +1,5 @@
-﻿using System;
+﻿using program.View.Components;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,43 +27,35 @@ namespace program.View
         private void MakeExamView_Load1(object sender, EventArgs e)
         {
             // 폰트
-            PrivateFontCollection privateFont = new PrivateFontCollection();
-            privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothic.ttf");
-            privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicBold.ttf");
-            privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicLight.ttf");
-            privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicUltraLight.ttf");
-            Font font = new Font(privateFont.Families[1], 10f);
-            Font labelFont = new Font(privateFont.Families[1], 13f);
-            Font textBoxFont = new Font(privateFont.Families[1], 12f);
-            Font smallFont = new Font(privateFont.Families[1], 8f);
+            CustomFonts customFonts = new CustomFonts();
             string[] lectureItems = { "운영체제", "컴퓨터구조론", "C프로그래밍및실습" };
 
-            this.exitButton.Font = labelFont;
-            this.minimizeButton.Font = labelFont;
-            this.examNameLabel.Font = labelFont;
-            this.examNameTextBox.Font = textBoxFont;
-            this.examLectureNameLabel.Font = labelFont;
-            this.examLectureNameComboBox.Font = labelFont;
-            this.examPercentLabel.Font = labelFont;
-            this.examPercentLabel2.Font = labelFont;
-            this.examPercentTextBox.Font = textBoxFont;
-            this.examPeriodLabel.Font = labelFont;
-            this.startDateTimePicker.Font = textBoxFont;
-            this.endDateTimePicker.Font = textBoxFont;
-            this.startDateTimeLabel.Font = textBoxFont;
-            this.endDateTimeLabel.Font = textBoxFont;
-            this.examTimeLabel.Font = labelFont;
-            this.examTimeLabel2.Font = labelFont;
-            this.examTimeTextBox.Font = textBoxFont;
-            this.saveButton.Font = labelFont;
-            this.cancelButton.Font = labelFont;
-            this.pageLeftButton.Font = labelFont;
-            this.pageRightButton.Font = labelFont;
-            this.nowPageTextBox.Font = textBoxFont;
-            this.pageSlashLabel.Font = labelFont;
-            this.wholePageLabel.Font = textBoxFont;
-            this.addQuestionButton.Font = textBoxFont;
-            this.removeQuestionButton.Font = textBoxFont;
+            this.exitButton.Font = customFonts.LabelFont();
+            this.minimizeButton.Font = customFonts.LabelFont();
+            this.examNameLabel.Font = customFonts.LabelFont();
+            this.examNameTextBox.Font = customFonts.TextBoxFont();
+            this.examLectureNameLabel.Font = customFonts.LabelFont();
+            this.examLectureNameComboBox.Font = customFonts.LabelFont();
+            this.examPercentLabel.Font = customFonts.LabelFont();
+            this.examPercentLabel2.Font = customFonts.LabelFont();
+            this.examPercentTextBox.Font = customFonts.TextBoxFont();
+            this.examPeriodLabel.Font = customFonts.LabelFont();
+            this.startDateTimePicker.Font = customFonts.TextBoxFont();
+            this.endDateTimePicker.Font = customFonts.TextBoxFont();
+            this.startDateTimeLabel.Font = customFonts.TextBoxFont();
+            this.endDateTimeLabel.Font = customFonts.TextBoxFont();
+            this.examTimeLabel.Font = customFonts.LabelFont();
+            this.examTimeLabel2.Font = customFonts.LabelFont();
+            this.examTimeTextBox.Font = customFonts.TextBoxFont();
+            this.saveButton.Font = customFonts.LabelFont();
+            this.cancelButton.Font = customFonts.LabelFont();
+            this.pageLeftButton.Font = customFonts.LabelFont();
+            this.pageRightButton.Font = customFonts.LabelFont();
+            this.nowPageTextBox.Font = customFonts.TextBoxFont();
+            this.pageSlashLabel.Font = customFonts.LabelFont();
+            this.wholePageLabel.Font = customFonts.TextBoxFont();
+            this.addQuestionButton.Font = customFonts.TextBoxFont();
+            this.removeQuestionButton.Font = customFonts.TextBoxFont();
 
             this.startDateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.startDateTimePicker.Format = DateTimePickerFormat.Custom;
@@ -72,7 +65,9 @@ namespace program.View
             this.examLectureNameComboBox.Items.AddRange(lectureItems);
             this.examLectureNameComboBox.SelectedIndex = 0;
 
-            
+            this.mainQuestionPanel = new MainQuestionPanel(customFonts);
+            this.mainQuestionPanel.Location = new Point(30, 30);
+            this.examPanel.Controls.Add(this.mainQuestionPanel);
         }
 
         // 나가기 버튼

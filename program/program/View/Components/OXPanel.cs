@@ -65,7 +65,7 @@ namespace program.View
             set { deleteButton = value; }
         }
 
-        public OXPanel() : base()
+        public OXPanel(CustomFonts customFonts) : base()
         {
             this.Size = new System.Drawing.Size(645, 45);
 
@@ -79,7 +79,7 @@ namespace program.View
             oButton.Size = new System.Drawing.Size(30, 28);
             oButton.FlatAppearance.BorderSize = 0;
             oButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            oButton.Font = CustomFonts.TextBoxFont;
+            oButton.Font = customFonts.TextBoxFont();
             this.Controls.Add(oButton);
             oButton.Click += oButton_Click_1;
 
@@ -89,7 +89,7 @@ namespace program.View
             xButton.Size = new System.Drawing.Size(30, 28);
             xButton.FlatAppearance.BorderSize = 0;
             xButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            xButton.Font = CustomFonts.LabelFont;
+            xButton.Font = customFonts.LabelFont();
             this.Controls.Add(xButton);
             xButton.Click += xButton_Click_1;
 
@@ -97,7 +97,7 @@ namespace program.View
             questionTextBox.Size = new System.Drawing.Size(450, 45);
             questionTextBox.Multiline = true;
             questionTextBox.ScrollBars = ScrollBars.Vertical;
-            questionTextBox.Font = CustomFonts.TextBoxFont;
+            questionTextBox.Font = customFonts.TextBoxFont();
             this.Controls.Add(questionTextBox);
             questionTextBox.LostFocus += questionTextBox_LostFocus_1;
 
@@ -105,15 +105,15 @@ namespace program.View
             questionLabel.AutoSize = true;
             questionLabel.MaximumSize = new System.Drawing.Size(500, 0);
             questionLabel.Visible = false;
-            questionLabel.Font = CustomFonts.TextBoxFont;
+            questionLabel.Font = customFonts.TextBoxFont();
             this.Controls.Add(questionLabel);
             questionLabel.Click += questionLabel_Click_1;
 
-            examScorePanel = new ScorePanel();
+            examScorePanel = new ScorePanel(customFonts);
             examScorePanel.Location = new Point(520, 8);
             this.Controls.Add(examScorePanel);
 
-            deleteButton = new QuestionDeleteButton();
+            deleteButton = new QuestionDeleteButton(customFonts);
             deleteButton.Location = new Point(605, 8);
             this.Controls.Add(deleteButton);
         }

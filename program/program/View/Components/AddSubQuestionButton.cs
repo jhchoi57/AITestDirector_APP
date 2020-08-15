@@ -10,14 +10,14 @@ namespace program.View.Components
 {
     class AddSubQuestionButton : Button
     {
-        public AddSubQuestionButton() : base()
+        public AddSubQuestionButton(CustomFonts customFonts) : base()
         {
             // addSubQuestionButton
             this.Text = "+ 하위 문제";
             this.Size = new Size(100, 27);
             this.FlatStyle = FlatStyle.Flat;
             this.FlatAppearance.BorderSize = 1;
-            this.Font = CustomFonts.TextBoxFont;
+            this.Font = customFonts.TextBoxFont();
         }
     }
 }

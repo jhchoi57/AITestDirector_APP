@@ -25,21 +25,21 @@ namespace program.View.Components
             set { scoreTextBox = value; }
         }
 
-        public ScorePanel() : base()
+        public ScorePanel(CustomFonts customFonts) : base()
         {
             this.Size = new Size(80, 28);
 
             scoreLabel = new Label();
             scoreLabel.Location = new Point(0, 4);
             scoreLabel.Text = "(           점)";
-            scoreLabel.Font = CustomFonts.LabelFont;
+            scoreLabel.Font = customFonts.LabelFont();
             this.Controls.Add(scoreLabel);
 
             scoreTextBox = new TextBox();
             scoreTextBox.Size = new Size(40, 28);
             scoreTextBox.BackColor = Color.Beige;
             scoreTextBox.Text = "10";
-            scoreTextBox.Font = CustomFonts.LabelFont;
+            scoreTextBox.Font = customFonts.LabelFont();
             scoreTextBox.Location = new Point(14, 5);
             scoreTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             scoreTextBox.TextAlign = HorizontalAlignment.Center;

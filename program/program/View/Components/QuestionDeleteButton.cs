@@ -10,10 +10,10 @@ namespace program.View.Components
 {
     class QuestionDeleteButton : Button
     {
-        public QuestionDeleteButton() : base()
+        public QuestionDeleteButton(CustomFonts customFonts) : base()
         {
             Size = new System.Drawing.Size(40, 28);
-            Font = CustomFonts.SmallFont;
+            Font = customFonts.SmallFont();
             Text = "제 거";
             ForeColor = Color.White;
             BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(17)))), ((int)(((byte)(35)))));
