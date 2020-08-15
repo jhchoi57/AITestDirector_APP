@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Text;
+using program.View.Components;
 
 namespace program.View
 {
@@ -55,54 +56,52 @@ namespace program.View
             cameraPictureBox.Image = System.Drawing.Image.FromFile("../../src/Assets/Images/LinkImage.png");
 
             // 폰트
-            PrivateFontCollection privateFont = new PrivateFontCollection();
-            privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothic.ttf");
-            privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicBold.ttf");
-            privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicLight.ttf");
-            privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicUltraLight.ttf");
-            Font Font = new Font(privateFont.Families[1], 10f);
-            Font LabelFont = new Font(privateFont.Families[1], 14f);
-            Font TextBoxFont = new Font(privateFont.Families[1], 12f);
-            Font copyrightFont = new Font(privateFont.Families[2], 8f);
+            CustomFonts customFonts = new CustomFonts();
+            // NormalFont : 10f
+            // LabelFont : 13f
+            // TextBoxFont : 12f
+            // SmallFont : 8f
+            // TitleFont: 20f
+            // SubTitleFont : 17f
 
-            lectureTable.Font = Font;
+            lectureTable.Font = customFonts.NormalFont();
 
-            exitButton.Font = LabelFont;
-            minimizeButton.Font = LabelFont;
-            editExitButton.Font = LabelFont;
-            editMinimizeButton.Font = LabelFont;
-            testInfoMinimizeBtn.Font = LabelFont;
-            testInfoExitBtn.Font = LabelFont;
+            exitButton.Font = customFonts.LabelFont();
+            minimizeButton.Font = customFonts.LabelFont();
+            editExitButton.Font = customFonts.LabelFont();
+            editMinimizeButton.Font = customFonts.LabelFont();
+            testInfoMinimizeBtn.Font = customFonts.LabelFont();
+            testInfoExitBtn.Font = customFonts.LabelFont();
 
 
-            univLabel.Font = LabelFont;
-            stuNumLabel.Font = LabelFont;
-            nameLabel.Font = LabelFont;
-            emailLabel.Font = LabelFont;
+            univLabel.Font = customFonts.LabelFont();
+            stuNumLabel.Font = customFonts.LabelFont();
+            nameLabel.Font = customFonts.LabelFont();
+            emailLabel.Font = customFonts.LabelFont();
 
-            editBirthLabel.Font = LabelFont;
-            editEmailLabel.Font = LabelFont;
-            editNameLabel.Font = LabelFont;
-            editPasswordCheckLabel.Font = LabelFont;
-            editPasswordLabel.Font = LabelFont;
-            editStdNumLabel.Font = LabelFont;
-            editUnivLabel.Font = LabelFont;
+            editBirthLabel.Font = customFonts.LabelFont();
+            editEmailLabel.Font = customFonts.LabelFont();
+            editNameLabel.Font = customFonts.LabelFont();
+            editPasswordCheckLabel.Font = customFonts.LabelFont();
+            editPasswordLabel.Font = customFonts.LabelFont();
+            editStdNumLabel.Font = customFonts.LabelFont();
+            editUnivLabel.Font = customFonts.LabelFont();
 
-            editUnivTextBox.Font = TextBoxFont;
-            editStdNumTextBox.Font = TextBoxFont;
-            editNameTextBox.Font = TextBoxFont;
-            editEmailTextBox.Font = TextBoxFont;
-            editPasswordTextBox.Font = TextBoxFont;
-            editPasswordCheckTextBox.Font = TextBoxFont;
-            editBirthPicker.Font = TextBoxFont;
+            editUnivTextBox.Font = customFonts.TextBoxFont();
+            editStdNumTextBox.Font = customFonts.TextBoxFont();
+            editNameTextBox.Font = customFonts.TextBoxFont();
+            editEmailTextBox.Font = customFonts.TextBoxFont();
+            editPasswordTextBox.Font = customFonts.TextBoxFont();
+            editPasswordCheckTextBox.Font = customFonts.TextBoxFont();
+            editBirthPicker.Font = customFonts.TextBoxFont();
 
-            testInfoLectureLbl.Font = new Font(privateFont.Families[1], 20f);
-            testInfoTestNameLbl.Font = new Font(privateFont.Families[1], 17f);
-            testInfoProfNameLbl.Font = LabelFont;
-            testInfoDayLbl.Font = LabelFont;
-            testInfoTimeLbl.Font = LabelFont;
+            testInfoLectureLbl.Font = customFonts.TitleFont();
+            testInfoTestNameLbl.Font = customFonts.SubTitleFont();
+            testInfoProfNameLbl.Font = customFonts.LabelFont();
+            testInfoDayLbl.Font = customFonts.LabelFont();
+            testInfoTimeLbl.Font = customFonts.LabelFont();
 
-            cameraLabel.Font = LabelFont;
+            cameraLabel.Font = customFonts.LabelFont();
 
         }
 
@@ -183,6 +182,12 @@ namespace program.View
             cameraPanel.Visible = false;
             testPanel.Enabled = true;
             testInfoPanel.Enabled = true;
+        }
+
+        private void editLectureBtn_Click(object sender, EventArgs e)
+        {
+            StudentLectureEditView StudentLectureEditView = new StudentLectureEditView();
+            StudentLectureEditView.Show();            
         }
     }
 }

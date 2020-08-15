@@ -31,6 +31,16 @@ namespace program.View.Components
             return new Font(privateFont.Families[1], 8f);
         }
 
+        public Font TitleFont()
+        {
+            return new Font(privateFont.Families[1], 20f);
+        }
+
+        public Font SubTitleFont()
+        {
+            return new Font(privateFont.Families[1], 17f);
+        }
+
         static CustomFonts()
         {
             privateFont = new PrivateFontCollection();

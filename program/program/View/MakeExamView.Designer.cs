@@ -44,15 +44,44 @@ namespace program.View
             this.examNameLabel = new System.Windows.Forms.Label();
             this.examNamePanel = new System.Windows.Forms.Panel();
             this.examNameTextBox = new System.Windows.Forms.TextBox();
+            this.examPercentLabel = new System.Windows.Forms.Label();
+            this.examPercentLabel2 = new System.Windows.Forms.Label();
+            this.examPercentPanel = new System.Windows.Forms.Panel();
+            this.examPercentTextBox = new System.Windows.Forms.TextBox();
+            this.examPeriodLabel = new System.Windows.Forms.Label();
+            this.startDateTimeLabel = new System.Windows.Forms.Label();
+            this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.endDateTimeLabel = new System.Windows.Forms.Label();
+            this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.examTimeLabel = new System.Windows.Forms.Label();
+            this.examTimeLabel2 = new System.Windows.Forms.Label();
+            this.examTimePanel = new System.Windows.Forms.Panel();
+            this.examTimeTextBox = new System.Windows.Forms.TextBox();
+            this.saveButton = new System.Windows.Forms.Button();
+            this.cancelButton = new System.Windows.Forms.Button();
+            this.pageNavigationPanel = new System.Windows.Forms.Panel();
+            this.pageLeftButton = new System.Windows.Forms.Button();
+            this.pageRightButton = new System.Windows.Forms.Button();
+            this.nowPagePanel = new System.Windows.Forms.Panel();
+            this.nowPageTextBox = new System.Windows.Forms.TextBox();
+            this.pageSlashLabel = new System.Windows.Forms.Label();
+            this.wholePageLabel = new System.Windows.Forms.Label();
+            this.addQuestionButton = new System.Windows.Forms.Button();
+            this.removeQuestionButton = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.settingPanel.SuspendLayout();
             this.examNamePanel.SuspendLayout();
+            this.examPercentPanel.SuspendLayout();
+            this.examTimePanel.SuspendLayout();
+            this.pageNavigationPanel.SuspendLayout();
+            this.nowPagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
             this.mainPanel.Controls.Add(this.examPanel);
             this.mainPanel.Controls.Add(this.settingPanel);
+            this.mainPanel.Controls.Add(this.pageNavigationPanel);
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1264, 682);
@@ -60,21 +89,34 @@ namespace program.View
             // 
             // examPanel
             // 
+            this.examPanel.AutoScroll = true;
             this.examPanel.Location = new System.Drawing.Point(0, 0);
             this.examPanel.Name = "examPanel";
             this.examPanel.Size = new System.Drawing.Size(885, 640);
             this.examPanel.TabIndex = 0;
-            this.examPanel.AutoScroll = true;
             // 
             // settingPanel
             // 
+            this.settingPanel.BackColor = System.Drawing.Color.White;
             this.settingPanel.Controls.Add(this.exitButton);
             this.settingPanel.Controls.Add(this.minimizeButton);
             this.settingPanel.Controls.Add(this.examLectureNameLabel);
             this.settingPanel.Controls.Add(this.examLectureNameComboBox);
             this.settingPanel.Controls.Add(this.examNameLabel);
             this.settingPanel.Controls.Add(this.examNamePanel);
-            this.settingPanel.BackColor = Color.White;
+            this.settingPanel.Controls.Add(this.examPercentLabel);
+            this.settingPanel.Controls.Add(this.examPercentLabel2);
+            this.settingPanel.Controls.Add(this.examPercentPanel);
+            this.settingPanel.Controls.Add(this.examPeriodLabel);
+            this.settingPanel.Controls.Add(this.startDateTimeLabel);
+            this.settingPanel.Controls.Add(this.startDateTimePicker);
+            this.settingPanel.Controls.Add(this.endDateTimeLabel);
+            this.settingPanel.Controls.Add(this.endDateTimePicker);
+            this.settingPanel.Controls.Add(this.examTimeLabel);
+            this.settingPanel.Controls.Add(this.examTimeLabel2);
+            this.settingPanel.Controls.Add(this.examTimePanel);
+            this.settingPanel.Controls.Add(this.saveButton);
+            this.settingPanel.Controls.Add(this.cancelButton);
             this.settingPanel.Location = new System.Drawing.Point(885, 0);
             this.settingPanel.Name = "settingPanel";
             this.settingPanel.Size = new System.Drawing.Size(379, 682);
@@ -114,11 +156,11 @@ namespace program.View
             // 
             // examLectureNameComboBox
             // 
+            this.examLectureNameComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.examLectureNameComboBox.Location = new System.Drawing.Point(105, 67);
             this.examLectureNameComboBox.Name = "examLectureNameComboBox";
             this.examLectureNameComboBox.Size = new System.Drawing.Size(180, 20);
             this.examLectureNameComboBox.TabIndex = 3;
-            this.examLectureNameComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             // 
             // examNameLabel
             // 
@@ -130,7 +172,7 @@ namespace program.View
             // 
             // examNamePanel
             // 
-            this.examNamePanel.BackColor = Color.White;
+            this.examNamePanel.BackColor = System.Drawing.Color.White;
             this.examNamePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.examNamePanel.Controls.Add(this.examNameTextBox);
             this.examNamePanel.Location = new System.Drawing.Point(105, 117);
@@ -145,205 +187,239 @@ namespace program.View
             this.examNameTextBox.Name = "examNameTextBox";
             this.examNameTextBox.Size = new System.Drawing.Size(107, 14);
             this.examNameTextBox.TabIndex = 0;
-
+            // 
             // examPercentLabel
-            this.examPercentLabel = new Label();
-            this.examPercentLabel.Text = "성적 반영 비율:";
-            this.examPercentLabel.Location = new Point(40, 170);
+            // 
+            this.examPercentLabel.Location = new System.Drawing.Point(40, 170);
+            this.examPercentLabel.Name = "examPercentLabel";
             this.examPercentLabel.Size = new System.Drawing.Size(118, 21);
-            this.settingPanel.Controls.Add(this.examPercentLabel);
-
+            this.examPercentLabel.TabIndex = 6;
+            this.examPercentLabel.Text = "성적 반영 비율:";
+            // 
             // examPercentLabel2
-            this.examPercentLabel2 = new Label();
+            // 
+            this.examPercentLabel2.Location = new System.Drawing.Point(208, 170);
+            this.examPercentLabel2.Name = "examPercentLabel2";
+            this.examPercentLabel2.Size = new System.Drawing.Size(20, 21);
+            this.examPercentLabel2.TabIndex = 7;
             this.examPercentLabel2.Text = "%";
-            this.examPercentLabel2.Location = new Point(208, 170);
-            this.examPercentLabel2.Size = new Size(20, 21);
-            this.settingPanel.Controls.Add(this.examPercentLabel2);
-
+            // 
             // examPercentPanel
-            this.examPercentPanel = new Panel();
+            // 
+            this.examPercentPanel.BackColor = System.Drawing.Color.White;
             this.examPercentPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.examPercentPanel.Size = new System.Drawing.Size(50, 26);
+            this.examPercentPanel.Controls.Add(this.examPercentTextBox);
             this.examPercentPanel.Location = new System.Drawing.Point(158, 166);
-            this.examPercentPanel.BackColor = Color.White;
-            this.settingPanel.Controls.Add(this.examPercentPanel);
-
+            this.examPercentPanel.Name = "examPercentPanel";
+            this.examPercentPanel.Size = new System.Drawing.Size(50, 26);
+            this.examPercentPanel.TabIndex = 8;
+            // 
             // examPercentTextBox
-            this.examPercentTextBox = new TextBox();
+            // 
             this.examPercentTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.examPercentTextBox.Location = new System.Drawing.Point(4, 3);
-            this.examPercentTextBox.Size = new Size(37, 14);
-            this.examPercentPanel.Controls.Add(this.examPercentTextBox);
-
+            this.examPercentTextBox.Name = "examPercentTextBox";
+            this.examPercentTextBox.Size = new System.Drawing.Size(37, 14);
+            this.examPercentTextBox.TabIndex = 0;
+            // 
             // examPeriodLabel
-            this.examPeriodLabel = new Label();
+            // 
+            this.examPeriodLabel.Location = new System.Drawing.Point(40, 220);
+            this.examPeriodLabel.Name = "examPeriodLabel";
+            this.examPeriodLabel.Size = new System.Drawing.Size(118, 21);
+            this.examPeriodLabel.TabIndex = 9;
             this.examPeriodLabel.Text = "시험 응시 기간";
-            this.examPeriodLabel.Size = new Size(118, 21);
-            this.examPeriodLabel.Location = new Point(40, 220);
-            this.settingPanel.Controls.Add(this.examPeriodLabel);
-
+            // 
             // startDateTimeLabel
-            this.startDateTimeLabel = new Label();
+            // 
+            this.startDateTimeLabel.Location = new System.Drawing.Point(50, 255);
+            this.startDateTimeLabel.Name = "startDateTimeLabel";
+            this.startDateTimeLabel.Size = new System.Drawing.Size(42, 21);
+            this.startDateTimeLabel.TabIndex = 10;
             this.startDateTimeLabel.Text = "시작:";
-            this.startDateTimeLabel.Location = new Point(50, 255);
-            this.startDateTimeLabel.Size = new Size(42, 21);
-            this.settingPanel.Controls.Add(this.startDateTimeLabel);
-
+            // 
             // startDateTimePicker
-            this.startDateTimePicker = new DateTimePicker();
-            this.startDateTimePicker.Location = new Point(92, 252);
-            this.startDateTimePicker.Size = new Size(195, 40);
-            this.settingPanel.Controls.Add(this.startDateTimePicker);
-
+            // 
+            this.startDateTimePicker.Location = new System.Drawing.Point(92, 252);
+            this.startDateTimePicker.Name = "startDateTimePicker";
+            this.startDateTimePicker.Size = new System.Drawing.Size(195, 21);
+            this.startDateTimePicker.TabIndex = 11;
+            // 
             // endDateTimeLabel
-            this.endDateTimeLabel = new Label();
+            // 
+            this.endDateTimeLabel.Location = new System.Drawing.Point(50, 295);
+            this.endDateTimeLabel.Name = "endDateTimeLabel";
+            this.endDateTimeLabel.Size = new System.Drawing.Size(42, 21);
+            this.endDateTimeLabel.TabIndex = 12;
             this.endDateTimeLabel.Text = "종료:";
-            this.endDateTimeLabel.Location = new Point(50, 295);
-            this.endDateTimeLabel.Size = new Size(42, 21);
-            this.settingPanel.Controls.Add(this.endDateTimeLabel);
-
+            // 
             // endDateTimePicker
-            this.endDateTimePicker = new DateTimePicker();
-            this.endDateTimePicker.Location = new Point(92, 292);
-            this.endDateTimePicker.Size = new Size(195, 40);
-            this.settingPanel.Controls.Add(this.endDateTimePicker);
-
+            // 
+            this.endDateTimePicker.Location = new System.Drawing.Point(92, 292);
+            this.endDateTimePicker.Name = "endDateTimePicker";
+            this.endDateTimePicker.Size = new System.Drawing.Size(195, 21);
+            this.endDateTimePicker.TabIndex = 13;
+            // 
             // examTimeLabel
-            this.examTimeLabel = new Label();
+            // 
+            this.examTimeLabel.Location = new System.Drawing.Point(40, 342);
+            this.examTimeLabel.Name = "examTimeLabel";
+            this.examTimeLabel.Size = new System.Drawing.Size(82, 21);
+            this.examTimeLabel.TabIndex = 14;
             this.examTimeLabel.Text = "시험 시간:";
-            this.examTimeLabel.Size = new Size(82, 21);
-            this.examTimeLabel.Location = new Point(40, 342);
-            this.settingPanel.Controls.Add(this.examTimeLabel);
-
+            // 
             // examTimeLabel2
-            this.examTimeLabel2 = new Label();
+            // 
+            this.examTimeLabel2.Location = new System.Drawing.Point(172, 342);
+            this.examTimeLabel2.Name = "examTimeLabel2";
+            this.examTimeLabel2.Size = new System.Drawing.Size(21, 21);
+            this.examTimeLabel2.TabIndex = 15;
             this.examTimeLabel2.Text = "분";
-            this.examTimeLabel2.Size = new Size(21, 21);
-            this.examTimeLabel2.Location = new Point(172, 342);
-            this.settingPanel.Controls.Add(this.examTimeLabel2);
-
-
+            // 
             // examTimePanel
-            this.examTimePanel = new Panel();
+            // 
+            this.examTimePanel.BackColor = System.Drawing.Color.White;
             this.examTimePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.examTimePanel.Size = new System.Drawing.Size(50, 26);
+            this.examTimePanel.Controls.Add(this.examTimeTextBox);
             this.examTimePanel.Location = new System.Drawing.Point(122, 338);
-            this.examTimePanel.BackColor = Color.White;
-            this.settingPanel.Controls.Add(this.examTimePanel);
-
+            this.examTimePanel.Name = "examTimePanel";
+            this.examTimePanel.Size = new System.Drawing.Size(50, 26);
+            this.examTimePanel.TabIndex = 16;
+            // 
             // examTimeTextBox
-            this.examTimeTextBox = new TextBox();
+            // 
             this.examTimeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.examTimeTextBox.Location = new System.Drawing.Point(4, 3);
-            this.examTimeTextBox.Size = new Size(37, 14);
-            this.examTimePanel.Controls.Add(this.examTimeTextBox);
-
+            this.examTimeTextBox.Name = "examTimeTextBox";
+            this.examTimeTextBox.Size = new System.Drawing.Size(37, 14);
+            this.examTimeTextBox.TabIndex = 0;
+            // 
             // saveButton
-            this.saveButton = new Button();
-            this.saveButton.ForeColor = Color.White;
+            // 
             this.saveButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(33)))), ((int)(((byte)(59)))));
             this.saveButton.FlatAppearance.BorderSize = 0;
-            this.saveButton.Location = new Point(60, 600);
-            this.saveButton.Size = new Size(100, 50);
-            this.saveButton.Text = "저 장";
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.settingPanel.Controls.Add(this.saveButton);
-
+            this.saveButton.ForeColor = System.Drawing.Color.White;
+            this.saveButton.Location = new System.Drawing.Point(60, 600);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(100, 50);
+            this.saveButton.TabIndex = 17;
+            this.saveButton.Text = "저 장";
+            this.saveButton.UseVisualStyleBackColor = false;
+            // 
             // cancelButton
-            this.cancelButton = new Button();
-            this.cancelButton.BackColor = Color.White;
-            this.cancelButton.FlatAppearance.BorderSize = 1;
-            this.cancelButton.Size = new Size(100, 50);
-            this.cancelButton.Location = new Point(220, 600);
-            this.cancelButton.Text = "취 소";
+            // 
+            this.cancelButton.BackColor = System.Drawing.Color.White;
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.settingPanel.Controls.Add(this.cancelButton);
-
+            this.cancelButton.Location = new System.Drawing.Point(220, 600);
+            this.cancelButton.Name = "cancelButton";
+            this.cancelButton.Size = new System.Drawing.Size(100, 50);
+            this.cancelButton.TabIndex = 18;
+            this.cancelButton.Text = "취 소";
+            this.cancelButton.UseVisualStyleBackColor = false;
+            // 
             // pageNavigationPanel
-            this.pageNavigationPanel = new Panel();
-            this.pageNavigationPanel.Size = new Size(885, 42);
-            this.pageNavigationPanel.Location = new Point(0, 640);
-            this.mainPanel.Controls.Add(this.pageNavigationPanel);
-            this.pageNavigationPanel.BackColor = Color.Transparent;
-            this.pageNavigationPanel.Parent = this.mainPanel;
-
+            // 
+            this.pageNavigationPanel.BackColor = System.Drawing.Color.Transparent;
+            this.pageNavigationPanel.Controls.Add(this.pageLeftButton);
+            this.pageNavigationPanel.Controls.Add(this.pageRightButton);
+            this.pageNavigationPanel.Controls.Add(this.nowPagePanel);
+            this.pageNavigationPanel.Controls.Add(this.pageSlashLabel);
+            this.pageNavigationPanel.Controls.Add(this.wholePageLabel);
+            this.pageNavigationPanel.Controls.Add(this.addQuestionButton);
+            this.pageNavigationPanel.Controls.Add(this.removeQuestionButton);
+            this.pageNavigationPanel.Location = new System.Drawing.Point(0, 640);
+            this.pageNavigationPanel.Name = "pageNavigationPanel";
+            this.pageNavigationPanel.Size = new System.Drawing.Size(885, 42);
+            this.pageNavigationPanel.TabIndex = 2;
+            // 
             // pageLeftButton
-            this.pageLeftButton = new Button();
-            this.pageLeftButton.Text = "<";
-            this.pageLeftButton.ForeColor = Color.Gray;
-            this.pageLeftButton.Location = new Point(362, 1);
-            this.pageLeftButton.Size = new Size(40, 40);
+            // 
             this.pageLeftButton.FlatAppearance.BorderSize = 0;
             this.pageLeftButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pageNavigationPanel.Controls.Add(pageLeftButton);
-
+            this.pageLeftButton.ForeColor = System.Drawing.Color.Gray;
+            this.pageLeftButton.Location = new System.Drawing.Point(362, 1);
+            this.pageLeftButton.Name = "pageLeftButton";
+            this.pageLeftButton.Size = new System.Drawing.Size(40, 40);
+            this.pageLeftButton.TabIndex = 0;
+            this.pageLeftButton.Text = "<";
+            // 
             // pageRightButton
-            this.pageRightButton = new Button();
-            this.pageRightButton.Text = ">";
-            this.pageRightButton.ForeColor = Color.Gray;
-            this.pageRightButton.Location = new Point(482, 1);
-            this.pageRightButton.Size = new Size(40, 40);
+            // 
             this.pageRightButton.FlatAppearance.BorderSize = 0;
             this.pageRightButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pageNavigationPanel.Controls.Add(pageRightButton);
-
+            this.pageRightButton.ForeColor = System.Drawing.Color.Gray;
+            this.pageRightButton.Location = new System.Drawing.Point(482, 1);
+            this.pageRightButton.Name = "pageRightButton";
+            this.pageRightButton.Size = new System.Drawing.Size(40, 40);
+            this.pageRightButton.TabIndex = 1;
+            this.pageRightButton.Text = ">";
+            // 
             // nowPagePanel
-            this.nowPagePanel = new Panel();
-            this.nowPagePanel.Size = new Size(28, 26);
-            this.nowPagePanel.Location = new Point(409, 8);
-            this.nowPagePanel.BackColor = Color.White;
-            this.pageNavigationPanel.Controls.Add(nowPagePanel);
-
-            // nowPageTextBox
-            this.nowPageTextBox = new TextBox();
-            this.nowPageTextBox.Size = new Size(18, 14);
-            this.nowPageTextBox.Location = new Point(5, 4);
-            this.nowPageTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.nowPageTextBox.Text = "1";
-            this.nowPageTextBox.TextAlign = HorizontalAlignment.Center;
+            // 
+            this.nowPagePanel.BackColor = System.Drawing.Color.White;
             this.nowPagePanel.Controls.Add(this.nowPageTextBox);
-
+            this.nowPagePanel.Location = new System.Drawing.Point(409, 8);
+            this.nowPagePanel.Name = "nowPagePanel";
+            this.nowPagePanel.Size = new System.Drawing.Size(28, 26);
+            this.nowPagePanel.TabIndex = 2;
+            // 
+            // nowPageTextBox
+            // 
+            this.nowPageTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.nowPageTextBox.Location = new System.Drawing.Point(5, 4);
+            this.nowPageTextBox.Name = "nowPageTextBox";
+            this.nowPageTextBox.Size = new System.Drawing.Size(18, 14);
+            this.nowPageTextBox.TabIndex = 0;
+            this.nowPageTextBox.Text = "1";
+            this.nowPageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // pageSlashLabel
-            this.pageSlashLabel = new Label();
-            this.pageSlashLabel.Size = new Size(10, 21);
-            this.pageSlashLabel.Location = new Point(437, 10);
+            // 
+            this.pageSlashLabel.Location = new System.Drawing.Point(437, 10);
+            this.pageSlashLabel.Name = "pageSlashLabel";
+            this.pageSlashLabel.Size = new System.Drawing.Size(10, 21);
+            this.pageSlashLabel.TabIndex = 3;
             this.pageSlashLabel.Text = "/";
-            this.pageNavigationPanel.Controls.Add(this.pageSlashLabel);
-
+            // 
             // wholePageLabel
-            this.wholePageLabel = new Label();
-            this.wholePageLabel.Size = new Size(36, 21);
-            this.wholePageLabel.Location = new Point(449, 12);
+            // 
+            this.wholePageLabel.Location = new System.Drawing.Point(449, 12);
+            this.wholePageLabel.Name = "wholePageLabel";
+            this.wholePageLabel.Size = new System.Drawing.Size(36, 21);
+            this.wholePageLabel.TabIndex = 4;
             this.wholePageLabel.Text = "55";
-            this.pageNavigationPanel.Controls.Add(this.wholePageLabel);
-
+            // 
             // addQuestionButton
-            this.addQuestionButton = new Button();
-            this.addQuestionButton.Size = new Size(100, 42);
-            this.addQuestionButton.Location = new Point(630, 0);
-            this.addQuestionButton.BackColor = Color.BlanchedAlmond;
-            this.addQuestionButton.Text = "+ 문제 추가";
+            // 
+            this.addQuestionButton.BackColor = System.Drawing.Color.BlanchedAlmond;
             this.addQuestionButton.FlatAppearance.BorderSize = 0;
             this.addQuestionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pageNavigationPanel.Controls.Add(this.addQuestionButton);
-
+            this.addQuestionButton.Location = new System.Drawing.Point(630, 0);
+            this.addQuestionButton.Name = "addQuestionButton";
+            this.addQuestionButton.Size = new System.Drawing.Size(100, 42);
+            this.addQuestionButton.TabIndex = 5;
+            this.addQuestionButton.Text = "+ 문제 추가";
+            this.addQuestionButton.UseVisualStyleBackColor = false;
+            // 
             // removeQuestionButton
-            this.removeQuestionButton = new Button();
-            this.removeQuestionButton.Size = new Size(100, 42);
-            this.removeQuestionButton.Location = new Point(730, 0);
-            this.removeQuestionButton.ForeColor = Color.White;
+            // 
             this.removeQuestionButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(17)))), ((int)(((byte)(35)))));
-            this.removeQuestionButton.Text = "- 문제 제거";
             this.removeQuestionButton.FlatAppearance.BorderSize = 0;
             this.removeQuestionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pageNavigationPanel.Controls.Add(this.removeQuestionButton);
-
+            this.removeQuestionButton.ForeColor = System.Drawing.Color.White;
+            this.removeQuestionButton.Location = new System.Drawing.Point(730, 0);
+            this.removeQuestionButton.Name = "removeQuestionButton";
+            this.removeQuestionButton.Size = new System.Drawing.Size(100, 42);
+            this.removeQuestionButton.TabIndex = 6;
+            this.removeQuestionButton.Text = "- 문제 제거";
+            this.removeQuestionButton.UseVisualStyleBackColor = false;
             // 
             // MakeExamView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 682);
+            this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.mainPanel);
             this.Name = "MakeExamView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -353,6 +429,13 @@ namespace program.View
             this.settingPanel.ResumeLayout(false);
             this.examNamePanel.ResumeLayout(false);
             this.examNamePanel.PerformLayout();
+            this.examPercentPanel.ResumeLayout(false);
+            this.examPercentPanel.PerformLayout();
+            this.examTimePanel.ResumeLayout(false);
+            this.examTimePanel.PerformLayout();
+            this.pageNavigationPanel.ResumeLayout(false);
+            this.nowPagePanel.ResumeLayout(false);
+            this.nowPagePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
