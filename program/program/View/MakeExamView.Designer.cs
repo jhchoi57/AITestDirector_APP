@@ -1,4 +1,5 @@
 ﻿using program.View.Components;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
 using System.Net.Mail;
@@ -343,6 +344,7 @@ namespace program.View
             this.pageLeftButton.Size = new System.Drawing.Size(40, 40);
             this.pageLeftButton.TabIndex = 0;
             this.pageLeftButton.Text = "<";
+            this.pageLeftButton.Click += pageLeftButton_Click_1;
             // 
             // pageRightButton
             // 
@@ -354,6 +356,7 @@ namespace program.View
             this.pageRightButton.Size = new System.Drawing.Size(40, 40);
             this.pageRightButton.TabIndex = 1;
             this.pageRightButton.Text = ">";
+            this.pageRightButton.Click += pageRightButton_Click_1;
             // 
             // nowPagePanel
             // 
@@ -373,6 +376,9 @@ namespace program.View
             this.nowPageTextBox.TabIndex = 0;
             this.nowPageTextBox.Text = "1";
             this.nowPageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nowPageTextBox.KeyPress += nowPageTextBox_KeyPress_1;
+            this.nowPageTextBox.LostFocus += nowPageTextBox_LostFocus_1;
+            this.nowPageTextBox.TextChanged += nowPageTextBox_TextChanged_1;
             // 
             // pageSlashLabel
             // 
@@ -402,6 +408,7 @@ namespace program.View
             this.addQuestionButton.TabIndex = 5;
             this.addQuestionButton.Text = "+ 문제 추가";
             this.addQuestionButton.UseVisualStyleBackColor = false;
+            this.addQuestionButton.Click += addQuestionButton_Click_1;
             // 
             // removeQuestionButton
             // 
@@ -415,6 +422,7 @@ namespace program.View
             this.removeQuestionButton.TabIndex = 6;
             this.removeQuestionButton.Text = "- 문제 제거";
             this.removeQuestionButton.UseVisualStyleBackColor = false;
+            this.removeQuestionButton.Click += removeQuestionButton_Click_1;
             // 
             // MakeExamView
             // 
@@ -452,7 +460,7 @@ namespace program.View
         private Panel examTimePanel;
         private Panel pageNavigationPanel;
         private Panel nowPagePanel;
-        private MainQuestionPanel mainQuestionPanel;
+        private List<MainQuestionPanel> mainQuestionPanelList;
 
         // Buttons
         private Button exitButton;
