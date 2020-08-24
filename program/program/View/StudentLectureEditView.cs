@@ -85,7 +85,6 @@ namespace program.View
 
             minimizeButton.Font = customFonts.LabelFont();
             exitButton.Font = customFonts.LabelFont();
-            myLectureMinimizeBtn.Font = customFonts.LabelFont();
             myLectureExitBtn.Font = customFonts.LabelFont();
 
             professorNameLbl.Font = customFonts.LabelFont();
@@ -162,7 +161,14 @@ namespace program.View
 
         private void searchBtn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("검색 이벤트!");
+            if (professorNameTxtBox.Text.Equals("") && lectureNameTxtBox.Text.Equals(""))
+            {
+                MessageBox.Show("교수명 또는 강의명을 입력해주세요!!");
+            }
+            else
+            {
+                MessageBox.Show("검색 이벤트!");
+            }
         }
 
         private void professorNameTxtBox_KeyDown(object sender, KeyEventArgs e)

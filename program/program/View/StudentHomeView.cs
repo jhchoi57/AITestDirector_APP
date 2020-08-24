@@ -189,5 +189,11 @@ namespace program.View
             StudentLectureEditView StudentLectureEditView = new StudentLectureEditView();
             StudentLectureEditView.Show();            
         }
+
+        private void checkScoreBtn_Click(object sender, EventArgs e)
+        {
+            StudentScoreCheckView StudentScoreCheckView = new StudentScoreCheckView();
+            StudentScoreCheckView.Show();
+        }
     }
 }
