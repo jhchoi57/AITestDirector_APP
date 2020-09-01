@@ -25,3 +25,4 @@ C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.View
 C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.View.StudentLectureEditView.resources
 C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.View.StudentLectureEditView.resources
 C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.View.StudentScoreCheckView.resources
+C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.View.ProfessorHomeView.resources
