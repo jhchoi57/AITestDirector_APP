@@ -25,7 +25,8 @@ namespace program
             //Application.Run(new View.StudentHomeView());
             //Application.Run(new View.LoginView());
             //Application.Run(new View.StudentScoreCheckView());
-            Application.Run(new View.ProfessorHomeView());
+            //Application.Run(new View.ProfessorHomeView());
+            Application.Run(new View.ProfessorLectureEditView());
         }
     }
 }

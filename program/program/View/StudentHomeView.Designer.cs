@@ -54,13 +54,6 @@ namespace program.View
             this.testName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkScoreBtn = new System.Windows.Forms.Button();
             this.editLectureBtn = new System.Windows.Forms.Button();
-            this.myPagePanel = new System.Windows.Forms.Panel();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.emailLabel = new System.Windows.Forms.Label();
-            this.nameLabel = new System.Windows.Forms.Label();
-            this.stuNumLabel = new System.Windows.Forms.Label();
-            this.univLabel = new System.Windows.Forms.Label();
-            this.editInfoBtn = new System.Windows.Forms.Button();
             this.editPanel = new System.Windows.Forms.Panel();
             this.editExitButton = new System.Windows.Forms.Button();
             this.editMinimizeButton = new System.Windows.Forms.Button();
@@ -97,13 +90,18 @@ namespace program.View
             this.testStartBtn = new System.Windows.Forms.Button();
             this.testInfoExitBtn = new System.Windows.Forms.Button();
             this.testInfoMinimizeBtn = new System.Windows.Forms.Button();
+            this.myPagePanel = new System.Windows.Forms.Panel();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.emailLabel = new System.Windows.Forms.Label();
+            this.nameLabel = new System.Windows.Forms.Label();
+            this.stuNumLabel = new System.Windows.Forms.Label();
+            this.univLabel = new System.Windows.Forms.Label();
+            this.editInfoBtn = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.cameraPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cameraPictureBox)).BeginInit();
             this.testPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lectureTable)).BeginInit();
-            this.myPagePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.editPanel.SuspendLayout();
             this.editStdNumPanel.SuspendLayout();
             this.editUnivPanel.SuspendLayout();
@@ -113,6 +111,8 @@ namespace program.View
             this.editEmailPanel.SuspendLayout();
             this.editNamePanel.SuspendLayout();
             this.testInfoPanel.SuspendLayout();
+            this.myPagePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // exitButton
@@ -146,9 +146,9 @@ namespace program.View
             this.mainPanel.BackColor = System.Drawing.Color.White;
             this.mainPanel.Controls.Add(this.cameraPanel);
             this.mainPanel.Controls.Add(this.testPanel);
-            this.mainPanel.Controls.Add(this.myPagePanel);
             this.mainPanel.Controls.Add(this.editPanel);
             this.mainPanel.Controls.Add(this.testInfoPanel);
+            this.mainPanel.Controls.Add(this.myPagePanel);
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1264, 682);
@@ -346,81 +346,6 @@ namespace program.View
             this.editLectureBtn.Text = "강의 편집";
             this.editLectureBtn.UseVisualStyleBackColor = false;
             this.editLectureBtn.Click += new System.EventHandler(this.editLectureBtn_Click);
-            // 
-            // myPagePanel
-            // 
-            this.myPagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
-            this.myPagePanel.Controls.Add(this.pictureBox);
-            this.myPagePanel.Controls.Add(this.emailLabel);
-            this.myPagePanel.Controls.Add(this.nameLabel);
-            this.myPagePanel.Controls.Add(this.stuNumLabel);
-            this.myPagePanel.Controls.Add(this.univLabel);
-            this.myPagePanel.Controls.Add(this.editInfoBtn);
-            this.myPagePanel.Controls.Add(this.exitButton);
-            this.myPagePanel.Controls.Add(this.minimizeButton);
-            this.myPagePanel.Location = new System.Drawing.Point(885, 0);
-            this.myPagePanel.Name = "myPagePanel";
-            this.myPagePanel.Size = new System.Drawing.Size(379, 682);
-            this.myPagePanel.TabIndex = 1;
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.Location = new System.Drawing.Point(23, 71);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(105, 112);
-            this.pictureBox.TabIndex = 18;
-            this.pictureBox.TabStop = false;
-            // 
-            // emailLabel
-            // 
-            this.emailLabel.ForeColor = System.Drawing.Color.White;
-            this.emailLabel.Location = new System.Drawing.Point(161, 207);
-            this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(208, 21);
-            this.emailLabel.TabIndex = 15;
-            this.emailLabel.Text = "[이메일]";
-            // 
-            // nameLabel
-            // 
-            this.nameLabel.ForeColor = System.Drawing.Color.White;
-            this.nameLabel.Location = new System.Drawing.Point(161, 162);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(208, 21);
-            this.nameLabel.TabIndex = 14;
-            this.nameLabel.Text = "[이름]";
-            // 
-            // stuNumLabel
-            // 
-            this.stuNumLabel.ForeColor = System.Drawing.Color.White;
-            this.stuNumLabel.Location = new System.Drawing.Point(161, 116);
-            this.stuNumLabel.Name = "stuNumLabel";
-            this.stuNumLabel.Size = new System.Drawing.Size(208, 21);
-            this.stuNumLabel.TabIndex = 13;
-            this.stuNumLabel.Text = "[학번]";
-            // 
-            // univLabel
-            // 
-            this.univLabel.ForeColor = System.Drawing.Color.White;
-            this.univLabel.Location = new System.Drawing.Point(161, 69);
-            this.univLabel.Name = "univLabel";
-            this.univLabel.Size = new System.Drawing.Size(208, 21);
-            this.univLabel.TabIndex = 12;
-            this.univLabel.Text = "[학교]";
-            // 
-            // editInfoBtn
-            // 
-            this.editInfoBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
-            this.editInfoBtn.FlatAppearance.BorderSize = 0;
-            this.editInfoBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.editInfoBtn.ForeColor = System.Drawing.Color.White;
-            this.editInfoBtn.Location = new System.Drawing.Point(259, 638);
-            this.editInfoBtn.Name = "editInfoBtn";
-            this.editInfoBtn.Size = new System.Drawing.Size(110, 34);
-            this.editInfoBtn.TabIndex = 11;
-            this.editInfoBtn.TabStop = false;
-            this.editInfoBtn.Text = "정보 수정";
-            this.editInfoBtn.UseVisualStyleBackColor = false;
-            this.editInfoBtn.Click += new System.EventHandler(this.editInfoBtn_Click);
             // 
             // editPanel
             // 
@@ -832,6 +757,81 @@ namespace program.View
             this.testInfoMinimizeBtn.Text = "_";
             this.testInfoMinimizeBtn.Click += new System.EventHandler(this.testInfoMinimizeBtn_Click);
             // 
+            // myPagePanel
+            // 
+            this.myPagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.myPagePanel.Controls.Add(this.pictureBox);
+            this.myPagePanel.Controls.Add(this.emailLabel);
+            this.myPagePanel.Controls.Add(this.nameLabel);
+            this.myPagePanel.Controls.Add(this.stuNumLabel);
+            this.myPagePanel.Controls.Add(this.univLabel);
+            this.myPagePanel.Controls.Add(this.editInfoBtn);
+            this.myPagePanel.Controls.Add(this.exitButton);
+            this.myPagePanel.Controls.Add(this.minimizeButton);
+            this.myPagePanel.Location = new System.Drawing.Point(885, 0);
+            this.myPagePanel.Name = "myPagePanel";
+            this.myPagePanel.Size = new System.Drawing.Size(379, 682);
+            this.myPagePanel.TabIndex = 1;
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.Location = new System.Drawing.Point(23, 71);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(105, 112);
+            this.pictureBox.TabIndex = 18;
+            this.pictureBox.TabStop = false;
+            // 
+            // emailLabel
+            // 
+            this.emailLabel.ForeColor = System.Drawing.Color.White;
+            this.emailLabel.Location = new System.Drawing.Point(161, 207);
+            this.emailLabel.Name = "emailLabel";
+            this.emailLabel.Size = new System.Drawing.Size(208, 21);
+            this.emailLabel.TabIndex = 15;
+            this.emailLabel.Text = "[이메일]";
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.ForeColor = System.Drawing.Color.White;
+            this.nameLabel.Location = new System.Drawing.Point(161, 162);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(208, 21);
+            this.nameLabel.TabIndex = 14;
+            this.nameLabel.Text = "[이름]";
+            // 
+            // stuNumLabel
+            // 
+            this.stuNumLabel.ForeColor = System.Drawing.Color.White;
+            this.stuNumLabel.Location = new System.Drawing.Point(161, 116);
+            this.stuNumLabel.Name = "stuNumLabel";
+            this.stuNumLabel.Size = new System.Drawing.Size(208, 21);
+            this.stuNumLabel.TabIndex = 13;
+            this.stuNumLabel.Text = "[학번]";
+            // 
+            // univLabel
+            // 
+            this.univLabel.ForeColor = System.Drawing.Color.White;
+            this.univLabel.Location = new System.Drawing.Point(161, 69);
+            this.univLabel.Name = "univLabel";
+            this.univLabel.Size = new System.Drawing.Size(208, 21);
+            this.univLabel.TabIndex = 12;
+            this.univLabel.Text = "[학교]";
+            // 
+            // editInfoBtn
+            // 
+            this.editInfoBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
+            this.editInfoBtn.FlatAppearance.BorderSize = 0;
+            this.editInfoBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.editInfoBtn.ForeColor = System.Drawing.Color.White;
+            this.editInfoBtn.Location = new System.Drawing.Point(259, 638);
+            this.editInfoBtn.Name = "editInfoBtn";
+            this.editInfoBtn.Size = new System.Drawing.Size(110, 34);
+            this.editInfoBtn.TabIndex = 11;
+            this.editInfoBtn.TabStop = false;
+            this.editInfoBtn.Text = "정보 수정";
+            this.editInfoBtn.UseVisualStyleBackColor = false;
+            this.editInfoBtn.Click += new System.EventHandler(this.editInfoBtn_Click);
+            // 
             // StudentHomeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -848,8 +848,6 @@ namespace program.View
             ((System.ComponentModel.ISupportInitialize)(this.cameraPictureBox)).EndInit();
             this.testPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lectureTable)).EndInit();
-            this.myPagePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.editPanel.ResumeLayout(false);
             this.editStdNumPanel.ResumeLayout(false);
             this.editStdNumPanel.PerformLayout();
@@ -865,6 +863,8 @@ namespace program.View
             this.editNamePanel.ResumeLayout(false);
             this.editNamePanel.PerformLayout();
             this.testInfoPanel.ResumeLayout(false);
+            this.myPagePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -39,7 +39,7 @@ namespace program.View
 
             // SampleText
             univLabel.Text = "세종대학교";
-            nameLabel.Text = "홍길동";
+            nameLabel.Text = "홍길동 교수님";
             emailLabel.Text = "exam@naver.com";
 
             // 폰트
