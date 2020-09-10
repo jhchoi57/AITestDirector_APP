@@ -122,5 +122,11 @@ namespace program.View
         private void minimizeButton_Click(object sender, EventArgs e) { this.WindowState = FormWindowState.Minimized; }
 
         private void exitButton_Click(object sender, EventArgs e) { Application.Exit(); }
+
+        private void checkScoreBtn_Click(object sender, EventArgs e)
+        {
+            ProfessorScoreCheckView ProfessorScoreCheckView = new ProfessorScoreCheckView();
+            ProfessorScoreCheckView.Show();
+        }
     }
 }

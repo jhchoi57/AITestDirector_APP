@@ -245,6 +245,7 @@
             this.checkScoreBtn.TabStop = false;
             this.checkScoreBtn.Text = "성적 확인";
             this.checkScoreBtn.UseVisualStyleBackColor = false;
+            this.checkScoreBtn.Click += new System.EventHandler(this.checkScoreBtn_Click);
             // 
             // testAddBtn
             // 
