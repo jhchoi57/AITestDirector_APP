@@ -390,7 +390,6 @@ namespace program.View
             // 
             // wholePageLabel
             //
-            this.wholePageLabel = new Label();
             this.wholePageLabel.Size = new Size(36, 21);
             this.wholePageLabel.Location = new Point(449, 12);
             this.wholePageLabel.Text = "1";
@@ -402,11 +401,11 @@ namespace program.View
             this.addQuestionButton.BackColor = System.Drawing.Color.BlanchedAlmond;
             this.addQuestionButton.FlatAppearance.BorderSize = 0;
             this.addQuestionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addQuestionButton.Location = new System.Drawing.Point(630, 0);
+            this.addQuestionButton.Location = new System.Drawing.Point(655, 0);
             this.addQuestionButton.Name = "addQuestionButton";
-            this.addQuestionButton.Size = new System.Drawing.Size(100, 42);
+            this.addQuestionButton.Size = new System.Drawing.Size(115, 42);
             this.addQuestionButton.TabIndex = 5;
-            this.addQuestionButton.Text = "+ 문제 추가";
+            this.addQuestionButton.Text = "+ 페이지 추가";
             this.addQuestionButton.UseVisualStyleBackColor = false;
             this.addQuestionButton.Click += addQuestionButton_Click_1;
             // 
@@ -416,11 +415,11 @@ namespace program.View
             this.removeQuestionButton.FlatAppearance.BorderSize = 0;
             this.removeQuestionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeQuestionButton.ForeColor = System.Drawing.Color.White;
-            this.removeQuestionButton.Location = new System.Drawing.Point(730, 0);
+            this.removeQuestionButton.Location = new System.Drawing.Point(770, 0);
             this.removeQuestionButton.Name = "removeQuestionButton";
-            this.removeQuestionButton.Size = new System.Drawing.Size(100, 42);
+            this.removeQuestionButton.Size = new System.Drawing.Size(115, 42);
             this.removeQuestionButton.TabIndex = 6;
-            this.removeQuestionButton.Text = "- 문제 제거";
+            this.removeQuestionButton.Text = "- 페이지 제거";
             this.removeQuestionButton.UseVisualStyleBackColor = false;
             this.removeQuestionButton.Click += removeQuestionButton_Click_1;
             // 

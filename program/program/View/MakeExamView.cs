@@ -110,8 +110,8 @@ namespace program.View
             if (MessageBox.Show("문제 페이지를 정말 삭제하시겠습니까?", "문제 페이지 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 int page = int.Parse(nowPageTextBox.Text) - 1;
-                mainQuestionPanelList.Remove(mainQuestionPanelList[page]);
                 this.examPanel.Controls.Remove(mainQuestionPanelList[page]);
+                mainQuestionPanelList.Remove(mainQuestionPanelList[page]);
 
                 nowPageTextBox.Text = (count - 1).ToString();
                 wholePageLabel.Text = (count - 1).ToString();

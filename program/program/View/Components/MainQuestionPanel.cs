@@ -45,6 +45,7 @@ namespace program.View.Components
             this.Size = new Size(800, 500);
             this.BackColor = Color.White;
             this.ControlRemoved += ControlRemoved_1;
+            this.Click += Click_1;
 
             this.customFonts = customFonts;
 
@@ -342,6 +343,11 @@ namespace program.View.Components
         private void ControlRemoved_1(object sender, EventArgs e)
         {
             //MessageBox.Show("count: " + oxPanelList.Count);
+        }
+
+        private void Click_1(object sender, EventArgs e)
+        {
+            questionKindPanel.QuestionKindLabel.Focus();
         }
     }
 }

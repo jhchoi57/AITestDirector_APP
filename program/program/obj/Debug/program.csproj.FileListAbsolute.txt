@@ -28,3 +28,7 @@ C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.View
 C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.View.ProfessorHomeView.resources
 C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.View.ProfessorLectureEditView.resources
 C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.View.ProfessorScoreCheckView.resources
+C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.View.ProfessorHomeView.resources
+C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.View.ProfessorLectureEditView.resources
+C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.View.ProfessorScoreCheckView.resources
+C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.View.StudentScoreCheckView.resources

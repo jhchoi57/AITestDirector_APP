@@ -21,11 +21,11 @@ namespace program
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new View.MakeExamView());
+            Application.Run(new View.MakeExamView());
             //Application.Run(new View.StudentHomeView());
             //Application.Run(new View.LoginView());
             //Application.Run(new View.StudentScoreCheckView());
-            Application.Run(new View.ProfessorHomeView());
+            //Application.Run(new View.ProfessorHomeView());
             //Application.Run(new View.ProfessorLectureEditView());
             //Application.Run(new View.ProfessorScoreCheckView());
         }
