@@ -38,8 +38,6 @@ namespace program.View
             this.mainPanel = new System.Windows.Forms.Panel();
             this.examPanel = new System.Windows.Forms.Panel();
             this.settingPanel = new System.Windows.Forms.Panel();
-            this.exitButton = new System.Windows.Forms.Button();
-            this.minimizeButton = new System.Windows.Forms.Button();
             this.examLectureNameLabel = new System.Windows.Forms.Label();
             this.examLectureNameComboBox = new System.Windows.Forms.ComboBox();
             this.examNameLabel = new System.Windows.Forms.Label();
@@ -60,29 +58,17 @@ namespace program.View
             this.examTimeTextBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.pageNavigationPanel = new System.Windows.Forms.Panel();
-            this.pageLeftButton = new System.Windows.Forms.Button();
-            this.pageRightButton = new System.Windows.Forms.Button();
-            this.nowPagePanel = new System.Windows.Forms.Panel();
-            this.nowPageTextBox = new System.Windows.Forms.TextBox();
-            this.pageSlashLabel = new System.Windows.Forms.Label();
-            this.wholePageLabel = new System.Windows.Forms.Label();
-            this.addQuestionButton = new System.Windows.Forms.Button();
-            this.removeQuestionButton = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.settingPanel.SuspendLayout();
             this.examNamePanel.SuspendLayout();
             this.examPercentPanel.SuspendLayout();
             this.examTimePanel.SuspendLayout();
-            this.pageNavigationPanel.SuspendLayout();
-            this.nowPagePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
             this.mainPanel.Controls.Add(this.examPanel);
             this.mainPanel.Controls.Add(this.settingPanel);
-            this.mainPanel.Controls.Add(this.pageNavigationPanel);
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1264, 682);
@@ -99,8 +85,6 @@ namespace program.View
             // settingPanel
             // 
             this.settingPanel.BackColor = System.Drawing.Color.White;
-            this.settingPanel.Controls.Add(this.exitButton);
-            this.settingPanel.Controls.Add(this.minimizeButton);
             this.settingPanel.Controls.Add(this.examLectureNameLabel);
             this.settingPanel.Controls.Add(this.examLectureNameComboBox);
             this.settingPanel.Controls.Add(this.examNameLabel);
@@ -122,30 +106,6 @@ namespace program.View
             this.settingPanel.Name = "settingPanel";
             this.settingPanel.Size = new System.Drawing.Size(379, 682);
             this.settingPanel.TabIndex = 1;
-            // 
-            // exitButton
-            // 
-            this.exitButton.FlatAppearance.BorderSize = 0;
-            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exitButton.Location = new System.Drawing.Point(349, 0);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(30, 28);
-            this.exitButton.TabIndex = 0;
-            this.exitButton.TabStop = false;
-            this.exitButton.Text = "✕";
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click_1);
-            // 
-            // minimizeButton
-            // 
-            this.minimizeButton.FlatAppearance.BorderSize = 0;
-            this.minimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minimizeButton.Location = new System.Drawing.Point(319, 0);
-            this.minimizeButton.Name = "minimizeButton";
-            this.minimizeButton.Size = new System.Drawing.Size(30, 28);
-            this.minimizeButton.TabIndex = 1;
-            this.minimizeButton.TabStop = false;
-            this.minimizeButton.Text = "_";
-            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click_1);
             // 
             // examLectureNameLabel
             // 
@@ -319,115 +279,11 @@ namespace program.View
             this.cancelButton.Text = "취 소";
             this.cancelButton.UseVisualStyleBackColor = false;
             // 
-            // pageNavigationPanel
-            // 
-            this.pageNavigationPanel.BackColor = System.Drawing.Color.Transparent;
-            this.pageNavigationPanel.Controls.Add(this.pageLeftButton);
-            this.pageNavigationPanel.Controls.Add(this.pageRightButton);
-            this.pageNavigationPanel.Controls.Add(this.nowPagePanel);
-            this.pageNavigationPanel.Controls.Add(this.pageSlashLabel);
-            this.pageNavigationPanel.Controls.Add(this.wholePageLabel);
-            this.pageNavigationPanel.Controls.Add(this.addQuestionButton);
-            this.pageNavigationPanel.Controls.Add(this.removeQuestionButton);
-            this.pageNavigationPanel.Location = new System.Drawing.Point(0, 640);
-            this.pageNavigationPanel.Name = "pageNavigationPanel";
-            this.pageNavigationPanel.Size = new System.Drawing.Size(885, 42);
-            this.pageNavigationPanel.TabIndex = 2;
-            // 
-            // pageLeftButton
-            // 
-            this.pageLeftButton.FlatAppearance.BorderSize = 0;
-            this.pageLeftButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pageLeftButton.ForeColor = System.Drawing.Color.Gray;
-            this.pageLeftButton.Location = new System.Drawing.Point(362, 1);
-            this.pageLeftButton.Name = "pageLeftButton";
-            this.pageLeftButton.Size = new System.Drawing.Size(40, 40);
-            this.pageLeftButton.TabIndex = 0;
-            this.pageLeftButton.Text = "<";
-            this.pageLeftButton.Click += pageLeftButton_Click_1;
-            // 
-            // pageRightButton
-            // 
-            this.pageRightButton.FlatAppearance.BorderSize = 0;
-            this.pageRightButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.pageRightButton.ForeColor = System.Drawing.Color.Gray;
-            this.pageRightButton.Location = new System.Drawing.Point(482, 1);
-            this.pageRightButton.Name = "pageRightButton";
-            this.pageRightButton.Size = new System.Drawing.Size(40, 40);
-            this.pageRightButton.TabIndex = 1;
-            this.pageRightButton.Text = ">";
-            this.pageRightButton.Click += pageRightButton_Click_1;
-            // 
-            // nowPagePanel
-            // 
-            this.nowPagePanel.BackColor = System.Drawing.Color.White;
-            this.nowPagePanel.Controls.Add(this.nowPageTextBox);
-            this.nowPagePanel.Location = new System.Drawing.Point(409, 8);
-            this.nowPagePanel.Name = "nowPagePanel";
-            this.nowPagePanel.Size = new System.Drawing.Size(28, 26);
-            this.nowPagePanel.TabIndex = 2;
-            // 
-            // nowPageTextBox
-            // 
-            this.nowPageTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.nowPageTextBox.Location = new System.Drawing.Point(5, 4);
-            this.nowPageTextBox.Name = "nowPageTextBox";
-            this.nowPageTextBox.Size = new System.Drawing.Size(18, 14);
-            this.nowPageTextBox.TabIndex = 0;
-            this.nowPageTextBox.Text = "1";
-            this.nowPageTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.nowPageTextBox.KeyPress += nowPageTextBox_KeyPress_1;
-            this.nowPageTextBox.LostFocus += nowPageTextBox_LostFocus_1;
-            this.nowPageTextBox.TextChanged += nowPageTextBox_TextChanged_1;
-            // 
-            // pageSlashLabel
-            // 
-            this.pageSlashLabel.Location = new System.Drawing.Point(437, 10);
-            this.pageSlashLabel.Name = "pageSlashLabel";
-            this.pageSlashLabel.Size = new System.Drawing.Size(10, 21);
-            this.pageSlashLabel.TabIndex = 3;
-            this.pageSlashLabel.Text = "/";
-            // 
-            // wholePageLabel
-            //
-            this.wholePageLabel.Size = new Size(36, 21);
-            this.wholePageLabel.Location = new Point(449, 12);
-            this.wholePageLabel.Text = "1";
-            this.pageNavigationPanel.Controls.Add(this.wholePageLabel);
-
-            // 
-            // addQuestionButton
-            // 
-            this.addQuestionButton.BackColor = System.Drawing.Color.BlanchedAlmond;
-            this.addQuestionButton.FlatAppearance.BorderSize = 0;
-            this.addQuestionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addQuestionButton.Location = new System.Drawing.Point(655, 0);
-            this.addQuestionButton.Name = "addQuestionButton";
-            this.addQuestionButton.Size = new System.Drawing.Size(115, 42);
-            this.addQuestionButton.TabIndex = 5;
-            this.addQuestionButton.Text = "+ 페이지 추가";
-            this.addQuestionButton.UseVisualStyleBackColor = false;
-            this.addQuestionButton.Click += addQuestionButton_Click_1;
-            // 
-            // removeQuestionButton
-            // 
-            this.removeQuestionButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(17)))), ((int)(((byte)(35)))));
-            this.removeQuestionButton.FlatAppearance.BorderSize = 0;
-            this.removeQuestionButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.removeQuestionButton.ForeColor = System.Drawing.Color.White;
-            this.removeQuestionButton.Location = new System.Drawing.Point(770, 0);
-            this.removeQuestionButton.Name = "removeQuestionButton";
-            this.removeQuestionButton.Size = new System.Drawing.Size(115, 42);
-            this.removeQuestionButton.TabIndex = 6;
-            this.removeQuestionButton.Text = "- 페이지 제거";
-            this.removeQuestionButton.UseVisualStyleBackColor = false;
-            this.removeQuestionButton.Click += removeQuestionButton_Click_1;
-            // 
             // MakeExamView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.ClientSize = new System.Drawing.Size(1264, 682);
             this.Controls.Add(this.mainPanel);
             this.Name = "MakeExamView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -441,9 +297,6 @@ namespace program.View
             this.examPercentPanel.PerformLayout();
             this.examTimePanel.ResumeLayout(false);
             this.examTimePanel.PerformLayout();
-            this.pageNavigationPanel.ResumeLayout(false);
-            this.nowPagePanel.ResumeLayout(false);
-            this.nowPagePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -457,19 +310,16 @@ namespace program.View
         private Panel examNamePanel;
         private Panel examPercentPanel;
         private Panel examTimePanel;
-        private Panel pageNavigationPanel;
-        private Panel nowPagePanel;
         private List<MainQuestionPanel> mainQuestionPanelList;
 
+        private ExamPageNavigationPanel examPageNavigationPanel;
+
         // Buttons
-        private Button exitButton;
-        private Button minimizeButton;
         private Button saveButton;
         private Button cancelButton;
-        private Button pageLeftButton;
-        private Button pageRightButton;
-        private Button addQuestionButton;
-        private Button removeQuestionButton;
+
+        private ExitButton exitButton;
+        private MinimizeButton minimizeButton;
 
         // ComboBoxes
         private ComboBox examLectureNameComboBox;
@@ -478,7 +328,6 @@ namespace program.View
         private TextBox examNameTextBox;
         private TextBox examPercentTextBox;
         private TextBox examTimeTextBox;
-        private TextBox nowPageTextBox;
 
         // Labels
         private Label examLectureNameLabel;
@@ -490,8 +339,6 @@ namespace program.View
         private Label endDateTimeLabel;
         private Label examTimeLabel;
         private Label examTimeLabel2;
-        private Label pageSlashLabel;
-        private Label wholePageLabel;
 
         // DateTimePicker
         private DateTimePicker startDateTimePicker;

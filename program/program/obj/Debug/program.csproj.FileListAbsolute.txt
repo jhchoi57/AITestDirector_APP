@@ -32,3 +32,4 @@ C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.View.ProfessorHom
 C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.View.ProfessorLectureEditView.resources
 C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.View.ProfessorScoreCheckView.resources
 C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.View.StudentScoreCheckView.resources
+C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.View.ExamView.resources

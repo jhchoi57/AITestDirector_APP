@@ -32,8 +32,28 @@ namespace program.View
             customFonts = new CustomFonts();
             string[] lectureItems = { "운영체제", "컴퓨터구조론", "C프로그래밍및실습" };
 
-            this.exitButton.Font = customFonts.LabelFont();
-            this.minimizeButton.Font = customFonts.LabelFont();
+            this.exitButton = new ExitButton(customFonts);
+            this.settingPanel.Controls.Add(this.exitButton);
+            this.exitButton.Location = new System.Drawing.Point(349, 0);
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click_1);
+
+            this.minimizeButton = new MinimizeButton(customFonts);
+            this.settingPanel.Controls.Add(this.minimizeButton);
+            this.minimizeButton.Location = new System.Drawing.Point(319, 0);
+            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click_1);
+
+            this.examPageNavigationPanel = new ExamPageNavigationPanel(customFonts);
+            this.examPageNavigationPanel.Location = new System.Drawing.Point(0, 640);
+            this.mainPanel.Controls.Add(this.examPageNavigationPanel);
+            
+            this.examPageNavigationPanel.PageLeftButton.Click += pageLeftButton_Click_1;
+            this.examPageNavigationPanel.PageRightButton.Click += pageRightButton_Click_1;
+            this.examPageNavigationPanel.NowPageTextBox.KeyPress += nowPageTextBox_KeyPress_1;
+            this.examPageNavigationPanel.NowPageTextBox.LostFocus += nowPageTextBox_LostFocus_1;
+            this.examPageNavigationPanel.NowPageTextBox.TextChanged += nowPageTextBox_TextChanged_1;
+            this.examPageNavigationPanel.AddPageButton.Click += addPageButton_Click_1;
+            this.examPageNavigationPanel.RemovePageButton.Click += removePageButton_Click_1;
+
             this.examNameLabel.Font = customFonts.LabelFont();
             this.examNameTextBox.Font = customFonts.TextBoxFont();
             this.examLectureNameLabel.Font = customFonts.LabelFont();
@@ -51,13 +71,6 @@ namespace program.View
             this.examTimeTextBox.Font = customFonts.TextBoxFont();
             this.saveButton.Font = customFonts.LabelFont();
             this.cancelButton.Font = customFonts.LabelFont();
-            this.pageLeftButton.Font = customFonts.LabelFont();
-            this.pageRightButton.Font = customFonts.LabelFont();
-            this.nowPageTextBox.Font = customFonts.TextBoxFont();
-            this.pageSlashLabel.Font = customFonts.LabelFont();
-            this.wholePageLabel.Font = customFonts.TextBoxFont();
-            this.addQuestionButton.Font = customFonts.TextBoxFont();
-            this.removeQuestionButton.Font = customFonts.TextBoxFont();
 
             this.startDateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.startDateTimePicker.Format = DateTimePickerFormat.Custom;
@@ -85,19 +98,19 @@ namespace program.View
             this.WindowState = FormWindowState.Minimized;
         }
 
-        // 메인 문제 추가 버튼
-        private void addQuestionButton_Click_1(object sender, EventArgs e)
+        // 메인 문제 페이지 추가 버튼
+        private void addPageButton_Click_1(object sender, EventArgs e)
         {
             int count = mainQuestionPanelList.Count;
             this.mainQuestionPanelList.Add(new MainQuestionPanel(customFonts));
             this.mainQuestionPanelList[count].Location = new Point(30, 30);
             this.examPanel.Controls.Add(this.mainQuestionPanelList[count]);
-            this.wholePageLabel.Text = (count + 1).ToString();
-            this.nowPageTextBox.Text = (count + 1).ToString();
+            this.examPageNavigationPanel.WholePageLabel.Text = (count + 1).ToString();
+            this.examPageNavigationPanel.NowPageTextBox.Text = (count + 1).ToString();
         }
 
-        // 현재 메인 문제 삭제 버튼
-        private void removeQuestionButton_Click_1(object sender, EventArgs e)
+        // 현재 메인 문제 페이지 삭제 버튼
+        private void removePageButton_Click_1(object sender, EventArgs e)
         {
             int count = mainQuestionPanelList.Count;
 
@@ -109,12 +122,12 @@ namespace program.View
 
             if (MessageBox.Show("문제 페이지를 정말 삭제하시겠습니까?", "문제 페이지 삭제", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                int page = int.Parse(nowPageTextBox.Text) - 1;
+                int page = int.Parse(examPageNavigationPanel.NowPageTextBox.Text) - 1;
                 this.examPanel.Controls.Remove(mainQuestionPanelList[page]);
                 mainQuestionPanelList.Remove(mainQuestionPanelList[page]);
 
-                nowPageTextBox.Text = (count - 1).ToString();
-                wholePageLabel.Text = (count - 1).ToString();
+                examPageNavigationPanel.NowPageTextBox.Text = (count - 1).ToString();
+                examPageNavigationPanel.WholePageLabel.Text = (count - 1).ToString();
             }
         }
 
@@ -129,9 +142,9 @@ namespace program.View
 
         private void nowPageTextBox_LostFocus_1(object sender, EventArgs e)
         {
-            if (this.nowPageTextBox.Text == "" || int.Parse(this.nowPageTextBox.Text) > mainQuestionPanelList.Count || int.Parse(this.nowPageTextBox.Text) <= 0)
+            if (this.examPageNavigationPanel.NowPageTextBox.Text == "" || int.Parse(this.examPageNavigationPanel.NowPageTextBox.Text) > mainQuestionPanelList.Count || int.Parse(this.examPageNavigationPanel.NowPageTextBox.Text) <= 0)
             {
-                this.nowPageTextBox.Text = "1";
+                this.examPageNavigationPanel.NowPageTextBox.Text = "1";
             }
         }
 
@@ -139,9 +152,13 @@ namespace program.View
         {
             int page = 0;
             int count = mainQuestionPanelList.Count;
-            if(!this.nowPageTextBox.Equals("") && int.Parse(this.nowPageTextBox.Text) <= mainQuestionPanelList.Count && int.Parse(this.nowPageTextBox.Text) > 0)
+
+            if (this.examPageNavigationPanel.NowPageTextBox.Text == "")
+                return;
+
+            if(!this.examPageNavigationPanel.NowPageTextBox.Equals("") && int.Parse(this.examPageNavigationPanel.NowPageTextBox.Text) <= mainQuestionPanelList.Count && int.Parse(this.examPageNavigationPanel.NowPageTextBox.Text) > 0)
             {
-                page = int.Parse(this.nowPageTextBox.Text) - 1;
+                page = int.Parse(this.examPageNavigationPanel.NowPageTextBox.Text) - 1;
             }
             for (int i = 0; i < count; i++)
             {
@@ -155,22 +172,22 @@ namespace program.View
 
         private void pageLeftButton_Click_1(object sender, EventArgs e)
         {
-            int page = int.Parse(nowPageTextBox.Text) - 1;
+            int page = int.Parse(examPageNavigationPanel.NowPageTextBox.Text) - 1;
 
             if (page > 0 )
             {
-                this.nowPageTextBox.Text = page.ToString();
+                this.examPageNavigationPanel.NowPageTextBox.Text = page.ToString();
             }
         }
 
         private void pageRightButton_Click_1(object sender, EventArgs e)
         {
-            int page = int.Parse(nowPageTextBox.Text) - 1;
+            int page = int.Parse(examPageNavigationPanel.NowPageTextBox.Text) - 1;
             int count = mainQuestionPanelList.Count;
 
             if (page < count - 1)
             {
-                this.nowPageTextBox.Text = (page + 2).ToString();
+                this.examPageNavigationPanel.NowPageTextBox.Text = (page + 2).ToString();
             }
         }
     }

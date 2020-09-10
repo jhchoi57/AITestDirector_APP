@@ -27,7 +27,7 @@ namespace program.View.Components
 
         public QuestionKindPanel(CustomFonts customFonts) : base()
         {
-            string[] questionItems = { "○/✕", "단답형", "서술형", "선다형", "빈 칸" };
+            string[] questionItems = { "○/✕", "단답형", "서술형", "선다형" };
 
             this.Size = new Size(157, 27);
 

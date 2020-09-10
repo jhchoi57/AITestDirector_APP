@@ -72,7 +72,16 @@
     <Compile Include="View\Components\EssayQuestionPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="View\Components\ExamPageNavigationPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Components\ExitButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="View\Components\MainQuestionPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Components\MinimizeButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\Components\MultipleChoicePanel.cs">
@@ -96,6 +105,12 @@
     </Compile>
     <Compile Include="View\Components\SubQuestionPanel.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\ExamView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ExamView.Designer.cs">
+      <DependentUpon>ExamView.cs</DependentUpon>
     </Compile>
     <Compile Include="View\MakeExamView.cs">
       <SubType>Form</SubType>
@@ -157,6 +172,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\ExamView.resx">
+      <DependentUpon>ExamView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\MakeExamView.resx">
       <DependentUpon>MakeExamView.cs</DependentUpon>
     </EmbeddedResource>

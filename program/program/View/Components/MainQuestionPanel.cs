@@ -307,13 +307,9 @@ namespace program.View.Components
             {
                 mainQuestionTextBox.Text = "서술형 문제입니다. 각각의 문제에 올바른 서술형 답을 기입해주세요.";
             }
-            else if (index == 3)
-            {
-                mainQuestionTextBox.Text = "객관식(선다형) 문제입니다. 각각의 문제에 올바른 답을 체크해주세요.";
-            }
             else
             {
-                mainQuestionTextBox.Text = "빈 칸 채우기 문제입니다. 각각의 문제에 올바른 답을 채워주세요.";
+                mainQuestionTextBox.Text = "객관식(선다형) 문제입니다. 각각의 문제에 올바른 답을 체크해주세요.";
             }
             mainQuestionTextBox.Visible = true;
             mainQuestionLabel.Visible = false;
