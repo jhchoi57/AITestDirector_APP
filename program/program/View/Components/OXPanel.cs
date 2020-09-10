@@ -12,11 +12,11 @@ namespace program.View
 {
     class OXPanel : SubQuestionPanel
     {
-        private Boolean answer { get; set; }
+        private int answer { get; set; }  // 0: 체크 안 함, 1: ○, 2: ✕
         private Button oButton { get; set; }
         private Button xButton { get; set; }
 
-        public Boolean Answer
+        public int Answer
         {
             get { return answer; }
             set { answer = value; }
@@ -38,7 +38,7 @@ namespace program.View
         {
             this.Size = new System.Drawing.Size(645, 45);
 
-            answer = true;
+            answer = 0;
 
             oButton = new Button();
             oButton.Text = "○";
@@ -109,7 +109,7 @@ namespace program.View
 
         private void oButton_Click_1 (object sender, EventArgs e)
         {
-            answer = true;
+            answer = 1;
             oButton.ForeColor = Color.White;
             oButton.BackColor = Color.Black;
             xButton.ForeColor = Color.Black;
@@ -118,7 +118,7 @@ namespace program.View
 
         private void xButton_Click_1 (object sender, EventArgs e)
         {
-            answer = false;
+            answer = 2;
             xButton.ForeColor = Color.White;
             xButton.BackColor = Color.Black;
             oButton.ForeColor = Color.Black;

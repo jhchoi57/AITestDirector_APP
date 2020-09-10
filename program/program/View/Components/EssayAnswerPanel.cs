@@ -13,7 +13,6 @@ namespace program.View.Components
         private Label textLabel;
         private Label maxLengthLabel;
         private TextBox maxLengthTextBox { get; set; }
-        private int maxLength { get; set; }
         private Label answerLabel { get; set; }
         private TextBox answerTextBox{ get; set; }
 
@@ -24,8 +23,8 @@ namespace program.View.Components
         }
         public int MaxLength
         {
-            get { return maxLength; }
-            set { maxLength = value; }
+            get { return answerTextBox.MaxLength; }
+            set { answerTextBox.MaxLength = value; }
         }
         public Label AnswerLabel
         {
@@ -41,8 +40,7 @@ namespace program.View.Components
         public EssayAnswerPanel(CustomFonts customFonts) : base()
         {
             this.Size = new Size(500, 280);
-
-            maxLength = 4000;
+            this.BackColor = Color.Gray;
 
             maxLengthLabel = new Label();
             maxLengthLabel.BackColor = Color.White;
@@ -84,7 +82,7 @@ namespace program.View.Components
             answerTextBox = new TextBox();
             answerTextBox.Size = new Size(470, 250);
             answerTextBox.Location = new Point(30, 27);
-            answerTextBox.MaxLength = maxLength;
+            answerTextBox.MaxLength = 4000;
             answerTextBox.ScrollBars = ScrollBars.Vertical;
             answerTextBox.Font = customFonts.TextBoxFont();
             answerTextBox.Multiline = true;
@@ -106,8 +104,7 @@ namespace program.View.Components
             {
                 maxLengthTextBox.Text = "4000";
             }
-            maxLength = int.Parse(maxLengthTextBox.Text);
-            answerTextBox.MaxLength = maxLength;
+            MaxLength = int.Parse(maxLengthTextBox.Text);
         }
 
         private void answerTextBox_LostFocus_1(object sender, EventArgs e)
@@ -126,7 +123,7 @@ namespace program.View.Components
 
         private void answerLabel_Click_1(object sender, EventArgs e)
         {
-            this.Height = 280;
+            this.Height = answerTextBox.Location.Y + answerTextBox.Height;
             answerTextBox.Visible = true;
             answerLabel.Visible = false;
             answerTextBox.Focus();

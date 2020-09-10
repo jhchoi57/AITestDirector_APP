@@ -185,6 +185,7 @@ namespace program.View.Components
                     choicePanelList[i].ExampleRadioButton.Checked = false;
                 }
             }
+            answer = choicePanelList.IndexOf(choicePanel);
         }
     }
 }

@@ -42,6 +42,8 @@ namespace program.View
             this.examPageNavigationPanel = new ExamPageNavigationPanel(customFonts);
             this.examPageNavigationPanel.Location = new System.Drawing.Point(0, 640);
             this.mainPanel.Controls.Add(this.examPageNavigationPanel);
+            this.examPageNavigationPanel.AddPageButton.Visible = false;
+            this.examPageNavigationPanel.RemovePageButton.Visible = false;
         }
 
         // 나가기 버튼

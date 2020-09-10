@@ -40,7 +40,7 @@ namespace program.View.Components
         }
         
 
-        public MainQuestionPanel(CustomFonts customFonts) : base()
+        public MainQuestionPanel(CustomFonts customFonts, List<SubQuestionPanel> subQuestionPanelList) : base()
         {
             this.Size = new Size(800, 500);
             this.BackColor = Color.White;
@@ -168,6 +168,7 @@ namespace program.View.Components
             subQuestionPanelsList[count].DeleteButton.Click += subQuestionDeleteButton_Click_1;
             subQuestionPanelsList[count].QuestionLabel.Click += subQuestionLabel_Click_1;
             subQuestionPanelsList[count].QuestionTextBox.LostFocus += subQuestionTextBox_LostFocus_1;
+            subQuestionPanelsList[count].Click += Click_1;
             subQuestionPanelsList[count].ExamScorePanel.ScoreTextBox.TextChanged += scoreTextBox_TextChanged;
             subQuestionPanelsList[count].QuestionTextBox.Focus();
             totalScorePanel.ScoreTextBox.Text = (int.Parse(totalScorePanel.ScoreTextBox.Text) + 10).ToString();

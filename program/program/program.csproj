@@ -72,7 +72,25 @@
     <Compile Include="View\Components\EssayQuestionPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="View\Components\ExamEssayQuestionPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Components\ExamMainQuestionPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Components\ExamMultipleChoiceQuestionPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Components\ExamOXPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="View\Components\ExamPageNavigationPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Components\ExamShortAnswerQuestionPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Components\ExamSubQuestionPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\Components\ExitButton.cs">

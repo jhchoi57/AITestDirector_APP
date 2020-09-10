@@ -23,6 +23,7 @@ namespace program.View.Components
         public EssayQuestionPanel(CustomFonts customFonts) : base(customFonts)
         {
             this.Size = new Size(645, 400);
+            this.BackColor = Color.Yellow;
 
             answerPanel = new EssayAnswerPanel(customFonts);
             answerPanel.Location = new Point(0, 120);
@@ -63,10 +64,10 @@ namespace program.View.Components
 
         private void questionLabel_Click_1(object sender, EventArgs e)
         {
-            this.Height = 400;
             QuestionTextBox.Visible = true;
             QuestionLabel.Visible = false;
             answerPanel.Location = new Point(0, 120);
+            this.Height = 120 + answerPanel.Height;
             ExamScorePanel.Location = new Point(520, (this.Height - ExamScorePanel.Height) / 2);
             DeleteButton.Location = new Point(605, (this.Height - DeleteButton.Height) / 2);
             QuestionTextBox.Focus();
@@ -74,15 +75,14 @@ namespace program.View.Components
 
         private void answerTextBox_LostFocus_2(object sender, EventArgs e)
         {
-            int height = answerPanel.Height + answerPanel.Location.Y;
-            this.Height = height;
-            ExamScorePanel.Location = new Point(520, (height - ExamScorePanel.Height) / 2);
-            DeleteButton.Location = new Point(605, (height - DeleteButton.Height) / 2);
+            this.Height = answerPanel.Height + answerPanel.Location.Y;
+            ExamScorePanel.Location = new Point(520, (this.Height - ExamScorePanel.Height) / 2);
+            DeleteButton.Location = new Point(605, (this.Height - DeleteButton.Height) / 2);
         }
 
         private void answerLabel_Click_2 (object sender, EventArgs e)
         {
-            this.Height = 400;
+            this.Height = answerPanel.Height + answerPanel.Location.Y;
             ExamScorePanel.Location = new Point(520, (this.Height - ExamScorePanel.Height) / 2);
             DeleteButton.Location = new Point(605, (this.Height - DeleteButton.Height) / 2);
         }
