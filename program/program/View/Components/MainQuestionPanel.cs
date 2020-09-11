@@ -40,7 +40,7 @@ namespace program.View.Components
         }
         
 
-        public MainQuestionPanel(CustomFonts customFonts, List<SubQuestionPanel> subQuestionPanelList) : base()
+        public MainQuestionPanel(CustomFonts customFonts) : base()
         {
             this.Size = new Size(800, 500);
             this.BackColor = Color.White;

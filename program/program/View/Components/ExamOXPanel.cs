@@ -29,6 +29,8 @@ namespace program.View.Components
 
             answer = 0;
 
+            Type = 0;
+
             oButton = new Button();
             oButton.Text = "○";
             oButton.Size = new System.Drawing.Size(30, 28);

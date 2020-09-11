@@ -27,6 +27,8 @@ namespace program.View.Components
         {
             this.Size = new Size(645, 147);
 
+            Type = 1;
+
             answerPanel = new ShortAnswerPanel(customFonts);
             answerPanel.Location = new Point(300, 120);
             this.Controls.Add(answerPanel);

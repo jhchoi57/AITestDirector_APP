@@ -19,6 +19,13 @@ namespace program.View.Components
             this.TabStop = false;
             this.Text = "✕";
             this.Font = customFonts.LabelFont();
+            this.Click += exitButton_Click_1;
+        }
+
+             // 나가기 버튼
+        private void exitButton_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

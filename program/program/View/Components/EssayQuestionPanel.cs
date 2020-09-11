@@ -23,7 +23,8 @@ namespace program.View.Components
         public EssayQuestionPanel(CustomFonts customFonts) : base(customFonts)
         {
             this.Size = new Size(645, 400);
-            this.BackColor = Color.Yellow;
+
+            Type = 2;
 
             answerPanel = new EssayAnswerPanel(customFonts);
             answerPanel.Location = new Point(0, 120);

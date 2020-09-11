@@ -21,6 +21,8 @@ namespace program.View.Components
         {
             this.Size = new Size(645, 400);
 
+            Type = 2;
+
             answerPanel = new EssayAnswerPanel(customFonts);
             answerPanel.Location = new Point(0, 120);
             this.Controls.Add(answerPanel);
@@ -34,6 +36,10 @@ namespace program.View.Components
             answerPanel.Location = new Point(0, QuestionLabel.Location.Y + QuestionLabel.Height + 20);
             this.Height = answerPanel.Location.Y + answerPanel.Height;
             ExamScorePanel.Location = new Point(520, (this.Height - ExamScorePanel.Height) / 2);
+        }
+        private void Click_1(object sender, EventArgs e)
+        {
+            this.QuestionLabel.Focus();
         }
         
         private void answerTextBox_LostFocus_2(object sender, EventArgs e)

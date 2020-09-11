@@ -12,7 +12,7 @@ namespace program.View.Components
     {
         private ScorePanel totalScorePanel { get; set; }
         private Label mainQuestionLabel { get; set; }
-        private List<SubQuestionPanel> subQuestionPanelsList { get; set; }
+        private List<ExamSubQuestionPanel> subQuestionPanelsList { get; set; }
 
         private CustomFonts customFonts;
         public ScorePanel TotalScorePanel
@@ -25,13 +25,13 @@ namespace program.View.Components
             get { return mainQuestionLabel; }
             set { mainQuestionLabel = value; }
         }
-        public List<SubQuestionPanel> SubQuestionPanelsList
+        public List<ExamSubQuestionPanel> SubQuestionPanelsList
         {
             get { return subQuestionPanelsList; }
             set { subQuestionPanelsList = value; }
         }
 
-        public ExamMainQuestionPanel(CustomFonts customFonts, string question, List<SubQuestionPanel> subQuestionPanelsList) : base()
+        public ExamMainQuestionPanel(CustomFonts customFonts, string question, List<ExamSubQuestionPanel> subQuestionPanelsList) : base()
         {
             this.Size = new Size(800, 500);
             this.BackColor = Color.White;
@@ -56,16 +56,27 @@ namespace program.View.Components
 
             this.subQuestionPanelsList = subQuestionPanelsList;
             addSubQuestions();
+            moveListItems(0);
         }
 
         private void addSubQuestions()
         {
             int count = subQuestionPanelsList.Count;
+            int totalScore = 0;
 
             for (int i = 0; i < count; i++)
             {
-
+                this.Controls.Add(subQuestionPanelsList[i]);
+                totalScore += int.Parse(subQuestionPanelsList[i].ExamScorePanel.ScoreTextBox.Text);
+                if (subQuestionPanelsList[i].Type == 2)
+                {
+                    ExamEssayQuestionPanel examEssayQuestionPanel = (ExamEssayQuestionPanel)subQuestionPanelsList[i];
+                    examEssayQuestionPanel.AnswerPanel.AnswerLabel.Click += subQuestion_essayAnswerLabel_Click_1;
+                    examEssayQuestionPanel.AnswerPanel.AnswerTextBox.LostFocus += subQuestion_essayAnswerTextBox_LostFocus_1;
+                }
             }
+
+            this.totalScorePanel.ScoreTextBox.Text = totalScore.ToString();
         }
         
         private void moveListItems(int moveStartIndex)
@@ -92,7 +103,7 @@ namespace program.View.Components
         {
             TextBox textBox = (TextBox)sender;
             int idx;
-            SubQuestionPanel subQuestionPanel = (SubQuestionPanel)textBox.Parent.Parent;
+            ExamSubQuestionPanel subQuestionPanel = (ExamSubQuestionPanel)textBox.Parent.Parent;
             idx = subQuestionPanelsList.IndexOf(subQuestionPanel);
             moveListItems(idx + 1);
         }
@@ -102,7 +113,7 @@ namespace program.View.Components
             Label label = (Label)sender;
             int idx;
 
-            SubQuestionPanel subQuestionPanel = (SubQuestionPanel)label.Parent.Parent;
+            ExamSubQuestionPanel subQuestionPanel = (ExamSubQuestionPanel)label.Parent.Parent;
             idx = subQuestionPanelsList.IndexOf(subQuestionPanel);
             moveListItems(idx + 1);
         }

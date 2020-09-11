@@ -23,6 +23,8 @@ namespace program.View.Components
 
             this.Size = new Size(645, 147);
 
+            Type = 1;
+
             answerPanel = new ShortAnswerPanel(customFonts);
             this.Controls.Add(answerPanel);
 

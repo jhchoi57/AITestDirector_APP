@@ -40,7 +40,6 @@ namespace program.View.Components
         public EssayAnswerPanel(CustomFonts customFonts) : base()
         {
             this.Size = new Size(500, 280);
-            this.BackColor = Color.Gray;
 
             maxLengthLabel = new Label();
             maxLengthLabel.BackColor = Color.White;

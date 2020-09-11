@@ -69,9 +69,9 @@ namespace program.View
             // 
             this.mainPanel.Controls.Add(this.examPanel);
             this.mainPanel.Controls.Add(this.settingPanel);
-            this.mainPanel.Location = new System.Drawing.Point(0, 0);
+            this.mainPanel.Location = new System.Drawing.Point(0, 28);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1264, 682);
+            this.mainPanel.Size = new System.Drawing.Size(1264, 654);
             this.mainPanel.TabIndex = 0;
             // 
             // examPanel
@@ -79,7 +79,7 @@ namespace program.View
             this.examPanel.AutoScroll = true;
             this.examPanel.Location = new System.Drawing.Point(0, 0);
             this.examPanel.Name = "examPanel";
-            this.examPanel.Size = new System.Drawing.Size(885, 640);
+            this.examPanel.Size = new System.Drawing.Size(885, 612);
             this.examPanel.TabIndex = 0;
             // 
             // settingPanel
@@ -104,7 +104,7 @@ namespace program.View
             this.settingPanel.Controls.Add(this.cancelButton);
             this.settingPanel.Location = new System.Drawing.Point(885, 0);
             this.settingPanel.Name = "settingPanel";
-            this.settingPanel.Size = new System.Drawing.Size(379, 682);
+            this.settingPanel.Size = new System.Drawing.Size(379, 654);
             this.settingPanel.TabIndex = 1;
             // 
             // examLectureNameLabel
@@ -261,7 +261,7 @@ namespace program.View
             this.saveButton.FlatAppearance.BorderSize = 0;
             this.saveButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.saveButton.ForeColor = System.Drawing.Color.White;
-            this.saveButton.Location = new System.Drawing.Point(60, 600);
+            this.saveButton.Location = new System.Drawing.Point(60, 572);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(100, 50);
             this.saveButton.TabIndex = 17;
@@ -272,7 +272,7 @@ namespace program.View
             // 
             this.cancelButton.BackColor = System.Drawing.Color.White;
             this.cancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cancelButton.Location = new System.Drawing.Point(220, 600);
+            this.cancelButton.Location = new System.Drawing.Point(220, 572);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(100, 50);
             this.cancelButton.TabIndex = 18;
@@ -314,12 +314,11 @@ namespace program.View
 
         private ExamPageNavigationPanel examPageNavigationPanel;
 
+        private TopBarPanel topBarPanel;
+
         // Buttons
         private Button saveButton;
         private Button cancelButton;
-
-        private ExitButton exitButton;
-        private MinimizeButton minimizeButton;
 
         // ComboBoxes
         private ComboBox examLectureNameComboBox;

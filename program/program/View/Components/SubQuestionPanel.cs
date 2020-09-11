@@ -10,6 +10,7 @@ namespace program.View.Components
 {
     class SubQuestionPanel : Panel
     {
+        private int type { get; set; }
         private TextBox questionTextBox { get; set; }
 
         private Label questionLabel { get; set; }
@@ -18,6 +19,11 @@ namespace program.View.Components
 
         private QuestionDeleteButton deleteButton { get; set; }
 
+        public int Type
+        {
+            get { return type; }
+            set { type = value; }
+        }
         public TextBox QuestionTextBox
         {
             get { return questionTextBox; }

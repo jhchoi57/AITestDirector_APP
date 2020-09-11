@@ -12,22 +12,16 @@ namespace program.View.Components
     {
         private CustomFonts customFonts;
         private int answer { get; set; }
-        private List<MultipleChoicePanel> choicePanelList { get; set; }
-        private AddExampleButton addButton { get; set; }
+        private List<ExamMultipleChoicePanel> choicePanelList { get; set; }
         public int Answer
         {
             get { return answer; }
             set { answer = value; }
         }
-        public List<MultipleChoicePanel> ChoicePaneList
+        public List<ExamMultipleChoicePanel> ChoicePaneList
         {
             get { return choicePanelList; }
             set { choicePanelList = value; }
-        }
-        public AddExampleButton AddButton
-        {
-            get { return addButton; }
-            set { addButton = value; }
         }
         public ExamMultipleChoiceQuestionPanel(CustomFonts customFonts, string question, int score, string[] multipleQuestions) : base(customFonts, question, score)
         {
@@ -36,11 +30,9 @@ namespace program.View.Components
             this.customFonts = customFonts;
             this.Size = new Size(645, 160);
 
-            addButton = new AddExampleButton(customFonts);
-            addButton.Location = new Point(420, 110);
-            this.Controls.Add(addButton);
+            Type = 3;
 
-            choicePanelList = new List<MultipleChoicePanel>();
+            choicePanelList = new List<ExamMultipleChoicePanel>();
             setMultipleQuestions(multipleQuestions);
 
             count = choicePanelList.Count;
@@ -58,10 +50,10 @@ namespace program.View.Components
 
             for (int i = 0; i < length; i++)
             {
-                MultipleChoicePanel choicePanel = new MultipleChoicePanel(customFonts);
+                ExamMultipleChoicePanel choicePanel = new ExamMultipleChoicePanel(customFonts, multipleQuestions[i]);
                 if (i == 0)
                 {
-                    choicePanel.Location = new Point(50, addButton.Location.Y + addButton.Height + 10);
+                    choicePanel.Location = new Point(50, QuestionLabel.Location.Y + QuestionLabel.Height + 30); 
                 }
                 else
                 {
@@ -77,7 +69,7 @@ namespace program.View.Components
         {
             int count = choicePanelList.Count;
             RadioButton exampRadioButton = (RadioButton)sender;
-            MultipleChoicePanel choicePanel = (MultipleChoicePanel)exampRadioButton.Parent;
+            ExamMultipleChoicePanel choicePanel = (ExamMultipleChoicePanel)exampRadioButton.Parent;
 
             for (int i = 0; i < count; i++)
             {

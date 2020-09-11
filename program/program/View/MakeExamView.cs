@@ -28,22 +28,16 @@ namespace program.View
 
         private void MakeExamView_Load1(object sender, EventArgs e)
         {
-            // 폰트
+                   // 폰트
             customFonts = new CustomFonts();
             string[] lectureItems = { "운영체제", "컴퓨터구조론", "C프로그래밍및실습" };
 
-            this.exitButton = new ExitButton(customFonts);
-            this.settingPanel.Controls.Add(this.exitButton);
-            this.exitButton.Location = new System.Drawing.Point(349, 0);
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click_1);
-
-            this.minimizeButton = new MinimizeButton(customFonts);
-            this.settingPanel.Controls.Add(this.minimizeButton);
-            this.minimizeButton.Location = new System.Drawing.Point(319, 0);
-            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click_1);
+            this.topBarPanel = new TopBarPanel(customFonts);
+            this.topBarPanel.Location = new Point(0, 0);
+            this.Controls.Add(topBarPanel);
 
             this.examPageNavigationPanel = new ExamPageNavigationPanel(customFonts);
-            this.examPageNavigationPanel.Location = new System.Drawing.Point(0, 640);
+            this.examPageNavigationPanel.Location = new System.Drawing.Point(0, 612);
             this.mainPanel.Controls.Add(this.examPageNavigationPanel);
             
             this.examPageNavigationPanel.PageLeftButton.Click += pageLeftButton_Click_1;
@@ -84,18 +78,6 @@ namespace program.View
             this.mainQuestionPanelList.Add(new MainQuestionPanel(customFonts));
             this.mainQuestionPanelList[0].Location = new Point(30, 30);
             this.examPanel.Controls.Add(this.mainQuestionPanelList[0]);
-        }
-
-        // 나가기 버튼
-        private void exitButton_Click_1(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        // 최소화 버튼
-        private void minimizeButton_Click_1(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
         }
 
         // 메인 문제 페이지 추가 버튼

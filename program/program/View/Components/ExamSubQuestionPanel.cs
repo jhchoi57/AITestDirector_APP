@@ -9,10 +9,16 @@ namespace program.View.Components
 {
     class ExamSubQuestionPanel : Panel
     {
+        private int type { get; set; }
         private Label questionLabel { get; set; }
 
         private ScorePanel examScorePanel { get; set; }
 
+        public int Type 
+        { 
+            get { return type; } 
+            set { type = value; }
+        }
         public Label QuestionLabel
         {
             get { return questionLabel; }

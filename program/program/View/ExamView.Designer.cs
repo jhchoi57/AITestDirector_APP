@@ -1,4 +1,6 @@
 ﻿using program.View.Components;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace program.View
@@ -34,6 +36,7 @@ namespace program.View
             this.mainPanel = new System.Windows.Forms.Panel();
             this.examPanel = new Panel();
             this.examInfoPanel = new Panel();
+            this.endExamButton = new Button();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -55,11 +58,22 @@ namespace program.View
             // 
             // examInfoPanel
             // 
+            this.examInfoPanel.Controls.Add(this.endExamButton);
             this.examInfoPanel.BackColor = System.Drawing.Color.White;
             this.examInfoPanel.Location = new System.Drawing.Point(885, 0);
             this.examInfoPanel.Name = "examInfoPanel";
             this.examInfoPanel.Size = new System.Drawing.Size(379, 682);
             this.examInfoPanel.TabIndex = 1;
+            //
+            // endExamButton
+            //
+            this.endExamButton.ForeColor = Color.White;
+            this.endExamButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(33)))), ((int)(((byte)(59)))));
+            this.endExamButton.Text = "시험 종료";
+            this.endExamButton.Size = new System.Drawing.Size(139, 50);
+            this.endExamButton.Location = new System.Drawing.Point(120, 600);
+            this.endExamButton.FlatAppearance.BorderSize = 0;
+            this.endExamButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             // 
             // ExamView
             // 
@@ -81,10 +95,12 @@ namespace program.View
         private System.Windows.Forms.Panel mainPanel;
         private Panel examPanel;
         private Panel examInfoPanel;
+        private List<ExamMainQuestionPanel> examMainQuestionPanelList;
 
         private ExamPageNavigationPanel examPageNavigationPanel;
 
         //Buttons
+        private Button endExamButton;
 
         private ExitButton exitButton;
         private MinimizeButton minimizeButton;

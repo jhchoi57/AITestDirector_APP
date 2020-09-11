@@ -35,6 +35,8 @@ namespace program.View.Components
             this.customFonts = customFonts;
             this.Size = new Size(645, 160);
 
+            Type = 3;
+
             addButton = new AddExampleButton(customFonts);
             addButton.Location = new Point(420, 110);
             this.Controls.Add(addButton);
