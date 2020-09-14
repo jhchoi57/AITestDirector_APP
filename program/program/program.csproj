@@ -145,6 +145,12 @@
     <Compile Include="View\Components\OXPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="View\ProfessorDetailScoreView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ProfessorDetailScoreView.Designer.cs">
+      <DependentUpon>ProfessorDetailScoreView.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ProfessorHomeView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\MakeExamView.resx">
       <DependentUpon>MakeExamView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ProfessorDetailScoreView.resx">
+      <DependentUpon>ProfessorDetailScoreView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ProfessorHomeView.resx">
       <DependentUpon>ProfessorHomeView.cs</DependentUpon>

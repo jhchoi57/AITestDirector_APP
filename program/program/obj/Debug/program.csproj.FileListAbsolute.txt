@@ -33,3 +33,5 @@ C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.View.ProfessorLec
 C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.View.ProfessorScoreCheckView.resources
 C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.View.StudentScoreCheckView.resources
 C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.View.ExamView.resources
+C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.View.ExamView.resources
+C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.View.ProfessorDetailScoreView.resources

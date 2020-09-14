@@ -89,6 +89,7 @@ namespace program.View
             lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "56 / 100", "67", "35%");
             lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "78 / 100", "65", "30%");
             lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
+
         }
 
         private void backBtn_Click(object sender, EventArgs e)
