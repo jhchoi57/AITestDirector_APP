@@ -20,6 +20,7 @@ namespace program.View.Components
         public ExamEssayQuestionPanel(CustomFonts customFonts, string question, int score, int maxLength) : base(customFonts, question, score)
         {
             this.Size = new Size(645, 400);
+            this.Click += Click_1;
 
             Type = 2;
 

@@ -17,11 +17,18 @@ namespace program.View.Components
             set { answerPanel.AnswerTextBox.Text = value; }
         }
 
+        public ShortAnswerPanel AnswerPanel
+        {
+            get { return answerPanel; }
+            set { answerPanel = value; }
+        }
+
         public ExamShortAnswerQuestionPanel(CustomFonts customFonts, string question, int score) : base(customFonts, question, score)
         {
             int height;
 
             this.Size = new Size(645, 147);
+            this.Click += Click_1;
 
             Type = 1;
 
@@ -37,5 +44,9 @@ namespace program.View.Components
             ExamScorePanel.Location = new Point(520, (height - ExamScorePanel.Height) / 2);
         }
         
+        private void Click_1(object sender, EventArgs e)
+        {
+            this.QuestionLabel.Focus();
+        }
     }
 }

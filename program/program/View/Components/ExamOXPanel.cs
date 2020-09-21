@@ -19,6 +19,17 @@ namespace program.View.Components
             get { return answer; }
             set { answer = value; }
         }
+        public Button OButton
+        {
+            get { return oButton; }
+            set { oButton = value; }
+        }
+
+        public Button XButton
+        {
+            get { return xButton; }
+            set { xButton = value; }
+        }
 
         public ExamOXPanel(CustomFonts customFonts, string question, int score) : base(customFonts, question, score)
         {

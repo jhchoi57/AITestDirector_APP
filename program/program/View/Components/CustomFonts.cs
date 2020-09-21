@@ -41,6 +41,11 @@ namespace program.View.Components
             return new Font(privateFont.Families[1], 17f);
         }
 
+        public Font TimeLabelFont()
+        {
+            return new Font(privateFont.Families[1], 19f);
+        }
+
         static CustomFonts()
         {
             privateFont = new PrivateFontCollection();
