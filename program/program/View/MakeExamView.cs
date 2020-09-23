@@ -28,7 +28,7 @@ namespace program.View
 
         private void MakeExamView_Load1(object sender, EventArgs e)
         {
-                   // 폰트
+            // 폰트
             customFonts = new CustomFonts();
             string[] lectureItems = { "운영체제", "컴퓨터구조론", "C프로그래밍및실습" };
 

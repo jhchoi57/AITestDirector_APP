@@ -47,6 +47,33 @@ namespace program.View.Components
             this.MouseUp += mouseUp_1;
         }
 
+        // 로그인 뷰를 위한 TopBarPanel 생성자
+        public TopBarPanel(CustomFonts customFonts, Boolean isLoginView) : base()
+        {
+            this.Size = new Size(960, 28);
+            this.BackColor = Color.White;
+
+            exitButton = new ExitButton(customFonts);
+            exitButton.Location = new Point(930, 0);
+            this.Controls.Add(exitButton);
+
+            minimizeButton = new MinimizeButton(customFonts);
+            minimizeButton.Location = new Point(900, 0);
+            this.Controls.Add(minimizeButton);
+            minimizeButton.Click += minimizeButton_Click_1;
+
+            tabNameLabel = new Label();
+            tabNameLabel.Text = "ExamDirector";
+            tabNameLabel.Location = new Point(5, 5);
+            tabNameLabel.Font = customFonts.NormalFont();
+            this.Controls.Add(tabNameLabel);
+
+            isMouseDown = false;
+            this.MouseDown += mouseDown_1;
+            this.MouseMove += mouseMove_1;
+            this.MouseUp += mouseUp_1;
+        }
+
         private void mouseDown_1(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             TopBarPanel topBarPanel = (TopBarPanel)sender;

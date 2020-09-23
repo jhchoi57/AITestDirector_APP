@@ -46,6 +46,11 @@ namespace program.View.Components
             return new Font(privateFont.Families[1], 19f);
         }
 
+        public Font CopyRightFont()
+        {
+            return new Font(privateFont.Families[2], 8f);
+        }
+
         static CustomFonts()
         {
             privateFont = new PrivateFontCollection();

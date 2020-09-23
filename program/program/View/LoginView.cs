@@ -8,13 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Text;
+using program.View.Components;
 
 namespace program.View
 {
     public partial class LoginView : Form
     {
         private Boolean emailAuthCheck = false;
-        
+        private CustomFonts customFonts;
+        private TopBarPanel topBarPanel;
+
         public LoginView()
         {
             InitializeComponent();
@@ -83,12 +86,24 @@ namespace program.View
         {
             string email = emailTextBox.Text;
             string password = passwordTextBox.Text;
+            string position = null;
+
+            if (studentRadioBtn.Checked) position = studentRadioBtn.Text;
+            else if (assistantRadioBtn.Checked) position = assistantRadioBtn.Text;
+            else if (professorRadioBtn.Checked) position = professorRadioBtn.Text;
+
+            // 라디오버튼 선택 하지 않았을 경우
+            if(position == null)
+            {
+                MessageBox.Show("학생/조교/교수를 선택해 주세요.");
+            }
 
             if (email == "example@sejong.ac.kr" || !email.Contains("@") || password == "**********")
             {
                 MessageBox.Show("이메일과 비밀번호를 정확히 입력하세요.");
             }
-            MessageBox.Show(email + password);
+
+            MessageBox.Show(email + password + "\n" + position);
 
             // 서버와 연동 
         }
@@ -124,6 +139,14 @@ namespace program.View
             passwordTextBox.Text = "**********";
             loginButton.Focus();
 
+            // Font setting
+            customFonts = new CustomFonts();
+
+            //상단바
+            this.topBarPanel = new TopBarPanel(customFonts, true);
+            this.topBarPanel.Location = new Point(0, 0);
+            this.Controls.Add(topBarPanel);
+
             //Image panel backgroundimage setting
             string backgroundImageRoute = "../../src/Assets/Images/Login.jpg";
             System.IO.FileInfo backgroundImage = new System.IO.FileInfo(backgroundImageRoute);
@@ -137,37 +160,64 @@ namespace program.View
                 MessageBox.Show("LoginView 배경 이미지가 존재하지 않습니다.");
             }
 
-            // Font setting
-            PrivateFontCollection privateFont = new PrivateFontCollection();
-            privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothic.ttf");
-            privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicBold.ttf");
-            privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicLight.ttf");
-            privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicUltraLight.ttf");
-            Font labelFont = new Font(privateFont.Families[1], 13f);
-            Font textBoxFont = new Font(privateFont.Families[1], 10f);
-            Font copyrightFont = new Font(privateFont.Families[2], 8f);
+            
+            emailLabel.Font = customFonts.LabelFont();
+            emailTextBox.Font = customFonts.TextBoxFont();
+            passwordLabel.Font = customFonts.LabelFont();
+            passwordTextBox.Font = customFonts.TextBoxFont();
+            loginButton.Font = customFonts.LabelFont();
+            registerButton.Font = customFonts.LabelFont();
+            copyrightLabel.Font = customFonts.CopyRightFont();
 
-            exitButton.Font = labelFont;
-            minimizeButton.Font = labelFont;
-            emailLabel.Font = labelFont;
-            emailTextBox.Font = textBoxFont;
-            passwordLabel.Font = labelFont;
-            passwordTextBox.Font = textBoxFont;
-            loginButton.Font = labelFont;
-            registerButton.Font = labelFont;
-            copyrightLabel.Font = copyrightFont;
+            // 회원가입 패널 폰트 설정
 
-            signupNameLabel.Font = labelFont;
-            signupEmailLabel.Font = labelFont;
-            signupPasswordLabel.Font = labelFont;
-            signupPasswordCheckLabel.Font = labelFont;
-            signupEmailAuthLabel.Font = labelFont;
-            signupBirthLabel.Font = labelFont;
-            signupUnivLabel.Font = labelFont;
-            signupStdNumLabel.Font = labelFont;
-            signupPositionLabel.Font = labelFont;
-            signupMinimizeButton.Font = labelFont;
-            signupExitButton.Font = labelFont;
+            // 학교
+            signupUnivLabel.Font = customFonts.LabelFont();
+            signupUnivTextBox.Font = customFonts.TextBoxFont();
+            signupUnivButton.Font = customFonts.TextBoxFont();
+
+            // 학번
+            signupStdNumLabel.Font = customFonts.LabelFont();
+            signupStdNumTextBox.Font = customFonts.TextBoxFont();
+
+            // 이름
+            signupNameLabel.Font = customFonts.LabelFont();
+            signupNameTextBox.Font = customFonts.TextBoxFont();
+
+            // 이메일
+            signupEmailLabel.Font = customFonts.LabelFont();
+            signupEmailTextBox.Font = customFonts.TextBoxFont();
+            signupSendAuthBtn.Font = customFonts.NormalFont();
+
+            // 이메일 인증
+            signupEmailAuthLabel.Font = customFonts.LabelFont();
+            signupEmailAuthTextBox.Font = customFonts.TextBoxFont();
+            signupEmailAuthButton.Font = customFonts.TextBoxFont();
+
+            // 비밀번호
+            signupPasswordLabel.Font = customFonts.LabelFont();
+            signupPasswordTextBox.Font = customFonts.TextBoxFont();
+
+            // 비밀번호 확인
+            signupPasswordCheckLabel.Font = customFonts.LabelFont();
+            signupPasswordCheckTextBox.Font = customFonts.TextBoxFont();
+
+            // 생년월일
+            signupBirthLabel.Font = customFonts.LabelFont();
+            signupBirthPicker.Font = customFonts.TextBoxFont();            
+
+            // 구분
+            signupPositionLabel.Font = customFonts.LabelFont();
+            signupPositionComboBox.Font = customFonts.NormalFont();
+
+            // 버튼
+            signupButton.Font = customFonts.TextBoxFont();
+            signupCancelButton.Font = customFonts.TextBoxFont();
+
+            // 라디오 버튼
+            studentRadioBtn.Font = customFonts.NormalFont();
+            assistantRadioBtn.Font = customFonts.NormalFont();
+            professorRadioBtn.Font = customFonts.NormalFont();
 
             // ComboBox setting
             signupPositionComboBox.Items.Clear();
@@ -259,6 +309,11 @@ namespace program.View
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void signupSendAuthBtn_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("인증번호 발송!!");
         }
     }
 }

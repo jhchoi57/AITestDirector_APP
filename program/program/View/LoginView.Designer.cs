@@ -36,11 +36,8 @@ namespace program.View
         private void InitializeComponent()
         {
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.imagePanel = new System.Windows.Forms.Panel();
-            this.loginPanel = new System.Windows.Forms.Panel();
             this.signupPanel = new System.Windows.Forms.Panel();
-            this.signupExitButton = new System.Windows.Forms.Button();
-            this.signupMinimizeButton = new System.Windows.Forms.Button();
+            this.signupSendAuthBtn = new System.Windows.Forms.Button();
             this.signupPositionComboBox = new System.Windows.Forms.ComboBox();
             this.signupPositionLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -72,8 +69,10 @@ namespace program.View
             this.signupNameLabel = new System.Windows.Forms.Label();
             this.signupNamePanel = new System.Windows.Forms.Panel();
             this.signupNameTextBox = new System.Windows.Forms.TextBox();
-            this.exitButton = new System.Windows.Forms.Button();
-            this.minimizeButton = new System.Windows.Forms.Button();
+            this.loginPanel = new System.Windows.Forms.Panel();
+            this.professorRadioBtn = new System.Windows.Forms.RadioButton();
+            this.assistantRadioBtn = new System.Windows.Forms.RadioButton();
+            this.studentRadioBtn = new System.Windows.Forms.RadioButton();
             this.emailLabel = new System.Windows.Forms.Label();
             this.emailPanel = new System.Windows.Forms.Panel();
             this.emailTextBox = new System.Windows.Forms.TextBox();
@@ -83,8 +82,8 @@ namespace program.View
             this.loginButton = new System.Windows.Forms.Button();
             this.registerButton = new System.Windows.Forms.Button();
             this.copyrightLabel = new System.Windows.Forms.Label();
+            this.imagePanel = new System.Windows.Forms.Panel();
             this.mainPanel.SuspendLayout();
-            this.loginPanel.SuspendLayout();
             this.signupPanel.SuspendLayout();
             this.signupStdNumPanel.SuspendLayout();
             this.signupUnivPanel.SuspendLayout();
@@ -94,51 +93,25 @@ namespace program.View
             this.signupPasswordPanel.SuspendLayout();
             this.signupEmailPanel.SuspendLayout();
             this.signupNamePanel.SuspendLayout();
+            this.loginPanel.SuspendLayout();
             this.emailPanel.SuspendLayout();
             this.passwordPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.imagePanel);
+            this.mainPanel.Controls.Add(this.signupPanel);
             this.mainPanel.Controls.Add(this.loginPanel);
-            this.mainPanel.Location = new System.Drawing.Point(0, 0);
+            this.mainPanel.Controls.Add(this.imagePanel);
+            this.mainPanel.Location = new System.Drawing.Point(0, 28);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(960, 640);
+            this.mainPanel.Size = new System.Drawing.Size(960, 612);
             this.mainPanel.TabIndex = 0;
-            // 
-            // imagePanel
-            // 
-            this.imagePanel.BackColor = System.Drawing.Color.Yellow;
-            this.imagePanel.Location = new System.Drawing.Point(0, 0);
-            this.imagePanel.Name = "imagePanel";
-            this.imagePanel.Size = new System.Drawing.Size(640, 640);
-            this.imagePanel.TabIndex = 0;
-            this.imagePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.imagePanel_Paint);
-            // 
-            // loginPanel
-            // 
-            this.loginPanel.BackColor = System.Drawing.Color.White;
-            this.loginPanel.Controls.Add(this.signupPanel);
-            this.loginPanel.Controls.Add(this.exitButton);
-            this.loginPanel.Controls.Add(this.minimizeButton);
-            this.loginPanel.Controls.Add(this.emailLabel);
-            this.loginPanel.Controls.Add(this.emailPanel);
-            this.loginPanel.Controls.Add(this.passwordLabel);
-            this.loginPanel.Controls.Add(this.passwordPanel);
-            this.loginPanel.Controls.Add(this.loginButton);
-            this.loginPanel.Controls.Add(this.registerButton);
-            this.loginPanel.Controls.Add(this.copyrightLabel);
-            this.loginPanel.Location = new System.Drawing.Point(640, 0);
-            this.loginPanel.Name = "loginPanel";
-            this.loginPanel.Size = new System.Drawing.Size(320, 640);
-            this.loginPanel.TabIndex = 1;
             // 
             // signupPanel
             // 
             this.signupPanel.BackColor = System.Drawing.Color.White;
-            this.signupPanel.Controls.Add(this.signupExitButton);
-            this.signupPanel.Controls.Add(this.signupMinimizeButton);
+            this.signupPanel.Controls.Add(this.signupSendAuthBtn);
             this.signupPanel.Controls.Add(this.signupPositionComboBox);
             this.signupPanel.Controls.Add(this.signupPositionLabel);
             this.signupPanel.Controls.Add(this.label1);
@@ -162,36 +135,27 @@ namespace program.View
             this.signupPanel.Controls.Add(this.signupEmailPanel);
             this.signupPanel.Controls.Add(this.signupNameLabel);
             this.signupPanel.Controls.Add(this.signupNamePanel);
-            this.signupPanel.Location = new System.Drawing.Point(0, 0);
+            this.signupPanel.Location = new System.Drawing.Point(640, 0);
             this.signupPanel.Name = "signupPanel";
-            this.signupPanel.Size = new System.Drawing.Size(320, 640);
+            this.signupPanel.Size = new System.Drawing.Size(320, 612);
             this.signupPanel.TabIndex = 1;
             this.signupPanel.Visible = false;
             this.signupPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.signupPanel_Paint);
             // 
-            // signupExitButton
+            // signupSendAuthBtn
             // 
-            this.signupExitButton.FlatAppearance.BorderSize = 0;
-            this.signupExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.signupExitButton.Location = new System.Drawing.Point(290, 0);
-            this.signupExitButton.Name = "signupExitButton";
-            this.signupExitButton.Size = new System.Drawing.Size(30, 28);
-            this.signupExitButton.TabIndex = 0;
-            this.signupExitButton.TabStop = false;
-            this.signupExitButton.Text = "✕";
-            this.signupExitButton.Click += new System.EventHandler(this.exitButton_Click_1);
-            // 
-            // signupMinimizeButton
-            // 
-            this.signupMinimizeButton.FlatAppearance.BorderSize = 0;
-            this.signupMinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.signupMinimizeButton.Location = new System.Drawing.Point(260, 0);
-            this.signupMinimizeButton.Name = "signupMinimizeButton";
-            this.signupMinimizeButton.Size = new System.Drawing.Size(30, 28);
-            this.signupMinimizeButton.TabIndex = 1;
-            this.signupMinimizeButton.TabStop = false;
-            this.signupMinimizeButton.Text = "_";
-            this.signupMinimizeButton.Click += new System.EventHandler(this.minimizeButton_Click_1);
+            this.signupSendAuthBtn.BackColor = System.Drawing.Color.Gray;
+            this.signupSendAuthBtn.FlatAppearance.BorderSize = 0;
+            this.signupSendAuthBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.signupSendAuthBtn.ForeColor = System.Drawing.Color.White;
+            this.signupSendAuthBtn.Location = new System.Drawing.Point(188, 218);
+            this.signupSendAuthBtn.Name = "signupSendAuthBtn";
+            this.signupSendAuthBtn.Size = new System.Drawing.Size(92, 29);
+            this.signupSendAuthBtn.TabIndex = 19;
+            this.signupSendAuthBtn.TabStop = false;
+            this.signupSendAuthBtn.Text = "인증번호 발송";
+            this.signupSendAuthBtn.UseVisualStyleBackColor = false;
+            this.signupSendAuthBtn.Click += new System.EventHandler(this.signupSendAuthBtn_Click);
             // 
             // signupPositionComboBox
             // 
@@ -221,7 +185,7 @@ namespace program.View
             // 
             // signupEmailAuthButton
             // 
-            this.signupEmailAuthButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(165)))), ((int)(((byte)(246)))));
+            this.signupEmailAuthButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.signupEmailAuthButton.FlatAppearance.BorderSize = 0;
             this.signupEmailAuthButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.signupEmailAuthButton.ForeColor = System.Drawing.Color.White;
@@ -244,7 +208,7 @@ namespace program.View
             // 
             // signupUnivButton
             // 
-            this.signupUnivButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(165)))), ((int)(((byte)(246)))));
+            this.signupUnivButton.BackColor = System.Drawing.Color.Gray;
             this.signupUnivButton.FlatAppearance.BorderSize = 0;
             this.signupUnivButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.signupUnivButton.ForeColor = System.Drawing.Color.White;
@@ -269,7 +233,7 @@ namespace program.View
             // signupStdNumTextBox
             // 
             this.signupStdNumTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.signupStdNumTextBox.Location = new System.Drawing.Point(6, 7);
+            this.signupStdNumTextBox.Location = new System.Drawing.Point(6, 6);
             this.signupStdNumTextBox.Name = "signupStdNumTextBox";
             this.signupStdNumTextBox.Size = new System.Drawing.Size(230, 14);
             this.signupStdNumTextBox.TabIndex = 0;
@@ -294,18 +258,18 @@ namespace program.View
             // signupUnivTextBox
             // 
             this.signupUnivTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.signupUnivTextBox.Location = new System.Drawing.Point(6, 7);
+            this.signupUnivTextBox.Location = new System.Drawing.Point(6, 6);
             this.signupUnivTextBox.Name = "signupUnivTextBox";
             this.signupUnivTextBox.Size = new System.Drawing.Size(138, 14);
             this.signupUnivTextBox.TabIndex = 0;
             // 
             // signupCancelButton
             // 
-            this.signupCancelButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(165)))), ((int)(((byte)(246)))));
+            this.signupCancelButton.BackColor = System.Drawing.Color.Silver;
             this.signupCancelButton.FlatAppearance.BorderSize = 0;
             this.signupCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.signupCancelButton.ForeColor = System.Drawing.Color.White;
-            this.signupCancelButton.Location = new System.Drawing.Point(170, 582);
+            this.signupCancelButton.Location = new System.Drawing.Point(170, 570);
             this.signupCancelButton.Name = "signupCancelButton";
             this.signupCancelButton.Size = new System.Drawing.Size(110, 34);
             this.signupCancelButton.TabIndex = 9;
@@ -320,7 +284,7 @@ namespace program.View
             this.signupButton.FlatAppearance.BorderSize = 0;
             this.signupButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.signupButton.ForeColor = System.Drawing.Color.White;
-            this.signupButton.Location = new System.Drawing.Point(40, 582);
+            this.signupButton.Location = new System.Drawing.Point(40, 570);
             this.signupButton.Name = "signupButton";
             this.signupButton.Size = new System.Drawing.Size(110, 34);
             this.signupButton.TabIndex = 8;
@@ -357,7 +321,7 @@ namespace program.View
             // signupEmailAuthTextBox
             // 
             this.signupEmailAuthTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.signupEmailAuthTextBox.Location = new System.Drawing.Point(6, 7);
+            this.signupEmailAuthTextBox.Location = new System.Drawing.Point(6, 6);
             this.signupEmailAuthTextBox.Name = "signupEmailAuthTextBox";
             this.signupEmailAuthTextBox.Size = new System.Drawing.Size(138, 14);
             this.signupEmailAuthTextBox.TabIndex = 0;
@@ -411,10 +375,11 @@ namespace program.View
             // signupPasswordCheckTextBox
             // 
             this.signupPasswordCheckTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.signupPasswordCheckTextBox.Location = new System.Drawing.Point(6, 7);
+            this.signupPasswordCheckTextBox.Location = new System.Drawing.Point(6, 6);
             this.signupPasswordCheckTextBox.Name = "signupPasswordCheckTextBox";
             this.signupPasswordCheckTextBox.Size = new System.Drawing.Size(230, 14);
             this.signupPasswordCheckTextBox.TabIndex = 0;
+            this.signupPasswordCheckTextBox.UseSystemPasswordChar = true;
             // 
             // signupEmailLabel
             // 
@@ -436,10 +401,11 @@ namespace program.View
             // signupPasswordTextBox
             // 
             this.signupPasswordTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.signupPasswordTextBox.Location = new System.Drawing.Point(6, 7);
+            this.signupPasswordTextBox.Location = new System.Drawing.Point(6, 6);
             this.signupPasswordTextBox.Name = "signupPasswordTextBox";
             this.signupPasswordTextBox.Size = new System.Drawing.Size(230, 14);
             this.signupPasswordTextBox.TabIndex = 0;
+            this.signupPasswordTextBox.UseSystemPasswordChar = true;
             // 
             // signupEmailPanel
             // 
@@ -453,7 +419,7 @@ namespace program.View
             // signupEmailTextBox
             // 
             this.signupEmailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.signupEmailTextBox.Location = new System.Drawing.Point(6, 7);
+            this.signupEmailTextBox.Location = new System.Drawing.Point(6, 6);
             this.signupEmailTextBox.Name = "signupEmailTextBox";
             this.signupEmailTextBox.Size = new System.Drawing.Size(230, 14);
             this.signupEmailTextBox.TabIndex = 0;
@@ -478,34 +444,61 @@ namespace program.View
             // signupNameTextBox
             // 
             this.signupNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.signupNameTextBox.Location = new System.Drawing.Point(6, 7);
+            this.signupNameTextBox.Location = new System.Drawing.Point(6, 6);
             this.signupNameTextBox.Name = "signupNameTextBox";
             this.signupNameTextBox.Size = new System.Drawing.Size(230, 14);
             this.signupNameTextBox.TabIndex = 0;
             // 
-            // exitButton
+            // loginPanel
             // 
-            this.exitButton.FlatAppearance.BorderSize = 0;
-            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exitButton.Location = new System.Drawing.Point(290, 0);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(30, 28);
-            this.exitButton.TabIndex = 0;
-            this.exitButton.TabStop = false;
-            this.exitButton.Text = "✕";
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click_1);
+            this.loginPanel.BackColor = System.Drawing.Color.White;
+            this.loginPanel.Controls.Add(this.professorRadioBtn);
+            this.loginPanel.Controls.Add(this.assistantRadioBtn);
+            this.loginPanel.Controls.Add(this.studentRadioBtn);
+            this.loginPanel.Controls.Add(this.emailLabel);
+            this.loginPanel.Controls.Add(this.emailPanel);
+            this.loginPanel.Controls.Add(this.passwordLabel);
+            this.loginPanel.Controls.Add(this.passwordPanel);
+            this.loginPanel.Controls.Add(this.loginButton);
+            this.loginPanel.Controls.Add(this.registerButton);
+            this.loginPanel.Controls.Add(this.copyrightLabel);
+            this.loginPanel.Location = new System.Drawing.Point(640, 0);
+            this.loginPanel.Name = "loginPanel";
+            this.loginPanel.Size = new System.Drawing.Size(320, 612);
+            this.loginPanel.TabIndex = 1;
             // 
-            // minimizeButton
+            // professorRadioBtn
             // 
-            this.minimizeButton.FlatAppearance.BorderSize = 0;
-            this.minimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minimizeButton.Location = new System.Drawing.Point(260, 0);
-            this.minimizeButton.Name = "minimizeButton";
-            this.minimizeButton.Size = new System.Drawing.Size(30, 28);
-            this.minimizeButton.TabIndex = 1;
-            this.minimizeButton.TabStop = false;
-            this.minimizeButton.Text = "_";
-            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click_1);
+            this.professorRadioBtn.AutoSize = true;
+            this.professorRadioBtn.Location = new System.Drawing.Point(200, 301);
+            this.professorRadioBtn.Name = "professorRadioBtn";
+            this.professorRadioBtn.Size = new System.Drawing.Size(47, 16);
+            this.professorRadioBtn.TabIndex = 14;
+            this.professorRadioBtn.TabStop = true;
+            this.professorRadioBtn.Text = "교수";
+            this.professorRadioBtn.UseVisualStyleBackColor = true;
+            // 
+            // assistantRadioBtn
+            // 
+            this.assistantRadioBtn.AutoSize = true;
+            this.assistantRadioBtn.Location = new System.Drawing.Point(135, 301);
+            this.assistantRadioBtn.Name = "assistantRadioBtn";
+            this.assistantRadioBtn.Size = new System.Drawing.Size(47, 16);
+            this.assistantRadioBtn.TabIndex = 13;
+            this.assistantRadioBtn.TabStop = true;
+            this.assistantRadioBtn.Text = "조교";
+            this.assistantRadioBtn.UseVisualStyleBackColor = true;
+            // 
+            // studentRadioBtn
+            // 
+            this.studentRadioBtn.AutoSize = true;
+            this.studentRadioBtn.Location = new System.Drawing.Point(70, 301);
+            this.studentRadioBtn.Name = "studentRadioBtn";
+            this.studentRadioBtn.Size = new System.Drawing.Size(47, 16);
+            this.studentRadioBtn.TabIndex = 12;
+            this.studentRadioBtn.TabStop = true;
+            this.studentRadioBtn.Text = "학생";
+            this.studentRadioBtn.UseVisualStyleBackColor = true;
             // 
             // emailLabel
             // 
@@ -568,7 +561,7 @@ namespace program.View
             this.loginButton.FlatAppearance.BorderSize = 0;
             this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.loginButton.ForeColor = System.Drawing.Color.White;
-            this.loginButton.Location = new System.Drawing.Point(40, 305);
+            this.loginButton.Location = new System.Drawing.Point(40, 330);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(240, 34);
             this.loginButton.TabIndex = 6;
@@ -583,7 +576,7 @@ namespace program.View
             this.registerButton.FlatAppearance.BorderSize = 0;
             this.registerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.registerButton.ForeColor = System.Drawing.Color.White;
-            this.registerButton.Location = new System.Drawing.Point(40, 350);
+            this.registerButton.Location = new System.Drawing.Point(40, 375);
             this.registerButton.Name = "registerButton";
             this.registerButton.Size = new System.Drawing.Size(240, 34);
             this.registerButton.TabIndex = 7;
@@ -594,11 +587,20 @@ namespace program.View
             // 
             // copyrightLabel
             // 
-            this.copyrightLabel.Location = new System.Drawing.Point(85, 610);
+            this.copyrightLabel.Location = new System.Drawing.Point(84, 584);
             this.copyrightLabel.Name = "copyrightLabel";
             this.copyrightLabel.Size = new System.Drawing.Size(150, 15);
             this.copyrightLabel.TabIndex = 8;
             this.copyrightLabel.Text = "ⓒ CROFO  from Sejong Univ.";
+            // 
+            // imagePanel
+            // 
+            this.imagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.imagePanel.Location = new System.Drawing.Point(0, 0);
+            this.imagePanel.Name = "imagePanel";
+            this.imagePanel.Size = new System.Drawing.Size(640, 612);
+            this.imagePanel.TabIndex = 0;
+            this.imagePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.imagePanel_Paint);
             // 
             // LoginView
             // 
@@ -611,7 +613,6 @@ namespace program.View
             this.Text = "LoginView";
             this.Load += new System.EventHandler(this.LoginView_Load_1);
             this.mainPanel.ResumeLayout(false);
-            this.loginPanel.ResumeLayout(false);
             this.signupPanel.ResumeLayout(false);
             this.signupStdNumPanel.ResumeLayout(false);
             this.signupStdNumPanel.PerformLayout();
@@ -628,6 +629,8 @@ namespace program.View
             this.signupEmailPanel.PerformLayout();
             this.signupNamePanel.ResumeLayout(false);
             this.signupNamePanel.PerformLayout();
+            this.loginPanel.ResumeLayout(false);
+            this.loginPanel.PerformLayout();
             this.emailPanel.ResumeLayout(false);
             this.emailPanel.PerformLayout();
             this.passwordPanel.ResumeLayout(false);
@@ -655,10 +658,6 @@ namespace program.View
         // TextBoxes
         private System.Windows.Forms.TextBox emailTextBox;
         private System.Windows.Forms.TextBox passwordTextBox;
-
-        // Buttons
-        private System.Windows.Forms.Button exitButton;
-        private System.Windows.Forms.Button minimizeButton;
         private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.Button registerButton;
         private Panel signupPanel;
@@ -693,7 +692,9 @@ namespace program.View
         private Label label1;
         private Label signupPositionLabel;
         private ComboBox signupPositionComboBox;
-        private Button signupExitButton;
-        private Button signupMinimizeButton;
+        private RadioButton professorRadioBtn;
+        private RadioButton assistantRadioBtn;
+        private RadioButton studentRadioBtn;
+        private Button signupSendAuthBtn;
     }
 }
