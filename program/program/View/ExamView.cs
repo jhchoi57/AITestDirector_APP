@@ -51,6 +51,10 @@ namespace program.View
             this.chatPanel.Location = new Point(30, 240);
             this.mainPanel.Controls.Add(this.chatPanel);
             this.chatPanel.BringToFront();
+            this.chatPanel.MinimizeBtn.Click += chatPanelMinimizeButton_Click_1;
+
+            this.openChatBoxPanel.Click += openChatBoxPanel_Click_1;
+            this.openChatBoxLabel.Click += openChatBoxPanel_Click_1;
 
             this.examLectureLabel.Font = customFonts.LabelFont();
             this.examNameLabel.Font = customFonts.LabelFont();
@@ -264,7 +268,6 @@ namespace program.View
                     shortCutButton.Location = new Point(locationX, locationY);
                     shortCutButton.MainQuestionNo = i;
                     shortCutButton.SubQuestionNo = j;
-                    Console.WriteLine(i.ToString() + ", " + j.ToString());
                     shortCutButton.Click += shortCutButton_Click_1;
                     index++;
                     ExamSubQuestionPanel examSubQuestionPanel = examMainQuestionPanelList[i].SubQuestionPanelsList[j];
@@ -383,6 +386,17 @@ namespace program.View
             }
 
             return -1;
+        }
+        private void openChatBoxPanel_Click_1(object sender, EventArgs e)
+        {
+            openChatBoxPanel.Visible = false;
+            chatPanel.Visible = true;
+        }
+
+        private void chatPanelMinimizeButton_Click_1(object sender, EventArgs e)
+        {
+            openChatBoxPanel.Visible = true;
+            chatPanel.Visible = false;
         }
     }
 }

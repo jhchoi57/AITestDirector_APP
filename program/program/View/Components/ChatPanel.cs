@@ -11,11 +11,13 @@ namespace program.View.Components
 {
     class ChatPanel : Panel
     {
+        private CustomFonts customFonts;
         private Panel headerPanel { get; set; }
         private Panel mainPanel { get; set; }
         private Panel inputPanel { get; set; }
 
         private Label headerLabel;
+        private List<ChatContentPanel> chatContentPanelList { get; set; }
 
         private TextBox inputTextBox { get; set; }
         private Button sendButton { get; set; }
@@ -50,8 +52,14 @@ namespace program.View.Components
             get { return minimizeBtn; }
             set { minimizeBtn = value; }
         }
+        public List<ChatContentPanel> ChatContentPanelList
+        {
+            get { return chatContentPanelList; }
+            set { chatContentPanelList = value; }
+        }
         public ChatPanel(CustomFonts customFonts) : base()
         {
+            this.customFonts = customFonts;
             this.Size = new Size(300, 400);
             this.BackColor = Color.White;
 
@@ -104,6 +112,14 @@ namespace program.View.Components
             sendButton.FlatAppearance.BorderSize = 0;
             sendButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             inputPanel.Controls.Add(sendButton);
+            sendButton.Click += sendButton_Click_1;
+
+            chatContentPanelList = new List<ChatContentPanel>();
+            chatContentPanelList.Add(new ChatContentPanel(customFonts, "안녕하세요. 저는 컴퓨터공학과 4학년 이승민이라고 합니다. 다름이 아니라 기말고사 내용에 대한 질문이 있어서 문의드립니다.", 0));
+            chatContentPanelList.Add(new ChatContentPanel(customFonts, "그래요. 안녕하신가요. 어떤 일로 문의 주셨나요?", 1));
+            mainPanel.Controls.Add(chatContentPanelList[0]);
+            mainPanel.Controls.Add(chatContentPanelList[1]);
+            alignChatContentPanel(0);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -118,6 +134,51 @@ namespace program.View.Components
                 borderColor, borderWidth, ButtonBorderStyle.Solid,
                 borderColor, borderWidth, ButtonBorderStyle.Solid
             );
+        }
+
+        private void alignChatContentPanel (int start)
+        {
+            int count = chatContentPanelList.Count;
+
+            for (int i = start; i < count; i++)
+            {
+                int locationX = 10;
+                if (chatContentPanelList[i].Type == 0)
+                    locationX = mainPanel.Width - (chatContentPanelList[i].Width + 20);
+                if (i == 0)
+                {
+                    chatContentPanelList[i].Location = new Point(locationX, 10);
+                }
+                else
+                {
+                    int locationY = chatContentPanelList[i - 1].Location.Y + chatContentPanelList[i - 1].Height + 10;
+                    chatContentPanelList[i].Location = new Point(locationX, locationY);
+                }
+            }
+
+            mainPanel.AutoScrollPosition = new Point(0, mainPanel.DisplayRectangle.Height);
+        }
+
+        public void addChatContentPanel (ChatContentPanel chatContentPanel)
+        {
+            int count = chatContentPanelList.Count;
+            int height;
+
+            chatContentPanelList.Add(chatContentPanel);
+            mainPanel.Controls.Add(chatContentPanel);
+            alignChatContentPanel(count);
+        }
+
+        private void sendButton_Click_1(object sender, EventArgs e)
+        {
+            string str = inputTextBox.Text.Replace(" ", "");
+            str = str.Replace("\r", "");
+            str = str.Replace("\n", "");
+            if (str != "")
+            {
+                addChatContentPanel(new ChatContentPanel(customFonts, inputTextBox.Text, 0));
+                inputTextBox.Text = "";
+            }
         }
     }
 }

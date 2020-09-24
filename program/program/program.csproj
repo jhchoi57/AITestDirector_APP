@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{DF8292C0-0976-434A-BA40-6C6EA6ADBF5E}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <RootNamespace>program</RootNamespace>
     <AssemblyName>program</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -81,6 +81,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\Components\AddSubQuestionButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Components\ChatContentPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\Components\ChatPanel.cs">
