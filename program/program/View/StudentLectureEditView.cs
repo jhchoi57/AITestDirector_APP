@@ -7,19 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using program.Controller;
 using program.View.Components;
 
 namespace program.View
 {
     public partial class StudentLectureEditView : Form
     {
-        public StudentLectureEditView()
+        private MainController mainController;
+        public StudentLectureEditView(MainController mainController)
         {
             InitializeComponent();
             // 프로그램 상단바 및 테두리 제거
             this.FormBorderStyle = FormBorderStyle.None;
             // 프로그램 중앙에 메인패널 위치
             //this.mainPanel.Location = new System.Drawing.Point((this.Width - this.mainPanel.Width) / 2, (this.Height - this.mainPanel.Height) / 2);
+            this.mainController = mainController;
         }
 
         private void minimizeButton_Click(object sender, EventArgs e) { this.WindowState = FormWindowState.Minimized; }
@@ -98,7 +101,7 @@ namespace program.View
 
         private void homePictureBox_Click(object sender, EventArgs e)
         {
-            Close();
+            mainController.moveToPreviousForm();
         }
 
         private void lectureTable_CellClick(object sender, DataGridViewCellEventArgs e)

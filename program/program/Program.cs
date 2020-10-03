@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using program.Controller;
 using program.Model;
 using program.View;
 
@@ -19,18 +20,12 @@ namespace program
         [STAThread]
         static void Main()
         {
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
-            Application.Run(new View.ExamView());
-            //Application.Run(new View.MakeExamView());
-            //Application.Run(new View.StudentHomeView());
-            //Application.Run(new View.LoginView());
-            //Application.Run(new View.StudentScoreCheckView());
-            //Application.Run(new View.ProfessorHomeView());
-            //Application.Run(new View.ProfessorLectureEditView());
-            //Application.Run(new View.ProfessorScoreCheckView());
-            //Application.Run(new View.ProfessorDetailScoreView());
+
+            MainController mainController = new MainController();
+            Application.Run(mainController.NowForm);
         }
     }
 }

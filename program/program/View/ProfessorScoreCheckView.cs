@@ -7,17 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using program.Controller;
 using program.View.Components;
 
 namespace program.View
 {
     public partial class ProfessorScoreCheckView : Form
     {
-        public ProfessorScoreCheckView()
+        private MainController mainController;
+        public ProfessorScoreCheckView(MainController mainController)
         {
             InitializeComponent();
             // 프로그램 상단바 및 테두리 제거
             this.FormBorderStyle = FormBorderStyle.None;
+            this.mainController = mainController;
         }
 
         private void ProfessorScoreCheckView_Load(object sender, EventArgs e)

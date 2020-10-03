@@ -7,19 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using program.Controller;
 using program.View.Components;
 
 namespace program.View
 {
     public partial class ProfessorHomeView : Form
     {
-        public ProfessorHomeView()
+        private MainController mainController;
+        public ProfessorHomeView(MainController mainController)
         {
             InitializeComponent();
             // 프로그램 상단바 및 테두리 제거
             this.FormBorderStyle = FormBorderStyle.None;
             // 프로그램 중앙에 메인패널 위치
             //this.mainPanel.Location = new System.Drawing.Point((this.Width - this.mainPanel.Width) / 2, (this.Height - this.mainPanel.Height) / 2);
+            this.mainController = mainController;
         }
 
         private void ProfessorHomeView_Load(object sender, EventArgs e)
@@ -76,6 +79,9 @@ namespace program.View
             editPasswordTextBox.Font = customFonts.TextBoxFont();
             editPasswordCheckTextBox.Font = customFonts.TextBoxFont();
             editBirthPicker.Font = customFonts.TextBoxFont();
+
+            testAddBtn.Click += testAddBtn_Click_1;
+            editLectureBtn.Click += editLectureBtn_Click_1;
         }
 
         private void editInfoBtn_Click(object sender, EventArgs e)
@@ -112,6 +118,8 @@ namespace program.View
                     + lectureTable.Rows[e.RowIndex].Cells[1].Value.ToString() + "\n"
                     + lectureTable.Rows[e.RowIndex].Cells[2].Value.ToString()
                     );
+                MakeExamView makeExamView = new MakeExamView(mainController);
+                mainController.moveToNextForm(makeExamView);
             }
         }
 
@@ -125,8 +133,20 @@ namespace program.View
 
         private void checkScoreBtn_Click(object sender, EventArgs e)
         {
-            ProfessorScoreCheckView ProfessorScoreCheckView = new ProfessorScoreCheckView();
+            ProfessorScoreCheckView ProfessorScoreCheckView = new ProfessorScoreCheckView(mainController);
             ProfessorScoreCheckView.Show();
+        }
+
+        private void testAddBtn_Click_1(object sender, EventArgs e)
+        {
+            MakeExamView makeExamView = new MakeExamView(mainController);
+            mainController.moveToNextForm(makeExamView);
+        }
+
+        private void editLectureBtn_Click_1(object sender, EventArgs e)
+        {
+            ProfessorLectureEditView professorLectureEditView = new ProfessorLectureEditView(mainController);
+            mainController.moveToNextForm(professorLectureEditView);
         }
     }
 }

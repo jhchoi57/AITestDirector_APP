@@ -9,23 +9,33 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Text;
 using program.View.Components;
+using program.Controller;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace program.View
 {
     public partial class LoginView : Form
     {
+        private MainController mainController;
         private Boolean emailAuthCheck = false;
         private CustomFonts customFonts;
         private TopBarPanel topBarPanel;
 
-        public LoginView()
+        public LoginView(MainController mainController)
         {
             InitializeComponent();
             // 프로그램 상단바 및 테두리 제거
             this.FormBorderStyle = FormBorderStyle.None;
             // 프로그램 화면 크기 모니터 해상도에 맞춤
             //this.WindowState = FormWindowState.Maximized;
+            this.mainController = mainController;
+            this.Load += Load_1;
+        }
 
+        private void Load_1(object sender, EventArgs e)
+        {
+            studentRadioBtn.Checked = true;
         }
 
         private void imagePanel_Paint(object sender, PaintEventArgs e)
@@ -88,24 +98,52 @@ namespace program.View
             string password = passwordTextBox.Text;
             string position = null;
 
-            if (studentRadioBtn.Checked) position = studentRadioBtn.Text;
-            else if (assistantRadioBtn.Checked) position = assistantRadioBtn.Text;
-            else if (professorRadioBtn.Checked) position = professorRadioBtn.Text;
-
-            // 라디오버튼 선택 하지 않았을 경우
-            if(position == null)
-            {
-                MessageBox.Show("학생/조교/교수를 선택해 주세요.");
-            }
-
+            /*
             if (email == "example@sejong.ac.kr" || !email.Contains("@") || password == "**********")
             {
                 MessageBox.Show("이메일과 비밀번호를 정확히 입력하세요.");
+                return;
             }
-
-            MessageBox.Show(email + password + "\n" + position);
-
-            // 서버와 연동 
+            */
+            if (studentRadioBtn.Checked)
+            {
+                string response = mainController.studentLoginRequest(email, password);
+                JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                string result = (string)jObject["code"];
+                string message = (string)jObject["message"];
+                if (result.Equals("ok"))
+                {
+                    string name = (string)jObject["name"];
+                    string id = ((int)jObject["id"]).ToString();
+                    mainController.setUserInfo(name, id, message, true);
+                    ProfessorHomeView professorHome = new ProfessorHomeView(mainController);
+                    mainController.moveToNextForm(professorHome);
+                }
+                else
+                {
+                    MessageBox.Show(message, "로그인 실패");
+                }
+            }
+            else if (assistantRadioBtn.Checked) position = assistantRadioBtn.Text;
+            else if (professorRadioBtn.Checked)
+            {
+                string response = mainController.professorLoginRequest(email, password);
+                JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                string result = (string)jObject["code"];
+                string message = (string)jObject["message"];
+                if (result.Equals("ok"))
+                {
+                    string name = (string)jObject["name"];
+                    string id = (string)jObject["id"];
+                    mainController.setUserInfo(name, id, message, false);
+                    ProfessorHomeView professorHome = new ProfessorHomeView(mainController);
+                    mainController.moveToNextForm(professorHome);
+                }
+                else
+                {
+                    MessageBox.Show(message, "로그인 실패");
+                }
+            }
         }
 
         // 회원가입 버튼 클릭

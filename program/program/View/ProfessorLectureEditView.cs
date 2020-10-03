@@ -7,18 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using program.Controller;
 using program.View.Components;
 
 namespace program.View
 {
     public partial class ProfessorLectureEditView : Form
     {
-        public ProfessorLectureEditView()
+        private MainController mainController;
+        public ProfessorLectureEditView(MainController mainController)
         {
             InitializeComponent();
             // 프로그램 상단바 및 테두리 제거
             this.FormBorderStyle = FormBorderStyle.None;
-        }
+            this.mainController = mainController;
+        }   
 
         private void ProfessorLectureEditView_Load(object sender, EventArgs e)
         {

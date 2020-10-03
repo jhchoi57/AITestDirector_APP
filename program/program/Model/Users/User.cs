@@ -6,54 +6,68 @@ using System.Threading.Tasks;
 
 namespace program.Model
 {
-    /*
+    /**
      * User 클래스
      * 
      * 멤버 변수
      *  - string name: 사용자 이름
-     *  - string email: 사용자 이메일
+     *  - string id: 사용자 id (학생: 학번, 교수: 아이디)
+     *  - string token: 사용자 토큰
      *  
      * 멤버 함수
      *  - User() : 생성자 초기화 without data
-     *  - User(name, email) : 생성자 초기화
-     * */
-    class User
+     *  - User(name, id, token) : 생성자 초기화
+     */
+    public class User
     {
-        /*
+        /**
          * 사용자 이름
-         * ex) 강동원, 이병헌, ... 등
-         * */
+         * ex) 강동원, 이병헌, ... 등 
+         */
         private string name { get; set; }
         public string Name
         {
             get { return name; }
             set { name = value; }
         }
-        /*
-         * 사용자 이메일
-         * ex) example@google.co.kr, ... 등
-         * */
-        private string email { get; set; }
-        public string Email
+        /**
+         * 사용자 아이디
+         * ex) example@google.co.kr, 17052345 ... 등
+         */
+        private string id { get; set; }
+        public string ID
         {
-            get { return email; }
-            set { email = value; }
+            get { return id; }
+            set { id = value; }
         }
-        /*
+        /**
+         * 사용자 토큰
+         * ex) 81dc9bdb52d04dc20036dbd8313ed055 ... 등
+         */
+        private string token { get; set; }
+        public string Token
+        {
+            get { return token; }
+            set { token = value; }
+        }
+
+        /**
          * 생성자 초기화 without data
-         * */
+         */
         public User()
         {
             name = "";
-            email = "";
+            id = "";
+            token = "";
         }
-        /*
-         * 생성자 초기화
-         * */
-        public User(string name, string email)
+        /**
+         * 생성자 초기화 
+         */
+        public User(string name, string id, string token)
         {
             this.name = name;
-            this.email = email;
+            this.id = id;
+            this.token = token;
         }
     }
 }

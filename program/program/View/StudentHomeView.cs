@@ -10,18 +10,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Text;
 using program.View.Components;
+using program.Controller;
 
 namespace program.View
 {
     public partial class StudentHomeView : Form
     {
-        public StudentHomeView()
+        private MainController mainController;
+        public StudentHomeView(MainController mainController)
         {
             InitializeComponent();
                   // 프로그램 상단바 및 테두리 제거
             this.FormBorderStyle = FormBorderStyle.None;
-                  // 프로그램 중앙에 메인패널 위치
+            // 프로그램 중앙에 메인패널 위치
             //this.mainPanel.Location = new System.Drawing.Point((this.Width - this.mainPanel.Width) / 2, (this.Height - this.mainPanel.Height) / 2);
+            this.mainController = mainController;
+            Console.WriteLine("호출 되나요?");
         }
 
         private void signupMinimizeButton_Click(object sender, EventArgs e) { this.WindowState = FormWindowState.Minimized; }
@@ -171,9 +175,13 @@ namespace program.View
         private void testStartBtn_Click(object sender, EventArgs e)
         {
             // 연동 화면 열기
+            /*
             cameraPanel.Visible = true;
             testPanel.Enabled = false;
             testInfoPanel.Enabled = false;
+            */
+            ExamView examView = new ExamView(mainController);
+            mainController.moveToNextForm(examView);
         }
 
         private void cameraCancelBtn_Click(object sender, EventArgs e)
@@ -186,14 +194,14 @@ namespace program.View
 
         private void editLectureBtn_Click(object sender, EventArgs e)
         {
-            StudentLectureEditView StudentLectureEditView = new StudentLectureEditView();
-            StudentLectureEditView.Show();            
+            StudentLectureEditView studentLectureEditView = new StudentLectureEditView(mainController);
+            mainController.moveToNextForm(studentLectureEditView);
         }
 
         private void checkScoreBtn_Click(object sender, EventArgs e)
         {
-            StudentScoreCheckView StudentScoreCheckView = new StudentScoreCheckView();
-            StudentScoreCheckView.Show();
+            StudentScoreCheckView studentScoreCheckView = new StudentScoreCheckView(mainController);
+            mainController.moveToNextForm(studentScoreCheckView);
         }
     }
 }

@@ -162,7 +162,6 @@ namespace program.View.Components
         public void addChatContentPanel (ChatContentPanel chatContentPanel)
         {
             int count = chatContentPanelList.Count;
-            int height;
 
             chatContentPanelList.Add(chatContentPanel);
             mainPanel.Controls.Add(chatContentPanel);

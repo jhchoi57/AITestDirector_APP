@@ -1,4 +1,5 @@
-﻿using program.View.Components;
+﻿using program.Controller;
+using program.View.Components;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,7 +24,9 @@ namespace program.View
         private List<ShortCutButton> shortCutButtonList;
         private ChatPanel chatPanel;
 
-        public ExamView()
+        private MainController mainController;
+
+        public ExamView(MainController mainController)
         {
             InitializeComponent();
             // 프로그램 상단바 및 테두리 제거
@@ -32,7 +35,7 @@ namespace program.View
             //this.WindowState = FormWindowState.Maximized;
             DateTime date = DateTime.Now;
             examDate = date.AddHours(1);
-            
+            this.mainController = mainController;
         }       
 
         private void ExamView_Load1(object sender, EventArgs e)
@@ -93,6 +96,8 @@ namespace program.View
 
             this.examPageNavigationPanel.Controls.Add(this.openChatBoxPanel);
             initShortCutButton();
+
+            this.endExamButton.Click += endExamButton_Click_1;
         }
 
         private void sample_subQuestions()
@@ -397,6 +402,15 @@ namespace program.View
         {
             openChatBoxPanel.Visible = true;
             chatPanel.Visible = false;
+        }
+
+        private void endExamButton_Click_1(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("시험을 종료하시겠습니까?\n(시험 종료 시 재접속이 불가능합니다.)", "시험 종료", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                // 시험 결과 전송하는 함수 진행 후
+                mainController.moveToPreviousForm();
+            }
         }
     }
 }

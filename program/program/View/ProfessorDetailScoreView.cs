@@ -7,16 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using program.Controller;
 using program.View.Components;
 
 namespace program.View
 {
     public partial class ProfessorDetailScoreView : Form
     {
-        public ProfessorDetailScoreView()
+        private MainController mainController;
+        public ProfessorDetailScoreView(MainController mainController)
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
+            this.mainController = mainController;
         }
 
         private void ProfessorDetailScoreView_Load(object sender, EventArgs e)

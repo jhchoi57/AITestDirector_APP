@@ -36,3 +36,8 @@ C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.View.ExamView.res
 C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.View.ExamView.resources
 C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.View.ProfessorDetailScoreView.resources
 C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.View.ProfessorDetailScoreView.resources
+C:\Users\seung\Desktop\svapp\program\program\bin\Debug\Newtonsoft.Json.dll
+C:\Users\seung\Desktop\svapp\program\program\bin\Debug\RestSharp.dll
+C:\Users\seung\Desktop\svapp\program\program\bin\Debug\Newtonsoft.Json.xml
+C:\Users\seung\Desktop\svapp\program\program\bin\Debug\RestSharp.xml
+C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.csproj.CopyComplete

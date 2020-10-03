@@ -1,4 +1,5 @@
-﻿using program.View.Components;
+﻿using program.Controller;
+using program.View.Components;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,15 +16,16 @@ namespace program.View
     public partial class MakeExamView : Form
     {
         private CustomFonts customFonts;
+        private MainController mainController;
 
-        public MakeExamView()
+        public MakeExamView(MainController mainController)
         {
             InitializeComponent();
             // 프로그램 상단바 및 테두리 제거
             this.FormBorderStyle = FormBorderStyle.None;
             // 프로그램 화면 크기 모니터 해상도에 맞춤
             //this.WindowState = FormWindowState.Maximized;
-
+            this.mainController = mainController;
         }
 
         private void MakeExamView_Load1(object sender, EventArgs e)
@@ -78,6 +80,8 @@ namespace program.View
             this.mainQuestionPanelList.Add(new MainQuestionPanel(customFonts));
             this.mainQuestionPanelList[0].Location = new Point(30, 30);
             this.examPanel.Controls.Add(this.mainQuestionPanelList[0]);
+
+            this.cancelButton.Click += cancelButton_Click_1;
         }
 
         // 메인 문제 페이지 추가 버튼
@@ -171,6 +175,11 @@ namespace program.View
             {
                 this.examPageNavigationPanel.NowPageTextBox.Text = (page + 2).ToString();
             }
+        }
+
+        private void cancelButton_Click_1(object sender, EventArgs e)
+        {
+            mainController.moveToPreviousForm();
         }
     }
 }

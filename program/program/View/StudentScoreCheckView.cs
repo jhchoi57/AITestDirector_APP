@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using program.Controller;
 using program.Model.Exams;
 using program.View.Components;
 
@@ -14,13 +15,15 @@ namespace program.View
 {
     public partial class StudentScoreCheckView : Form
     {
-        public StudentScoreCheckView()
+        private MainController mainController;
+        public StudentScoreCheckView(MainController mainController)
         {
             InitializeComponent();
             // 프로그램 상단바 및 테두리 제거
             this.FormBorderStyle = FormBorderStyle.None;
             // 프로그램 중앙에 메인패널 위치
             //this.mainPanel.Location = new System.Drawing.Point((this.Width - this.mainPanel.Width) / 2, (this.Height - this.mainPanel.Height) / 2);
+            this.mainController = mainController;
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -106,7 +109,7 @@ namespace program.View
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            Close();
+            mainController.moveToPreviousForm();
         }
     }
 }
