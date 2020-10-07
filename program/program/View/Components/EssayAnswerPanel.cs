@@ -74,6 +74,7 @@ namespace program.View.Components
             answerLabel.MaximumSize = new Size(470, 0);
             answerLabel.Visible = false;
             answerLabel.AutoSize = true;
+            answerLabel.Text = "";
             answerLabel.Font = customFonts.TextBoxFont();
             this.Controls.Add(answerLabel);
             answerLabel.Click += answerLabel_Click_1;

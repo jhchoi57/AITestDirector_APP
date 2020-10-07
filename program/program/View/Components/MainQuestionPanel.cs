@@ -10,7 +10,7 @@ namespace program.View.Components
 {
     class MainQuestionPanel : Panel
     {
-        private AddSubQuestionButton addSubQuestionButton;
+        private AddSubQuestionButton addSubQuestionButton { get; set; }
         private QuestionKindPanel questionKindPanel;
         private ScorePanel totalScorePanel { get; set; }
         private Label mainQuestionLabel { get; set; }
@@ -18,6 +18,11 @@ namespace program.View.Components
         private List<SubQuestionPanel> subQuestionPanelsList { get; set; }
 
         private CustomFonts customFonts;
+        public AddSubQuestionButton AddQuestionButton
+        {
+            get { return addSubQuestionButton; }
+            set { addSubQuestionButton = value; }
+        }
         public ScorePanel TotalScorePanel
         {
             get { return totalScorePanel; }
@@ -71,16 +76,18 @@ namespace program.View.Components
             mainQuestionTextBox.Size = new Size(700, 100);
             mainQuestionTextBox.Multiline = true;
             mainQuestionTextBox.ScrollBars = ScrollBars.Vertical;
-            mainQuestionTextBox.Font = customFonts.TextBoxFont();
             mainQuestionTextBox.Text = "○/✕ 문제입니다. 각각의 문제의 올바른 답 버튼을 눌러주세요.";
+            mainQuestionTextBox.Font = customFonts.TextBoxFont();
+            mainQuestionTextBox.Visible = false;
             this.Controls.Add(mainQuestionTextBox);
             mainQuestionTextBox.LostFocus += mainQuestionTextBox_LostFocus_1;
 
             mainQuestionLabel = new Label();
             mainQuestionLabel.Location = new Point(50, 53);
-            mainQuestionLabel.Visible = false;
+            mainQuestionLabel.Visible = true;
             mainQuestionLabel.MaximumSize = new Size(700, 0);
             mainQuestionLabel.AutoSize = true;
+            mainQuestionLabel.Text = "○/✕ 문제입니다. 각각의 문제의 올바른 답 버튼을 눌러주세요.";
             mainQuestionLabel.Font = customFonts.TextBoxFont();
             this.Controls.Add(mainQuestionLabel);
             mainQuestionLabel.Click += mainQuestionLabel_Click_1;

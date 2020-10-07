@@ -317,13 +317,20 @@ namespace program.View
             int i = shortCutButton.MainQuestionNo;
             int j = shortCutButton.SubQuestionNo;
             int locationY;
-            Console.WriteLine("Click");
+           
             locationY = examMainQuestionPanelList[i].SubQuestionPanelsList[j].Location.Y;
-
+            
             this.examPageNavigationPanel.NowPageTextBox.Text = (i + 1).ToString();
 
-            this.examPanel.VerticalScroll.Value = locationY;
-            this.examPanel.PerformLayout();
+            try
+            {
+                this.examPanel.VerticalScroll.Value = locationY;
+                this.examPanel.PerformLayout();
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            }
         }
 
         private void ox_enter_answer(object sender, EventArgs e)

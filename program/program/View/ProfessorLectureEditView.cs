@@ -89,5 +89,10 @@ namespace program.View
             if (myLectureTable.Rows[e.RowIndex].Cells[0].Value.ToString()[0].Equals('▶'))
                 myLectureTable.Rows[e.RowIndex].Cells[0].Value = myLectureTable.Rows[e.RowIndex].Cells[0].Value.ToString().Substring(1);
         }
+
+        private void addLectureBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

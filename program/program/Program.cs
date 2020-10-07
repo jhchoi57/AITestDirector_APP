@@ -25,6 +25,7 @@ namespace program
             Application.SetCompatibleTextRenderingDefault(false);
 
             MainController mainController = new MainController();
+
             Application.Run(mainController.NowForm);
         }
     }

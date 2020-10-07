@@ -52,17 +52,14 @@ namespace program.View
             this.startDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.endDateTimeLabel = new System.Windows.Forms.Label();
             this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.examTimeLabel = new System.Windows.Forms.Label();
-            this.examTimeLabel2 = new System.Windows.Forms.Label();
-            this.examTimePanel = new System.Windows.Forms.Panel();
-            this.examTimeTextBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
+            this.examShortCutLabel = new Label();
+            this.examShortCutPanel = new Panel();
             this.mainPanel.SuspendLayout();
             this.settingPanel.SuspendLayout();
             this.examNamePanel.SuspendLayout();
             this.examPercentPanel.SuspendLayout();
-            this.examTimePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -97,11 +94,10 @@ namespace program.View
             this.settingPanel.Controls.Add(this.startDateTimePicker);
             this.settingPanel.Controls.Add(this.endDateTimeLabel);
             this.settingPanel.Controls.Add(this.endDateTimePicker);
-            this.settingPanel.Controls.Add(this.examTimeLabel);
-            this.settingPanel.Controls.Add(this.examTimeLabel2);
-            this.settingPanel.Controls.Add(this.examTimePanel);
             this.settingPanel.Controls.Add(this.saveButton);
             this.settingPanel.Controls.Add(this.cancelButton);
+            this.settingPanel.Controls.Add(this.examShortCutLabel);
+            this.settingPanel.Controls.Add(this.examShortCutPanel);
             this.settingPanel.Location = new System.Drawing.Point(885, 0);
             this.settingPanel.Name = "settingPanel";
             this.settingPanel.Size = new System.Drawing.Size(379, 654);
@@ -109,7 +105,7 @@ namespace program.View
             // 
             // examLectureNameLabel
             // 
-            this.examLectureNameLabel.Location = new System.Drawing.Point(40, 70);
+            this.examLectureNameLabel.Location = new System.Drawing.Point(30, 70);
             this.examLectureNameLabel.Name = "examLectureNameLabel";
             this.examLectureNameLabel.Size = new System.Drawing.Size(65, 21);
             this.examLectureNameLabel.TabIndex = 2;
@@ -118,14 +114,14 @@ namespace program.View
             // examLectureNameComboBox
             // 
             this.examLectureNameComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.examLectureNameComboBox.Location = new System.Drawing.Point(105, 67);
+            this.examLectureNameComboBox.Location = new System.Drawing.Point(95, 67);
             this.examLectureNameComboBox.Name = "examLectureNameComboBox";
             this.examLectureNameComboBox.Size = new System.Drawing.Size(180, 20);
             this.examLectureNameComboBox.TabIndex = 3;
             // 
             // examNameLabel
             // 
-            this.examNameLabel.Location = new System.Drawing.Point(40, 120);
+            this.examNameLabel.Location = new System.Drawing.Point(30, 120);
             this.examNameLabel.Name = "examNameLabel";
             this.examNameLabel.Size = new System.Drawing.Size(65, 21);
             this.examNameLabel.TabIndex = 4;
@@ -136,7 +132,7 @@ namespace program.View
             this.examNamePanel.BackColor = System.Drawing.Color.White;
             this.examNamePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.examNamePanel.Controls.Add(this.examNameTextBox);
-            this.examNamePanel.Location = new System.Drawing.Point(105, 117);
+            this.examNamePanel.Location = new System.Drawing.Point(95, 117);
             this.examNamePanel.Name = "examNamePanel";
             this.examNamePanel.Size = new System.Drawing.Size(120, 26);
             this.examNamePanel.TabIndex = 5;
@@ -151,7 +147,7 @@ namespace program.View
             // 
             // examPercentLabel
             // 
-            this.examPercentLabel.Location = new System.Drawing.Point(40, 170);
+            this.examPercentLabel.Location = new System.Drawing.Point(30, 170);
             this.examPercentLabel.Name = "examPercentLabel";
             this.examPercentLabel.Size = new System.Drawing.Size(118, 21);
             this.examPercentLabel.TabIndex = 6;
@@ -159,7 +155,7 @@ namespace program.View
             // 
             // examPercentLabel2
             // 
-            this.examPercentLabel2.Location = new System.Drawing.Point(208, 170);
+            this.examPercentLabel2.Location = new System.Drawing.Point(198, 170);
             this.examPercentLabel2.Name = "examPercentLabel2";
             this.examPercentLabel2.Size = new System.Drawing.Size(20, 21);
             this.examPercentLabel2.TabIndex = 7;
@@ -170,7 +166,7 @@ namespace program.View
             this.examPercentPanel.BackColor = System.Drawing.Color.White;
             this.examPercentPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.examPercentPanel.Controls.Add(this.examPercentTextBox);
-            this.examPercentPanel.Location = new System.Drawing.Point(158, 166);
+            this.examPercentPanel.Location = new System.Drawing.Point(148, 166);
             this.examPercentPanel.Name = "examPercentPanel";
             this.examPercentPanel.Size = new System.Drawing.Size(50, 26);
             this.examPercentPanel.TabIndex = 8;
@@ -185,7 +181,7 @@ namespace program.View
             // 
             // examPeriodLabel
             // 
-            this.examPeriodLabel.Location = new System.Drawing.Point(40, 220);
+            this.examPeriodLabel.Location = new System.Drawing.Point(30, 220);
             this.examPeriodLabel.Name = "examPeriodLabel";
             this.examPeriodLabel.Size = new System.Drawing.Size(118, 21);
             this.examPeriodLabel.TabIndex = 9;
@@ -193,7 +189,7 @@ namespace program.View
             // 
             // startDateTimeLabel
             // 
-            this.startDateTimeLabel.Location = new System.Drawing.Point(50, 255);
+            this.startDateTimeLabel.Location = new System.Drawing.Point(40, 255);
             this.startDateTimeLabel.Name = "startDateTimeLabel";
             this.startDateTimeLabel.Size = new System.Drawing.Size(42, 21);
             this.startDateTimeLabel.TabIndex = 10;
@@ -201,14 +197,14 @@ namespace program.View
             // 
             // startDateTimePicker
             // 
-            this.startDateTimePicker.Location = new System.Drawing.Point(92, 252);
+            this.startDateTimePicker.Location = new System.Drawing.Point(82, 252);
             this.startDateTimePicker.Name = "startDateTimePicker";
             this.startDateTimePicker.Size = new System.Drawing.Size(195, 21);
             this.startDateTimePicker.TabIndex = 11;
             // 
             // endDateTimeLabel
             // 
-            this.endDateTimeLabel.Location = new System.Drawing.Point(50, 295);
+            this.endDateTimeLabel.Location = new System.Drawing.Point(40, 295);
             this.endDateTimeLabel.Name = "endDateTimeLabel";
             this.endDateTimeLabel.Size = new System.Drawing.Size(42, 21);
             this.endDateTimeLabel.TabIndex = 12;
@@ -216,44 +212,24 @@ namespace program.View
             // 
             // endDateTimePicker
             // 
-            this.endDateTimePicker.Location = new System.Drawing.Point(92, 292);
+            this.endDateTimePicker.Location = new System.Drawing.Point(82, 292);
             this.endDateTimePicker.Name = "endDateTimePicker";
             this.endDateTimePicker.Size = new System.Drawing.Size(195, 21);
             this.endDateTimePicker.TabIndex = 13;
-            // 
-            // examTimeLabel
-            // 
-            this.examTimeLabel.Location = new System.Drawing.Point(40, 342);
-            this.examTimeLabel.Name = "examTimeLabel";
-            this.examTimeLabel.Size = new System.Drawing.Size(82, 21);
-            this.examTimeLabel.TabIndex = 14;
-            this.examTimeLabel.Text = "시험 시간:";
-            // 
-            // examTimeLabel2
-            // 
-            this.examTimeLabel2.Location = new System.Drawing.Point(172, 342);
-            this.examTimeLabel2.Name = "examTimeLabel2";
-            this.examTimeLabel2.Size = new System.Drawing.Size(21, 21);
-            this.examTimeLabel2.TabIndex = 15;
-            this.examTimeLabel2.Text = "분";
-            // 
-            // examTimePanel
-            // 
-            this.examTimePanel.BackColor = System.Drawing.Color.White;
-            this.examTimePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.examTimePanel.Controls.Add(this.examTimeTextBox);
-            this.examTimePanel.Location = new System.Drawing.Point(122, 338);
-            this.examTimePanel.Name = "examTimePanel";
-            this.examTimePanel.Size = new System.Drawing.Size(50, 26);
-            this.examTimePanel.TabIndex = 16;
-            // 
-            // examTimeTextBox
-            // 
-            this.examTimeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.examTimeTextBox.Location = new System.Drawing.Point(4, 3);
-            this.examTimeTextBox.Name = "examTimeTextBox";
-            this.examTimeTextBox.Size = new System.Drawing.Size(37, 14);
-            this.examTimeTextBox.TabIndex = 0;
+            //
+            // examShortCutLabel
+            //
+            this.examShortCutLabel.ForeColor = Color.Black;
+            this.examShortCutLabel.Text = "문제 바로가기";
+            this.examShortCutLabel.Location = new Point(30, 340);
+            this.examShortCutLabel.Size = new Size(110, 20);
+            //
+            // examShortCutPanel
+            //
+            this.examShortCutPanel.BackColor = Color.White;
+            this.examShortCutPanel.Size = new Size(324, 108);
+            this.examShortCutPanel.Location = new Point(30, 370);
+            this.examShortCutPanel.AutoScroll = true;
             // 
             // saveButton
             // 
@@ -295,8 +271,6 @@ namespace program.View
             this.examNamePanel.PerformLayout();
             this.examPercentPanel.ResumeLayout(false);
             this.examPercentPanel.PerformLayout();
-            this.examTimePanel.ResumeLayout(false);
-            this.examTimePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -309,8 +283,7 @@ namespace program.View
         private Panel settingPanel;
         private Panel examNamePanel;
         private Panel examPercentPanel;
-        private Panel examTimePanel;
-        private List<MainQuestionPanel> mainQuestionPanelList;
+        private Panel examShortCutPanel;
 
         private ExamPageNavigationPanel examPageNavigationPanel;
 
@@ -326,7 +299,6 @@ namespace program.View
         // TextBoxes
         private TextBox examNameTextBox;
         private TextBox examPercentTextBox;
-        private TextBox examTimeTextBox;
 
         // Labels
         private Label examLectureNameLabel;
@@ -336,8 +308,7 @@ namespace program.View
         private Label examPeriodLabel;
         private Label startDateTimeLabel;
         private Label endDateTimeLabel;
-        private Label examTimeLabel;
-        private Label examTimeLabel2;
+        private Label examShortCutLabel;
 
         // DateTimePicker
         private DateTimePicker startDateTimePicker;

@@ -22,8 +22,8 @@ namespace program.View.Components
 
         public Label AnswerLabel
         {
-            get { return AnswerLabel; }
-            set { AnswerLabel = value; }
+            get { return answerLabel; }
+            set { answerLabel = value; }
         }
 
         public TextBox AnswerTextBox

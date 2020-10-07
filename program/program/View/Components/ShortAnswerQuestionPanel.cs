@@ -10,13 +10,12 @@ namespace program.View.Components
 {
     class ShortAnswerQuestionPanel : SubQuestionPanel
     {
-        private string answer { get; set; }
         private ShortAnswerPanel answerPanel { get; set; }
 
         public string Answer
         {
-            get { return answer; }
-            set { answer = value; }
+            get { return answerPanel.AnswerLabel.Text; }
+            set { answerPanel.AnswerLabel.Text = value; }
         }
         public ShortAnswerPanel AnswerPanel
         {

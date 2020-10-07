@@ -312,6 +312,27 @@ namespace program.View
 
             else
             {
+                string response;
+                if (position.Equals("학생"))
+                {
+                    response = mainController.studentSignupRequest(email, password, name, univ, int.Parse(stdNum), birth);
+                }
+                else
+                {
+                    response = mainController.professorSignupRequest(email, password, name, univ, birth);
+                }
+
+                JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                string message = (string)jObject["message"];
+
+                MessageBox.Show(message, "회원가입");
+
+                if (message.Equals("Student SignUp Success"))
+                {
+                    loginPanel.Visible = true;
+                    signupPanel.Visible = false;
+                }
+
                 MessageBox.Show("회원가입 이벤트!\n" +
                 "학교: " + univ + "\n" +
                 "학번: " + stdNum + "\n" +
@@ -333,8 +354,6 @@ namespace program.View
 
         private void signupUnivButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("학교 검색!!!");
-
             signupUnivTextBox.Text = "세종대학교";
         }
 

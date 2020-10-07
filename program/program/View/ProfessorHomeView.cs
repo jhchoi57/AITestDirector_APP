@@ -82,6 +82,9 @@ namespace program.View
 
             testAddBtn.Click += testAddBtn_Click_1;
             editLectureBtn.Click += editLectureBtn_Click_1;
+
+            //mainController.professorAddLectureRequest("운영체제", "월수 16:30 ~ 18:00", 30, "2020-2학기");
+            mainController.professorAllLecturesRequest();
         }
 
         private void editInfoBtn_Click(object sender, EventArgs e)

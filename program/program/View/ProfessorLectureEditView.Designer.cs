@@ -36,44 +36,44 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.myLecturePanel = new System.Windows.Forms.Panel();
             this.myLectureTable = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.myLectureLbl = new System.Windows.Forms.Label();
             this.lecturePictureBox = new System.Windows.Forms.PictureBox();
             this.addLectureBtn = new System.Windows.Forms.Button();
             this.editLecturePanel = new System.Windows.Forms.Panel();
+            this.lectureSemesterPanel = new System.Windows.Forms.Panel();
+            this.lectureSemesterTextBox = new System.Windows.Forms.TextBox();
+            this.assistantPanel = new System.Windows.Forms.Panel();
+            this.assistantTextBox = new System.Windows.Forms.TextBox();
+            this.lectureTotalStudentPanel = new System.Windows.Forms.Panel();
+            this.lectureTotalStudentTextBox = new System.Windows.Forms.TextBox();
+            this.lectureTimePanel = new System.Windows.Forms.Panel();
+            this.lectureTimeTextBox = new System.Windows.Forms.TextBox();
+            this.professorPanel = new System.Windows.Forms.Panel();
+            this.professorTxtBox = new System.Windows.Forms.TextBox();
+            this.lectureNamePanel = new System.Windows.Forms.Panel();
+            this.lectureNameTextBox = new System.Windows.Forms.TextBox();
+            this.lectureSemesterLbl = new System.Windows.Forms.Label();
+            this.assistantLbl = new System.Windows.Forms.Label();
+            this.lectureTotalStuentLbl = new System.Windows.Forms.Label();
+            this.lectureTimeLbl = new System.Windows.Forms.Label();
+            this.professorLbl = new System.Windows.Forms.Label();
+            this.editBtn = new System.Windows.Forms.Button();
             this.lectureNameLbl = new System.Windows.Forms.Label();
             this.deleteBtn = new System.Windows.Forms.Button();
             this.myLectureExitBtn = new System.Windows.Forms.Button();
-            this.editBtn = new System.Windows.Forms.Button();
-            this.lectureTimeLbl = new System.Windows.Forms.Label();
-            this.lectureTotalStuentLbl = new System.Windows.Forms.Label();
-            this.assistantLbl = new System.Windows.Forms.Label();
-            this.lectureSemesterLbl = new System.Windows.Forms.Label();
-            this.lectureNamePanel = new System.Windows.Forms.Panel();
-            this.lectureNameTextBox = new System.Windows.Forms.TextBox();
-            this.lectureTimeTextBox = new System.Windows.Forms.TextBox();
-            this.lectureTimePanel = new System.Windows.Forms.Panel();
-            this.lectureTotalStudentPanel = new System.Windows.Forms.Panel();
-            this.lectureTotalStudentTextBox = new System.Windows.Forms.TextBox();
-            this.assistantPanel = new System.Windows.Forms.Panel();
-            this.assistantTextBox = new System.Windows.Forms.TextBox();
-            this.lectureSemesterPanel = new System.Windows.Forms.Panel();
-            this.lectureSemesterTextBox = new System.Windows.Forms.TextBox();
-            this.professorLbl = new System.Windows.Forms.Label();
-            this.professorPanel = new System.Windows.Forms.Panel();
-            this.professorTxtBox = new System.Windows.Forms.TextBox();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.myLecturePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myLectureTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lecturePictureBox)).BeginInit();
             this.editLecturePanel.SuspendLayout();
-            this.lectureNamePanel.SuspendLayout();
-            this.lectureTimePanel.SuspendLayout();
-            this.lectureTotalStudentPanel.SuspendLayout();
-            this.assistantPanel.SuspendLayout();
             this.lectureSemesterPanel.SuspendLayout();
+            this.assistantPanel.SuspendLayout();
+            this.lectureTotalStudentPanel.SuspendLayout();
+            this.lectureTimePanel.SuspendLayout();
             this.professorPanel.SuspendLayout();
+            this.lectureNamePanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // myLecturePanel
@@ -148,6 +148,33 @@
             this.myLectureTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.myLectureTable_CellClick);
             this.myLectureTable.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.myLectureTable_CellLeave);
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTextBoxColumn1.FillWeight = 13F;
+            this.dataGridViewTextBoxColumn1.HeaderText = "강의명";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.FillWeight = 5F;
+            this.dataGridViewTextBoxColumn2.HeaderText = "담당 교수";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.FillWeight = 9F;
+            this.dataGridViewTextBoxColumn4.HeaderText = "시간";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
             // myLectureLbl
             // 
             this.myLectureLbl.AutoSize = true;
@@ -179,6 +206,7 @@
             this.addLectureBtn.TabStop = false;
             this.addLectureBtn.Text = "강의 추가";
             this.addLectureBtn.UseVisualStyleBackColor = false;
+            this.addLectureBtn.Click += new System.EventHandler(this.addLectureBtn_Click);
             // 
             // editLecturePanel
             // 
@@ -203,6 +231,177 @@
             this.editLecturePanel.Name = "editLecturePanel";
             this.editLecturePanel.Size = new System.Drawing.Size(421, 682);
             this.editLecturePanel.TabIndex = 22;
+            // 
+            // lectureSemesterPanel
+            // 
+            this.lectureSemesterPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lectureSemesterPanel.Controls.Add(this.lectureSemesterTextBox);
+            this.lectureSemesterPanel.Location = new System.Drawing.Point(62, 492);
+            this.lectureSemesterPanel.Name = "lectureSemesterPanel";
+            this.lectureSemesterPanel.Size = new System.Drawing.Size(309, 31);
+            this.lectureSemesterPanel.TabIndex = 23;
+            // 
+            // lectureSemesterTextBox
+            // 
+            this.lectureSemesterTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lectureSemesterTextBox.Location = new System.Drawing.Point(6, 7);
+            this.lectureSemesterTextBox.Name = "lectureSemesterTextBox";
+            this.lectureSemesterTextBox.Size = new System.Drawing.Size(294, 14);
+            this.lectureSemesterTextBox.TabIndex = 0;
+            // 
+            // assistantPanel
+            // 
+            this.assistantPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.assistantPanel.Controls.Add(this.assistantTextBox);
+            this.assistantPanel.Location = new System.Drawing.Point(62, 419);
+            this.assistantPanel.Name = "assistantPanel";
+            this.assistantPanel.Size = new System.Drawing.Size(309, 31);
+            this.assistantPanel.TabIndex = 23;
+            // 
+            // assistantTextBox
+            // 
+            this.assistantTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.assistantTextBox.Location = new System.Drawing.Point(6, 7);
+            this.assistantTextBox.Name = "assistantTextBox";
+            this.assistantTextBox.Size = new System.Drawing.Size(294, 14);
+            this.assistantTextBox.TabIndex = 0;
+            // 
+            // lectureTotalStudentPanel
+            // 
+            this.lectureTotalStudentPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lectureTotalStudentPanel.Controls.Add(this.lectureTotalStudentTextBox);
+            this.lectureTotalStudentPanel.Location = new System.Drawing.Point(62, 339);
+            this.lectureTotalStudentPanel.Name = "lectureTotalStudentPanel";
+            this.lectureTotalStudentPanel.Size = new System.Drawing.Size(309, 31);
+            this.lectureTotalStudentPanel.TabIndex = 23;
+            // 
+            // lectureTotalStudentTextBox
+            // 
+            this.lectureTotalStudentTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lectureTotalStudentTextBox.Location = new System.Drawing.Point(6, 7);
+            this.lectureTotalStudentTextBox.Name = "lectureTotalStudentTextBox";
+            this.lectureTotalStudentTextBox.Size = new System.Drawing.Size(294, 14);
+            this.lectureTotalStudentTextBox.TabIndex = 0;
+            // 
+            // lectureTimePanel
+            // 
+            this.lectureTimePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lectureTimePanel.Controls.Add(this.lectureTimeTextBox);
+            this.lectureTimePanel.Location = new System.Drawing.Point(62, 268);
+            this.lectureTimePanel.Name = "lectureTimePanel";
+            this.lectureTimePanel.Size = new System.Drawing.Size(309, 31);
+            this.lectureTimePanel.TabIndex = 23;
+            // 
+            // lectureTimeTextBox
+            // 
+            this.lectureTimeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lectureTimeTextBox.Location = new System.Drawing.Point(6, 7);
+            this.lectureTimeTextBox.Name = "lectureTimeTextBox";
+            this.lectureTimeTextBox.Size = new System.Drawing.Size(294, 14);
+            this.lectureTimeTextBox.TabIndex = 0;
+            // 
+            // professorPanel
+            // 
+            this.professorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.professorPanel.Controls.Add(this.professorTxtBox);
+            this.professorPanel.Location = new System.Drawing.Point(62, 170);
+            this.professorPanel.Name = "professorPanel";
+            this.professorPanel.Size = new System.Drawing.Size(309, 31);
+            this.professorPanel.TabIndex = 22;
+            // 
+            // professorTxtBox
+            // 
+            this.professorTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.professorTxtBox.Location = new System.Drawing.Point(6, 7);
+            this.professorTxtBox.Name = "professorTxtBox";
+            this.professorTxtBox.Size = new System.Drawing.Size(294, 14);
+            this.professorTxtBox.TabIndex = 0;
+            // 
+            // lectureNamePanel
+            // 
+            this.lectureNamePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lectureNamePanel.Controls.Add(this.lectureNameTextBox);
+            this.lectureNamePanel.Location = new System.Drawing.Point(62, 92);
+            this.lectureNamePanel.Name = "lectureNamePanel";
+            this.lectureNamePanel.Size = new System.Drawing.Size(309, 31);
+            this.lectureNamePanel.TabIndex = 22;
+            // 
+            // lectureNameTextBox
+            // 
+            this.lectureNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lectureNameTextBox.Location = new System.Drawing.Point(6, 7);
+            this.lectureNameTextBox.Name = "lectureNameTextBox";
+            this.lectureNameTextBox.Size = new System.Drawing.Size(294, 14);
+            this.lectureNameTextBox.TabIndex = 0;
+            // 
+            // lectureSemesterLbl
+            // 
+            this.lectureSemesterLbl.AutoSize = true;
+            this.lectureSemesterLbl.BackColor = System.Drawing.Color.White;
+            this.lectureSemesterLbl.ForeColor = System.Drawing.Color.Black;
+            this.lectureSemesterLbl.Location = new System.Drawing.Point(66, 464);
+            this.lectureSemesterLbl.Name = "lectureSemesterLbl";
+            this.lectureSemesterLbl.Size = new System.Drawing.Size(87, 12);
+            this.lectureSemesterLbl.TabIndex = 21;
+            this.lectureSemesterLbl.Text = "강의 년도-학기";
+            // 
+            // assistantLbl
+            // 
+            this.assistantLbl.AutoSize = true;
+            this.assistantLbl.BackColor = System.Drawing.Color.White;
+            this.assistantLbl.ForeColor = System.Drawing.Color.Black;
+            this.assistantLbl.Location = new System.Drawing.Point(66, 386);
+            this.assistantLbl.Name = "assistantLbl";
+            this.assistantLbl.Size = new System.Drawing.Size(85, 12);
+            this.assistantLbl.TabIndex = 20;
+            this.assistantLbl.Text = "담당 조교 인원";
+            // 
+            // lectureTotalStuentLbl
+            // 
+            this.lectureTotalStuentLbl.AutoSize = true;
+            this.lectureTotalStuentLbl.BackColor = System.Drawing.Color.White;
+            this.lectureTotalStuentLbl.ForeColor = System.Drawing.Color.Black;
+            this.lectureTotalStuentLbl.Location = new System.Drawing.Point(66, 314);
+            this.lectureTotalStuentLbl.Name = "lectureTotalStuentLbl";
+            this.lectureTotalStuentLbl.Size = new System.Drawing.Size(85, 12);
+            this.lectureTotalStuentLbl.TabIndex = 19;
+            this.lectureTotalStuentLbl.Text = "수강 학생 인원";
+            // 
+            // lectureTimeLbl
+            // 
+            this.lectureTimeLbl.AutoSize = true;
+            this.lectureTimeLbl.BackColor = System.Drawing.Color.White;
+            this.lectureTimeLbl.ForeColor = System.Drawing.Color.Black;
+            this.lectureTimeLbl.Location = new System.Drawing.Point(66, 240);
+            this.lectureTimeLbl.Name = "lectureTimeLbl";
+            this.lectureTimeLbl.Size = new System.Drawing.Size(57, 12);
+            this.lectureTimeLbl.TabIndex = 18;
+            this.lectureTimeLbl.Text = "강의 시간";
+            // 
+            // professorLbl
+            // 
+            this.professorLbl.AutoSize = true;
+            this.professorLbl.BackColor = System.Drawing.Color.White;
+            this.professorLbl.ForeColor = System.Drawing.Color.Black;
+            this.professorLbl.Location = new System.Drawing.Point(66, 143);
+            this.professorLbl.Name = "professorLbl";
+            this.professorLbl.Size = new System.Drawing.Size(57, 12);
+            this.professorLbl.TabIndex = 16;
+            this.professorLbl.Text = "담당 교수";
+            // 
+            // editBtn
+            // 
+            this.editBtn.BackColor = System.Drawing.Color.RoyalBlue;
+            this.editBtn.FlatAppearance.BorderSize = 0;
+            this.editBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.editBtn.ForeColor = System.Drawing.Color.White;
+            this.editBtn.Location = new System.Drawing.Point(160, 592);
+            this.editBtn.Name = "editBtn";
+            this.editBtn.Size = new System.Drawing.Size(110, 34);
+            this.editBtn.TabIndex = 17;
+            this.editBtn.TabStop = false;
+            this.editBtn.Text = "강의 수정";
+            this.editBtn.UseVisualStyleBackColor = false;
             // 
             // lectureNameLbl
             // 
@@ -242,204 +441,6 @@
             this.myLectureExitBtn.Text = "✕";
             this.myLectureExitBtn.Click += new System.EventHandler(this.myLectureExitBtn_Click);
             // 
-            // editBtn
-            // 
-            this.editBtn.BackColor = System.Drawing.Color.RoyalBlue;
-            this.editBtn.FlatAppearance.BorderSize = 0;
-            this.editBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.editBtn.ForeColor = System.Drawing.Color.White;
-            this.editBtn.Location = new System.Drawing.Point(160, 592);
-            this.editBtn.Name = "editBtn";
-            this.editBtn.Size = new System.Drawing.Size(110, 34);
-            this.editBtn.TabIndex = 17;
-            this.editBtn.TabStop = false;
-            this.editBtn.Text = "강의 수정";
-            this.editBtn.UseVisualStyleBackColor = false;
-            // 
-            // lectureTimeLbl
-            // 
-            this.lectureTimeLbl.AutoSize = true;
-            this.lectureTimeLbl.BackColor = System.Drawing.Color.White;
-            this.lectureTimeLbl.ForeColor = System.Drawing.Color.Black;
-            this.lectureTimeLbl.Location = new System.Drawing.Point(66, 240);
-            this.lectureTimeLbl.Name = "lectureTimeLbl";
-            this.lectureTimeLbl.Size = new System.Drawing.Size(57, 12);
-            this.lectureTimeLbl.TabIndex = 18;
-            this.lectureTimeLbl.Text = "강의 시간";
-            // 
-            // lectureTotalStuentLbl
-            // 
-            this.lectureTotalStuentLbl.AutoSize = true;
-            this.lectureTotalStuentLbl.BackColor = System.Drawing.Color.White;
-            this.lectureTotalStuentLbl.ForeColor = System.Drawing.Color.Black;
-            this.lectureTotalStuentLbl.Location = new System.Drawing.Point(66, 314);
-            this.lectureTotalStuentLbl.Name = "lectureTotalStuentLbl";
-            this.lectureTotalStuentLbl.Size = new System.Drawing.Size(85, 12);
-            this.lectureTotalStuentLbl.TabIndex = 19;
-            this.lectureTotalStuentLbl.Text = "수강 학생 인원";
-            // 
-            // assistantLbl
-            // 
-            this.assistantLbl.AutoSize = true;
-            this.assistantLbl.BackColor = System.Drawing.Color.White;
-            this.assistantLbl.ForeColor = System.Drawing.Color.Black;
-            this.assistantLbl.Location = new System.Drawing.Point(66, 386);
-            this.assistantLbl.Name = "assistantLbl";
-            this.assistantLbl.Size = new System.Drawing.Size(85, 12);
-            this.assistantLbl.TabIndex = 20;
-            this.assistantLbl.Text = "담당 조교 인원";
-            // 
-            // lectureSemesterLbl
-            // 
-            this.lectureSemesterLbl.AutoSize = true;
-            this.lectureSemesterLbl.BackColor = System.Drawing.Color.White;
-            this.lectureSemesterLbl.ForeColor = System.Drawing.Color.Black;
-            this.lectureSemesterLbl.Location = new System.Drawing.Point(66, 464);
-            this.lectureSemesterLbl.Name = "lectureSemesterLbl";
-            this.lectureSemesterLbl.Size = new System.Drawing.Size(87, 12);
-            this.lectureSemesterLbl.TabIndex = 21;
-            this.lectureSemesterLbl.Text = "강의 년도-학기";
-            // 
-            // lectureNamePanel
-            // 
-            this.lectureNamePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lectureNamePanel.Controls.Add(this.lectureNameTextBox);
-            this.lectureNamePanel.Location = new System.Drawing.Point(62, 92);
-            this.lectureNamePanel.Name = "lectureNamePanel";
-            this.lectureNamePanel.Size = new System.Drawing.Size(309, 31);
-            this.lectureNamePanel.TabIndex = 22;
-            // 
-            // lectureNameTextBox
-            // 
-            this.lectureNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lectureNameTextBox.Location = new System.Drawing.Point(6, 7);
-            this.lectureNameTextBox.Name = "lectureNameTextBox";
-            this.lectureNameTextBox.Size = new System.Drawing.Size(294, 14);
-            this.lectureNameTextBox.TabIndex = 0;
-            // 
-            // lectureTimeTextBox
-            // 
-            this.lectureTimeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lectureTimeTextBox.Location = new System.Drawing.Point(6, 7);
-            this.lectureTimeTextBox.Name = "lectureTimeTextBox";
-            this.lectureTimeTextBox.Size = new System.Drawing.Size(294, 14);
-            this.lectureTimeTextBox.TabIndex = 0;
-            // 
-            // lectureTimePanel
-            // 
-            this.lectureTimePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lectureTimePanel.Controls.Add(this.lectureTimeTextBox);
-            this.lectureTimePanel.Location = new System.Drawing.Point(62, 268);
-            this.lectureTimePanel.Name = "lectureTimePanel";
-            this.lectureTimePanel.Size = new System.Drawing.Size(309, 31);
-            this.lectureTimePanel.TabIndex = 23;
-            // 
-            // lectureTotalStudentPanel
-            // 
-            this.lectureTotalStudentPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lectureTotalStudentPanel.Controls.Add(this.lectureTotalStudentTextBox);
-            this.lectureTotalStudentPanel.Location = new System.Drawing.Point(62, 339);
-            this.lectureTotalStudentPanel.Name = "lectureTotalStudentPanel";
-            this.lectureTotalStudentPanel.Size = new System.Drawing.Size(309, 31);
-            this.lectureTotalStudentPanel.TabIndex = 23;
-            // 
-            // lectureTotalStudentTextBox
-            // 
-            this.lectureTotalStudentTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lectureTotalStudentTextBox.Location = new System.Drawing.Point(6, 7);
-            this.lectureTotalStudentTextBox.Name = "lectureTotalStudentTextBox";
-            this.lectureTotalStudentTextBox.Size = new System.Drawing.Size(294, 14);
-            this.lectureTotalStudentTextBox.TabIndex = 0;
-            // 
-            // assistantPanel
-            // 
-            this.assistantPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.assistantPanel.Controls.Add(this.assistantTextBox);
-            this.assistantPanel.Location = new System.Drawing.Point(62, 419);
-            this.assistantPanel.Name = "assistantPanel";
-            this.assistantPanel.Size = new System.Drawing.Size(309, 31);
-            this.assistantPanel.TabIndex = 23;
-            // 
-            // assistantTextBox
-            // 
-            this.assistantTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.assistantTextBox.Location = new System.Drawing.Point(6, 7);
-            this.assistantTextBox.Name = "assistantTextBox";
-            this.assistantTextBox.Size = new System.Drawing.Size(294, 14);
-            this.assistantTextBox.TabIndex = 0;
-            // 
-            // lectureSemesterPanel
-            // 
-            this.lectureSemesterPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lectureSemesterPanel.Controls.Add(this.lectureSemesterTextBox);
-            this.lectureSemesterPanel.Location = new System.Drawing.Point(62, 492);
-            this.lectureSemesterPanel.Name = "lectureSemesterPanel";
-            this.lectureSemesterPanel.Size = new System.Drawing.Size(309, 31);
-            this.lectureSemesterPanel.TabIndex = 23;
-            // 
-            // lectureSemesterTextBox
-            // 
-            this.lectureSemesterTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lectureSemesterTextBox.Location = new System.Drawing.Point(6, 7);
-            this.lectureSemesterTextBox.Name = "lectureSemesterTextBox";
-            this.lectureSemesterTextBox.Size = new System.Drawing.Size(294, 14);
-            this.lectureSemesterTextBox.TabIndex = 0;
-            // 
-            // professorLbl
-            // 
-            this.professorLbl.AutoSize = true;
-            this.professorLbl.BackColor = System.Drawing.Color.White;
-            this.professorLbl.ForeColor = System.Drawing.Color.Black;
-            this.professorLbl.Location = new System.Drawing.Point(66, 143);
-            this.professorLbl.Name = "professorLbl";
-            this.professorLbl.Size = new System.Drawing.Size(57, 12);
-            this.professorLbl.TabIndex = 16;
-            this.professorLbl.Text = "담당 교수";
-            // 
-            // professorPanel
-            // 
-            this.professorPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.professorPanel.Controls.Add(this.professorTxtBox);
-            this.professorPanel.Location = new System.Drawing.Point(62, 170);
-            this.professorPanel.Name = "professorPanel";
-            this.professorPanel.Size = new System.Drawing.Size(309, 31);
-            this.professorPanel.TabIndex = 22;
-            // 
-            // professorTxtBox
-            // 
-            this.professorTxtBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.professorTxtBox.Location = new System.Drawing.Point(6, 7);
-            this.professorTxtBox.Name = "professorTxtBox";
-            this.professorTxtBox.Size = new System.Drawing.Size(294, 14);
-            this.professorTxtBox.TabIndex = 0;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewTextBoxColumn1.FillWeight = 13F;
-            this.dataGridViewTextBoxColumn1.HeaderText = "강의명";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.FillWeight = 5F;
-            this.dataGridViewTextBoxColumn2.HeaderText = "담당 교수";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.FillWeight = 9F;
-            this.dataGridViewTextBoxColumn4.HeaderText = "시간";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
             // ProfessorLectureEditView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -457,18 +458,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.lecturePictureBox)).EndInit();
             this.editLecturePanel.ResumeLayout(false);
             this.editLecturePanel.PerformLayout();
-            this.lectureNamePanel.ResumeLayout(false);
-            this.lectureNamePanel.PerformLayout();
-            this.lectureTimePanel.ResumeLayout(false);
-            this.lectureTimePanel.PerformLayout();
-            this.lectureTotalStudentPanel.ResumeLayout(false);
-            this.lectureTotalStudentPanel.PerformLayout();
-            this.assistantPanel.ResumeLayout(false);
-            this.assistantPanel.PerformLayout();
             this.lectureSemesterPanel.ResumeLayout(false);
             this.lectureSemesterPanel.PerformLayout();
+            this.assistantPanel.ResumeLayout(false);
+            this.assistantPanel.PerformLayout();
+            this.lectureTotalStudentPanel.ResumeLayout(false);
+            this.lectureTotalStudentPanel.PerformLayout();
+            this.lectureTimePanel.ResumeLayout(false);
+            this.lectureTimePanel.PerformLayout();
             this.professorPanel.ResumeLayout(false);
             this.professorPanel.PerformLayout();
+            this.lectureNamePanel.ResumeLayout(false);
+            this.lectureNamePanel.PerformLayout();
             this.ResumeLayout(false);
 
         }

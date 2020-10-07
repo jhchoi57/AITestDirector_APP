@@ -38,7 +38,7 @@ namespace program.View
         {
             this.Size = new System.Drawing.Size(645, 45);
 
-            answer = 0;
+            answer = 1;
             Type = 0;
 
             oButton = new Button();

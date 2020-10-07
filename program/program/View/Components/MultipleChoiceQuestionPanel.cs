@@ -35,6 +35,7 @@ namespace program.View.Components
             this.customFonts = customFonts;
             this.Size = new Size(645, 160);
 
+            answer = -1;
             Type = 3;
 
             addButton = new AddExampleButton(customFonts);

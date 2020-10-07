@@ -30,6 +30,7 @@ namespace program.View.Components
             this.customFonts = customFonts;
             this.Size = new Size(645, 160);
 
+            answer = -1;
             Type = 3;
 
             choicePanelList = new List<ExamMultipleChoicePanel>();
