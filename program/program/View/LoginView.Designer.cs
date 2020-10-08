@@ -71,7 +71,6 @@ namespace program.View
             this.signupNameTextBox = new System.Windows.Forms.TextBox();
             this.loginPanel = new System.Windows.Forms.Panel();
             this.professorRadioBtn = new System.Windows.Forms.RadioButton();
-            this.assistantRadioBtn = new System.Windows.Forms.RadioButton();
             this.studentRadioBtn = new System.Windows.Forms.RadioButton();
             this.emailLabel = new System.Windows.Forms.Label();
             this.emailPanel = new System.Windows.Forms.Panel();
@@ -100,8 +99,8 @@ namespace program.View
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.signupPanel);
             this.mainPanel.Controls.Add(this.loginPanel);
+            this.mainPanel.Controls.Add(this.signupPanel);
             this.mainPanel.Controls.Add(this.imagePanel);
             this.mainPanel.Location = new System.Drawing.Point(0, 28);
             this.mainPanel.Name = "mainPanel";
@@ -453,7 +452,6 @@ namespace program.View
             // 
             this.loginPanel.BackColor = System.Drawing.Color.White;
             this.loginPanel.Controls.Add(this.professorRadioBtn);
-            this.loginPanel.Controls.Add(this.assistantRadioBtn);
             this.loginPanel.Controls.Add(this.studentRadioBtn);
             this.loginPanel.Controls.Add(this.emailLabel);
             this.loginPanel.Controls.Add(this.emailPanel);
@@ -470,7 +468,7 @@ namespace program.View
             // professorRadioBtn
             // 
             this.professorRadioBtn.AutoSize = true;
-            this.professorRadioBtn.Location = new System.Drawing.Point(200, 301);
+            this.professorRadioBtn.Location = new System.Drawing.Point(175, 301);
             this.professorRadioBtn.Name = "professorRadioBtn";
             this.professorRadioBtn.Size = new System.Drawing.Size(47, 16);
             this.professorRadioBtn.TabIndex = 14;
@@ -478,21 +476,10 @@ namespace program.View
             this.professorRadioBtn.Text = "교수";
             this.professorRadioBtn.UseVisualStyleBackColor = true;
             // 
-            // assistantRadioBtn
-            // 
-            this.assistantRadioBtn.AutoSize = true;
-            this.assistantRadioBtn.Location = new System.Drawing.Point(135, 301);
-            this.assistantRadioBtn.Name = "assistantRadioBtn";
-            this.assistantRadioBtn.Size = new System.Drawing.Size(47, 16);
-            this.assistantRadioBtn.TabIndex = 13;
-            this.assistantRadioBtn.TabStop = true;
-            this.assistantRadioBtn.Text = "조교";
-            this.assistantRadioBtn.UseVisualStyleBackColor = true;
-            // 
             // studentRadioBtn
             // 
             this.studentRadioBtn.AutoSize = true;
-            this.studentRadioBtn.Location = new System.Drawing.Point(70, 301);
+            this.studentRadioBtn.Location = new System.Drawing.Point(96, 301);
             this.studentRadioBtn.Name = "studentRadioBtn";
             this.studentRadioBtn.Size = new System.Drawing.Size(47, 16);
             this.studentRadioBtn.TabIndex = 12;
@@ -693,7 +680,6 @@ namespace program.View
         private Label signupPositionLabel;
         private ComboBox signupPositionComboBox;
         private RadioButton professorRadioBtn;
-        private RadioButton assistantRadioBtn;
         private RadioButton studentRadioBtn;
         private Button signupSendAuthBtn;
     }
