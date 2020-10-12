@@ -236,5 +236,10 @@ namespace program.View
                 MessageBox.Show("강의 삭제 이벤트!!!");
             }
         }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            mainController.moveToPreviousForm();
+        }
     }
 }

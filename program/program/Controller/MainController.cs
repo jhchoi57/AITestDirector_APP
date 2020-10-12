@@ -38,6 +38,7 @@ namespace program.Controller
             //nowForm = new ProfessorDetailScoreView(this);
             //nowForm = new StudentHomeView(this);
             //nowForm = new ProfessorLectureEditView(this);
+            //nowForm = new ProfessorScoreCheckView(this);
         }
 
         public string professorLoginRequest(string email, string password)

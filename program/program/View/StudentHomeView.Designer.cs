@@ -38,8 +38,6 @@ namespace program.View
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.exitButton = new System.Windows.Forms.Button();
-            this.minimizeButton = new System.Windows.Forms.Button();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.cameraPanel = new System.Windows.Forms.Panel();
             this.cameraPictureBox = new System.Windows.Forms.PictureBox();
@@ -80,6 +78,14 @@ namespace program.View
             this.editNameLabel = new System.Windows.Forms.Label();
             this.editNamePanel = new System.Windows.Forms.Panel();
             this.editNameTextBox = new System.Windows.Forms.TextBox();
+            this.myPagePanel = new System.Windows.Forms.Panel();
+            this.imageEditBtn = new System.Windows.Forms.Button();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.emailLabel = new System.Windows.Forms.Label();
+            this.nameLabel = new System.Windows.Forms.Label();
+            this.stuNumLabel = new System.Windows.Forms.Label();
+            this.univLabel = new System.Windows.Forms.Label();
+            this.editInfoBtn = new System.Windows.Forms.Button();
             this.testInfoPanel = new System.Windows.Forms.Panel();
             this.testInfoCancelBtn = new System.Windows.Forms.Button();
             this.testInfoTestNameLbl = new System.Windows.Forms.Label();
@@ -90,13 +96,6 @@ namespace program.View
             this.testStartBtn = new System.Windows.Forms.Button();
             this.testInfoExitBtn = new System.Windows.Forms.Button();
             this.testInfoMinimizeBtn = new System.Windows.Forms.Button();
-            this.myPagePanel = new System.Windows.Forms.Panel();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.emailLabel = new System.Windows.Forms.Label();
-            this.nameLabel = new System.Windows.Forms.Label();
-            this.stuNumLabel = new System.Windows.Forms.Label();
-            this.univLabel = new System.Windows.Forms.Label();
-            this.editInfoBtn = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.cameraPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cameraPictureBox)).BeginInit();
@@ -110,36 +109,10 @@ namespace program.View
             this.editPasswordPanel.SuspendLayout();
             this.editEmailPanel.SuspendLayout();
             this.editNamePanel.SuspendLayout();
-            this.testInfoPanel.SuspendLayout();
             this.myPagePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
+            this.testInfoPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // exitButton
-            // 
-            this.exitButton.FlatAppearance.BorderSize = 0;
-            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exitButton.ForeColor = System.Drawing.Color.White;
-            this.exitButton.Location = new System.Drawing.Point(349, 0);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(30, 28);
-            this.exitButton.TabIndex = 0;
-            this.exitButton.TabStop = false;
-            this.exitButton.Text = "✕";
-            this.exitButton.Click += new System.EventHandler(this.signupExitButton_Click);
-            // 
-            // minimizeButton
-            // 
-            this.minimizeButton.FlatAppearance.BorderSize = 0;
-            this.minimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minimizeButton.ForeColor = System.Drawing.Color.White;
-            this.minimizeButton.Location = new System.Drawing.Point(319, 0);
-            this.minimizeButton.Name = "minimizeButton";
-            this.minimizeButton.Size = new System.Drawing.Size(30, 28);
-            this.minimizeButton.TabIndex = 1;
-            this.minimizeButton.TabStop = false;
-            this.minimizeButton.Text = "_";
-            this.minimizeButton.Click += new System.EventHandler(this.signupMinimizeButton_Click);
             // 
             // mainPanel
             // 
@@ -147,11 +120,11 @@ namespace program.View
             this.mainPanel.Controls.Add(this.cameraPanel);
             this.mainPanel.Controls.Add(this.testPanel);
             this.mainPanel.Controls.Add(this.editPanel);
-            this.mainPanel.Controls.Add(this.testInfoPanel);
             this.mainPanel.Controls.Add(this.myPagePanel);
-            this.mainPanel.Location = new System.Drawing.Point(0, 0);
+            this.mainPanel.Controls.Add(this.testInfoPanel);
+            this.mainPanel.Location = new System.Drawing.Point(0, 28);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1264, 682);
+            this.mainPanel.Size = new System.Drawing.Size(1264, 654);
             this.mainPanel.TabIndex = 0;
             // 
             // cameraPanel
@@ -207,7 +180,7 @@ namespace program.View
             this.testPanel.Controls.Add(this.editLectureBtn);
             this.testPanel.Location = new System.Drawing.Point(0, 0);
             this.testPanel.Name = "testPanel";
-            this.testPanel.Size = new System.Drawing.Size(885, 682);
+            this.testPanel.Size = new System.Drawing.Size(885, 654);
             this.testPanel.TabIndex = 0;
             // 
             // lectureTable
@@ -247,7 +220,7 @@ namespace program.View
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.lectureTable.DefaultCellStyle = dataGridViewCellStyle4;
             this.lectureTable.GridColor = System.Drawing.Color.AliceBlue;
-            this.lectureTable.Location = new System.Drawing.Point(12, 69);
+            this.lectureTable.Location = new System.Drawing.Point(12, 61);
             this.lectureTable.MultiSelect = false;
             this.lectureTable.Name = "lectureTable";
             this.lectureTable.ReadOnly = true;
@@ -268,7 +241,7 @@ namespace program.View
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lectureTable.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.lectureTable.RowTemplate.Height = 23;
-            this.lectureTable.Size = new System.Drawing.Size(862, 601);
+            this.lectureTable.Size = new System.Drawing.Size(862, 572);
             this.lectureTable.TabIndex = 11;
             this.lectureTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lectureTable_CellClick);
             this.lectureTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lectureTable_CellContentClick);
@@ -370,7 +343,7 @@ namespace program.View
             this.editPanel.Controls.Add(this.editNamePanel);
             this.editPanel.Location = new System.Drawing.Point(885, 0);
             this.editPanel.Name = "editPanel";
-            this.editPanel.Size = new System.Drawing.Size(379, 682);
+            this.editPanel.Size = new System.Drawing.Size(379, 654);
             this.editPanel.TabIndex = 12;
             this.editPanel.Visible = false;
             // 
@@ -638,6 +611,95 @@ namespace program.View
             this.editNameTextBox.Size = new System.Drawing.Size(230, 19);
             this.editNameTextBox.TabIndex = 0;
             // 
+            // myPagePanel
+            // 
+            this.myPagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.myPagePanel.Controls.Add(this.imageEditBtn);
+            this.myPagePanel.Controls.Add(this.pictureBox);
+            this.myPagePanel.Controls.Add(this.emailLabel);
+            this.myPagePanel.Controls.Add(this.nameLabel);
+            this.myPagePanel.Controls.Add(this.stuNumLabel);
+            this.myPagePanel.Controls.Add(this.univLabel);
+            this.myPagePanel.Controls.Add(this.editInfoBtn);
+            this.myPagePanel.Location = new System.Drawing.Point(885, 0);
+            this.myPagePanel.Name = "myPagePanel";
+            this.myPagePanel.Size = new System.Drawing.Size(379, 654);
+            this.myPagePanel.TabIndex = 1;
+            // 
+            // imageEditBtn
+            // 
+            this.imageEditBtn.BackColor = System.Drawing.Color.Transparent;
+            this.imageEditBtn.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.imageEditBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.imageEditBtn.ForeColor = System.Drawing.Color.White;
+            this.imageEditBtn.Location = new System.Drawing.Point(23, 176);
+            this.imageEditBtn.Name = "imageEditBtn";
+            this.imageEditBtn.Size = new System.Drawing.Size(105, 28);
+            this.imageEditBtn.TabIndex = 20;
+            this.imageEditBtn.TabStop = false;
+            this.imageEditBtn.Text = "이미지 수정";
+            this.imageEditBtn.UseVisualStyleBackColor = false;
+            this.imageEditBtn.Click += new System.EventHandler(this.imageEditBtn_Click);
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.Location = new System.Drawing.Point(23, 55);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(105, 112);
+            this.pictureBox.TabIndex = 18;
+            this.pictureBox.TabStop = false;
+            // 
+            // emailLabel
+            // 
+            this.emailLabel.ForeColor = System.Drawing.Color.White;
+            this.emailLabel.Location = new System.Drawing.Point(161, 207);
+            this.emailLabel.Name = "emailLabel";
+            this.emailLabel.Size = new System.Drawing.Size(208, 21);
+            this.emailLabel.TabIndex = 15;
+            this.emailLabel.Text = "[이메일]";
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.ForeColor = System.Drawing.Color.White;
+            this.nameLabel.Location = new System.Drawing.Point(161, 162);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(208, 21);
+            this.nameLabel.TabIndex = 14;
+            this.nameLabel.Text = "[이름]";
+            // 
+            // stuNumLabel
+            // 
+            this.stuNumLabel.ForeColor = System.Drawing.Color.White;
+            this.stuNumLabel.Location = new System.Drawing.Point(161, 116);
+            this.stuNumLabel.Name = "stuNumLabel";
+            this.stuNumLabel.Size = new System.Drawing.Size(208, 21);
+            this.stuNumLabel.TabIndex = 13;
+            this.stuNumLabel.Text = "[학번]";
+            // 
+            // univLabel
+            // 
+            this.univLabel.ForeColor = System.Drawing.Color.White;
+            this.univLabel.Location = new System.Drawing.Point(161, 69);
+            this.univLabel.Name = "univLabel";
+            this.univLabel.Size = new System.Drawing.Size(208, 21);
+            this.univLabel.TabIndex = 12;
+            this.univLabel.Text = "[학교]";
+            // 
+            // editInfoBtn
+            // 
+            this.editInfoBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
+            this.editInfoBtn.FlatAppearance.BorderSize = 0;
+            this.editInfoBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.editInfoBtn.ForeColor = System.Drawing.Color.White;
+            this.editInfoBtn.Location = new System.Drawing.Point(259, 607);
+            this.editInfoBtn.Name = "editInfoBtn";
+            this.editInfoBtn.Size = new System.Drawing.Size(110, 34);
+            this.editInfoBtn.TabIndex = 11;
+            this.editInfoBtn.TabStop = false;
+            this.editInfoBtn.Text = "정보 수정";
+            this.editInfoBtn.UseVisualStyleBackColor = false;
+            this.editInfoBtn.Click += new System.EventHandler(this.editInfoBtn_Click);
+            // 
             // testInfoPanel
             // 
             this.testInfoPanel.BackColor = System.Drawing.Color.Indigo;
@@ -652,7 +714,7 @@ namespace program.View
             this.testInfoPanel.Controls.Add(this.testInfoMinimizeBtn);
             this.testInfoPanel.Location = new System.Drawing.Point(885, 0);
             this.testInfoPanel.Name = "testInfoPanel";
-            this.testInfoPanel.Size = new System.Drawing.Size(379, 682);
+            this.testInfoPanel.Size = new System.Drawing.Size(379, 654);
             this.testInfoPanel.TabIndex = 19;
             this.testInfoPanel.Visible = false;
             // 
@@ -662,7 +724,7 @@ namespace program.View
             this.testInfoCancelBtn.FlatAppearance.BorderSize = 0;
             this.testInfoCancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.testInfoCancelBtn.ForeColor = System.Drawing.Color.White;
-            this.testInfoCancelBtn.Location = new System.Drawing.Point(202, 615);
+            this.testInfoCancelBtn.Location = new System.Drawing.Point(202, 598);
             this.testInfoCancelBtn.Name = "testInfoCancelBtn";
             this.testInfoCancelBtn.Size = new System.Drawing.Size(143, 34);
             this.testInfoCancelBtn.TabIndex = 17;
@@ -722,7 +784,7 @@ namespace program.View
             this.testStartBtn.FlatAppearance.BorderSize = 0;
             this.testStartBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.testStartBtn.ForeColor = System.Drawing.Color.White;
-            this.testStartBtn.Location = new System.Drawing.Point(47, 615);
+            this.testStartBtn.Location = new System.Drawing.Point(47, 598);
             this.testStartBtn.Name = "testStartBtn";
             this.testStartBtn.Size = new System.Drawing.Size(143, 34);
             this.testStartBtn.TabIndex = 11;
@@ -757,81 +819,6 @@ namespace program.View
             this.testInfoMinimizeBtn.Text = "_";
             this.testInfoMinimizeBtn.Click += new System.EventHandler(this.testInfoMinimizeBtn_Click);
             // 
-            // myPagePanel
-            // 
-            this.myPagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
-            this.myPagePanel.Controls.Add(this.pictureBox);
-            this.myPagePanel.Controls.Add(this.emailLabel);
-            this.myPagePanel.Controls.Add(this.nameLabel);
-            this.myPagePanel.Controls.Add(this.stuNumLabel);
-            this.myPagePanel.Controls.Add(this.univLabel);
-            this.myPagePanel.Controls.Add(this.editInfoBtn);
-            this.myPagePanel.Controls.Add(this.exitButton);
-            this.myPagePanel.Controls.Add(this.minimizeButton);
-            this.myPagePanel.Location = new System.Drawing.Point(885, 0);
-            this.myPagePanel.Name = "myPagePanel";
-            this.myPagePanel.Size = new System.Drawing.Size(379, 682);
-            this.myPagePanel.TabIndex = 1;
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.Location = new System.Drawing.Point(23, 71);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(105, 112);
-            this.pictureBox.TabIndex = 18;
-            this.pictureBox.TabStop = false;
-            // 
-            // emailLabel
-            // 
-            this.emailLabel.ForeColor = System.Drawing.Color.White;
-            this.emailLabel.Location = new System.Drawing.Point(161, 207);
-            this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(208, 21);
-            this.emailLabel.TabIndex = 15;
-            this.emailLabel.Text = "[이메일]";
-            // 
-            // nameLabel
-            // 
-            this.nameLabel.ForeColor = System.Drawing.Color.White;
-            this.nameLabel.Location = new System.Drawing.Point(161, 162);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(208, 21);
-            this.nameLabel.TabIndex = 14;
-            this.nameLabel.Text = "[이름]";
-            // 
-            // stuNumLabel
-            // 
-            this.stuNumLabel.ForeColor = System.Drawing.Color.White;
-            this.stuNumLabel.Location = new System.Drawing.Point(161, 116);
-            this.stuNumLabel.Name = "stuNumLabel";
-            this.stuNumLabel.Size = new System.Drawing.Size(208, 21);
-            this.stuNumLabel.TabIndex = 13;
-            this.stuNumLabel.Text = "[학번]";
-            // 
-            // univLabel
-            // 
-            this.univLabel.ForeColor = System.Drawing.Color.White;
-            this.univLabel.Location = new System.Drawing.Point(161, 69);
-            this.univLabel.Name = "univLabel";
-            this.univLabel.Size = new System.Drawing.Size(208, 21);
-            this.univLabel.TabIndex = 12;
-            this.univLabel.Text = "[학교]";
-            // 
-            // editInfoBtn
-            // 
-            this.editInfoBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
-            this.editInfoBtn.FlatAppearance.BorderSize = 0;
-            this.editInfoBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.editInfoBtn.ForeColor = System.Drawing.Color.White;
-            this.editInfoBtn.Location = new System.Drawing.Point(259, 638);
-            this.editInfoBtn.Name = "editInfoBtn";
-            this.editInfoBtn.Size = new System.Drawing.Size(110, 34);
-            this.editInfoBtn.TabIndex = 11;
-            this.editInfoBtn.TabStop = false;
-            this.editInfoBtn.Text = "정보 수정";
-            this.editInfoBtn.UseVisualStyleBackColor = false;
-            this.editInfoBtn.Click += new System.EventHandler(this.editInfoBtn_Click);
-            // 
             // StudentHomeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -862,17 +849,14 @@ namespace program.View
             this.editEmailPanel.PerformLayout();
             this.editNamePanel.ResumeLayout(false);
             this.editNamePanel.PerformLayout();
-            this.testInfoPanel.ResumeLayout(false);
             this.myPagePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
+            this.testInfoPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button exitButton;
-        private System.Windows.Forms.Button minimizeButton;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Panel testPanel;
         private System.Windows.Forms.Panel myPagePanel;
@@ -930,5 +914,6 @@ namespace program.View
         private Label cameraLabel;
         private PictureBox cameraPictureBox;
         private Button cameraCancelBtn;
+        private Button imageEditBtn;
     }
 }

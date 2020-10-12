@@ -15,6 +15,7 @@ namespace program.View
     public partial class ProfessorScoreCheckView : Form
     {
         private MainController mainController;
+        private TopBarPanel topBarPanel;
         public ProfessorScoreCheckView(MainController mainController)
         {
             InitializeComponent();
@@ -50,7 +51,6 @@ namespace program.View
 
             semesterComboBox.Font = customFonts.LabelFont();
             lectureTable.Font = customFonts.NormalFont();
-            exitBtn.Font = customFonts.LabelFont();
             scoreCheckLabel.Font = customFonts.TitleFont();
 
             // PictureBox Setting
@@ -60,38 +60,44 @@ namespace program.View
 
             // 테이블 Sample 값 추가
 
-            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "56 / 100", "67", "35%");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "56 / 100", "67", "35%");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "56 / 100", "67", "35%");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("운영체제", "퀴즈1", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "56 / 100", "67", "35%");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("데이터베이스", "퀴즈5", "2020/6/29 13:00~14:30", "56 / 100", "67", "35%");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("컴퓨터구조", "퀴즈3", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "56 / 100", "67", "35%");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("컴퓨터구조", "퀴즈4", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "56 / 100", "67", "35%");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("운영체제", "퀴즈1", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "56 / 100", "67", "35%");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "78 / 100", "65", "30%");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "78 / 100", "65", "30%");
+            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "100", "67", "35%");
+            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "100", "67", "35%");
+            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "100", "67", "35%");
+            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("운영체제", "퀴즈1", "2020/4/27 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "100", "67", "35%");
+            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("데이터베이스", "퀴즈5", "2020/6/29 13:00~14:30", "100", "67", "35%");
+            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("컴퓨터구조", "퀴즈3", "2020/4/27 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "100", "67", "35%");
+            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("컴퓨터구조", "퀴즈4", "2020/4/27 16:00~17:30", "80", "65", "30%");
+            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "100", "67", "35%");
+            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("운영체제", "퀴즈1", "2020/4/27 16:00~17:30", "90", "65", "30%");
+            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "100", "67", "35%");
+            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "100", "65", "30%");
+            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
+
+            //상단바
+            this.topBarPanel = new TopBarPanel(customFonts);
+            this.topBarPanel.Location = new Point(0, 0);
+            this.Controls.Add(topBarPanel);
+
 
         }
 
@@ -103,6 +109,36 @@ namespace program.View
         private void exitBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void lectureTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            String lectureName, testName , testDay, totalScore, avgScore;
+
+            // 강의명
+            lectureName = lectureTable.Rows[e.RowIndex].Cells[0].Value.ToString();
+
+            // 시험명
+            testName = lectureTable.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+            // 시험 날짜
+            testDay = lectureTable.Rows[e.RowIndex].Cells[2].Value.ToString();
+
+            // 총 점수
+            totalScore = lectureTable.Rows[e.RowIndex].Cells[3].Value.ToString();
+
+            // 평균 점수
+            avgScore = lectureTable.Rows[e.RowIndex].Cells[4].Value.ToString();
+
+            MessageBox.Show("강의명 : " + lectureName + "\n" +
+                "시험명 : " + testName + "\n" +
+                "시험 날짜 " + testDay + "\n" +
+                "총 점수 : " + totalScore + "\n" +
+                "평균 점수 : " + avgScore + "\n"
+                );
+
+            ProfessorDetailScoreView professorDetailScoreView = new ProfessorDetailScoreView(mainController);
+            mainController.moveToNextForm(professorDetailScoreView);
         }
     }
 }
