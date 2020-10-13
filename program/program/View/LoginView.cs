@@ -124,7 +124,6 @@ namespace program.View
                     MessageBox.Show(message, "로그인 실패");
                 }
             }
-            else if (assistantRadioBtn.Checked) position = assistantRadioBtn.Text;
             else if (professorRadioBtn.Checked)
             {
                 string response = mainController.professorLoginRequest(email, password);
@@ -254,7 +253,6 @@ namespace program.View
 
             // 라디오 버튼
             studentRadioBtn.Font = customFonts.NormalFont();
-            assistantRadioBtn.Font = customFonts.NormalFont();
             professorRadioBtn.Font = customFonts.NormalFont();
 
             // ComboBox setting

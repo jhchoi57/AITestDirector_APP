@@ -15,6 +15,7 @@ namespace program.View
     public partial class ProfessorDetailScoreView : Form
     {
         private MainController mainController;
+        private TopBarPanel topBarPanel;
         public ProfessorDetailScoreView(MainController mainController)
         {
             InitializeComponent();
@@ -24,19 +25,29 @@ namespace program.View
 
         private void ProfessorDetailScoreView_Load(object sender, EventArgs e)
         {
-            // ComboBox setting
-            semesterComboBox.Items.Clear();
 
-            semesterComboBox.Items.Add("2017-1학기");
-            semesterComboBox.Items.Add("2017-2학기");
-            semesterComboBox.Items.Add("2018-1학기");
-            semesterComboBox.Items.Add("2018-2학기");
-            semesterComboBox.Items.Add("2019-1학기");
-            semesterComboBox.Items.Add("2019-2학기");
-            semesterComboBox.Items.Add("2020-1학기");
-            semesterComboBox.Items.Add("2020-2학기");
 
-            semesterComboBox.SelectedText = "-- 년도/학기 선택 --";
+            // ProfessorScoreCheckView에서 강의, 시험 정보 받아서 텍스트 바꿔줘야 함
+
+            // example
+            
+            // 강의명
+            lectureText.Text = "운영체제";
+
+            // 시험명
+            testNameText.Text = "중간고사";
+
+            // 시험 날짜
+            testDayText.Text = "2020/4/27 16:00~17:30";
+
+            // 총 점수
+            totalScoreText.Text = "100";
+
+            // 평균 점수
+            avgScoreText.Text = "78";
+
+
+
 
             // Font setting
             CustomFonts customFonts = new CustomFonts();
@@ -47,10 +58,28 @@ namespace program.View
             // TitleFont: 20f
             // SubTitleFont : 17f
 
-            semesterComboBox.Font = customFonts.LabelFont();
             lectureTable.Font = customFonts.NormalFont();
-            exitBtn.Font = customFonts.LabelFont();
             scoreCheckLabel.Font = customFonts.TitleFont();
+
+            // 강의명
+            lectureLbl.Font = customFonts.SubTitleFont();
+            lectureText.Font = customFonts.SubTitleFont();
+
+            // 시험명
+            testNameLbl.Font = customFonts.SubTitleFont();
+            testNameText.Font = customFonts.SubTitleFont();
+
+            // 시험 날짜
+            testDayLbl.Font = customFonts.SubTitleFont();
+            testDayText.Font = customFonts.SubTitleFont();
+
+            // 총 점수
+            totalScoreLbl.Font = customFonts.SubTitleFont();
+            totalScoreText.Font = customFonts.SubTitleFont();
+
+            // 평균 점수
+            avgScoreLbl.Font = customFonts.SubTitleFont();
+            avgScoreText.Font = customFonts.SubTitleFont();
 
             // PictureBox Setting
             scorePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -59,39 +88,53 @@ namespace program.View
 
             // 테이블 Sample 값 추가
 
-            lectureTable.Rows.Add("운영체제", "중간고사", "홍길동", "2020/4/27 16:00~17:30", "78 / 100", "65", "O");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "최모씨", "2020/6/29 13:00~14:30", "56 / 100", "67", "X");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "이모씨", "2020/4/25 16:00~17:30", "78 / 100", "65", "O");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "김모씨", "2020/4/27 16:00~17:30", "78 / 100", "65", "X");
-            lectureTable.Rows.Add("운영체제", "중간고사", "홍길동", "2020/4/27 16:00~17:30", "78 / 100", "65", "O");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "최모씨", "2020/6/29 13:00~14:30", "56 / 100", "67", "X");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "이모씨", "2020/4/25 16:00~17:30", "78 / 100", "65", "O");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "김모씨", "2020/4/27 16:00~17:30", "78 / 100", "65", "X");
-            lectureTable.Rows.Add("운영체제", "중간고사", "홍길동", "2020/4/27 16:00~17:30", "78 / 100", "65", "O");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "최모씨", "2020/6/29 13:00~14:30", "56 / 100", "67", "X");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "이모씨", "2020/4/25 16:00~17:30", "78 / 100", "65", "O");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "김모씨", "2020/4/27 16:00~17:30", "78 / 100", "65", "X");
-            lectureTable.Rows.Add("운영체제", "중간고사", "홍길동", "2020/4/27 16:00~17:30", "78 / 100", "65", "O");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "최모씨", "2020/6/29 13:00~14:30", "56 / 100", "67", "X");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "이모씨", "2020/4/25 16:00~17:30", "78 / 100", "65", "O");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "김모씨", "2020/4/27 16:00~17:30", "78 / 100", "65", "X");
-            lectureTable.Rows.Add("운영체제", "중간고사", "홍길동", "2020/4/27 16:00~17:30", "78 / 100", "65", "O");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "김모씨", "2020/4/27 16:00~17:30", "78 / 100", "65", "X");
-            lectureTable.Rows.Add("운영체제", "중간고사", "홍길동", "2020/4/27 16:00~17:30", "78 / 100", "65", "O");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "최모씨", "2020/6/29 13:00~14:30", "56 / 100", "67", "X");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "이모씨", "2020/4/25 16:00~17:30", "78 / 100", "65", "O");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "김모씨", "2020/4/27 16:00~17:30", "78 / 100", "65", "X");
-            lectureTable.Rows.Add("운영체제", "중간고사", "홍길동", "2020/4/27 16:00~17:30", "78 / 100", "65", "O");
+            // 강의명, 시험명, 시험 날짜, 총 점수, 평균 점수 받아야됨
+
+            // 학생명 학생점수 채점 여부 표시
+            lectureTable.Rows.Add("홍길동", "78", "O");
+            lectureTable.Rows.Add("최모씨", "56", "X");
+            lectureTable.Rows.Add("이모씨", "78", "O");
+            lectureTable.Rows.Add("김모씨", "78", "X");
+            lectureTable.Rows.Add("홍길동", "78", "O");
+            lectureTable.Rows.Add("최모씨", "56", "X");
+            lectureTable.Rows.Add("이모씨", "78", "O");
+            lectureTable.Rows.Add("김모씨", "78", "X");
+            lectureTable.Rows.Add("홍길동", "78", "O");
+            lectureTable.Rows.Add("최모씨", "56", "X");
+            lectureTable.Rows.Add("이모씨", "78", "O");
+            lectureTable.Rows.Add("김모씨", "78", "X");
+            lectureTable.Rows.Add("홍길동", "78", "O");
+            lectureTable.Rows.Add("최모씨", "56", "X");
+            lectureTable.Rows.Add("이모씨", "78", "O");
+            lectureTable.Rows.Add("김모씨", "78", "X");
+            lectureTable.Rows.Add("홍길동", "78", "O");
+            lectureTable.Rows.Add("김모씨", "78", "X");
+            lectureTable.Rows.Add("홍길동", "78", "O");
+            lectureTable.Rows.Add("최모씨", "56", "X");
+            lectureTable.Rows.Add("이모씨", "78", "O");
+            lectureTable.Rows.Add("김모씨", "78", "X");
+            lectureTable.Rows.Add("홍길동", "78", "O");
+
+            //상단바
+            this.topBarPanel = new TopBarPanel(customFonts);
+            this.topBarPanel.Location = new Point(0, 0);
+            this.Controls.Add(topBarPanel);
+
         }
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            Close();
+            mainController.moveToPreviousForm();
         }
 
         private void exitBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void mainPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

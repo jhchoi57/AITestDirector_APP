@@ -36,6 +36,18 @@ namespace program.View
         private void InitializeComponent()
         {
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.loginPanel = new System.Windows.Forms.Panel();
+            this.professorRadioBtn = new System.Windows.Forms.RadioButton();
+            this.studentRadioBtn = new System.Windows.Forms.RadioButton();
+            this.emailLabel = new System.Windows.Forms.Label();
+            this.emailPanel = new System.Windows.Forms.Panel();
+            this.emailTextBox = new System.Windows.Forms.TextBox();
+            this.passwordLabel = new System.Windows.Forms.Label();
+            this.passwordPanel = new System.Windows.Forms.Panel();
+            this.passwordTextBox = new System.Windows.Forms.TextBox();
+            this.loginButton = new System.Windows.Forms.Button();
+            this.registerButton = new System.Windows.Forms.Button();
+            this.copyrightLabel = new System.Windows.Forms.Label();
             this.signupPanel = new System.Windows.Forms.Panel();
             this.signupSendAuthBtn = new System.Windows.Forms.Button();
             this.signupPositionComboBox = new System.Windows.Forms.ComboBox();
@@ -69,21 +81,11 @@ namespace program.View
             this.signupNameLabel = new System.Windows.Forms.Label();
             this.signupNamePanel = new System.Windows.Forms.Panel();
             this.signupNameTextBox = new System.Windows.Forms.TextBox();
-            this.loginPanel = new System.Windows.Forms.Panel();
-            this.professorRadioBtn = new System.Windows.Forms.RadioButton();
-            this.assistantRadioBtn = new System.Windows.Forms.RadioButton();
-            this.studentRadioBtn = new System.Windows.Forms.RadioButton();
-            this.emailLabel = new System.Windows.Forms.Label();
-            this.emailPanel = new System.Windows.Forms.Panel();
-            this.emailTextBox = new System.Windows.Forms.TextBox();
-            this.passwordLabel = new System.Windows.Forms.Label();
-            this.passwordPanel = new System.Windows.Forms.Panel();
-            this.passwordTextBox = new System.Windows.Forms.TextBox();
-            this.loginButton = new System.Windows.Forms.Button();
-            this.registerButton = new System.Windows.Forms.Button();
-            this.copyrightLabel = new System.Windows.Forms.Label();
             this.imagePanel = new System.Windows.Forms.Panel();
             this.mainPanel.SuspendLayout();
+            this.loginPanel.SuspendLayout();
+            this.emailPanel.SuspendLayout();
+            this.passwordPanel.SuspendLayout();
             this.signupPanel.SuspendLayout();
             this.signupStdNumPanel.SuspendLayout();
             this.signupUnivPanel.SuspendLayout();
@@ -93,20 +95,149 @@ namespace program.View
             this.signupPasswordPanel.SuspendLayout();
             this.signupEmailPanel.SuspendLayout();
             this.signupNamePanel.SuspendLayout();
-            this.loginPanel.SuspendLayout();
-            this.emailPanel.SuspendLayout();
-            this.passwordPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.signupPanel);
             this.mainPanel.Controls.Add(this.loginPanel);
+            this.mainPanel.Controls.Add(this.signupPanel);
             this.mainPanel.Controls.Add(this.imagePanel);
             this.mainPanel.Location = new System.Drawing.Point(0, 28);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(960, 612);
             this.mainPanel.TabIndex = 0;
+            // 
+            // loginPanel
+            // 
+            this.loginPanel.BackColor = System.Drawing.Color.White;
+            this.loginPanel.Controls.Add(this.professorRadioBtn);
+            this.loginPanel.Controls.Add(this.studentRadioBtn);
+            this.loginPanel.Controls.Add(this.emailLabel);
+            this.loginPanel.Controls.Add(this.emailPanel);
+            this.loginPanel.Controls.Add(this.passwordLabel);
+            this.loginPanel.Controls.Add(this.passwordPanel);
+            this.loginPanel.Controls.Add(this.loginButton);
+            this.loginPanel.Controls.Add(this.registerButton);
+            this.loginPanel.Controls.Add(this.copyrightLabel);
+            this.loginPanel.Location = new System.Drawing.Point(640, 0);
+            this.loginPanel.Name = "loginPanel";
+            this.loginPanel.Size = new System.Drawing.Size(320, 612);
+            this.loginPanel.TabIndex = 1;
+            // 
+            // professorRadioBtn
+            // 
+            this.professorRadioBtn.AutoSize = true;
+            this.professorRadioBtn.Location = new System.Drawing.Point(175, 301);
+            this.professorRadioBtn.Name = "professorRadioBtn";
+            this.professorRadioBtn.Size = new System.Drawing.Size(47, 16);
+            this.professorRadioBtn.TabIndex = 14;
+            this.professorRadioBtn.TabStop = true;
+            this.professorRadioBtn.Text = "교수";
+            this.professorRadioBtn.UseVisualStyleBackColor = true;
+            // 
+            // studentRadioBtn
+            // 
+            this.studentRadioBtn.AutoSize = true;
+            this.studentRadioBtn.Location = new System.Drawing.Point(96, 301);
+            this.studentRadioBtn.Name = "studentRadioBtn";
+            this.studentRadioBtn.Size = new System.Drawing.Size(47, 16);
+            this.studentRadioBtn.TabIndex = 12;
+            this.studentRadioBtn.TabStop = true;
+            this.studentRadioBtn.Text = "학생";
+            this.studentRadioBtn.UseVisualStyleBackColor = true;
+            // 
+            // emailLabel
+            // 
+            this.emailLabel.Location = new System.Drawing.Point(40, 160);
+            this.emailLabel.Name = "emailLabel";
+            this.emailLabel.Size = new System.Drawing.Size(61, 21);
+            this.emailLabel.TabIndex = 2;
+            this.emailLabel.Text = "이메일";
+            // 
+            // emailPanel
+            // 
+            this.emailPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.emailPanel.Controls.Add(this.emailTextBox);
+            this.emailPanel.Location = new System.Drawing.Point(40, 188);
+            this.emailPanel.Name = "emailPanel";
+            this.emailPanel.Size = new System.Drawing.Size(240, 31);
+            this.emailPanel.TabIndex = 3;
+            // 
+            // emailTextBox
+            // 
+            this.emailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.emailTextBox.Location = new System.Drawing.Point(6, 7);
+            this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.Size = new System.Drawing.Size(230, 14);
+            this.emailTextBox.TabIndex = 0;
+            this.emailTextBox.Enter += new System.EventHandler(this.emailTextBox_Enter_1);
+            this.emailTextBox.Leave += new System.EventHandler(this.emailTextBox_Leave_1);
+            // 
+            // passwordLabel
+            // 
+            this.passwordLabel.Location = new System.Drawing.Point(40, 230);
+            this.passwordLabel.Name = "passwordLabel";
+            this.passwordLabel.Size = new System.Drawing.Size(78, 21);
+            this.passwordLabel.TabIndex = 4;
+            this.passwordLabel.Text = "비밀번호";
+            // 
+            // passwordPanel
+            // 
+            this.passwordPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.passwordPanel.Controls.Add(this.passwordTextBox);
+            this.passwordPanel.Location = new System.Drawing.Point(40, 258);
+            this.passwordPanel.Name = "passwordPanel";
+            this.passwordPanel.Size = new System.Drawing.Size(240, 31);
+            this.passwordPanel.TabIndex = 5;
+            // 
+            // passwordTextBox
+            // 
+            this.passwordTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.passwordTextBox.Location = new System.Drawing.Point(6, 7);
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.PasswordChar = '*';
+            this.passwordTextBox.Size = new System.Drawing.Size(230, 14);
+            this.passwordTextBox.TabIndex = 0;
+            this.passwordTextBox.Enter += new System.EventHandler(this.passwordTextBox_Enter_1);
+            this.passwordTextBox.Leave += new System.EventHandler(this.passwordTextBox_Leave_1);
+            // 
+            // loginButton
+            // 
+            this.loginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(33)))), ((int)(((byte)(59)))));
+            this.loginButton.FlatAppearance.BorderSize = 0;
+            this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.loginButton.ForeColor = System.Drawing.Color.White;
+            this.loginButton.Location = new System.Drawing.Point(40, 330);
+            this.loginButton.Name = "loginButton";
+            this.loginButton.Size = new System.Drawing.Size(240, 34);
+            this.loginButton.TabIndex = 6;
+            this.loginButton.TabStop = false;
+            this.loginButton.Text = "로그인";
+            this.loginButton.UseVisualStyleBackColor = false;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click_1);
+            // 
+            // registerButton
+            // 
+            this.registerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(165)))), ((int)(((byte)(246)))));
+            this.registerButton.FlatAppearance.BorderSize = 0;
+            this.registerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.registerButton.ForeColor = System.Drawing.Color.White;
+            this.registerButton.Location = new System.Drawing.Point(40, 375);
+            this.registerButton.Name = "registerButton";
+            this.registerButton.Size = new System.Drawing.Size(240, 34);
+            this.registerButton.TabIndex = 7;
+            this.registerButton.TabStop = false;
+            this.registerButton.Text = "회원가입";
+            this.registerButton.UseVisualStyleBackColor = false;
+            this.registerButton.Click += new System.EventHandler(this.registerButton_Click_1);
+            // 
+            // copyrightLabel
+            // 
+            this.copyrightLabel.Location = new System.Drawing.Point(84, 584);
+            this.copyrightLabel.Name = "copyrightLabel";
+            this.copyrightLabel.Size = new System.Drawing.Size(150, 15);
+            this.copyrightLabel.TabIndex = 8;
+            this.copyrightLabel.Text = "ⓒ CROFO  from Sejong Univ.";
             // 
             // signupPanel
             // 
@@ -449,150 +580,6 @@ namespace program.View
             this.signupNameTextBox.Size = new System.Drawing.Size(230, 14);
             this.signupNameTextBox.TabIndex = 0;
             // 
-            // loginPanel
-            // 
-            this.loginPanel.BackColor = System.Drawing.Color.White;
-            this.loginPanel.Controls.Add(this.professorRadioBtn);
-            this.loginPanel.Controls.Add(this.assistantRadioBtn);
-            this.loginPanel.Controls.Add(this.studentRadioBtn);
-            this.loginPanel.Controls.Add(this.emailLabel);
-            this.loginPanel.Controls.Add(this.emailPanel);
-            this.loginPanel.Controls.Add(this.passwordLabel);
-            this.loginPanel.Controls.Add(this.passwordPanel);
-            this.loginPanel.Controls.Add(this.loginButton);
-            this.loginPanel.Controls.Add(this.registerButton);
-            this.loginPanel.Controls.Add(this.copyrightLabel);
-            this.loginPanel.Location = new System.Drawing.Point(640, 0);
-            this.loginPanel.Name = "loginPanel";
-            this.loginPanel.Size = new System.Drawing.Size(320, 612);
-            this.loginPanel.TabIndex = 1;
-            // 
-            // professorRadioBtn
-            // 
-            this.professorRadioBtn.AutoSize = true;
-            this.professorRadioBtn.Location = new System.Drawing.Point(200, 301);
-            this.professorRadioBtn.Name = "professorRadioBtn";
-            this.professorRadioBtn.Size = new System.Drawing.Size(47, 16);
-            this.professorRadioBtn.TabIndex = 14;
-            this.professorRadioBtn.TabStop = true;
-            this.professorRadioBtn.Text = "교수";
-            this.professorRadioBtn.UseVisualStyleBackColor = true;
-            // 
-            // assistantRadioBtn
-            // 
-            this.assistantRadioBtn.AutoSize = true;
-            this.assistantRadioBtn.Location = new System.Drawing.Point(135, 301);
-            this.assistantRadioBtn.Name = "assistantRadioBtn";
-            this.assistantRadioBtn.Size = new System.Drawing.Size(47, 16);
-            this.assistantRadioBtn.TabIndex = 13;
-            this.assistantRadioBtn.TabStop = true;
-            this.assistantRadioBtn.Text = "조교";
-            this.assistantRadioBtn.UseVisualStyleBackColor = true;
-            // 
-            // studentRadioBtn
-            // 
-            this.studentRadioBtn.AutoSize = true;
-            this.studentRadioBtn.Location = new System.Drawing.Point(70, 301);
-            this.studentRadioBtn.Name = "studentRadioBtn";
-            this.studentRadioBtn.Size = new System.Drawing.Size(47, 16);
-            this.studentRadioBtn.TabIndex = 12;
-            this.studentRadioBtn.TabStop = true;
-            this.studentRadioBtn.Text = "학생";
-            this.studentRadioBtn.UseVisualStyleBackColor = true;
-            // 
-            // emailLabel
-            // 
-            this.emailLabel.Location = new System.Drawing.Point(40, 160);
-            this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(61, 21);
-            this.emailLabel.TabIndex = 2;
-            this.emailLabel.Text = "이메일";
-            // 
-            // emailPanel
-            // 
-            this.emailPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.emailPanel.Controls.Add(this.emailTextBox);
-            this.emailPanel.Location = new System.Drawing.Point(40, 188);
-            this.emailPanel.Name = "emailPanel";
-            this.emailPanel.Size = new System.Drawing.Size(240, 31);
-            this.emailPanel.TabIndex = 3;
-            // 
-            // emailTextBox
-            // 
-            this.emailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.emailTextBox.Location = new System.Drawing.Point(6, 7);
-            this.emailTextBox.Name = "emailTextBox";
-            this.emailTextBox.Size = new System.Drawing.Size(230, 14);
-            this.emailTextBox.TabIndex = 0;
-            this.emailTextBox.Enter += new System.EventHandler(this.emailTextBox_Enter_1);
-            this.emailTextBox.Leave += new System.EventHandler(this.emailTextBox_Leave_1);
-            // 
-            // passwordLabel
-            // 
-            this.passwordLabel.Location = new System.Drawing.Point(40, 230);
-            this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(78, 21);
-            this.passwordLabel.TabIndex = 4;
-            this.passwordLabel.Text = "비밀번호";
-            // 
-            // passwordPanel
-            // 
-            this.passwordPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.passwordPanel.Controls.Add(this.passwordTextBox);
-            this.passwordPanel.Location = new System.Drawing.Point(40, 258);
-            this.passwordPanel.Name = "passwordPanel";
-            this.passwordPanel.Size = new System.Drawing.Size(240, 31);
-            this.passwordPanel.TabIndex = 5;
-            // 
-            // passwordTextBox
-            // 
-            this.passwordTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.passwordTextBox.Location = new System.Drawing.Point(6, 7);
-            this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.PasswordChar = '*';
-            this.passwordTextBox.Size = new System.Drawing.Size(230, 14);
-            this.passwordTextBox.TabIndex = 0;
-            this.passwordTextBox.Enter += new System.EventHandler(this.passwordTextBox_Enter_1);
-            this.passwordTextBox.Leave += new System.EventHandler(this.passwordTextBox_Leave_1);
-            // 
-            // loginButton
-            // 
-            this.loginButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(33)))), ((int)(((byte)(59)))));
-            this.loginButton.FlatAppearance.BorderSize = 0;
-            this.loginButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.loginButton.ForeColor = System.Drawing.Color.White;
-            this.loginButton.Location = new System.Drawing.Point(40, 330);
-            this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(240, 34);
-            this.loginButton.TabIndex = 6;
-            this.loginButton.TabStop = false;
-            this.loginButton.Text = "로그인";
-            this.loginButton.UseVisualStyleBackColor = false;
-            this.loginButton.Click += new System.EventHandler(this.loginButton_Click_1);
-            // 
-            // registerButton
-            // 
-            this.registerButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(165)))), ((int)(((byte)(246)))));
-            this.registerButton.FlatAppearance.BorderSize = 0;
-            this.registerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.registerButton.ForeColor = System.Drawing.Color.White;
-            this.registerButton.Location = new System.Drawing.Point(40, 375);
-            this.registerButton.Name = "registerButton";
-            this.registerButton.Size = new System.Drawing.Size(240, 34);
-            this.registerButton.TabIndex = 7;
-            this.registerButton.TabStop = false;
-            this.registerButton.Text = "회원가입";
-            this.registerButton.UseVisualStyleBackColor = false;
-            this.registerButton.Click += new System.EventHandler(this.registerButton_Click_1);
-            // 
-            // copyrightLabel
-            // 
-            this.copyrightLabel.Location = new System.Drawing.Point(84, 584);
-            this.copyrightLabel.Name = "copyrightLabel";
-            this.copyrightLabel.Size = new System.Drawing.Size(150, 15);
-            this.copyrightLabel.TabIndex = 8;
-            this.copyrightLabel.Text = "ⓒ CROFO  from Sejong Univ.";
-            // 
             // imagePanel
             // 
             this.imagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -613,6 +600,12 @@ namespace program.View
             this.Text = "LoginView";
             this.Load += new System.EventHandler(this.LoginView_Load_1);
             this.mainPanel.ResumeLayout(false);
+            this.loginPanel.ResumeLayout(false);
+            this.loginPanel.PerformLayout();
+            this.emailPanel.ResumeLayout(false);
+            this.emailPanel.PerformLayout();
+            this.passwordPanel.ResumeLayout(false);
+            this.passwordPanel.PerformLayout();
             this.signupPanel.ResumeLayout(false);
             this.signupStdNumPanel.ResumeLayout(false);
             this.signupStdNumPanel.PerformLayout();
@@ -629,12 +622,6 @@ namespace program.View
             this.signupEmailPanel.PerformLayout();
             this.signupNamePanel.ResumeLayout(false);
             this.signupNamePanel.PerformLayout();
-            this.loginPanel.ResumeLayout(false);
-            this.loginPanel.PerformLayout();
-            this.emailPanel.ResumeLayout(false);
-            this.emailPanel.PerformLayout();
-            this.passwordPanel.ResumeLayout(false);
-            this.passwordPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -693,7 +680,6 @@ namespace program.View
         private Label signupPositionLabel;
         private ComboBox signupPositionComboBox;
         private RadioButton professorRadioBtn;
-        private RadioButton assistantRadioBtn;
         private RadioButton studentRadioBtn;
         private Button signupSendAuthBtn;
     }

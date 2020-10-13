@@ -17,6 +17,7 @@ namespace program.View
     public partial class StudentHomeView : Form
     {
         private MainController mainController;
+        private TopBarPanel topBarPanel;
         public StudentHomeView(MainController mainController)
         {
             InitializeComponent();
@@ -38,6 +39,9 @@ namespace program.View
 
         private void StudentHomeView_Load(object sender, EventArgs e)
         {
+            CustomFonts customFonts = new CustomFonts();
+
+            
             // 테이블 행 높이 설정
             lectureTable.RowTemplate.Height = 35;
 
@@ -60,7 +64,7 @@ namespace program.View
             cameraPictureBox.Image = System.Drawing.Image.FromFile("../../src/Assets/Images/LinkImage.png");
 
             // 폰트
-            CustomFonts customFonts = new CustomFonts();
+            
             // NormalFont : 10f
             // LabelFont : 13f
             // TextBoxFont : 12f
@@ -70,8 +74,6 @@ namespace program.View
 
             lectureTable.Font = customFonts.NormalFont();
 
-            exitButton.Font = customFonts.LabelFont();
-            minimizeButton.Font = customFonts.LabelFont();
             editExitButton.Font = customFonts.LabelFont();
             editMinimizeButton.Font = customFonts.LabelFont();
             testInfoMinimizeBtn.Font = customFonts.LabelFont();
@@ -106,6 +108,12 @@ namespace program.View
             testInfoTimeLbl.Font = customFonts.LabelFont();
 
             cameraLabel.Font = customFonts.LabelFont();
+
+            //상단바
+            this.topBarPanel = new TopBarPanel(customFonts);
+            this.topBarPanel.Location = new Point(0, 0);
+            this.Controls.Add(topBarPanel);
+
 
         }
 
@@ -202,6 +210,11 @@ namespace program.View
         {
             StudentScoreCheckView studentScoreCheckView = new StudentScoreCheckView(mainController);
             mainController.moveToNextForm(studentScoreCheckView);
+        }
+
+        private void imageEditBtn_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("이미지 수정 이벤트 !");
         }
     }
 }

@@ -41,3 +41,8 @@ C:\Users\seung\Desktop\svapp\program\program\bin\Debug\RestSharp.dll
 C:\Users\seung\Desktop\svapp\program\program\bin\Debug\Newtonsoft.Json.xml
 C:\Users\seung\Desktop\svapp\program\program\bin\Debug\RestSharp.xml
 C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.csproj.CopyComplete
+C:\Users\enoug\Desktop\AITestDirector_APP\program\program\bin\Debug\Newtonsoft.Json.dll
+C:\Users\enoug\Desktop\AITestDirector_APP\program\program\bin\Debug\RestSharp.dll
+C:\Users\enoug\Desktop\AITestDirector_APP\program\program\bin\Debug\Newtonsoft.Json.xml
+C:\Users\enoug\Desktop\AITestDirector_APP\program\program\bin\Debug\RestSharp.xml
+C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.csproj.CopyComplete
