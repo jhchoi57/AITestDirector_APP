@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using System.Drawing.Text;
 using program.View.Components;
 using program.Controller;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace program.View
 {
@@ -114,7 +116,36 @@ namespace program.View
             this.topBarPanel.Location = new Point(0, 0);
             this.Controls.Add(topBarPanel);
 
+            editButton.Click += editButton_Click;
+            setUserInfo();
+        }
 
+        private void setUserInfo()
+        {
+            try
+            {
+                string response = mainController.getStudentInfoRequest();
+                JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                string birth = (string)jObject["birth_day"];
+                string school = (string)jObject["institute"];
+                string email = (string)jObject["email"];
+                int year = int.Parse(birth.Substring(0, 4));
+                int month = int.Parse(birth.Substring(5, 2));
+                int day = int.Parse(birth.Substring(8));
+                editStdNumTextBox.Text = mainController.Me.ID;
+                editUnivTextBox.Text = school;
+                editNameTextBox.Text = mainController.Me.Name;
+                editEmailTextBox.Text = email;
+                editBirthPicker.Value = new DateTime(year, month, day);
+                univLabel.Text = school;
+                stuNumLabel.Text = mainController.Me.ID;
+                nameLabel.Text = mainController.Me.Name;
+                emailLabel.Text = email;
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            }
         }
 
         private void editInfoBtn_Click(object sender, EventArgs e)
@@ -122,15 +153,41 @@ namespace program.View
             // 마이페이지 가리고 정보수정 패널 보여줌
             myPagePanel.Visible = false;
             editPanel.Visible = true;
+            editPasswordTextBox.Text = "";
+            editPasswordCheckTextBox.Text = "";
 
-            // 초기화
-            // example
-            editUnivTextBox.Text = "세종대학교";
-            editStdNumTextBox.Text = "17011111";
-            editNameTextBox.Text = "홍길동";
-            editEmailTextBox.Text = "example@sju.co.kr";
-            editBirthPicker.Value = new DateTime(1998,11,25);
+        }
+        private void editButton_Click(object sender, EventArgs e)
+        {
+            if (editNameTextBox.Text == "" || editPasswordTextBox.Text == "")
+            {
+                MessageBox.Show("빈 칸 없이 모든 정보를 입력해주세요.", "개인 정보 수정 오류");
+                return;
+            }
+            else if (editPasswordTextBox.Text != editPasswordCheckTextBox.Text)
+            {
+                MessageBox.Show("비밀번호를 동일하게 입력해주세요.", "개인 정보 수정 오류");
+                return;
+            }
+            MessageBox.Show("정보수정 이벤트!");
+            try
+            {
+                string name = editNameTextBox.Text;
+                string email = editEmailTextBox.Text;
+                string birth = editBirthPicker.Value.ToString("yyyy-MM-dd");
+                string school = editUnivTextBox.Text;
+                string password = editPasswordCheckTextBox.Text;
+                string response = mainController.modifyStudentInfoRequest(name, email, birth, school, password);
+                mainController.Me.Name = name;
 
+                setUserInfo();
+                myPagePanel.Visible = true;
+                editPanel.Visible = false;
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            }
         }
 
         private void editCancelButton_Click(object sender, EventArgs e)
@@ -215,6 +272,16 @@ namespace program.View
         private void imageEditBtn_Click(object sender, EventArgs e)
         {
             MessageBox.Show("이미지 수정 이벤트 !");
+            OpenFileDialog openFile = new OpenFileDialog();
+            openFile.DefaultExt = "jpg";
+            openFile.Multiselect = false;
+            openFile.Filter = "Images Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg;*.jpeg;*.gif;*.bmp;*.png";
+            openFile.ShowDialog();
+            if (openFile.FileNames.Length > 0)
+            {
+                Console.WriteLine(openFile);
+                string response = mainController.modifyStudentImageRequest(openFile.FileName);
+            }
         }
     }
 }

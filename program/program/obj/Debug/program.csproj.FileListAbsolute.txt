@@ -1,7 +1,6 @@
 C:\Users\seung\Desktop\svapp\program\program\bin\Debug\program.exe.config
 C:\Users\seung\Desktop\svapp\program\program\bin\Debug\program.exe
 C:\Users\seung\Desktop\svapp\program\program\bin\Debug\program.pdb
-C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.csprojAssemblyReference.cache
 C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.Properties.Resources.resources
 C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.csproj.GenerateResource.cache
 C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.csproj.CoreCompileInputs.cache
@@ -46,3 +45,4 @@ C:\Users\enoug\Desktop\AITestDirector_APP\program\program\bin\Debug\RestSharp.dl
 C:\Users\enoug\Desktop\AITestDirector_APP\program\program\bin\Debug\Newtonsoft.Json.xml
 C:\Users\enoug\Desktop\AITestDirector_APP\program\program\bin\Debug\RestSharp.xml
 C:\Users\enoug\Desktop\AITestDirector_APP\program\program\obj\Debug\program.csproj.CopyComplete
+C:\Users\seung\Desktop\svapp\program\program\obj\Debug\program.csprojAssemblyReference.cache

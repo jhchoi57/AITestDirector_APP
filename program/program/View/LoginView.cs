@@ -105,43 +105,50 @@ namespace program.View
                 return;
             }
             */
-            if (studentRadioBtn.Checked)
+            try
             {
-                string response = mainController.studentLoginRequest(email, password);
-                JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
-                string result = (string)jObject["code"];
-                string message = (string)jObject["message"];
-                if (result.Equals("ok"))
+                if (studentRadioBtn.Checked)
                 {
-                    string name = (string)jObject["name"];
-                    string id = ((int)jObject["id"]).ToString();
-                    mainController.setUserInfo(name, id, message, true);
-                    ProfessorHomeView professorHome = new ProfessorHomeView(mainController);
-                    mainController.moveToNextForm(professorHome);
+                    string response = mainController.studentLoginRequest(email, password);
+                    JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                    string result = (string)jObject["code"];
+                    string message = (string)jObject["message"];
+                    if (result.Equals("ok"))
+                    {
+                        string name = (string)jObject["name"];
+                        string id = ((int)jObject["id"]).ToString();
+                        mainController.setUserInfo(name, id, message, true);
+                        StudentHomeView studentHomeView = new StudentHomeView(mainController);
+                        mainController.moveToNextForm(studentHomeView);
+                    }
+                    else
+                    {
+                        MessageBox.Show(message, "로그인 실패");
+                    }
                 }
-                else
+                else if (professorRadioBtn.Checked)
                 {
-                    MessageBox.Show(message, "로그인 실패");
+                    string response = mainController.professorLoginRequest(email, password);
+                    JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                    string result = (string)jObject["code"];
+                    string message = (string)jObject["message"];
+                    if (result.Equals("ok"))
+                    {
+                        string name = (string)jObject["name"];
+                        string id = (string)jObject["id"];
+                        mainController.setUserInfo(name, id, message, false);
+                        ProfessorHomeView professorHome = new ProfessorHomeView(mainController);
+                        mainController.moveToNextForm(professorHome);
+                    }
+                    else
+                    {
+                        MessageBox.Show(message, "로그인 실패");
+                    }
                 }
             }
-            else if (professorRadioBtn.Checked)
+            catch(Exception error)
             {
-                string response = mainController.professorLoginRequest(email, password);
-                JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
-                string result = (string)jObject["code"];
-                string message = (string)jObject["message"];
-                if (result.Equals("ok"))
-                {
-                    string name = (string)jObject["name"];
-                    string id = (string)jObject["id"];
-                    mainController.setUserInfo(name, id, message, false);
-                    ProfessorHomeView professorHome = new ProfessorHomeView(mainController);
-                    mainController.moveToNextForm(professorHome);
-                }
-                else
-                {
-                    MessageBox.Show(message, "로그인 실패");
-                }
+                Console.WriteLine(error);
             }
         }
 
@@ -278,7 +285,7 @@ namespace program.View
             string emailAuth = signupEmailAuthTextBox.Text;
             string password = signupPasswordTextBox.Text;
             string passwordCheck = signupPasswordCheckTextBox.Text;
-            string birth = signupBirthPicker.Value.ToString("yyMMdd");
+            string birth = signupBirthPicker.Value.ToString("yyyy-MM-dd");
             string position = signupPositionComboBox.Text;
 
             // 학생/교수/조교 선택 확인
@@ -311,37 +318,32 @@ namespace program.View
             else
             {
                 string response;
-                if (position.Equals("학생"))
+                try
                 {
-                    response = mainController.studentSignupRequest(email, password, name, univ, int.Parse(stdNum), birth);
-                }
-                else
+                    if (position.Equals("학생"))
+                    {
+                        response = mainController.studentSignupRequest(email, password, name, univ, int.Parse(stdNum), birth);
+                    }
+                    else
+                    {
+                        response = mainController.professorSignupRequest(email, password, name, univ, birth);
+                    }
+
+                    JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                    string message = (string)jObject["message"];
+
+                    MessageBox.Show(message, "회원가입");
+
+                    if (message.Equals("Student SignUp Success") || message.Equals("professor SignUp Success"))
+                    {
+                        loginPanel.Visible = true;
+                        signupPanel.Visible = false;
+                    }
+                } 
+                catch(Exception error)
                 {
-                    response = mainController.professorSignupRequest(email, password, name, univ, birth);
+                    Console.WriteLine(error);
                 }
-
-                JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
-                string message = (string)jObject["message"];
-
-                MessageBox.Show(message, "회원가입");
-
-                if (message.Equals("Student SignUp Success"))
-                {
-                    loginPanel.Visible = true;
-                    signupPanel.Visible = false;
-                }
-
-                MessageBox.Show("회원가입 이벤트!\n" +
-                "학교: " + univ + "\n" +
-                "학번: " + stdNum + "\n" +
-                "이름: " + name + "\n" +
-                "이메일: " + email + "\n" +
-                "이메일 인증: " + emailAuth + "\n" +
-                "비밀번호: " + password + "\n" +
-                "비밀번호 확인: " + passwordCheck + "\n" +
-                "생년월일: " + birth + "\n" +
-                "구분: " + position + "\n"
-                );
             }
         }
 

@@ -5,6 +5,8 @@ using program.View;
 using RestSharp;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -34,6 +36,7 @@ namespace program.Controller
         {
             me = null;
             formNavigator = new Stack<Form>();
+            //nowForm = new ExamView(this);
             nowForm = new LoginView(this);
             //nowForm = new ProfessorDetailScoreView(this);
             //nowForm = new StudentHomeView(this);
@@ -64,10 +67,10 @@ namespace program.Controller
             var client = new RestClient(targetURL);
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
-            //request.AddParameter("id", "1234");
-            //request.AddParameter("password", "1234");
-            request.AddParameter("email", email);
-            request.AddParameter("password", password);
+            request.AddParameter("email", "stu_test_id15");
+            request.AddParameter("password", "1234");
+            //request.AddParameter("email", email);
+            //request.AddParameter("password", password);
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
 
@@ -93,11 +96,11 @@ namespace program.Controller
             var client = new RestClient(targetURL);
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
-            request.AddParameter("email", email);
+            request.AddParameter("id", email);
             request.AddParameter("password", password);
             request.AddParameter("name", name);
-            request.AddParameter("school", school);
-            request.AddParameter("birth", birth);
+            request.AddParameter("institute", school);
+            request.AddParameter("birth_day", birth);
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
 
@@ -113,9 +116,83 @@ namespace program.Controller
             request.AddParameter("email", email);
             request.AddParameter("password", password);
             request.AddParameter("name", name);
-            request.AddParameter("school", school);
+            request.AddParameter("institute", school);
             request.AddParameter("id", id);
-            request.AddParameter("birth", birth);
+            request.AddParameter("birth_day", birth);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string getProfessorInfoRequest()
+        {
+            string targetURL = "https://test.inchang.dev:9000/account/professor/" + me.ID;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string getStudentInfoRequest()
+        {
+            string targetURL = "https://test.inchang.dev:9000/account/student/" + me.ID;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string modifyProfessorInfoRequest(string name, string birth, string school, string password)
+        {
+            string targetURL = "https://test.inchang.dev:9000/account/professor/" + me.ID;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.PUT);
+            request.AddParameter("name", name);
+            request.AddParameter("institute", school);
+            request.AddParameter("password", password);
+            request.AddParameter("birth_day", birth);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string modifyStudentInfoRequest(string name, string email, string birth, string school, string password)
+        {
+            string targetURL = "https://test.inchang.dev:9000/account/student/" + me.ID;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.PUT);
+            request.AddParameter("name", name);
+            request.AddParameter("email", email);
+            request.AddParameter("institute", school);
+            request.AddParameter("password", password);
+            request.AddParameter("birth_day", birth);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string modifyStudentImageRequest(string fileName)
+        {
+            string exportPath = @"C:\" + me.ID + ".jpg";
+            resizeImage(fileName, exportPath);
+            string targetURL = "https://test.inchang.dev:9000/account/student/" + me.ID + "/profile-image";
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "multipart/form-data");
+            request.AddFile("file", exportPath);
+            request.AddParameter("key", me.Token);
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
 
@@ -169,6 +246,31 @@ namespace program.Controller
                 // 학생 홈으로 돌아올 때는 필요한 정보들 다시 로딩하기
             }
             nowForm.Show();
+        }
+
+        private void resizeImage(string importPath, string exportPath)
+        {
+            Image originalImage = Image.FromFile(importPath);
+
+            double ratioX = 300 / (double)originalImage.Width;
+            double ratioY = 300 / (double)originalImage.Height;
+
+            double ratio = Math.Min(ratioX, ratioY);
+
+            int newWidth = (int)(originalImage.Width * ratio);
+            int newHeight = (int)(originalImage.Height * ratio);
+
+            Bitmap newImage = new Bitmap(300, 300);
+            using (Graphics g = Graphics.FromImage(newImage))
+            {
+                g.FillRectangle(Brushes.Black, 0, 0, newImage.Width, newImage.Height);
+                g.DrawImage(originalImage, (300 - newWidth) / 2, (300 - newHeight) / 2, newWidth, newHeight);
+            }
+            Console.WriteLine(exportPath);
+            newImage.Save(exportPath, ImageFormat.Jpeg);
+
+            originalImage.Dispose();
+            newImage.Dispose();
         }
     }
 }

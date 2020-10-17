@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using program.Controller;
 using program.View.Components;
 
@@ -85,6 +87,32 @@ namespace program.View
 
             //mainController.professorAddLectureRequest("운영체제", "월수 16:30 ~ 18:00", 30, "2020-2학기");
             mainController.professorAllLecturesRequest();
+            setUserInfo();
+        }
+
+        private void setUserInfo()
+        {
+            try
+            {
+                string response = mainController.getProfessorInfoRequest();
+                JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                string birth = (string)jObject["birth_day"];
+                string school = (string)jObject["institute"];
+                int year = int.Parse(birth.Substring(0, 4));
+                int month = int.Parse(birth.Substring(5, 2));
+                int day = int.Parse(birth.Substring(8));
+                editUnivTextBox.Text = school;
+                editNameTextBox.Text = mainController.Me.Name;
+                editEmailTextBox.Text = mainController.Me.ID;
+                editBirthPicker.Value = new DateTime(year, month, day);
+                univLabel.Text = school;
+                nameLabel.Text = mainController.Me.Name;
+                emailLabel.Text = mainController.Me.ID;
+            } 
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            } 
         }
 
         private void editInfoBtn_Click(object sender, EventArgs e)
@@ -92,18 +120,40 @@ namespace program.View
             // 마이페이지 가리고 정보수정 패널 보여줌
             myPagePanel.Visible = false;
             editPanel.Visible = true;
-
-            // 초기화
-            // example
-            editUnivTextBox.Text = "세종대학교";
-            editNameTextBox.Text = "홍길동";
-            editEmailTextBox.Text = "example@sju.co.kr";
-            editBirthPicker.Value = new DateTime(1998, 11, 25);
+            editPasswordTextBox.Text = "";
+            editPasswordCheckTextBox.Text = "";
         }
 
         private void editButton_Click(object sender, EventArgs e)
         {
+            if (editNameTextBox.Text == "" || editPasswordTextBox.Text == "")
+            {
+                MessageBox.Show("빈 칸 없이 모든 정보를 입력해주세요.", "개인 정보 수정 오류");
+                return;
+            }
+            else if (editPasswordTextBox.Text != editPasswordCheckTextBox.Text)
+            {
+                MessageBox.Show("비밀번호를 동일하게 입력해주세요.", "개인 정보 수정 오류");
+                return;
+            }
             MessageBox.Show("정보수정 이벤트!");
+            try
+            {
+                string name = editNameTextBox.Text;
+                string birth = editBirthPicker.Value.ToString("yyyy-MM-dd");
+                string school = editUnivTextBox.Text;
+                string password = editPasswordCheckTextBox.Text;
+                string response = mainController.modifyProfessorInfoRequest(name, birth, school, password);
+                mainController.Me.Name = name;
+
+                myPagePanel.Visible = true;
+                editPanel.Visible = false;
+                setUserInfo();
+            }
+            catch(Exception error)
+            {
+                Console.WriteLine(error); 
+            }
         }
 
         private void editCancelButton_Click(object sender, EventArgs e)
