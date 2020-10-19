@@ -52,11 +52,7 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.univLabel = new System.Windows.Forms.Label();
             this.editInfoBtn = new System.Windows.Forms.Button();
-            this.exitButton = new System.Windows.Forms.Button();
-            this.minimizeButton = new System.Windows.Forms.Button();
             this.editPanel = new System.Windows.Forms.Panel();
-            this.editExitButton = new System.Windows.Forms.Button();
-            this.editMinimizeButton = new System.Windows.Forms.Button();
             this.editUnivLabel = new System.Windows.Forms.Label();
             this.editUnivPanel = new System.Windows.Forms.Panel();
             this.editUnivTextBox = new System.Windows.Forms.TextBox();
@@ -95,9 +91,9 @@
             // 
             this.mainPanel.BackColor = System.Drawing.Color.White;
             this.mainPanel.Controls.Add(this.testPanel);
-            this.mainPanel.Controls.Add(this.myPagePanel);
             this.mainPanel.Controls.Add(this.editPanel);
-            this.mainPanel.Location = new System.Drawing.Point(0, -1);
+            this.mainPanel.Controls.Add(this.myPagePanel);
+            this.mainPanel.Location = new System.Drawing.Point(0, 28);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1264, 682);
             this.mainPanel.TabIndex = 1;
@@ -173,7 +169,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lectureTable.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.lectureTable.RowTemplate.Height = 23;
-            this.lectureTable.Size = new System.Drawing.Size(862, 609);
+            this.lectureTable.Size = new System.Drawing.Size(862, 581);
             this.lectureTable.TabIndex = 12;
             this.lectureTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lectureTable_CellClick);
             // 
@@ -283,11 +279,9 @@
             this.myPagePanel.Controls.Add(this.nameLabel);
             this.myPagePanel.Controls.Add(this.univLabel);
             this.myPagePanel.Controls.Add(this.editInfoBtn);
-            this.myPagePanel.Controls.Add(this.exitButton);
-            this.myPagePanel.Controls.Add(this.minimizeButton);
             this.myPagePanel.Location = new System.Drawing.Point(885, 0);
             this.myPagePanel.Name = "myPagePanel";
-            this.myPagePanel.Size = new System.Drawing.Size(379, 682);
+            this.myPagePanel.Size = new System.Drawing.Size(379, 654);
             this.myPagePanel.TabIndex = 1;
             // 
             // pictureBox
@@ -331,7 +325,7 @@
             this.editInfoBtn.FlatAppearance.BorderSize = 0;
             this.editInfoBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.editInfoBtn.ForeColor = System.Drawing.Color.White;
-            this.editInfoBtn.Location = new System.Drawing.Point(259, 638);
+            this.editInfoBtn.Location = new System.Drawing.Point(259, 608);
             this.editInfoBtn.Name = "editInfoBtn";
             this.editInfoBtn.Size = new System.Drawing.Size(110, 34);
             this.editInfoBtn.TabIndex = 11;
@@ -340,37 +334,9 @@
             this.editInfoBtn.UseVisualStyleBackColor = false;
             this.editInfoBtn.Click += new System.EventHandler(this.editInfoBtn_Click);
             // 
-            // exitButton
-            // 
-            this.exitButton.FlatAppearance.BorderSize = 0;
-            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exitButton.ForeColor = System.Drawing.Color.White;
-            this.exitButton.Location = new System.Drawing.Point(349, 0);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(30, 28);
-            this.exitButton.TabIndex = 0;
-            this.exitButton.TabStop = false;
-            this.exitButton.Text = "✕";
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
-            // 
-            // minimizeButton
-            // 
-            this.minimizeButton.FlatAppearance.BorderSize = 0;
-            this.minimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.minimizeButton.ForeColor = System.Drawing.Color.White;
-            this.minimizeButton.Location = new System.Drawing.Point(319, 0);
-            this.minimizeButton.Name = "minimizeButton";
-            this.minimizeButton.Size = new System.Drawing.Size(30, 28);
-            this.minimizeButton.TabIndex = 1;
-            this.minimizeButton.TabStop = false;
-            this.minimizeButton.Text = "_";
-            this.minimizeButton.Click += new System.EventHandler(this.minimizeButton_Click);
-            // 
             // editPanel
             // 
             this.editPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.editPanel.Controls.Add(this.editExitButton);
-            this.editPanel.Controls.Add(this.editMinimizeButton);
             this.editPanel.Controls.Add(this.editUnivLabel);
             this.editPanel.Controls.Add(this.editUnivPanel);
             this.editPanel.Controls.Add(this.editCancelButton);
@@ -387,40 +353,14 @@
             this.editPanel.Controls.Add(this.editNamePanel);
             this.editPanel.Location = new System.Drawing.Point(885, 0);
             this.editPanel.Name = "editPanel";
-            this.editPanel.Size = new System.Drawing.Size(379, 682);
+            this.editPanel.Size = new System.Drawing.Size(379, 654);
             this.editPanel.TabIndex = 12;
             this.editPanel.Visible = false;
-            // 
-            // editExitButton
-            // 
-            this.editExitButton.FlatAppearance.BorderSize = 0;
-            this.editExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.editExitButton.ForeColor = System.Drawing.Color.White;
-            this.editExitButton.Location = new System.Drawing.Point(349, 0);
-            this.editExitButton.Name = "editExitButton";
-            this.editExitButton.Size = new System.Drawing.Size(30, 28);
-            this.editExitButton.TabIndex = 0;
-            this.editExitButton.TabStop = false;
-            this.editExitButton.Text = "✕";
-            this.editExitButton.Click += new System.EventHandler(this.editExitButton_Click);
-            // 
-            // editMinimizeButton
-            // 
-            this.editMinimizeButton.FlatAppearance.BorderSize = 0;
-            this.editMinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.editMinimizeButton.ForeColor = System.Drawing.Color.White;
-            this.editMinimizeButton.Location = new System.Drawing.Point(319, 0);
-            this.editMinimizeButton.Name = "editMinimizeButton";
-            this.editMinimizeButton.Size = new System.Drawing.Size(30, 28);
-            this.editMinimizeButton.TabIndex = 1;
-            this.editMinimizeButton.TabStop = false;
-            this.editMinimizeButton.Text = "_";
-            this.editMinimizeButton.Click += new System.EventHandler(this.editMinimizeButton_Click);
             // 
             // editUnivLabel
             // 
             this.editUnivLabel.ForeColor = System.Drawing.Color.White;
-            this.editUnivLabel.Location = new System.Drawing.Point(72, 68);
+            this.editUnivLabel.Location = new System.Drawing.Point(72, 63);
             this.editUnivLabel.Name = "editUnivLabel";
             this.editUnivLabel.Size = new System.Drawing.Size(61, 21);
             this.editUnivLabel.TabIndex = 10;
@@ -431,7 +371,7 @@
             this.editUnivPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.editUnivPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.editUnivPanel.Controls.Add(this.editUnivTextBox);
-            this.editUnivPanel.Location = new System.Drawing.Point(72, 93);
+            this.editUnivPanel.Location = new System.Drawing.Point(72, 88);
             this.editUnivPanel.Name = "editUnivPanel";
             this.editUnivPanel.Size = new System.Drawing.Size(240, 31);
             this.editUnivPanel.TabIndex = 11;
@@ -454,7 +394,7 @@
             this.editCancelButton.FlatAppearance.BorderSize = 0;
             this.editCancelButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.editCancelButton.ForeColor = System.Drawing.Color.White;
-            this.editCancelButton.Location = new System.Drawing.Point(202, 563);
+            this.editCancelButton.Location = new System.Drawing.Point(202, 558);
             this.editCancelButton.Name = "editCancelButton";
             this.editCancelButton.Size = new System.Drawing.Size(110, 34);
             this.editCancelButton.TabIndex = 9;
@@ -469,7 +409,7 @@
             this.editButton.FlatAppearance.BorderSize = 0;
             this.editButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.editButton.ForeColor = System.Drawing.Color.White;
-            this.editButton.Location = new System.Drawing.Point(72, 563);
+            this.editButton.Location = new System.Drawing.Point(72, 558);
             this.editButton.Name = "editButton";
             this.editButton.Size = new System.Drawing.Size(110, 34);
             this.editButton.TabIndex = 8;
@@ -481,7 +421,7 @@
             // editBirthLabel
             // 
             this.editBirthLabel.ForeColor = System.Drawing.Color.White;
-            this.editBirthLabel.Location = new System.Drawing.Point(72, 482);
+            this.editBirthLabel.Location = new System.Drawing.Point(72, 477);
             this.editBirthLabel.Name = "editBirthLabel";
             this.editBirthLabel.Size = new System.Drawing.Size(98, 21);
             this.editBirthLabel.TabIndex = 4;
@@ -490,7 +430,7 @@
             // editPasswordCheckLabel
             // 
             this.editPasswordCheckLabel.ForeColor = System.Drawing.Color.White;
-            this.editPasswordCheckLabel.Location = new System.Drawing.Point(72, 399);
+            this.editPasswordCheckLabel.Location = new System.Drawing.Point(72, 394);
             this.editPasswordCheckLabel.Name = "editPasswordCheckLabel";
             this.editPasswordCheckLabel.Size = new System.Drawing.Size(130, 21);
             this.editPasswordCheckLabel.TabIndex = 4;
@@ -500,7 +440,7 @@
             // 
             this.editBirthPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.editBirthPanel.Controls.Add(this.editBirthPicker);
-            this.editBirthPanel.Location = new System.Drawing.Point(72, 511);
+            this.editBirthPanel.Location = new System.Drawing.Point(72, 506);
             this.editBirthPanel.Name = "editBirthPanel";
             this.editBirthPanel.Size = new System.Drawing.Size(240, 22);
             this.editBirthPanel.TabIndex = 5;
@@ -520,7 +460,7 @@
             // editPasswordLabel
             // 
             this.editPasswordLabel.ForeColor = System.Drawing.Color.White;
-            this.editPasswordLabel.Location = new System.Drawing.Point(72, 315);
+            this.editPasswordLabel.Location = new System.Drawing.Point(72, 310);
             this.editPasswordLabel.Name = "editPasswordLabel";
             this.editPasswordLabel.Size = new System.Drawing.Size(83, 21);
             this.editPasswordLabel.TabIndex = 4;
@@ -531,7 +471,7 @@
             this.editPasswordCheckPanel.BackColor = System.Drawing.Color.White;
             this.editPasswordCheckPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.editPasswordCheckPanel.Controls.Add(this.editPasswordCheckTextBox);
-            this.editPasswordCheckPanel.Location = new System.Drawing.Point(72, 424);
+            this.editPasswordCheckPanel.Location = new System.Drawing.Point(72, 419);
             this.editPasswordCheckPanel.Name = "editPasswordCheckPanel";
             this.editPasswordCheckPanel.Size = new System.Drawing.Size(240, 31);
             this.editPasswordCheckPanel.TabIndex = 5;
@@ -549,7 +489,7 @@
             // editEmailLabel
             // 
             this.editEmailLabel.ForeColor = System.Drawing.Color.White;
-            this.editEmailLabel.Location = new System.Drawing.Point(72, 233);
+            this.editEmailLabel.Location = new System.Drawing.Point(72, 228);
             this.editEmailLabel.Name = "editEmailLabel";
             this.editEmailLabel.Size = new System.Drawing.Size(61, 21);
             this.editEmailLabel.TabIndex = 6;
@@ -560,7 +500,7 @@
             this.editPasswordPanel.BackColor = System.Drawing.Color.White;
             this.editPasswordPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.editPasswordPanel.Controls.Add(this.editPasswordTextBox);
-            this.editPasswordPanel.Location = new System.Drawing.Point(72, 340);
+            this.editPasswordPanel.Location = new System.Drawing.Point(72, 335);
             this.editPasswordPanel.Name = "editPasswordPanel";
             this.editPasswordPanel.Size = new System.Drawing.Size(240, 31);
             this.editPasswordPanel.TabIndex = 5;
@@ -580,7 +520,7 @@
             this.editEmailPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.editEmailPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.editEmailPanel.Controls.Add(this.editEmailTextBox);
-            this.editEmailPanel.Location = new System.Drawing.Point(72, 258);
+            this.editEmailPanel.Location = new System.Drawing.Point(72, 253);
             this.editEmailPanel.Name = "editEmailPanel";
             this.editEmailPanel.Size = new System.Drawing.Size(240, 31);
             this.editEmailPanel.TabIndex = 7;
@@ -600,7 +540,7 @@
             // editNameLabel
             // 
             this.editNameLabel.ForeColor = System.Drawing.Color.White;
-            this.editNameLabel.Location = new System.Drawing.Point(72, 153);
+            this.editNameLabel.Location = new System.Drawing.Point(72, 148);
             this.editNameLabel.Name = "editNameLabel";
             this.editNameLabel.Size = new System.Drawing.Size(61, 21);
             this.editNameLabel.TabIndex = 4;
@@ -611,7 +551,7 @@
             this.editNamePanel.BackColor = System.Drawing.Color.White;
             this.editNamePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.editNamePanel.Controls.Add(this.editNameTextBox);
-            this.editNamePanel.Location = new System.Drawing.Point(72, 178);
+            this.editNamePanel.Location = new System.Drawing.Point(72, 173);
             this.editNamePanel.Name = "editNamePanel";
             this.editNamePanel.Size = new System.Drawing.Size(240, 31);
             this.editNamePanel.TabIndex = 5;
@@ -668,11 +608,7 @@
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Label univLabel;
         private System.Windows.Forms.Button editInfoBtn;
-        private System.Windows.Forms.Button exitButton;
-        private System.Windows.Forms.Button minimizeButton;
         private System.Windows.Forms.Panel editPanel;
-        private System.Windows.Forms.Button editExitButton;
-        private System.Windows.Forms.Button editMinimizeButton;
         private System.Windows.Forms.Label editUnivLabel;
         private System.Windows.Forms.Panel editUnivPanel;
         private System.Windows.Forms.TextBox editUnivTextBox;

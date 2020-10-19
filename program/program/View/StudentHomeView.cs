@@ -76,8 +76,6 @@ namespace program.View
 
             lectureTable.Font = customFonts.NormalFont();
 
-            editExitButton.Font = customFonts.LabelFont();
-            editMinimizeButton.Font = customFonts.LabelFont();
             testInfoMinimizeBtn.Font = customFonts.LabelFont();
             testInfoExitBtn.Font = customFonts.LabelFont();
 

@@ -32,12 +32,12 @@ namespace program.View
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.cameraPanel = new System.Windows.Forms.Panel();
             this.cameraPictureBox = new System.Windows.Forms.PictureBox();
@@ -53,8 +53,6 @@ namespace program.View
             this.checkScoreBtn = new System.Windows.Forms.Button();
             this.editLectureBtn = new System.Windows.Forms.Button();
             this.editPanel = new System.Windows.Forms.Panel();
-            this.editExitButton = new System.Windows.Forms.Button();
-            this.editMinimizeButton = new System.Windows.Forms.Button();
             this.editStdNumLabel = new System.Windows.Forms.Label();
             this.editStdNumPanel = new System.Windows.Forms.Panel();
             this.editStdNumTextBox = new System.Windows.Forms.TextBox();
@@ -94,8 +92,6 @@ namespace program.View
             this.testInfoProfNameLbl = new System.Windows.Forms.Label();
             this.testInfoLectureLbl = new System.Windows.Forms.Label();
             this.testStartBtn = new System.Windows.Forms.Button();
-            this.testInfoExitBtn = new System.Windows.Forms.Button();
-            this.testInfoMinimizeBtn = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.cameraPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cameraPictureBox)).BeginInit();
@@ -117,11 +113,11 @@ namespace program.View
             // mainPanel
             // 
             this.mainPanel.BackColor = System.Drawing.Color.White;
+            this.mainPanel.Controls.Add(this.testInfoPanel);
             this.mainPanel.Controls.Add(this.cameraPanel);
             this.mainPanel.Controls.Add(this.testPanel);
-            this.mainPanel.Controls.Add(this.editPanel);
             this.mainPanel.Controls.Add(this.myPagePanel);
-            this.mainPanel.Controls.Add(this.testInfoPanel);
+            this.mainPanel.Controls.Add(this.editPanel);
             this.mainPanel.Location = new System.Drawing.Point(0, 28);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1264, 654);
@@ -189,21 +185,21 @@ namespace program.View
             this.lectureTable.AllowUserToDeleteRows = false;
             this.lectureTable.AllowUserToResizeColumns = false;
             this.lectureTable.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            this.lectureTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.White;
+            this.lectureTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.lectureTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.lectureTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
             this.lectureTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lectureTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.lectureTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.lectureTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
             this.lectureTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.lectureTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.lectureName,
@@ -211,35 +207,35 @@ namespace program.View
             this.testDay,
             this.testTime,
             this.testName});
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.lectureTable.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.lectureTable.DefaultCellStyle = dataGridViewCellStyle16;
             this.lectureTable.GridColor = System.Drawing.Color.AliceBlue;
             this.lectureTable.Location = new System.Drawing.Point(12, 61);
             this.lectureTable.MultiSelect = false;
             this.lectureTable.Name = "lectureTable";
             this.lectureTable.ReadOnly = true;
             this.lectureTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.lectureTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.lectureTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.lectureTable.RowHeadersVisible = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lectureTable.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lectureTable.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.lectureTable.RowTemplate.Height = 23;
             this.lectureTable.Size = new System.Drawing.Size(862, 572);
             this.lectureTable.TabIndex = 11;
@@ -249,9 +245,9 @@ namespace program.View
             // 
             // lectureName
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            this.lectureName.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.Black;
+            this.lectureName.DefaultCellStyle = dataGridViewCellStyle15;
             this.lectureName.FillWeight = 17F;
             this.lectureName.HeaderText = "강의명";
             this.lectureName.Name = "lectureName";
@@ -323,8 +319,6 @@ namespace program.View
             // editPanel
             // 
             this.editPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
-            this.editPanel.Controls.Add(this.editExitButton);
-            this.editPanel.Controls.Add(this.editMinimizeButton);
             this.editPanel.Controls.Add(this.editStdNumLabel);
             this.editPanel.Controls.Add(this.editStdNumPanel);
             this.editPanel.Controls.Add(this.editUnivLabel);
@@ -346,32 +340,6 @@ namespace program.View
             this.editPanel.Size = new System.Drawing.Size(379, 654);
             this.editPanel.TabIndex = 12;
             this.editPanel.Visible = false;
-            // 
-            // editExitButton
-            // 
-            this.editExitButton.FlatAppearance.BorderSize = 0;
-            this.editExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.editExitButton.ForeColor = System.Drawing.Color.White;
-            this.editExitButton.Location = new System.Drawing.Point(349, 0);
-            this.editExitButton.Name = "editExitButton";
-            this.editExitButton.Size = new System.Drawing.Size(30, 28);
-            this.editExitButton.TabIndex = 0;
-            this.editExitButton.TabStop = false;
-            this.editExitButton.Text = "✕";
-            this.editExitButton.Click += new System.EventHandler(this.editExitButton_Click);
-            // 
-            // editMinimizeButton
-            // 
-            this.editMinimizeButton.FlatAppearance.BorderSize = 0;
-            this.editMinimizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.editMinimizeButton.ForeColor = System.Drawing.Color.White;
-            this.editMinimizeButton.Location = new System.Drawing.Point(319, 0);
-            this.editMinimizeButton.Name = "editMinimizeButton";
-            this.editMinimizeButton.Size = new System.Drawing.Size(30, 28);
-            this.editMinimizeButton.TabIndex = 1;
-            this.editMinimizeButton.TabStop = false;
-            this.editMinimizeButton.Text = "_";
-            this.editMinimizeButton.Click += new System.EventHandler(this.editMinimizeButton_Click);
             // 
             // editStdNumLabel
             // 
@@ -710,8 +678,6 @@ namespace program.View
             this.testInfoPanel.Controls.Add(this.testInfoProfNameLbl);
             this.testInfoPanel.Controls.Add(this.testInfoLectureLbl);
             this.testInfoPanel.Controls.Add(this.testStartBtn);
-            this.testInfoPanel.Controls.Add(this.testInfoExitBtn);
-            this.testInfoPanel.Controls.Add(this.testInfoMinimizeBtn);
             this.testInfoPanel.Location = new System.Drawing.Point(885, 0);
             this.testInfoPanel.Name = "testInfoPanel";
             this.testInfoPanel.Size = new System.Drawing.Size(379, 654);
@@ -793,32 +759,6 @@ namespace program.View
             this.testStartBtn.UseVisualStyleBackColor = false;
             this.testStartBtn.Click += new System.EventHandler(this.testStartBtn_Click);
             // 
-            // testInfoExitBtn
-            // 
-            this.testInfoExitBtn.FlatAppearance.BorderSize = 0;
-            this.testInfoExitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.testInfoExitBtn.ForeColor = System.Drawing.Color.White;
-            this.testInfoExitBtn.Location = new System.Drawing.Point(349, 0);
-            this.testInfoExitBtn.Name = "testInfoExitBtn";
-            this.testInfoExitBtn.Size = new System.Drawing.Size(30, 28);
-            this.testInfoExitBtn.TabIndex = 0;
-            this.testInfoExitBtn.TabStop = false;
-            this.testInfoExitBtn.Text = "✕";
-            this.testInfoExitBtn.Click += new System.EventHandler(this.testInfoExitBtn_Click);
-            // 
-            // testInfoMinimizeBtn
-            // 
-            this.testInfoMinimizeBtn.FlatAppearance.BorderSize = 0;
-            this.testInfoMinimizeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.testInfoMinimizeBtn.ForeColor = System.Drawing.Color.White;
-            this.testInfoMinimizeBtn.Location = new System.Drawing.Point(319, 0);
-            this.testInfoMinimizeBtn.Name = "testInfoMinimizeBtn";
-            this.testInfoMinimizeBtn.Size = new System.Drawing.Size(30, 28);
-            this.testInfoMinimizeBtn.TabIndex = 1;
-            this.testInfoMinimizeBtn.TabStop = false;
-            this.testInfoMinimizeBtn.Text = "_";
-            this.testInfoMinimizeBtn.Click += new System.EventHandler(this.testInfoMinimizeBtn_Click);
-            // 
             // StudentHomeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -870,8 +810,6 @@ namespace program.View
         private Label emailLabel;
         private PictureBox pictureBox;
         private Panel editPanel;
-        private Button editExitButton;
-        private Button editMinimizeButton;
         private Label editStdNumLabel;
         private Panel editStdNumPanel;
         private TextBox editStdNumTextBox;
@@ -906,8 +844,6 @@ namespace program.View
         private Label testInfoProfNameLbl;
         private Label testInfoLectureLbl;
         private Button testStartBtn;
-        private Button testInfoExitBtn;
-        private Button testInfoMinimizeBtn;
         private Label testInfoTestNameLbl;
         private Button testInfoCancelBtn;
         private Panel cameraPanel;

@@ -52,7 +52,6 @@
             this.myLectureLbl = new System.Windows.Forms.Label();
             this.lecturePictureBox = new System.Windows.Forms.PictureBox();
             this.deleteLectureBtn = new System.Windows.Forms.Button();
-            this.myLectureExitBtn = new System.Windows.Forms.Button();
             this.lecturePanel = new System.Windows.Forms.Panel();
             this.homePictureBox = new System.Windows.Forms.PictureBox();
             this.lectureNamePanel = new System.Windows.Forms.Panel();
@@ -114,7 +113,7 @@
             this.mainPanel.Controls.Add(this.lecturePanel);
             this.mainPanel.Controls.Add(this.exitButton);
             this.mainPanel.Controls.Add(this.minimizeButton);
-            this.mainPanel.Location = new System.Drawing.Point(0, -1);
+            this.mainPanel.Location = new System.Drawing.Point(0, 28);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1264, 682);
             this.mainPanel.TabIndex = 4;
@@ -126,10 +125,9 @@
             this.myLecturePanel.Controls.Add(this.myLectureLbl);
             this.myLecturePanel.Controls.Add(this.lecturePictureBox);
             this.myLecturePanel.Controls.Add(this.deleteLectureBtn);
-            this.myLecturePanel.Controls.Add(this.myLectureExitBtn);
             this.myLecturePanel.Location = new System.Drawing.Point(885, 0);
             this.myLecturePanel.Name = "myLecturePanel";
-            this.myLecturePanel.Size = new System.Drawing.Size(379, 682);
+            this.myLecturePanel.Size = new System.Drawing.Size(379, 655);
             this.myLecturePanel.TabIndex = 20;
             // 
             // myLectureTable
@@ -189,7 +187,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.myLectureTable.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.myLectureTable.RowTemplate.Height = 23;
-            this.myLectureTable.Size = new System.Drawing.Size(343, 450);
+            this.myLectureTable.Size = new System.Drawing.Size(343, 441);
             this.myLectureTable.TabIndex = 16;
             this.myLectureTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.myLectureTable_CellClick);
             // 
@@ -253,7 +251,7 @@
             this.deleteLectureBtn.FlatAppearance.BorderSize = 0;
             this.deleteLectureBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteLectureBtn.ForeColor = System.Drawing.Color.White;
-            this.deleteLectureBtn.Location = new System.Drawing.Point(257, 636);
+            this.deleteLectureBtn.Location = new System.Drawing.Point(257, 608);
             this.deleteLectureBtn.Name = "deleteLectureBtn";
             this.deleteLectureBtn.Size = new System.Drawing.Size(110, 34);
             this.deleteLectureBtn.TabIndex = 13;
@@ -261,19 +259,6 @@
             this.deleteLectureBtn.Text = "강의 삭제";
             this.deleteLectureBtn.UseVisualStyleBackColor = false;
             this.deleteLectureBtn.Click += new System.EventHandler(this.deleteLectureBtn_Click);
-            // 
-            // myLectureExitBtn
-            // 
-            this.myLectureExitBtn.FlatAppearance.BorderSize = 0;
-            this.myLectureExitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.myLectureExitBtn.ForeColor = System.Drawing.Color.White;
-            this.myLectureExitBtn.Location = new System.Drawing.Point(349, 0);
-            this.myLectureExitBtn.Name = "myLectureExitBtn";
-            this.myLectureExitBtn.Size = new System.Drawing.Size(30, 28);
-            this.myLectureExitBtn.TabIndex = 0;
-            this.myLectureExitBtn.TabStop = false;
-            this.myLectureExitBtn.Text = "✕";
-            this.myLectureExitBtn.Click += new System.EventHandler(this.myLectureExitBtn_Click);
             // 
             // lecturePanel
             // 
@@ -288,7 +273,7 @@
             this.lecturePanel.Controls.Add(this.searchBtn);
             this.lecturePanel.Location = new System.Drawing.Point(0, 0);
             this.lecturePanel.Name = "lecturePanel";
-            this.lecturePanel.Size = new System.Drawing.Size(885, 682);
+            this.lecturePanel.Size = new System.Drawing.Size(885, 655);
             this.lecturePanel.TabIndex = 5;
             // 
             // homePictureBox
@@ -364,7 +349,7 @@
             this.addLectureBtn.FlatAppearance.BorderSize = 0;
             this.addLectureBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addLectureBtn.ForeColor = System.Drawing.Color.White;
-            this.addLectureBtn.Location = new System.Drawing.Point(764, 636);
+            this.addLectureBtn.Location = new System.Drawing.Point(764, 608);
             this.addLectureBtn.Name = "addLectureBtn";
             this.addLectureBtn.Size = new System.Drawing.Size(110, 34);
             this.addLectureBtn.TabIndex = 12;
@@ -432,7 +417,7 @@
             dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lectureTable.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.lectureTable.RowTemplate.Height = 23;
-            this.lectureTable.Size = new System.Drawing.Size(862, 526);
+            this.lectureTable.Size = new System.Drawing.Size(862, 493);
             this.lectureTable.TabIndex = 11;
             this.lectureTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lectureTable_CellClick);
             // 
@@ -538,7 +523,6 @@
         private System.Windows.Forms.DataGridView lectureTable;
         private System.Windows.Forms.Button searchBtn;
         private System.Windows.Forms.Panel myLecturePanel;
-        private System.Windows.Forms.Button myLectureExitBtn;
         private System.Windows.Forms.Button addLectureBtn;
         private System.Windows.Forms.Button deleteLectureBtn;
         private System.Windows.Forms.Panel professorNamePanel;

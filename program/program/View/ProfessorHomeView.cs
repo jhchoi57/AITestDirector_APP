@@ -17,6 +17,7 @@ namespace program.View
     public partial class ProfessorHomeView : Form
     {
         private MainController mainController;
+        private TopBarPanel topBarPanel;
         public ProfessorHomeView(MainController mainController)
         {
             InitializeComponent();
@@ -58,10 +59,6 @@ namespace program.View
 
             lectureTable.Font = customFonts.NormalFont();
 
-            exitButton.Font = customFonts.LabelFont();
-            minimizeButton.Font = customFonts.LabelFont();
-            editExitButton.Font = customFonts.LabelFont();
-            editMinimizeButton.Font = customFonts.LabelFont();
 
 
             univLabel.Font = customFonts.LabelFont();
@@ -88,6 +85,11 @@ namespace program.View
             //mainController.professorAddLectureRequest("운영체제", "월수 16:30 ~ 18:00", 30, "2020-2학기");
             mainController.professorAllLecturesRequest();
             setUserInfo();
+
+            //상단바
+            this.topBarPanel = new TopBarPanel(customFonts);
+            this.topBarPanel.Location = new Point(0, 0);
+            this.Controls.Add(topBarPanel);
         }
 
         private void setUserInfo()

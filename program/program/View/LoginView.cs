@@ -166,7 +166,6 @@ namespace program.View
             signupStdNumTextBox.Text = null;
             signupNameTextBox.Text = null;
             signupEmailTextBox.Text = null;
-            signupEmailAuthTextBox.Text = null;
             signupPasswordTextBox.Text = null;
             signupPasswordCheckTextBox.Text = null;
             signupBirthPicker.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
@@ -231,12 +230,6 @@ namespace program.View
             // 이메일
             signupEmailLabel.Font = customFonts.LabelFont();
             signupEmailTextBox.Font = customFonts.TextBoxFont();
-            signupSendAuthBtn.Font = customFonts.NormalFont();
-
-            // 이메일 인증
-            signupEmailAuthLabel.Font = customFonts.LabelFont();
-            signupEmailAuthTextBox.Font = customFonts.TextBoxFont();
-            signupEmailAuthButton.Font = customFonts.TextBoxFont();
 
             // 비밀번호
             signupPasswordLabel.Font = customFonts.LabelFont();
@@ -266,7 +259,6 @@ namespace program.View
             signupPositionComboBox.Items.Clear();
             signupPositionComboBox.Items.Add("학생");
             signupPositionComboBox.Items.Add("교수");
-            signupPositionComboBox.Items.Add("조교");
         }
 
         private void signupCancelButton_Click(object sender, EventArgs e)
@@ -282,7 +274,6 @@ namespace program.View
             string stdNum = signupStdNumTextBox.Text;
             string name = signupNameTextBox.Text;
             string email = signupEmailTextBox.Text;
-            string emailAuth = signupEmailAuthTextBox.Text;
             string password = signupPasswordTextBox.Text;
             string passwordCheck = signupPasswordCheckTextBox.Text;
             string birth = signupBirthPicker.Value.ToString("yyyy-MM-dd");

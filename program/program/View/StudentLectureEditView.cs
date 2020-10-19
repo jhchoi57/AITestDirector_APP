@@ -15,6 +15,7 @@ namespace program.View
     public partial class StudentLectureEditView : Form
     {
         private MainController mainController;
+        private TopBarPanel topBarPanel;
         public StudentLectureEditView(MainController mainController)
         {
             InitializeComponent();
@@ -88,7 +89,6 @@ namespace program.View
 
             minimizeButton.Font = customFonts.LabelFont();
             exitButton.Font = customFonts.LabelFont();
-            myLectureExitBtn.Font = customFonts.LabelFont();
 
             professorNameLbl.Font = customFonts.LabelFont();
             lectureNameLbl.Font = customFonts.LabelFont();
@@ -97,6 +97,11 @@ namespace program.View
 
             lectureNameTxtBox.Font = customFonts.TextBoxFont();
             professorNameTxtBox.Font = customFonts.TextBoxFont();
+
+            //상단바
+            this.topBarPanel = new TopBarPanel(customFonts);
+            this.topBarPanel.Location = new Point(0, 0);
+            this.Controls.Add(topBarPanel);
         }
 
         private void homePictureBox_Click(object sender, EventArgs e)
