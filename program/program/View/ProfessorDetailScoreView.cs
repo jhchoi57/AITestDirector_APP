@@ -16,11 +16,26 @@ namespace program.View
     {
         private MainController mainController;
         private TopBarPanel topBarPanel;
+        private String lectureName;
+        private String testName;
+        private String testDay;
+        private String totalScore;
+        private String avgScore;
+
         public ProfessorDetailScoreView(MainController mainController)
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             this.mainController = mainController;
+        }
+
+        public void SetScoreData(String LN, String TN, String TD, String TS, String AS)
+        {
+            this.lectureName = LN;
+            this.testName = TN;
+            this.testDay = TD;
+            this.totalScore = TS;
+            this.avgScore = AS;
         }
 
         private void ProfessorDetailScoreView_Load(object sender, EventArgs e)
@@ -32,19 +47,19 @@ namespace program.View
             // example
             
             // 강의명
-            lectureText.Text = "운영체제";
+            lectureText.Text = lectureName;
 
             // 시험명
-            testNameText.Text = "중간고사";
+            testNameText.Text = testName;
 
             // 시험 날짜
-            testDayText.Text = "2020/4/27 16:00~17:30";
+            testDayText.Text = testDay;
 
             // 총 점수
-            totalScoreText.Text = "100";
+            totalScoreText.Text = totalScore;
 
             // 평균 점수
-            avgScoreText.Text = "78";
+            avgScoreText.Text = avgScore;
 
 
 
@@ -135,6 +150,12 @@ namespace program.View
         private void mainPanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void doubtBtn_Click(object sender, EventArgs e)
+        {
+            BookMarkView bookMarkView = new BookMarkView(mainController);
+            mainController.moveToNextForm(bookMarkView);
         }
     }
 }

@@ -138,6 +138,7 @@ namespace program.View
                 );
 
             ProfessorDetailScoreView professorDetailScoreView = new ProfessorDetailScoreView(mainController);
+            professorDetailScoreView.SetScoreData(lectureName, testName, testDay, totalScore, avgScore);
             mainController.moveToNextForm(professorDetailScoreView);
         }
     }

@@ -36,12 +36,13 @@ namespace program.Controller
         {
             me = null;
             formNavigator = new Stack<Form>();
-            nowForm = new ExamView(this);
-            //nowForm = new LoginView(this);
+            //nowForm = new ExamView(this);
+            nowForm = new LoginView(this);
             //nowForm = new ProfessorDetailScoreView(this);
             //nowForm = new StudentHomeView(this);
             //nowForm = new ProfessorLectureEditView(this);
             //nowForm = new ProfessorScoreCheckView(this);
+            //nowForm = new VideoView(this);
         }
 
         public string professorLoginRequest(string email, string password)

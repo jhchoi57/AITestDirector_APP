@@ -37,21 +37,9 @@
             this.mainPanel = new System.Windows.Forms.Panel();
             this.testPanel = new System.Windows.Forms.Panel();
             this.lectureTable = new System.Windows.Forms.DataGridView();
-            this.lectureName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.professor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.editBtn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.checkScoreBtn = new System.Windows.Forms.Button();
             this.testAddBtn = new System.Windows.Forms.Button();
             this.editLectureBtn = new System.Windows.Forms.Button();
-            this.myPagePanel = new System.Windows.Forms.Panel();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.emailLabel = new System.Windows.Forms.Label();
-            this.nameLabel = new System.Windows.Forms.Label();
-            this.univLabel = new System.Windows.Forms.Label();
-            this.editInfoBtn = new System.Windows.Forms.Button();
             this.editPanel = new System.Windows.Forms.Panel();
             this.editUnivLabel = new System.Windows.Forms.Label();
             this.editUnivPanel = new System.Windows.Forms.Panel();
@@ -73,11 +61,22 @@
             this.editNameLabel = new System.Windows.Forms.Label();
             this.editNamePanel = new System.Windows.Forms.Panel();
             this.editNameTextBox = new System.Windows.Forms.TextBox();
+            this.myPagePanel = new System.Windows.Forms.Panel();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.emailLabel = new System.Windows.Forms.Label();
+            this.nameLabel = new System.Windows.Forms.Label();
+            this.univLabel = new System.Windows.Forms.Label();
+            this.editInfoBtn = new System.Windows.Forms.Button();
+            this.lectureName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.professor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.editBtn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.mainPanel.SuspendLayout();
             this.testPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lectureTable)).BeginInit();
-            this.myPagePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.editPanel.SuspendLayout();
             this.editUnivPanel.SuspendLayout();
             this.editBirthPanel.SuspendLayout();
@@ -85,6 +84,8 @@
             this.editPasswordPanel.SuspendLayout();
             this.editEmailPanel.SuspendLayout();
             this.editNamePanel.SuspendLayout();
+            this.myPagePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -138,7 +139,8 @@
             this.testDay,
             this.testTime,
             this.testName,
-            this.editBtn});
+            this.editBtn,
+            this.deleteColumn});
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -172,61 +174,6 @@
             this.lectureTable.Size = new System.Drawing.Size(862, 581);
             this.lectureTable.TabIndex = 12;
             this.lectureTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lectureTable_CellClick);
-            // 
-            // lectureName
-            // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            this.lectureName.DefaultCellStyle = dataGridViewCellStyle3;
-            this.lectureName.FillWeight = 17F;
-            this.lectureName.HeaderText = "강의명";
-            this.lectureName.Name = "lectureName";
-            this.lectureName.ReadOnly = true;
-            this.lectureName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // professor
-            // 
-            this.professor.FillWeight = 6F;
-            this.professor.HeaderText = "담당 교수";
-            this.professor.Name = "professor";
-            this.professor.ReadOnly = true;
-            this.professor.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // testDay
-            // 
-            this.testDay.FillWeight = 7F;
-            this.testDay.HeaderText = "날짜";
-            this.testDay.Name = "testDay";
-            this.testDay.ReadOnly = true;
-            this.testDay.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // testTime
-            // 
-            this.testTime.FillWeight = 7F;
-            this.testTime.HeaderText = "시간";
-            this.testTime.Name = "testTime";
-            this.testTime.ReadOnly = true;
-            this.testTime.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // testName
-            // 
-            this.testName.FillWeight = 15F;
-            this.testName.HeaderText = "시험 제목";
-            this.testName.Name = "testName";
-            this.testName.ReadOnly = true;
-            this.testName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // editBtn
-            // 
-            this.editBtn.FillWeight = 5F;
-            this.editBtn.HeaderText = "   ";
-            this.editBtn.Name = "editBtn";
-            this.editBtn.ReadOnly = true;
-            this.editBtn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.editBtn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.editBtn.Text = "수정";
-            this.editBtn.ToolTipText = "수정";
-            this.editBtn.UseColumnTextForButtonValue = true;
             // 
             // checkScoreBtn
             // 
@@ -270,69 +217,6 @@
             this.editLectureBtn.TabStop = false;
             this.editLectureBtn.Text = "강의 편집";
             this.editLectureBtn.UseVisualStyleBackColor = false;
-            // 
-            // myPagePanel
-            // 
-            this.myPagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
-            this.myPagePanel.Controls.Add(this.pictureBox);
-            this.myPagePanel.Controls.Add(this.emailLabel);
-            this.myPagePanel.Controls.Add(this.nameLabel);
-            this.myPagePanel.Controls.Add(this.univLabel);
-            this.myPagePanel.Controls.Add(this.editInfoBtn);
-            this.myPagePanel.Location = new System.Drawing.Point(885, 0);
-            this.myPagePanel.Name = "myPagePanel";
-            this.myPagePanel.Size = new System.Drawing.Size(379, 654);
-            this.myPagePanel.TabIndex = 1;
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.Location = new System.Drawing.Point(23, 71);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(105, 112);
-            this.pictureBox.TabIndex = 18;
-            this.pictureBox.TabStop = false;
-            // 
-            // emailLabel
-            // 
-            this.emailLabel.ForeColor = System.Drawing.Color.White;
-            this.emailLabel.Location = new System.Drawing.Point(161, 169);
-            this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(208, 21);
-            this.emailLabel.TabIndex = 15;
-            this.emailLabel.Text = "[이메일]";
-            // 
-            // nameLabel
-            // 
-            this.nameLabel.ForeColor = System.Drawing.Color.White;
-            this.nameLabel.Location = new System.Drawing.Point(161, 119);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(208, 21);
-            this.nameLabel.TabIndex = 14;
-            this.nameLabel.Text = "[이름]";
-            // 
-            // univLabel
-            // 
-            this.univLabel.ForeColor = System.Drawing.Color.White;
-            this.univLabel.Location = new System.Drawing.Point(161, 69);
-            this.univLabel.Name = "univLabel";
-            this.univLabel.Size = new System.Drawing.Size(208, 21);
-            this.univLabel.TabIndex = 12;
-            this.univLabel.Text = "[학교]";
-            // 
-            // editInfoBtn
-            // 
-            this.editInfoBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
-            this.editInfoBtn.FlatAppearance.BorderSize = 0;
-            this.editInfoBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.editInfoBtn.ForeColor = System.Drawing.Color.White;
-            this.editInfoBtn.Location = new System.Drawing.Point(259, 608);
-            this.editInfoBtn.Name = "editInfoBtn";
-            this.editInfoBtn.Size = new System.Drawing.Size(110, 34);
-            this.editInfoBtn.TabIndex = 11;
-            this.editInfoBtn.TabStop = false;
-            this.editInfoBtn.Text = "정보 수정";
-            this.editInfoBtn.UseVisualStyleBackColor = false;
-            this.editInfoBtn.Click += new System.EventHandler(this.editInfoBtn_Click);
             // 
             // editPanel
             // 
@@ -565,6 +449,134 @@
             this.editNameTextBox.Size = new System.Drawing.Size(230, 19);
             this.editNameTextBox.TabIndex = 0;
             // 
+            // myPagePanel
+            // 
+            this.myPagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.myPagePanel.Controls.Add(this.pictureBox);
+            this.myPagePanel.Controls.Add(this.emailLabel);
+            this.myPagePanel.Controls.Add(this.nameLabel);
+            this.myPagePanel.Controls.Add(this.univLabel);
+            this.myPagePanel.Controls.Add(this.editInfoBtn);
+            this.myPagePanel.Location = new System.Drawing.Point(885, 0);
+            this.myPagePanel.Name = "myPagePanel";
+            this.myPagePanel.Size = new System.Drawing.Size(379, 654);
+            this.myPagePanel.TabIndex = 1;
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.Location = new System.Drawing.Point(23, 71);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(105, 112);
+            this.pictureBox.TabIndex = 18;
+            this.pictureBox.TabStop = false;
+            // 
+            // emailLabel
+            // 
+            this.emailLabel.ForeColor = System.Drawing.Color.White;
+            this.emailLabel.Location = new System.Drawing.Point(161, 169);
+            this.emailLabel.Name = "emailLabel";
+            this.emailLabel.Size = new System.Drawing.Size(208, 21);
+            this.emailLabel.TabIndex = 15;
+            this.emailLabel.Text = "[이메일]";
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.ForeColor = System.Drawing.Color.White;
+            this.nameLabel.Location = new System.Drawing.Point(161, 119);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(208, 21);
+            this.nameLabel.TabIndex = 14;
+            this.nameLabel.Text = "[이름]";
+            // 
+            // univLabel
+            // 
+            this.univLabel.ForeColor = System.Drawing.Color.White;
+            this.univLabel.Location = new System.Drawing.Point(161, 69);
+            this.univLabel.Name = "univLabel";
+            this.univLabel.Size = new System.Drawing.Size(208, 21);
+            this.univLabel.TabIndex = 12;
+            this.univLabel.Text = "[학교]";
+            // 
+            // editInfoBtn
+            // 
+            this.editInfoBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
+            this.editInfoBtn.FlatAppearance.BorderSize = 0;
+            this.editInfoBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.editInfoBtn.ForeColor = System.Drawing.Color.White;
+            this.editInfoBtn.Location = new System.Drawing.Point(259, 608);
+            this.editInfoBtn.Name = "editInfoBtn";
+            this.editInfoBtn.Size = new System.Drawing.Size(110, 34);
+            this.editInfoBtn.TabIndex = 11;
+            this.editInfoBtn.TabStop = false;
+            this.editInfoBtn.Text = "정보 수정";
+            this.editInfoBtn.UseVisualStyleBackColor = false;
+            this.editInfoBtn.Click += new System.EventHandler(this.editInfoBtn_Click);
+            // 
+            // lectureName
+            // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.lectureName.DefaultCellStyle = dataGridViewCellStyle3;
+            this.lectureName.FillWeight = 17F;
+            this.lectureName.HeaderText = "강의명";
+            this.lectureName.Name = "lectureName";
+            this.lectureName.ReadOnly = true;
+            this.lectureName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // professor
+            // 
+            this.professor.FillWeight = 6F;
+            this.professor.HeaderText = "담당 교수";
+            this.professor.Name = "professor";
+            this.professor.ReadOnly = true;
+            this.professor.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // testDay
+            // 
+            this.testDay.FillWeight = 7F;
+            this.testDay.HeaderText = "날짜";
+            this.testDay.Name = "testDay";
+            this.testDay.ReadOnly = true;
+            this.testDay.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // testTime
+            // 
+            this.testTime.FillWeight = 7F;
+            this.testTime.HeaderText = "시간";
+            this.testTime.Name = "testTime";
+            this.testTime.ReadOnly = true;
+            this.testTime.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // testName
+            // 
+            this.testName.FillWeight = 15F;
+            this.testName.HeaderText = "시험 제목";
+            this.testName.Name = "testName";
+            this.testName.ReadOnly = true;
+            this.testName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // editBtn
+            // 
+            this.editBtn.FillWeight = 5F;
+            this.editBtn.HeaderText = "   ";
+            this.editBtn.Name = "editBtn";
+            this.editBtn.ReadOnly = true;
+            this.editBtn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.editBtn.Text = "수정";
+            this.editBtn.ToolTipText = "수정";
+            this.editBtn.UseColumnTextForButtonValue = true;
+            // 
+            // deleteColumn
+            // 
+            this.deleteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.deleteColumn.FillWeight = 5F;
+            this.deleteColumn.HeaderText = "  ";
+            this.deleteColumn.Name = "deleteColumn";
+            this.deleteColumn.ReadOnly = true;
+            this.deleteColumn.Text = "삭제";
+            this.deleteColumn.ToolTipText = "삭제";
+            this.deleteColumn.UseColumnTextForButtonValue = true;
+            // 
             // ProfessorHomeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -578,8 +590,6 @@
             this.mainPanel.ResumeLayout(false);
             this.testPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lectureTable)).EndInit();
-            this.myPagePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.editPanel.ResumeLayout(false);
             this.editUnivPanel.ResumeLayout(false);
             this.editUnivPanel.PerformLayout();
@@ -592,6 +602,8 @@
             this.editEmailPanel.PerformLayout();
             this.editNamePanel.ResumeLayout(false);
             this.editNamePanel.PerformLayout();
+            this.myPagePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -637,5 +649,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn testTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn testName;
         private System.Windows.Forms.DataGridViewButtonColumn editBtn;
+        private System.Windows.Forms.DataGridViewButtonColumn deleteColumn;
     }
 }
