@@ -40,6 +40,10 @@ namespace program.View
 
         private void ExamView_Load1(object sender, EventArgs e)
         {
+            // 프로세스 제어
+            ProcessController processController = new ProcessController();
+
+
             // 폰트
             customFonts = new CustomFonts();
 

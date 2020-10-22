@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\MainController.cs" />
+    <Compile Include="Controller\ProcessController.cs" />
     <Compile Include="Model\Exams\Lecture.cs" />
     <Compile Include="Model\Exams\MainQuestion.cs" />
     <Compile Include="Model\Users\Professor.cs" />
