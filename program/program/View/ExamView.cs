@@ -1,4 +1,6 @@
-﻿using program.Controller;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using program.Controller;
 using program.View.Components;
 using System;
 using System.Collections.Generic;
@@ -26,17 +28,23 @@ namespace program.View
 
         private MainController mainController;
 
-        public ExamView(MainController mainController)
+        private string room_id;
+        private string student_key;
+        private Boolean isStudent;
+
+        public ExamView(MainController mainController, string room_id, string student_key, Boolean isStudent)
         {
             InitializeComponent();
             // 프로그램 상단바 및 테두리 제거
             this.FormBorderStyle = FormBorderStyle.None;
             // 프로그램 화면 크기 모니터 해상도에 맞춤
             //this.WindowState = FormWindowState.Maximized;
-            DateTime date = DateTime.Now;
-            examDate = date.AddHours(1);
+            examDate = DateTime.Now;
             this.mainController = mainController;
-        }       
+            this.room_id = room_id;
+            this.student_key = student_key;
+            this.isStudent = isStudent;
+        }
 
         private void ExamView_Load1(object sender, EventArgs e)
         {
@@ -90,7 +98,6 @@ namespace program.View
             this.examShortCutLabel.Font = customFonts.TextBoxFont();
 
             this.examMainQuestionPanelList = new List<ExamMainQuestionPanel>();
-            sample_subQuestions();
 
             this.examPageNavigationPanel.PageLeftButton.Click += pageLeftButton_Click_1;
             this.examPageNavigationPanel.PageRightButton.Click += pageRightButton_Click_1;
@@ -99,55 +106,98 @@ namespace program.View
             this.examPageNavigationPanel.NowPageTextBox.TextChanged += nowPageTextBox_TextChanged_1;
 
             this.examPageNavigationPanel.Controls.Add(this.openChatBoxPanel);
+            loadExam();
             initShortCutButton();
 
             this.endExamButton.Click += endExamButton_Click_1;
+
         }
 
-        private void sample_subQuestions()
+        private void loadExam()
         {
-            List<ExamSubQuestionPanel> examSubQuestionPanelList = new List<ExamSubQuestionPanel>();
-            ExamMainQuestionPanel examMainQuestionPanel;
+            try
+            {
+                string response = mainController.getExamRequest(room_id);
+                JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                string lectureName = (string)jObject["lecture_name"];
+                string examName = (string)jObject["exam_name"];
+                int percent = (int)jObject["score_rate"];
+                string endTime = (string)jObject["finish_at"];
+                string questions = (string)jObject["questions_json"];
+                JArray questionArray = JArray.Parse(questions);
+                examLectureLabel.Text = "강의명:  " + lectureName;
+                examNameLabel.Text = "시험명:  " + examName;
+                examPercentLabel.Text = "성적 반영 비율:  " + percent;
+                Console.WriteLine(questionArray);
+                setTime(endTime);
+                loadQuestions(questionArray);
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            }
+        }
+        private void setTime(string time)
+        {
+            int year = int.Parse(time.Substring(0, 4));
+            int month = int.Parse(time.Substring(5, 2));
+            int day = int.Parse(time.Substring(8, 2));
+            int hour = int.Parse(time.Substring(11, 2));
+            int minute = int.Parse(time.Substring(14, 2));
+            int sec = int.Parse(time.Substring(17, 2));
+
+            examDate = new DateTime(year, month, day, hour, minute, sec);
+        }
+
+        private void loadQuestions(JArray questions)
+        {
+            int cnt = questions.Count;
             int index = 1;
 
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < cnt; i++)
             {
-                ExamOXPanel examOXPanel = new ExamOXPanel(customFonts, (index++).ToString() + ". " + "ox question" + i, 10);
-                examSubQuestionPanelList.Add(examOXPanel);
-            }
-            examMainQuestionPanel = new ExamMainQuestionPanel(customFonts, "OX sample", examSubQuestionPanelList);
-            examMainQuestionPanelList.Add(examMainQuestionPanel);
-
-            examSubQuestionPanelList = new List<ExamSubQuestionPanel>();
-            for (int i = 0; i < 5; i++)
-            {
-                ExamShortAnswerQuestionPanel examShortAnswerQuestionPanel = new ExamShortAnswerQuestionPanel(customFonts, (index++).ToString() + ". " + "short answer question" + i, 10);
-                examSubQuestionPanelList.Add(examShortAnswerQuestionPanel);
-            }
-            examMainQuestionPanel = new ExamMainQuestionPanel(customFonts, "short answer sample", examSubQuestionPanelList);
-            examMainQuestionPanelList.Add(examMainQuestionPanel);
-
-            examSubQuestionPanelList = new List<ExamSubQuestionPanel>();
-            for (int i = 0; i < 5; i++)
-            {
-                ExamEssayQuestionPanel examEssayQuestionPanel = new ExamEssayQuestionPanel(customFonts, (index++).ToString() + ". " + "essay question" + i, 10, 4000);
-                examSubQuestionPanelList.Add(examEssayQuestionPanel);
-            }
-            examMainQuestionPanel = new ExamMainQuestionPanel(customFonts, "essay sample", examSubQuestionPanelList);
-            examMainQuestionPanelList.Add(examMainQuestionPanel);
-
-            examSubQuestionPanelList = new List<ExamSubQuestionPanel>();
-            for (int i = 0; i < 5; i++)
-            {
-                string[] question = { "hi", "bye", "good" };
-                ExamMultipleChoiceQuestionPanel examMultipleChoiceQuestionPanel = new ExamMultipleChoiceQuestionPanel(customFonts, (index++).ToString() + ". " + "multiple choice question" + i, 10, question);
-                examSubQuestionPanelList.Add(examMultipleChoiceQuestionPanel);
-            }
-            examMainQuestionPanel = new ExamMainQuestionPanel(customFonts, "multiple choice sample", examSubQuestionPanelList);
-            examMainQuestionPanelList.Add(examMainQuestionPanel);
-
-            for (int i = 0; i < 4; i++)
-            {
+                JObject question = (JObject)questions[i];
+                JArray subQuestions = (JArray)question["subQuestions"];
+                int subCnt = subQuestions.Count;
+                string mainQuestion = (string)question["question"];
+                ExamMainQuestionPanel examMainQuestionPanel;
+                List<ExamSubQuestionPanel> examSubQuestionPanelList = new List<ExamSubQuestionPanel>();
+                for (int j = 0; j < subCnt; j++)
+                {
+                    int type = (int)subQuestions[j]["type"];
+                    int score = (int)subQuestions[j]["score"];
+                    string subQuestion = (string)subQuestions[j]["question"];
+                    if (type == 0)
+                    {
+                        ExamOXPanel examOXPanel = new ExamOXPanel(customFonts, (index++).ToString() + ". " + subQuestion, score);
+                        examSubQuestionPanelList.Add(examOXPanel);
+                    }
+                    else if (type == 1)
+                    {
+                        ExamShortAnswerQuestionPanel examShortAnswerQuestionPanel = new ExamShortAnswerQuestionPanel(customFonts, (index++).ToString() + ". " + subQuestion, score);
+                        examSubQuestionPanelList.Add(examShortAnswerQuestionPanel);
+                    }
+                    else if (type == 2)
+                    {
+                        int maxLength = (int)subQuestions[j]["maxLength"];
+                        ExamEssayQuestionPanel examEssayQuestionPanel = new ExamEssayQuestionPanel(customFonts, (index++).ToString() + ". " + subQuestion, score, maxLength);
+                        examSubQuestionPanelList.Add(examEssayQuestionPanel);
+                    }
+                    else
+                    {
+                        JArray examples = (JArray)subQuestions[j]["examples"];
+                        int exampleCnt = examples.Count;
+                        string[] example = new string[exampleCnt];
+                        for (int t = 0; t < exampleCnt; t++)
+                        {
+                            example[t] = (string)examples[t]["example"];
+                        }
+                        ExamMultipleChoiceQuestionPanel examMultipleChoiceQuestionPanel = new ExamMultipleChoiceQuestionPanel(customFonts, (index++).ToString() + ". " + subQuestion, score, example);
+                        examSubQuestionPanelList.Add(examMultipleChoiceQuestionPanel);
+                    }
+                }
+                examMainQuestionPanel = new ExamMainQuestionPanel(customFonts, mainQuestion, examSubQuestionPanelList);
+                examMainQuestionPanelList.Add(examMainQuestionPanel);
                 this.examMainQuestionPanelList[i].Location = new Point(30, 30);
                 this.examPanel.Controls.Add(this.examMainQuestionPanelList[i]);
                 if (i != 0)
@@ -155,7 +205,8 @@ namespace program.View
                     examMainQuestionPanelList[i].Visible = false;
                 }
             }
-            this.examPageNavigationPanel.WholePageLabel.Text = "4";
+
+            this.examPageNavigationPanel.WholePageLabel.Text = cnt.ToString();
             this.examPageNavigationPanel.NowPageTextBox.Text = "1";
         }
 
@@ -236,6 +287,11 @@ namespace program.View
             DateTime date = DateTime.Now;
 
             double diffTotalSeconds = (examDate - date).TotalSeconds;
+            if (diffTotalSeconds <= 0)
+            {
+                MessageBox.Show("시험이 종료됐습니다.", "시험 종료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                mainController.moveToPreviousForm();
+            }
 
             int hour = (int)diffTotalSeconds / 3600;
             int minute = (int)diffTotalSeconds % 3600 / 60;
@@ -321,9 +377,9 @@ namespace program.View
             int i = shortCutButton.MainQuestionNo;
             int j = shortCutButton.SubQuestionNo;
             int locationY;
-           
+
             locationY = examMainQuestionPanelList[i].SubQuestionPanelsList[j].Location.Y;
-            
+
             this.examPageNavigationPanel.NowPageTextBox.Text = (i + 1).ToString();
 
             try
@@ -341,8 +397,11 @@ namespace program.View
         {
             Button button = (Button)sender;
             ExamSubQuestionPanel examOXPanel = (ExamSubQuestionPanel)button.Parent;
+            ExamOXPanel oxPanel = (ExamOXPanel)examOXPanel;
             int index = Find_shortCutButton_index(examOXPanel);
 
+            string answer = oxPanel.Answer.ToString();
+            submitAnswer(answer, index + 1);
             shortCutButtonList[index].BackColor = Color.GreenYellow;
         }
 
@@ -351,12 +410,16 @@ namespace program.View
             TextBox textBox = (TextBox)sender;
             ShortAnswerPanel shortAnswerPanel = (ShortAnswerPanel)textBox.Parent;
             ExamSubQuestionPanel examShortAnswerQuestionPanel = (ExamSubQuestionPanel)shortAnswerPanel.Parent;
+            ExamShortAnswerQuestionPanel shortAnswerQuestionPanel = (ExamShortAnswerQuestionPanel)examShortAnswerQuestionPanel;
             int index = Find_shortCutButton_index(examShortAnswerQuestionPanel);
 
             if (textBox.Visible == true)
                 shortCutButtonList[index].BackColor = Color.White;
             else
+            {
+                submitAnswer(shortAnswerQuestionPanel.AnswerPanel.AnswerLabel.Text, index + 1);
                 shortCutButtonList[index].BackColor = Color.GreenYellow;
+            }
         }
 
         private void essay_enter_answer(object sender, EventArgs e)
@@ -364,12 +427,16 @@ namespace program.View
             TextBox textBox = (TextBox)sender;
             EssayAnswerPanel essayAnswerPanel = (EssayAnswerPanel)textBox.Parent;
             ExamSubQuestionPanel examEssayQuestionPanel = (ExamSubQuestionPanel)essayAnswerPanel.Parent;
+            ExamEssayQuestionPanel essayQuestionPanel = (ExamEssayQuestionPanel)examEssayQuestionPanel;
             int index = Find_shortCutButton_index(examEssayQuestionPanel);
 
             if (textBox.Visible == true)
                 shortCutButtonList[index].BackColor = Color.White;
             else
+            {
+                submitAnswer(essayQuestionPanel.AnswerPanel.AnswerLabel.Text, index + 1);
                 shortCutButtonList[index].BackColor = Color.GreenYellow;
+            }
         }
 
         private void multiple_enter_answer(object sender, EventArgs e)
@@ -377,8 +444,10 @@ namespace program.View
             RadioButton radioButton = (RadioButton)sender;
             ExamMultipleChoicePanel multipleChoicePanel = (ExamMultipleChoicePanel)radioButton.Parent;
             ExamSubQuestionPanel multipleChoiceQuestionPanel = (ExamSubQuestionPanel)multipleChoicePanel.Parent;
+            ExamMultipleChoiceQuestionPanel examMultipleChoiceQuestionPanel = (ExamMultipleChoiceQuestionPanel)multipleChoiceQuestionPanel;
             int index = Find_shortCutButton_index(multipleChoiceQuestionPanel);
 
+            submitAnswer(examMultipleChoiceQuestionPanel.Answer.ToString(), index + 1);
             shortCutButtonList[index].BackColor = Color.GreenYellow;
         }
 
@@ -419,8 +488,19 @@ namespace program.View
         {
             if (MessageBox.Show("시험을 종료하시겠습니까?\n(시험 종료 시 재접속이 불가능합니다.)", "시험 종료", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                // 시험 결과 전송하는 함수 진행 후
                 mainController.moveToPreviousForm();
+            }
+        }
+
+        private void submitAnswer(string answer, int num)
+        {
+            try
+            {
+                string response = mainController.studentAddAnswer(room_id, answer, num);
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
             }
         }
     }

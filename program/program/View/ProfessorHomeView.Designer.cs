@@ -72,6 +72,7 @@
             this.testDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.editBtn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.mainPanel.SuspendLayout();
@@ -139,6 +140,7 @@
             this.testDay,
             this.testTime,
             this.testName,
+            this.id,
             this.editBtn,
             this.deleteColumn});
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -555,6 +557,12 @@
             this.testName.ReadOnly = true;
             this.testName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
+            // id
+            // 
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            // 
             // editBtn
             // 
             this.editBtn.FillWeight = 5F;
@@ -562,6 +570,7 @@
             this.editBtn.Name = "editBtn";
             this.editBtn.ReadOnly = true;
             this.editBtn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.editBtn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.editBtn.Text = "수정";
             this.editBtn.ToolTipText = "수정";
             this.editBtn.UseColumnTextForButtonValue = true;
@@ -648,6 +657,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn testDay;
         private System.Windows.Forms.DataGridViewTextBoxColumn testTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn testName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
         private System.Windows.Forms.DataGridViewButtonColumn editBtn;
         private System.Windows.Forms.DataGridViewButtonColumn deleteColumn;
     }

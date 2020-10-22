@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Security.Cryptography;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -52,7 +53,7 @@ namespace program.Controller
             var client = new RestClient(targetURL);
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
-            request.AddParameter("id", "prof_test_id");
+            request.AddParameter("id", "prof_test_id15");
             request.AddParameter("password", "1234");
             //request.AddParameter("id", email);
             //request.AddParameter("password", password);
@@ -68,7 +69,7 @@ namespace program.Controller
             var client = new RestClient(targetURL);
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
-            request.AddParameter("email", "stu_test_id15");
+            request.AddParameter("email", "stu_test_id100");
             request.AddParameter("password", "1234");
             //request.AddParameter("email", email);
             //request.AddParameter("password", password);
@@ -200,7 +201,7 @@ namespace program.Controller
             return response.Content;
         }
 
-        public void professorAllLecturesRequest()
+        public string getAllLecturesRequest()
         {
             string targetURL = "https://test.inchang.dev:9000/lecture?key=" + me.Token;
             var client = new RestClient(targetURL);
@@ -208,9 +209,35 @@ namespace program.Controller
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
+
+            return response.Content;
         }
 
-        public void professorAddLectureRequest(string name, string time, int num, string semester)
+        public string getProfessorAllLecturesRequest()
+        {
+            string targetURL = "https://test.inchang.dev:9000/lecture?key=" + me.Token + "&professor_id=" + me.ID;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string getStudentAllLecturesRequest()
+        {
+            string targetURL = "https://test.inchang.dev:9000/lecture/my?key=" + me.Token;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string professorAddLectureRequest(string name, string time, int studentCnt, string semester)
         {
             string targetURL = "https://test.inchang.dev:9000/lecture/";
             var client = new RestClient(targetURL);
@@ -218,15 +245,199 @@ namespace program.Controller
             var request = new RestRequest(Method.POST);
             request.AddParameter("name", name);
             request.AddParameter("key", me.Token);
-            request.AddParameter("num", num);
+            request.AddParameter("student_cnt", studentCnt);
             request.AddParameter("time", time);
             request.AddParameter("semester", semester);
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
+
+            return response.Content;
         }
 
-        public void professorAddExamRequest()
+        public string professorModifyLectureRequest(string id, string name, string time, int studentCnt, string semester)
         {
+            string targetURL = "https://test.inchang.dev:9000/lecture/" + id;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.PUT);
+            request.AddParameter("name", name);
+            request.AddParameter("key", me.Token);
+            request.AddParameter("student_cnt", studentCnt);
+            request.AddParameter("time", time);
+            request.AddParameter("semester", semester);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string professorRemoveLectureRequest(string id)
+        {
+            string targetURL = "https://test.inchang.dev:9000/lecture/" + id + "?key=" + me.Token;
+            Console.WriteLine(targetURL);
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.DELETE);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string studentEnterLectureRequest(string id)
+        {
+            string targetURL = "https://test.inchang.dev:9000/lecture/" + id + "/participate";
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddParameter("key", me.Token);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string studentLeaveLectureRequest(string id)
+        {
+            string targetURL = "https://test.inchang.dev:9000/lecture/" + id + "/participate?key=" + me.Token;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.DELETE);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string getAllExamReqeust()
+        {
+            string targetURL = "https://test.inchang.dev:9000/room?key=" + me.Token;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string getExamRequest(string id)
+        {
+            string targetURL = "https://test.inchang.dev:9000/room/" + id + "?key=" + me.Token;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string professorAddExamRequest(string lecture_id, string startTime, string endTime, string name, int percent, JArray questions, JArray answers)
+        {
+            string targetURL = "https://test.inchang.dev:9000/room/";
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddParameter("key", me.Token);
+            request.AddParameter("lecture_id", lecture_id);
+            request.AddParameter("start_at", startTime);
+            request.AddParameter("finish_at", endTime);
+            request.AddParameter("exam_name", name);
+            request.AddParameter("exam_time", endTime);
+            request.AddParameter("score_rate", percent);
+            request.AddParameter("questions_json", questions);
+            request.AddParameter("problems_json", answers);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string professorModifyExamRequest(string room_id, string lecture_id, string startTime, string endTime, string name, int percent, JArray questions, JArray answers)
+        {
+            string targetURL = "https://test.inchang.dev:9000/room/" + room_id;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.PUT);
+            request.AddParameter("key", me.Token);
+            request.AddParameter("lecture_id", lecture_id);
+            request.AddParameter("start_at", startTime);
+            request.AddParameter("finish_at", endTime);
+            request.AddParameter("exam_name", name);
+            request.AddParameter("exam_time", endTime);
+            request.AddParameter("score_rate", percent);
+            request.AddParameter("questions_json", questions);
+            request.AddParameter("problems_json", answers);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string professorRemoveExamRequest(string room_id)
+        {
+            string targetURL = "https://test.inchang.dev:9000/room/" + room_id + "?key=" + me.Token;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.DELETE);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string professorAddExamAnswer(string room_id, JArray answers)
+        {
+            string targetURL = "https://test.inchang.dev:9000/room/" + room_id + "/problem";
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddParameter("problems", answers);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string professorGetAllAnswer(string room_id)
+        {
+            string targetURL = "https://test.inchang.dev:9000/room/" + room_id + "/problem?key=" + me.Token;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string professorRemoveAllAnswer(string room_id)
+        {
+            string targetURL = "https://test.inchang.dev:9000/room/" + room_id + "/problem?key=" + me.Token;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.DELETE);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string studentAddAnswer(string room_id, string answer, int num)
+        {
+            string targetURL = "https://test.inchang.dev:9000/room/" + room_id + "/answer";
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddParameter("key", me.Token);
+            request.AddParameter("value", answer);
+            request.AddParameter("room", room_id);
+            request.AddParameter("problem_num", num);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
         }
 
         public void moveToNextForm(Form targetForm)
@@ -243,8 +454,11 @@ namespace program.Controller
             nowForm = formNavigator.Pop();
             if (nowForm is StudentHomeView)
             {
-                Console.WriteLine("다시 로딩해주세요~");
-                // 학생 홈으로 돌아올 때는 필요한 정보들 다시 로딩하기
+                nowForm = new StudentHomeView(this);
+            }
+            else if (nowForm is ProfessorHomeView)
+            {
+                nowForm = new ProfessorHomeView(this);
             }
             nowForm.Show();
         }
@@ -253,19 +467,19 @@ namespace program.Controller
         {
             Image originalImage = Image.FromFile(importPath);
 
-            double ratioX = 300 / (double)originalImage.Width;
-            double ratioY = 300 / (double)originalImage.Height;
+            double ratioX = 600 / (double)originalImage.Width;
+            double ratioY = 600 / (double)originalImage.Height;
 
             double ratio = Math.Min(ratioX, ratioY);
 
             int newWidth = (int)(originalImage.Width * ratio);
             int newHeight = (int)(originalImage.Height * ratio);
 
-            Bitmap newImage = new Bitmap(300, 300);
+            Bitmap newImage = new Bitmap(600, 600);
             using (Graphics g = Graphics.FromImage(newImage))
             {
                 g.FillRectangle(Brushes.Black, 0, 0, newImage.Width, newImage.Height);
-                g.DrawImage(originalImage, (300 - newWidth) / 2, (300 - newHeight) / 2, newWidth, newHeight);
+                g.DrawImage(originalImage, (600 - newWidth) / 2, (600 - newHeight) / 2, newWidth, newHeight);
             }
             Console.WriteLine(exportPath);
             newImage.Save(exportPath, ImageFormat.Jpeg);

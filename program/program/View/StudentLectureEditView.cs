@@ -4,10 +4,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using program.Controller;
+using program.Model.Exams;
 using program.View.Components;
 
 namespace program.View
@@ -16,6 +20,8 @@ namespace program.View
     {
         private MainController mainController;
         private TopBarPanel topBarPanel;
+        private List<string> selectedID;
+        private List<string> myLectureID;
         public StudentLectureEditView(MainController mainController)
         {
             InitializeComponent();
@@ -36,41 +42,19 @@ namespace program.View
 
         private void StudentLectureEditView_Load(object sender, EventArgs e)
         {
+            selectedID = new List<string>();
+            myLectureID = new List<string>();
             // 테이블 행 추가
+            lectureTable.ColumnCount = 6;
+            lectureTable.Columns[5].Name = "id";
+            lectureTable.Columns[5].Visible = false;
 
-            lectureTable.Rows.Add(false, "운영체제", "안용학", "2020-08-08", "14:00 - 15:00", "아몰랑");
-            lectureTable.Rows.Add(false, "데이터베이스", "신동일", "2020-08-08", "14:00 - 15:00", "아몰랑");
-            lectureTable.Rows.Add(false, "Unix프로그래밍", "노재춘", "2020-08-09", "14:00 - 15:00", "뭐넣지");
-            lectureTable.Rows.Add(false, "웹프로그래밍", "김영복", "2020-08-10", "14:00 - 15:00", "일단틀만");
-            lectureTable.Rows.Add(false, "디지털시스템", "송상훈", "2020-08-08", "14:00 - 15:00", "아몰랑");
-            lectureTable.Rows.Add(false, "기계학습", "유성준", "2020-08-09", "14:00 - 15:00", "뭐넣지");
-            lectureTable.Rows.Add(false, "알고리즘", "국형준", "2020-08-10", "14:00 - 15:00", "일단틀만");
-            lectureTable.Rows.Add(false, "운영체제2", "안용학", "2020-08-08", "14:00 - 15:00", "아몰랑");
-            lectureTable.Rows.Add(false, "데이터베이스2", "신동일", "2020-08-08", "14:00 - 15:00", "아몰랑");
-            lectureTable.Rows.Add(false, "Unix프로그래밍2", "노재춘", "2020-08-09", "14:00 - 15:00", "뭐넣지");
-            lectureTable.Rows.Add(false, "웹프로그래밍2", "김영복", "2020-08-10", "14:00 - 15:00", "일단틀만");
-            lectureTable.Rows.Add(false, "디지털시스템2", "송상훈", "2020-08-08", "14:00 - 15:00", "아몰랑");
-            lectureTable.Rows.Add(false, "기계학습2", "유성준", "2020-08-09", "14:00 - 15:00", "뭐넣지");
-            lectureTable.Rows.Add(false, "알고리즘2", "국형준", "2020-08-10", "14:00 - 15:00", "일단틀만");
-            lectureTable.Rows.Add(false, "운영체제3", "안용학", "2020-08-08", "14:00 - 15:00", "아몰랑");
-            lectureTable.Rows.Add(false, "데이터베이스3", "신동일", "2020-08-08", "14:00 - 15:00", "아몰랑");
-            lectureTable.Rows.Add(false, "Unix프로그래밍3", "노재춘", "2020-08-09", "14:00 - 15:00", "뭐넣지");
-            lectureTable.Rows.Add(false, "웹프로그래밍3", "김영복", "2020-08-10", "14:00 - 15:00", "일단틀만");
-            lectureTable.Rows.Add(false, "디지털시스템3", "송상훈", "2020-08-08", "14:00 - 15:00", "아몰랑");
-            lectureTable.Rows.Add(false, "기계학습3", "유성준", "2020-08-09", "14:00 - 15:00", "뭐넣지");
-            lectureTable.Rows.Add(false, "알고리즘3", "국형준", "2020-08-10", "14:00 - 15:00", "일단틀만");
-            lectureTable.Rows.Add(false, "운영체제4", "안용학", "2020-08-08", "14:00 - 15:00", "아몰랑");
-            lectureTable.Rows.Add(false, "데이터베이스4", "신동일", "2020-08-08", "14:00 - 15:00", "아몰랑");
-            lectureTable.Rows.Add(false, "Unix프로그래밍4", "노재춘", "2020-08-09", "14:00 - 15:00", "뭐넣지");
-            lectureTable.Rows.Add(false, "웹프로그래밍4", "김영복", "2020-08-10", "14:00 - 15:00", "일단틀만");
-            lectureTable.Rows.Add(false, "디지털시스템4", "송상훈", "2020-08-08", "14:00 - 15:00", "아몰랑");
-            lectureTable.Rows.Add(false, "기계학습4", "유성준", "2020-08-09", "14:00 - 15:00", "뭐넣지");
-            lectureTable.Rows.Add(false, "알고리즘4", "국형준", "2020-08-10", "14:00 - 15:00", "일단틀만");
+            myLectureTable.ColumnCount = 5;
+            myLectureTable.Columns[4].Name = "id";
+            myLectureTable.Columns[4].Visible = false;
 
-            myLectureTable.Rows.Add(false, "데이터베이스", "신동일", "뭐넣징");
-            myLectureTable.Rows.Add(false, "Unix프로그래밍", "노재춘", "나중에");
-            myLectureTable.Rows.Add(false, "웹프로그래밍", "김영복", "정해지면");
-            myLectureTable.Rows.Add(false, "운영체제", "안용학", "넣어야징");
+            setAllLectrues();
+            setMyLectures();
 
             // 이미지
             homePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -104,6 +88,100 @@ namespace program.View
             this.Controls.Add(topBarPanel);
         }
 
+        private void setAllLectrues()
+        {
+            try
+            {
+                lectureTable.Rows.Clear();
+                string response = mainController.getAllLecturesRequest();
+                JArray jArray = (JArray)JsonConvert.DeserializeObject(response);
+                int cnt = jArray.Count;
+
+                for (int i = 0; i < cnt; i++)
+                {
+                    JObject jObject = (JObject)jArray[i];
+                    string id = (string)jObject["uuid"];
+                    string name = (string)jObject["name"];
+                    string professor = (string)jObject["professor_name"];
+                    string semester = (string)jObject["semester"];
+                    string time = (string)jObject["time"];
+
+                    lectureTable.Rows.Add(false, name, professor, time, semester, id);
+                }
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            }
+        }
+
+        private void setMyLectures()
+        {
+            try
+            { 
+                myLectureTable.Rows.Clear();
+                string response = mainController.getStudentAllLecturesRequest();
+                JArray jArray = (JArray)JsonConvert.DeserializeObject(response);
+                int cnt = jArray.Count;
+                List<Lecture> lectures = new List<Lecture>();
+                for (int i = 0; i < cnt; i++)
+                {
+                    JObject jObject = (JObject)jArray[i];
+                    string id = (string)jObject["uuid"];
+                    string name = (string)jObject["name"];
+                    string professor = (string)jObject["professor_name"];
+                    string semester = (string)jObject["semester"];
+                    string time = (string)jObject["time"];
+
+                    lectures.Add(new Lecture(id, name, professor, 0, semester, time));
+                    myLectureTable.Rows.Add(false, name, professor, time, id);
+                }
+                mainController.Me.Lectures = lectures;
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            }
+        }
+
+        private void addMyLectures()
+        {
+            try
+            {
+                int cnt = selectedID.Count;
+                for (int i = 0; i < cnt; i++)
+                {
+                    string response = mainController.studentEnterLectureRequest(selectedID[i]);
+
+                }
+                selectedID.Clear();
+                setMyLectures();
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            }
+        }
+
+        private void removeMyLectures()
+        {
+            try
+            {
+                int cnt = myLectureID.Count;
+                for (int i = 0; i < cnt; i++)
+                {
+                    string response = mainController.studentLeaveLectureRequest(myLectureID[i]);
+
+                }
+                myLectureID.Clear();
+                setMyLectures();
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            }
+        }
+
         private void homePictureBox_Click(object sender, EventArgs e)
         {
             mainController.moveToPreviousForm();
@@ -130,41 +208,42 @@ namespace program.View
         {
             string testMsg = "";
 
-            int count = 0;
-
             for(int i = 0; i < lectureTable.Rows.Count; i++)
             {
                 // 체크박스가 체크되어 있다면
                 if (lectureTable.Rows[i].Cells[0].Value.ToString().Equals("True"))
                 {
-                    testMsg = testMsg + lectureTable.Rows[i].Cells[1].Value.ToString() + "\n";
-                    count++;
+                    selectedID.Add(lectureTable.Rows[i].Cells[5].Value.ToString());
                 }
             }
 
+            int count = selectedID.Count;
+
             if (count == 0) MessageBox.Show("강의를 선택해주세요!");
-            else MessageBox.Show(testMsg);
+            else
+            {
+                addMyLectures();
+            }
             
         }
 
         private void deleteLectureBtn_Click(object sender, EventArgs e)
         {
-            string testMsg = "";
-
-            int count = 0;
 
             for (int i = 0; i < myLectureTable.Rows.Count; i++)
             {
                 // 체크박스가 체크되어 있다면
                 if (myLectureTable.Rows[i].Cells[0].Value.ToString().Equals("True"))
                 {
-                    testMsg = testMsg + myLectureTable.Rows[i].Cells[1].Value.ToString() + "\n";
-                    count++;
+                    myLectureID.Add(myLectureTable.Rows[i].Cells[4].Value.ToString());
                 }
             }
-
+            int count = myLectureID.Count;
             if (count == 0) MessageBox.Show("강의를 선택해주세요!");
-            else MessageBox.Show(testMsg);
+            else
+            {
+                removeMyLectures();
+            }
         }
 
         private void searchBtn_Click(object sender, EventArgs e)
@@ -183,7 +262,7 @@ namespace program.View
         {
             if (e.KeyCode == Keys.Enter)
             {
-                MessageBox.Show("검색 이벤트!");
+                searchBtn.PerformClick();
             }
         }
 
@@ -191,7 +270,7 @@ namespace program.View
         {
             if (e.KeyCode == Keys.Enter)
             {
-                MessageBox.Show("검색 이벤트!");
+                searchBtn.PerformClick();
             }
         }
     }

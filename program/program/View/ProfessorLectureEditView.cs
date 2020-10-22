@@ -7,7 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using program.Controller;
+using program.Model.Exams;
 using program.View.Components;
 
 namespace program.View
@@ -18,6 +21,7 @@ namespace program.View
         private TopBarPanel topBarPanel;
         private Color selectedColor = Color.FromArgb(51, 71, 97);
         private Color notSelectedColor = Color.Gray;
+        private string selectedID;
 
         public ProfessorLectureEditView(MainController mainController)
         {
@@ -32,13 +36,7 @@ namespace program.View
             // 이미지
             lecturePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             lecturePictureBox.Image = System.Drawing.Image.FromFile("../../src/Assets/Images/lecture.png");
-
-            // Sample
-            myLectureTable.Rows.Add("데이터베이스", "월수14:00-15:00", "40", "2019-1학기");
-            myLectureTable.Rows.Add("Unix프로그래밍", "월수14:00-15:00", "60", "2018-2학기");
-            myLectureTable.Rows.Add("웹프로그래밍", "월수14:00-15:00", "50", "2020-여름학기");
-            myLectureTable.Rows.Add("운영체제", "월수14:00-15:00 수18:00-20:00", "40", "2015-겨울학기");
-
+            
             // 폰트
             CustomFonts customFonts = new CustomFonts();
             // NormalFont : 10f
@@ -74,7 +72,24 @@ namespace program.View
             this.topBarPanel.Location = new Point(0, 0);
             this.Controls.Add(topBarPanel);
 
+            lectureTotalStudentTextBox.KeyPress += textBox_KeyPress_1;
+            this.myLectureTable.ColumnCount = 5;
+            this.myLectureTable.Columns[4].Name = "id";
+            this.myLectureTable.Columns[4].Visible = false;
+            // Sample
+            setMyLectureTable();
+        }
 
+        private void setMyLectureTable()
+        {
+            myLectureTable.Rows.Clear();
+            int cnt = mainController.Me.Lectures.Count;
+            List<Lecture> lectures = mainController.Me.Lectures;
+
+            for (int i = 0; i < cnt; i++)
+            {
+                myLectureTable.Rows.Add(lectures[i].Name, lectures[i].Time, lectures[i].StudentCnt.ToString(), lectures[i].Semester, lectures[i].ID);            
+            }
         }
 
         private void myLectureExitBtn_Click(object sender, EventArgs e)
@@ -90,6 +105,7 @@ namespace program.View
             lectureTimeTextBox.Text = myLectureTable.Rows[e.RowIndex].Cells[1].Value.ToString();
             lectureTotalStudentTextBox.Text = myLectureTable.Rows[e.RowIndex].Cells[2].Value.ToString();
             lectureSemesterTextBox.Text = myLectureTable.Rows[e.RowIndex].Cells[3].Value.ToString();
+            selectedID = myLectureTable.Rows[e.RowIndex].Cells[4].Value.ToString();
 
             // 첫 글자에 화살표 없을때
             if (!myLectureTable.Rows[e.RowIndex].Cells[0].Value.ToString()[0].Equals('▶'))
@@ -207,39 +223,129 @@ namespace program.View
         private void confirmBtn_Click(object sender, EventArgs e)
         {
             // 확인 버튼 처리
-
-            // 강의 추가 이벤트일 경우
-            if(addLectureBtn.BackColor == selectedColor)
+            if (lectureNameTextBox.Text == "")
             {
-                // 입력햇는지 입벌려 확인 들어갑니다
-                // 강의명 입력 확인
-                if (lectureNameTextBox.Text == null) MessageBox.Show("강의명을 입력해주세요!!!");
-                // 강의 시간 입력 확인
-                if (lectureTimeTextBox.Text == null) MessageBox.Show("강의 시간을 입력해주세요!!!");
-                // 수강 학생 인원 입력 확인
-                if (lectureTotalStudentTextBox.Text == null) MessageBox.Show("수강 학생 인원을 입력해주세요!!!");
-                // 강의년도-학기 입력 확인
-                if (lectureSemesterTextBox.Text == null) MessageBox.Show("강의년도-학기를 입력해주세요!!!");
-
-                MessageBox.Show("강의 추가 이벤트!!!");
+                MessageBox.Show("강의명을 입력해주세요!!!");
+                return;
             }
-
-            // 강의 수정 이벤트일 경우
-            else if (editBtn.BackColor == selectedColor)
+            // 강의 시간 입력 확인
+            if (lectureTimeTextBox.Text == "")
             {
-                MessageBox.Show("강의 수정 이벤트!!!");
+                MessageBox.Show("강의 시간을 입력해주세요!!!");
+                return;
             }
-
-            // 강의 삭제 이벤트일 경우
-            else if (deleteBtn.BackColor == selectedColor)
+            // 수강 학생 인원 입력 확인
+            if (lectureTotalStudentTextBox.Text == "")
             {
-                MessageBox.Show("강의 삭제 이벤트!!!");
+                MessageBox.Show("수강 학생 인원을 입력해주세요!!!");
+                return;
+            }
+            // 강의년도-학기 입력 확인
+            if (lectureSemesterTextBox.Text == "")
+            {
+                MessageBox.Show("강의년도-학기를 입력해주세요!!!");
+                return;
+            }
+            string name = lectureNameTextBox.Text;
+            string time = lectureTimeTextBox.Text;
+            string semester = lectureSemesterTextBox.Text;
+
+            try
+            {
+                int studentCnt = int.Parse(lectureTotalStudentTextBox.Text);
+                // 강의 추가 이벤트일 경우
+                if (addLectureBtn.BackColor == selectedColor)
+                {
+                    try
+                    {
+                        string response = mainController.professorAddLectureRequest(name, time, studentCnt, semester);
+                        JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                        string id = (string)jObject["uuid"];
+                        mainController.Me.Lectures.Add(new Lecture(id, name, mainController.Me.Name, studentCnt, semester, time));
+                        setMyLectureTable();
+                        addLectureBtn.BackColor = notSelectedColor;
+                        confirmBtn.Visible = false;
+                        MessageBox.Show("강의 추가 완료", "강의 추가");
+                    }
+                    catch (Exception error)
+                    {
+                        Console.WriteLine(error);
+                    }
+                }
+
+                // 강의 수정 이벤트일 경우
+                else if (editBtn.BackColor == selectedColor)
+                {
+                    try
+                    {
+                        string response = mainController.professorModifyLectureRequest(selectedID, name, time, studentCnt, semester);
+                        JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                        string id = (string)jObject["uuid"];
+                        int cnt = mainController.Me.Lectures.Count;
+                        for (int i = 0; i < cnt; i++)
+                        {
+                            if (selectedID.Equals(mainController.Me.Lectures[i].ID))
+                            {
+                                mainController.Me.Lectures[i].modifyLecture(name, mainController.Me.Name, studentCnt, semester, time);
+                            }
+                        }
+                        setMyLectureTable();
+                        editBtn.BackColor = notSelectedColor;
+                        confirmBtn.Visible = false;
+                        MessageBox.Show("강의 수정 완료", "강의 수정");
+                    }
+                    catch (Exception error)
+                    {
+                        Console.WriteLine(error);
+                    }
+                }
+
+                // 강의 삭제 이벤트일 경우
+                else if (deleteBtn.BackColor == selectedColor)
+                {
+                    try
+                    {
+                        string response = mainController.professorRemoveLectureRequest(selectedID);
+                        JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                        int cnt = mainController.Me.Lectures.Count;
+                        for (int i = 0; i < cnt; i++)
+                        {
+                            if (selectedID.Equals(mainController.Me.Lectures[i].ID))
+                            {
+                                mainController.Me.Lectures.RemoveAt(i);
+                                break;
+                            }
+                        }
+                        setMyLectureTable();
+                        deleteBtn.BackColor = notSelectedColor;
+                        confirmBtn.Visible = false;
+                        MessageBox.Show("강의 삭제 완료", "강의 삭제");
+                    }
+                    catch (Exception error)
+                    {
+                        Console.WriteLine(error);
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+                MessageBox.Show("숫자만 입력해주세요.", "입력 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void backButton_Click(object sender, EventArgs e)
         {
             mainController.moveToPreviousForm();
+        }
+
+        private void textBox_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            //숫자만 입력되도록 필터링
+            if (!(char.IsDigit(e.KeyChar) || e.KeyChar == Convert.ToChar(Keys.Back)))    //숫자와 백스페이스를 제외한 나머지를 바로 처리
+            {
+                e.Handled = true;
+            }
         }
     }
 }

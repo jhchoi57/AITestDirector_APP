@@ -20,6 +20,7 @@ namespace program.View
     {
         private MainController mainController;
         private TopBarPanel topBarPanel;
+        private string selectedID;
         public StudentHomeView(MainController mainController)
         {
             InitializeComponent();
@@ -43,16 +44,15 @@ namespace program.View
         {
             CustomFonts customFonts = new CustomFonts();
 
-            
+            lectureTable.ColumnCount = 6;
+            lectureTable.Columns[5].Name = "id";
+            lectureTable.Columns[5].Visible = false;
             // 테이블 행 높이 설정
             lectureTable.RowTemplate.Height = 35;
 
             // 테이블 행 추가
             // Sample
-            lectureTable.Rows.Add("운영체제1", "안용학1", "2020-08-08", "14:00 - 15:00", "중간고사");
-            lectureTable.Rows.Add("운영체제2", "안용학2", "2020-08-09", "14:00 - 15:00", "기말고사");
-            lectureTable.Rows.Add("운영체제3", "안용학3", "2020-08-10", "14:00 - 15:00", "퀴즈1");
-
+            
             univLabel.Text = "세종대학교";
             stuNumLabel.Text = "123456";
             nameLabel.Text = "홍길동";
@@ -76,6 +76,8 @@ namespace program.View
 
             lectureTable.Font = customFonts.NormalFont();
 
+            //testInfoMinimizeBtn.Font = customFonts.LabelFont();
+            //testInfoExitBtn.Font = customFonts.LabelFont();
 
             univLabel.Font = customFonts.LabelFont();
             stuNumLabel.Font = customFonts.LabelFont();
@@ -113,6 +115,8 @@ namespace program.View
 
             editButton.Click += editButton_Click;
             setUserInfo();
+            setUserExam();
+            selectedID = "";
         }
 
         private void setUserInfo()
@@ -124,6 +128,7 @@ namespace program.View
                 string birth = (string)jObject["birth_day"];
                 string school = (string)jObject["institute"];
                 string email = (string)jObject["email"];
+                Boolean profileImage = (Boolean)jObject["profile_image"];
                 int year = int.Parse(birth.Substring(0, 4));
                 int month = int.Parse(birth.Substring(5, 2));
                 int day = int.Parse(birth.Substring(8));
@@ -136,6 +141,39 @@ namespace program.View
                 stuNumLabel.Text = mainController.Me.ID;
                 nameLabel.Text = mainController.Me.Name;
                 emailLabel.Text = email;
+                if (profileImage)
+                {
+                    pictureBox.Load("https://test.inchang.dev:9000/account/student/" + mainController.Me.ID + "/profile-image");
+                }
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            }
+        }
+
+        private void setUserExam()
+        {
+            try
+            {
+                string response = mainController.getAllExamReqeust();
+                JArray jArray = (JArray)JsonConvert.DeserializeObject(response);
+                int cnt = jArray.Count;
+                for (int i = 0; i < cnt; i++)
+                {
+                    JObject jObject = (JObject)jArray[i];
+                    string id = (string)jObject["uuid"];
+                    string examName = (string)jObject["exam_name"];
+                    string startTime = (string)jObject["start_at"];
+                    string endTime = (string)jObject["finish_at"];
+                    string professor = (string)jObject["professor_name"];
+                    string lectureName = (string)jObject["lecture_name"];
+                    string date = startTime.Substring(0, 10);
+                    string time = startTime.Substring(11, 5) + " - " + endTime.Substring(11, 5);
+
+                    lectureTable.Rows.Add(lectureName, professor, date, time, examName, id);
+
+                }
             }
             catch (Exception error)
             {
@@ -206,8 +244,10 @@ namespace program.View
 
         private void lectureTable_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
-            if(lectureTable.Rows[e.RowIndex].Cells[0].Value.ToString()[0].Equals('▶'))
+            if (lectureTable.Rows[e.RowIndex].Cells[0].Value.ToString()[0].Equals('▶'))
+            {
                 lectureTable.Rows[e.RowIndex].Cells[0].Value = lectureTable.Rows[e.RowIndex].Cells[0].Value.ToString().Substring(1);
+            }
         }
 
         private void lectureTable_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -229,6 +269,7 @@ namespace program.View
             {
                 testInfoLectureLbl.Text = lectureTable.Rows[e.RowIndex].Cells[0].Value.ToString();
                 lectureTable.Rows[e.RowIndex].Cells[0].Value = "▶" + lectureTable.Rows[e.RowIndex].Cells[0].Value;
+                selectedID = lectureTable.Rows[e.RowIndex].Cells[5].Value.ToString();
             }
         }
 
@@ -240,7 +281,12 @@ namespace program.View
             testPanel.Enabled = false;
             testInfoPanel.Enabled = false;
             */
-            ExamView examView = new ExamView(mainController);
+            if (selectedID == "")
+            {
+                MessageBox.Show("시험을 선택해주세요.", "시험 선택 오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            ExamView examView = new ExamView(mainController, selectedID, mainController.Me.Token, true);
             mainController.moveToNextForm(examView);
         }
 
@@ -276,6 +322,16 @@ namespace program.View
             {
                 Console.WriteLine(openFile);
                 string response = mainController.modifyStudentImageRequest(openFile.FileName);
+                JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                string code = (string)jObject["code"];
+                if (code.Equals("OK"))
+                {
+                    pictureBox.Load("https://test.inchang.dev:9000/account/student/" + mainController.Me.ID + "/profile-image");
+                }
+                else
+                {
+                    MessageBox.Show("이미지 등록에 실패했습니다.\n 다시 시도해 주세요.", "이미지 등록 실패", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

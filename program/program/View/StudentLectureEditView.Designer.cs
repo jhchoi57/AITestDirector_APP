@@ -62,13 +62,12 @@
             this.professorNameTxtBox = new System.Windows.Forms.TextBox();
             this.addLectureBtn = new System.Windows.Forms.Button();
             this.lectureTable = new System.Windows.Forms.DataGridView();
+            this.searchBtn = new System.Windows.Forms.Button();
             this.checkBox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.lectureName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.professor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.searchBtn = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.myLecturePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.myLectureTable)).BeginInit();
@@ -384,7 +383,6 @@
             this.checkBox,
             this.lectureName,
             this.professor,
-            this.testDay,
             this.testTime,
             this.testName});
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -421,57 +419,6 @@
             this.lectureTable.TabIndex = 11;
             this.lectureTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lectureTable_CellClick);
             // 
-            // checkBox
-            // 
-            this.checkBox.FillWeight = 1.5F;
-            this.checkBox.HeaderText = "";
-            this.checkBox.Name = "checkBox";
-            this.checkBox.ReadOnly = true;
-            this.checkBox.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // lectureName
-            // 
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            this.lectureName.DefaultCellStyle = dataGridViewCellStyle9;
-            this.lectureName.FillWeight = 17F;
-            this.lectureName.HeaderText = "강의명";
-            this.lectureName.Name = "lectureName";
-            this.lectureName.ReadOnly = true;
-            this.lectureName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // professor
-            // 
-            this.professor.FillWeight = 5F;
-            this.professor.HeaderText = "담당 교수";
-            this.professor.Name = "professor";
-            this.professor.ReadOnly = true;
-            this.professor.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // testDay
-            // 
-            this.testDay.FillWeight = 7F;
-            this.testDay.HeaderText = "날짜";
-            this.testDay.Name = "testDay";
-            this.testDay.ReadOnly = true;
-            this.testDay.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // testTime
-            // 
-            this.testTime.FillWeight = 7F;
-            this.testTime.HeaderText = "시간";
-            this.testTime.Name = "testTime";
-            this.testTime.ReadOnly = true;
-            this.testTime.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // testName
-            // 
-            this.testName.FillWeight = 15F;
-            this.testName.HeaderText = "뭐넣징";
-            this.testName.Name = "testName";
-            this.testName.ReadOnly = true;
-            this.testName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
             // searchBtn
             // 
             this.searchBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(165)))), ((int)(((byte)(246)))));
@@ -486,6 +433,49 @@
             this.searchBtn.Text = "검색";
             this.searchBtn.UseVisualStyleBackColor = false;
             this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            // 
+            // checkBox
+            // 
+            this.checkBox.FillWeight = 0.1403889F;
+            this.checkBox.HeaderText = "";
+            this.checkBox.Name = "checkBox";
+            this.checkBox.ReadOnly = true;
+            this.checkBox.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // lectureName
+            // 
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            this.lectureName.DefaultCellStyle = dataGridViewCellStyle9;
+            this.lectureName.FillWeight = 0.2193597F;
+            this.lectureName.HeaderText = "강의명";
+            this.lectureName.Name = "lectureName";
+            this.lectureName.ReadOnly = true;
+            this.lectureName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // professor
+            // 
+            this.professor.FillWeight = 0.3202531F;
+            this.professor.HeaderText = "담당 교수";
+            this.professor.Name = "professor";
+            this.professor.ReadOnly = true;
+            this.professor.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // testTime
+            // 
+            this.testTime.FillWeight = 0.5092764F;
+            this.testTime.HeaderText = "시간";
+            this.testTime.Name = "testTime";
+            this.testTime.ReadOnly = true;
+            this.testTime.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // testName
+            // 
+            this.testName.FillWeight = 0.1935527F;
+            this.testName.HeaderText = "년도-학기";
+            this.testName.Name = "testName";
+            this.testName.ReadOnly = true;
+            this.testName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // StudentLectureEditView
             // 
@@ -535,15 +525,14 @@
         private System.Windows.Forms.PictureBox lecturePictureBox;
         private System.Windows.Forms.Label myLectureLbl;
         private System.Windows.Forms.DataGridView myLectureTable;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn checkBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lectureName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn professor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn testDay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn testTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn testName;
         private System.Windows.Forms.DataGridViewCheckBoxColumn myLectureCheckBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn checkBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lectureName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn professor;
+        private System.Windows.Forms.DataGridViewTextBoxColumn testTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn testName;
     }
 }

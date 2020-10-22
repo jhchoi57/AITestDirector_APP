@@ -1,4 +1,5 @@
-﻿using System;
+﻿using program.Model.Exams;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -50,6 +51,15 @@ namespace program.Model
             get { return token; }
             set { token = value; }
         }
+        /**
+         *  사용자 강의 리스트
+         */
+        private List<Lecture> lectures { get; set; }
+        public List<Lecture> Lectures
+        {
+            get { return lectures; }
+            set { lectures = value; }
+        }
 
         /**
          * 생성자 초기화 without data
@@ -59,6 +69,7 @@ namespace program.Model
             name = "";
             id = "";
             token = "";
+            lectures = new List<Lecture>();
         }
         /**
          * 생성자 초기화 
@@ -68,6 +79,7 @@ namespace program.Model
             this.name = name;
             this.id = id;
             this.token = token;
+            lectures = new List<Lecture>();
         }
     }
 }

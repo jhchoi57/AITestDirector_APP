@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace program.View.Components
     class MainQuestionPanel : Panel
     {
         private AddSubQuestionButton addSubQuestionButton { get; set; }
-        private QuestionKindPanel questionKindPanel;
+        private QuestionKindPanel questionKindPanel { get; set; }
         private ScorePanel totalScorePanel { get; set; }
         private Label mainQuestionLabel { get; set; }
         private TextBox mainQuestionTextBox { get; set; }
@@ -28,15 +29,20 @@ namespace program.View.Components
             get { return totalScorePanel; }
             set { totalScorePanel = value; }
         }
-        public Label MainQuestionLabel 
-        { 
-            get { return mainQuestionLabel; } 
+        public Label MainQuestionLabel
+        {
+            get { return mainQuestionLabel; }
             set { mainQuestionLabel = value; }
         }
         public TextBox MainQuestionTextBox
         {
             get { return mainQuestionTextBox; }
             set { mainQuestionTextBox = value; }
+        }
+        public QuestionKindPanel QuestionKind
+        {
+            get { return questionKindPanel; }
+            set { questionKindPanel = value; }
         }
         public List<SubQuestionPanel> SubQuestionPanelsList
         {

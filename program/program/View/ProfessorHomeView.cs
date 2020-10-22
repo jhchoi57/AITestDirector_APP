@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using program.Controller;
+using program.Model.Exams;
 using program.View.Components;
 
 namespace program.View
@@ -18,6 +19,7 @@ namespace program.View
     {
         private MainController mainController;
         private TopBarPanel topBarPanel;
+        private string selectedID;
         public ProfessorHomeView(MainController mainController)
         {
             InitializeComponent();
@@ -32,12 +34,6 @@ namespace program.View
         {
             // 테이블 행 높이 설정
             lectureTable.RowTemplate.Height = 35;
-
-            // 테이블 행 추가
-            // Sample
-            lectureTable.Rows.Add("운영체제1", "안용학1", "2020-08-08", "14:00 - 15:00", "중간고사");
-            lectureTable.Rows.Add("운영체제2", "안용학2", "2020-08-09", "14:00 - 15:00", "기말고사");
-            lectureTable.Rows.Add("운영체제3", "안용학3", "2020-08-10", "14:00 - 15:00", "퀴즈1");
 
             // 이미지
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -56,10 +52,28 @@ namespace program.View
             // SmallFont : 8f
             // TitleFont: 20f
             // SubTitleFont : 17f
+            initFont(customFonts);
 
+            testAddBtn.Click += testAddBtn_Click_1;
+            editLectureBtn.Click += editLectureBtn_Click_1;
+
+            //상단바
+            this.topBarPanel = new TopBarPanel(customFonts);
+            this.topBarPanel.Location = new Point(0, 0);
+            this.Controls.Add(topBarPanel);
+
+            this.lectureTable.Columns[5].Visible = false;
+
+            setUserInfo();
+            setUserLecture();
+            setUserExam();
+            mainController.getAllExamReqeust();
+            selectedID = "";
+        }
+
+        private void initFont(CustomFonts customFonts)
+        {
             lectureTable.Font = customFonts.NormalFont();
-
-
 
             univLabel.Font = customFonts.LabelFont();
             nameLabel.Font = customFonts.LabelFont();
@@ -78,18 +92,6 @@ namespace program.View
             editPasswordTextBox.Font = customFonts.TextBoxFont();
             editPasswordCheckTextBox.Font = customFonts.TextBoxFont();
             editBirthPicker.Font = customFonts.TextBoxFont();
-
-            testAddBtn.Click += testAddBtn_Click_1;
-            editLectureBtn.Click += editLectureBtn_Click_1;
-
-            //mainController.professorAddLectureRequest("운영체제", "월수 16:30 ~ 18:00", 30, "2020-2학기");
-            mainController.professorAllLecturesRequest();
-            setUserInfo();
-
-            //상단바
-            this.topBarPanel = new TopBarPanel(customFonts);
-            this.topBarPanel.Location = new Point(0, 0);
-            this.Controls.Add(topBarPanel);
         }
 
         private void setUserInfo()
@@ -115,6 +117,63 @@ namespace program.View
             {
                 Console.WriteLine(error);
             } 
+        }
+
+        private void setUserLecture()
+        {
+            try
+            {
+                string response = mainController.getProfessorAllLecturesRequest();
+                JArray jArray = (JArray)JsonConvert.DeserializeObject(response);
+                int cnt = jArray.Count;
+                List<Lecture> lectures = new List<Lecture>();
+                for (int i = 0; i < cnt; i++)
+                {
+                    string id = (string)jArray[i]["uuid"];
+                    string name = (string)jArray[i]["name"];
+                    int studentCnt = (int)jArray[i]["student_cnt"];
+                    string professor = (string)jArray[i]["professor_name"];
+                    string semester = (string)jArray[i]["semester"];
+                    string time = (string)jArray[i]["time"];
+                    lectures.Add(new Lecture(id, name, professor, studentCnt, semester, time));
+                }
+                mainController.Me.Lectures = lectures;
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            }
+        }
+
+        private void setUserExam()
+        {
+            lectureTable.Rows.Clear();
+            try
+            {
+                string response = mainController.getAllExamReqeust();
+                JArray jArray = (JArray)JsonConvert.DeserializeObject(response);
+                int cnt = jArray.Count;
+                for (int i = 0; i < cnt; i++)
+                {
+                    string id = (string)jArray[i]["uuid"];
+                    string examName = (string)jArray[i]["exam_name"];
+                    string startTime = (string)jArray[i]["start_at"];
+                    string endTime = (string)jArray[i]["finish_at"];
+                    string lectureName = (string)jArray[i]["lecture_name"];
+                    string professor = (string)jArray[i]["professor_name"];
+                    string date = startTime.Substring(0, 10);
+                    string time = startTime.Substring(11, 5) + " - " + endTime.Substring(11, 5);
+
+                    // 테이블 행 추가
+                    // Sample
+                    lectureTable.Rows.Add(lectureName, professor, date, time, examName, id);
+
+                }
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            }
         }
 
         private void editInfoBtn_Click(object sender, EventArgs e)
@@ -167,14 +226,10 @@ namespace program.View
 
         private void lectureTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 5 && e.RowIndex>=0)
+            if (e.ColumnIndex == 6)
             { // 버튼 컬럼 위치
-                MessageBox.Show("수정  \n" + 
-                    lectureTable.Rows[e.RowIndex].Cells[0].Value.ToString() + "\n"
-                    + lectureTable.Rows[e.RowIndex].Cells[1].Value.ToString() + "\n"
-                    + lectureTable.Rows[e.RowIndex].Cells[2].Value.ToString()
-                    );
-                MakeExamView makeExamView = new MakeExamView(mainController);
+                selectedID = lectureTable.Rows[e.RowIndex].Cells[5].Value.ToString();
+                MakeExamView makeExamView = new MakeExamView(mainController, selectedID);
                 mainController.moveToNextForm(makeExamView);
             }
             else if(e.ColumnIndex == 6 && e.RowIndex >= 0)
@@ -198,11 +253,16 @@ namespace program.View
         private void checkScoreBtn_Click(object sender, EventArgs e)
         {
             ProfessorScoreCheckView ProfessorScoreCheckView = new ProfessorScoreCheckView(mainController);
-            ProfessorScoreCheckView.Show();
+            mainController.moveToNextForm(ProfessorScoreCheckView);
         }
 
         private void testAddBtn_Click_1(object sender, EventArgs e)
         {
+            if (mainController.Me.Lectures.Count == 0)
+            {
+                MessageBox.Show("하나 이상의 강의가 존재해야 시험을 출제하실 수 있습니다.", "시험 출제 제한", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             MakeExamView makeExamView = new MakeExamView(mainController);
             mainController.moveToNextForm(makeExamView);
         }

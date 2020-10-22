@@ -18,7 +18,6 @@ namespace program.View
     public partial class LoginView : Form
     {
         private MainController mainController;
-        private Boolean emailAuthCheck = false;
         private CustomFonts customFonts;
         private TopBarPanel topBarPanel;
 
@@ -96,7 +95,6 @@ namespace program.View
         {
             string email = emailTextBox.Text;
             string password = passwordTextBox.Text;
-            string position = null;
 
             /*
             if (email == "example@sejong.ac.kr" || !email.Contains("@") || password == "**********")
@@ -170,8 +168,6 @@ namespace program.View
             signupPasswordCheckTextBox.Text = null;
             signupBirthPicker.Value = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
             signupPositionComboBox.Text = null;
-            // 이메일 인증도 초기화
-            emailAuthCheck = false;
 
         }
 
@@ -303,8 +299,6 @@ namespace program.View
             // 비밀번호 - 비밀번호 확인 입력이 같은지 확인
             else if (!password.Equals(passwordCheck)) MessageBox.Show("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
 
-            // 이메일 인증 확인
-            else if (emailAuthCheck == false) MessageBox.Show("이메일 인증을 완료해주세요.");
 
             else
             {
@@ -348,20 +342,9 @@ namespace program.View
             signupUnivTextBox.Text = "세종대학교";
         }
 
-        private void signupEmailAuthButton_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("이메일 인증!!!");
-            emailAuthCheck = true;
-        }
-
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private void signupSendAuthBtn_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("인증번호 발송!!");
         }
     }
 }
