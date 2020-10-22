@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using program.Controller;
 using program.View.Components;
+using Excel = Microsoft.Office.Interop.Excel;
+
 
 namespace program.View
 {
@@ -73,7 +75,7 @@ namespace program.View
             // TitleFont: 20f
             // SubTitleFont : 17f
 
-            lectureTable.Font = customFonts.NormalFont();
+            studentScoreTable.Font = customFonts.NormalFont();
             scoreCheckLabel.Font = customFonts.TitleFont();
 
             // 강의명
@@ -106,29 +108,29 @@ namespace program.View
             // 강의명, 시험명, 시험 날짜, 총 점수, 평균 점수 받아야됨
 
             // 학생명 학생점수 채점 여부 표시
-            lectureTable.Rows.Add("홍길동", "78", "O");
-            lectureTable.Rows.Add("최모씨", "56", "X");
-            lectureTable.Rows.Add("이모씨", "78", "O");
-            lectureTable.Rows.Add("김모씨", "78", "X");
-            lectureTable.Rows.Add("홍길동", "78", "O");
-            lectureTable.Rows.Add("최모씨", "56", "X");
-            lectureTable.Rows.Add("이모씨", "78", "O");
-            lectureTable.Rows.Add("김모씨", "78", "X");
-            lectureTable.Rows.Add("홍길동", "78", "O");
-            lectureTable.Rows.Add("최모씨", "56", "X");
-            lectureTable.Rows.Add("이모씨", "78", "O");
-            lectureTable.Rows.Add("김모씨", "78", "X");
-            lectureTable.Rows.Add("홍길동", "78", "O");
-            lectureTable.Rows.Add("최모씨", "56", "X");
-            lectureTable.Rows.Add("이모씨", "78", "O");
-            lectureTable.Rows.Add("김모씨", "78", "X");
-            lectureTable.Rows.Add("홍길동", "78", "O");
-            lectureTable.Rows.Add("김모씨", "78", "X");
-            lectureTable.Rows.Add("홍길동", "78", "O");
-            lectureTable.Rows.Add("최모씨", "56", "X");
-            lectureTable.Rows.Add("이모씨", "78", "O");
-            lectureTable.Rows.Add("김모씨", "78", "X");
-            lectureTable.Rows.Add("홍길동", "78", "O");
+            studentScoreTable.Rows.Add("홍길동", "78", "O");
+            studentScoreTable.Rows.Add("최모씨", "56", "X");
+            studentScoreTable.Rows.Add("이모씨", "78", "O");
+            studentScoreTable.Rows.Add("김모씨", "78", "X");
+            studentScoreTable.Rows.Add("홍길동", "78", "O");
+            studentScoreTable.Rows.Add("최모씨", "56", "X");
+            studentScoreTable.Rows.Add("이모씨", "78", "O");
+            studentScoreTable.Rows.Add("김모씨", "78", "X");
+            studentScoreTable.Rows.Add("홍길동", "78", "O");
+            studentScoreTable.Rows.Add("최모씨", "56", "X");
+            studentScoreTable.Rows.Add("이모씨", "78", "O");
+            studentScoreTable.Rows.Add("김모씨", "78", "X");
+            studentScoreTable.Rows.Add("홍길동", "78", "O");
+            studentScoreTable.Rows.Add("최모씨", "56", "X");
+            studentScoreTable.Rows.Add("이모씨", "78", "O");
+            studentScoreTable.Rows.Add("김모씨", "78", "X");
+            studentScoreTable.Rows.Add("홍길동", "78", "O");
+            studentScoreTable.Rows.Add("김모씨", "78", "X");
+            studentScoreTable.Rows.Add("홍길동", "78", "O");
+            studentScoreTable.Rows.Add("최모씨", "56", "X");
+            studentScoreTable.Rows.Add("이모씨", "78", "O");
+            studentScoreTable.Rows.Add("김모씨", "78", "X");
+            studentScoreTable.Rows.Add("홍길동", "78", "O");
 
             //상단바
             this.topBarPanel = new TopBarPanel(customFonts);
@@ -157,5 +159,191 @@ namespace program.View
             BookMarkView bookMarkView = new BookMarkView(mainController);
             mainController.moveToNextForm(bookMarkView);
         }
+
+        private void excelDownBtn_Click(object sender, EventArgs e)
+        {
+            ExportToExcel();
+        }
+
+        private void ExportToExcel()
+
+        {
+
+            bool IsExport = false;
+
+
+
+            // Creating a Excel object.
+
+            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
+
+            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
+
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+
+
+
+            //DataGridView에 불러온 Data가 아무것도 없을 경우
+
+            if (studentScoreTable.Rows.Count == 0)
+
+            {
+
+                MessageBox.Show("데이터가 없습니다.", "Inform", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                return;
+
+            }
+
+
+
+            try
+
+            {
+
+                worksheet = workbook.ActiveSheet;
+
+
+
+                int cellRowIndex = 1;
+
+                int cellColumnIndex = 1;
+
+
+
+
+
+                for (int col = 0; col < studentScoreTable.Columns.Count; col++)
+
+                {
+
+
+
+                    if (cellRowIndex == 1)
+
+                    {
+
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = studentScoreTable.Columns[col].HeaderText;
+
+                    }
+
+                    cellColumnIndex++;
+
+                }
+
+
+
+                cellColumnIndex = 1;
+
+                cellRowIndex++;
+
+
+
+                for (int row = 0; row < studentScoreTable.Rows.Count - 1; row++)
+
+                {
+
+                    for (int col = 0; col < studentScoreTable.Columns.Count; col++)
+
+                    {
+
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = studentScoreTable.Rows[row].Cells[col].Value.ToString();
+
+
+
+                        cellColumnIndex++;
+
+                    }
+
+                    cellColumnIndex = 1;
+
+                    cellRowIndex++;
+
+                }
+
+
+
+                SaveFileDialog saveFileDialog = GetExcelSave();
+
+
+
+                if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+
+                {
+
+                    workbook.SaveAs(saveFileDialog.FileName);
+
+                    MessageBox.Show("저장되었습니다.");
+
+                    IsExport = true;
+
+                }
+
+
+
+                //Export 성공 했으면 객체들 해제
+
+                if (IsExport)
+
+                {
+
+                    workbook.Close();
+
+
+
+                    excel.Quit();
+
+                    workbook = null;
+
+                    excel = null;
+
+                }
+
+            }
+
+            catch (System.Exception ex)
+
+            {
+
+                MessageBox.Show(ex.Message);
+
+            }
+
+        }
+
+
+
+
+
+        private SaveFileDialog GetExcelSave()
+
+        {
+
+            //Getting the location and file name of the excel to save from user.
+
+            SaveFileDialog saveDialog = new SaveFileDialog();
+
+            saveDialog.CheckPathExists = true;
+
+            saveDialog.AddExtension = true;
+
+            saveDialog.ValidateNames = true;
+
+            saveDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+
+
+            saveDialog.DefaultExt = ".xlsx";
+
+            saveDialog.Filter = "Microsoft Excel Workbook (*.xls)|*.xlsx";
+
+            saveDialog.FileName = "학생별 성적 확인".ToString();
+
+
+
+            return saveDialog;
+
+        }
+
     }
 }
