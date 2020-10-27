@@ -26,20 +26,7 @@ namespace program.View
 
         private void ProfessorScoreCheckView_Load(object sender, EventArgs e)
         {
-            // ComboBox setting
-            semesterComboBox.Items.Clear();
-
-            semesterComboBox.Items.Add("2017-1학기");
-            semesterComboBox.Items.Add("2017-2학기");
-            semesterComboBox.Items.Add("2018-1학기");
-            semesterComboBox.Items.Add("2018-2학기");
-            semesterComboBox.Items.Add("2019-1학기");
-            semesterComboBox.Items.Add("2019-2학기");
-            semesterComboBox.Items.Add("2020-1학기");
-            semesterComboBox.Items.Add("2020-2학기");
-
-            semesterComboBox.SelectedText = "-- 년도/학기 선택 --";
-
+            
             // Font setting
             CustomFonts customFonts = new CustomFonts();
             // NormalFont : 10f
@@ -49,7 +36,6 @@ namespace program.View
             // TitleFont: 20f
             // SubTitleFont : 17f
 
-            semesterComboBox.Font = customFonts.LabelFont();
             lectureTable.Font = customFonts.NormalFont();
             scoreCheckLabel.Font = customFonts.TitleFont();
 
@@ -103,7 +89,7 @@ namespace program.View
 
         private void backBtn_Click(object sender, EventArgs e)
         {
-            Close();
+            mainController.moveToPreviousForm();
         }
 
         private void exitBtn_Click(object sender, EventArgs e)

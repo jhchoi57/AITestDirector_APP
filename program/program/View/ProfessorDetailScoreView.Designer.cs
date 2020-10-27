@@ -50,6 +50,7 @@
             this.scorePictureBox = new System.Windows.Forms.PictureBox();
             this.backBtn = new System.Windows.Forms.Button();
             this.studentScoreTable = new System.Windows.Forms.DataGridView();
+            this.studentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.studentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.studentScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -269,6 +270,7 @@
             this.studentScoreTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.studentScoreTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.studentScoreTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.studentID,
             this.studentName,
             this.studentScore,
             this.scoreRate});
@@ -281,7 +283,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.studentScoreTable.DefaultCellStyle = dataGridViewCellStyle3;
             this.studentScoreTable.GridColor = System.Drawing.Color.AliceBlue;
-            this.studentScoreTable.Location = new System.Drawing.Point(792, 78);
+            this.studentScoreTable.Location = new System.Drawing.Point(665, 78);
             this.studentScoreTable.MultiSelect = false;
             this.studentScoreTable.Name = "studentScoreTable";
             this.studentScoreTable.ReadOnly = true;
@@ -302,41 +304,45 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.studentScoreTable.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.studentScoreTable.RowTemplate.Height = 23;
-            this.studentScoreTable.Size = new System.Drawing.Size(331, 484);
+            this.studentScoreTable.Size = new System.Drawing.Size(523, 484);
             this.studentScoreTable.TabIndex = 12;
+            // 
+            // studentID
+            // 
+            this.studentID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.studentID.FillWeight = 5F;
+            this.studentID.HeaderText = "학번";
+            this.studentID.Name = "studentID";
+            this.studentID.ReadOnly = true;
             // 
             // studentName
             // 
-            this.studentName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.studentName.FillWeight = 7F;
-            this.studentName.Frozen = true;
+            this.studentName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.studentName.FillWeight = 5F;
             this.studentName.HeaderText = "학생명";
             this.studentName.MinimumWidth = 7;
             this.studentName.Name = "studentName";
             this.studentName.ReadOnly = true;
-            this.studentName.Width = 150;
             // 
             // studentScore
             // 
-            this.studentScore.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.studentScore.FillWeight = 1F;
+            this.studentScore.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.studentScore.FillWeight = 3F;
             this.studentScore.HeaderText = "학생점수";
             this.studentScore.MinimumWidth = 3;
             this.studentScore.Name = "studentScore";
             this.studentScore.ReadOnly = true;
             this.studentScore.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.studentScore.Width = 78;
             // 
             // scoreRate
             // 
-            this.scoreRate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.scoreRate.FillWeight = 1F;
+            this.scoreRate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.scoreRate.FillWeight = 3F;
             this.scoreRate.HeaderText = "채점 여부";
             this.scoreRate.MinimumWidth = 3;
             this.scoreRate.Name = "scoreRate";
             this.scoreRate.ReadOnly = true;
             this.scoreRate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.scoreRate.Width = 82;
             // 
             // ProfessorDetailScoreView
             // 
@@ -363,9 +369,6 @@
         private System.Windows.Forms.PictureBox scorePictureBox;
         private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.DataGridView studentScoreTable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn studentName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn studentScore;
-        private System.Windows.Forms.DataGridViewTextBoxColumn scoreRate;
         private System.Windows.Forms.Label testDayText;
         private System.Windows.Forms.Label testNameText;
         private System.Windows.Forms.Label lectureText;
@@ -378,5 +381,9 @@
         private System.Windows.Forms.Label totalScoreText;
         private System.Windows.Forms.Button excelDownBtn;
         private System.Windows.Forms.Button doubtBtn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn studentID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn studentName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn studentScore;
+        private System.Windows.Forms.DataGridViewTextBoxColumn scoreRate;
     }
 }

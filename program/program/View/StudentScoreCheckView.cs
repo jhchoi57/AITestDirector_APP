@@ -34,19 +34,7 @@ namespace program.View
 
         private void StudentScoreCheckView_Load(object sender, EventArgs e)
         {
-            // ComboBox setting
-            semesterComboBox.Items.Clear();
-
-            semesterComboBox.Items.Add("1학년 1학기");
-            semesterComboBox.Items.Add("1학년 2학기");
-            semesterComboBox.Items.Add("2학년 1학기");
-            semesterComboBox.Items.Add("2학년 2학기");
-            semesterComboBox.Items.Add("3학년 1학기");
-            semesterComboBox.Items.Add("3학년 2학기");
-            semesterComboBox.Items.Add("4학년 1학기");
-            semesterComboBox.Items.Add("4학년 2학기");
-
-            semesterComboBox.SelectedText = "-- 학년/학기 선택 --";
+            
 
             // Font setting
             CustomFonts customFonts = new CustomFonts();
@@ -57,7 +45,6 @@ namespace program.View
             // TitleFont: 20f
             // SubTitleFont : 17f
 
-            semesterComboBox.Font = customFonts.LabelFont();
             lectureTable.Font = customFonts.NormalFont();
             scoreCheckLabel.Font = customFonts.TitleFont();
 

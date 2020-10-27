@@ -108,29 +108,30 @@ namespace program.View
             // 강의명, 시험명, 시험 날짜, 총 점수, 평균 점수 받아야됨
 
             // 학생명 학생점수 채점 여부 표시
-            studentScoreTable.Rows.Add("홍길동", "78", "O");
-            studentScoreTable.Rows.Add("최모씨", "56", "X");
-            studentScoreTable.Rows.Add("이모씨", "78", "O");
-            studentScoreTable.Rows.Add("김모씨", "78", "X");
-            studentScoreTable.Rows.Add("홍길동", "78", "O");
-            studentScoreTable.Rows.Add("최모씨", "56", "X");
-            studentScoreTable.Rows.Add("이모씨", "78", "O");
-            studentScoreTable.Rows.Add("김모씨", "78", "X");
-            studentScoreTable.Rows.Add("홍길동", "78", "O");
-            studentScoreTable.Rows.Add("최모씨", "56", "X");
-            studentScoreTable.Rows.Add("이모씨", "78", "O");
-            studentScoreTable.Rows.Add("김모씨", "78", "X");
-            studentScoreTable.Rows.Add("홍길동", "78", "O");
-            studentScoreTable.Rows.Add("최모씨", "56", "X");
-            studentScoreTable.Rows.Add("이모씨", "78", "O");
-            studentScoreTable.Rows.Add("김모씨", "78", "X");
-            studentScoreTable.Rows.Add("홍길동", "78", "O");
-            studentScoreTable.Rows.Add("김모씨", "78", "X");
-            studentScoreTable.Rows.Add("홍길동", "78", "O");
-            studentScoreTable.Rows.Add("최모씨", "56", "X");
-            studentScoreTable.Rows.Add("이모씨", "78", "O");
-            studentScoreTable.Rows.Add("김모씨", "78", "X");
-            studentScoreTable.Rows.Add("홍길동", "78", "O");
+            studentScoreTable.Rows.Add("17011010", "홍길동", "78", "O");
+            studentScoreTable.Rows.Add("17011011", "최모씨", "56", "X");
+            studentScoreTable.Rows.Add("17011012", "이모씨", "78", "O");
+            studentScoreTable.Rows.Add("17011013", "김모씨", "78", "X");
+            studentScoreTable.Rows.Add("17011014", "홍길동", "78", "O");
+            studentScoreTable.Rows.Add("17011015", "최모씨", "56", "X");
+            studentScoreTable.Rows.Add("17011016", "이모씨", "78", "O");
+            studentScoreTable.Rows.Add("17011017", "김모씨", "78", "X");
+            studentScoreTable.Rows.Add("17011018", "홍길동", "78", "O");
+            studentScoreTable.Rows.Add("17011019", "최모씨", "56", "X");
+            studentScoreTable.Rows.Add("17011010", "이모씨", "78", "O");
+            studentScoreTable.Rows.Add("17011011", "김모씨", "78", "X");
+            studentScoreTable.Rows.Add("17011012", "홍길동", "78", "O");
+            studentScoreTable.Rows.Add("17011013", "최모씨", "56", "X");
+            studentScoreTable.Rows.Add("17011014", "이모씨", "78", "O");
+            studentScoreTable.Rows.Add("17011015", "김모씨", "78", "X");
+            studentScoreTable.Rows.Add("17011016", "홍길동", "78", "O");
+            studentScoreTable.Rows.Add("17011017", "김모씨", "78", "X");
+            studentScoreTable.Rows.Add("17011018", "홍길동", "78", "O");
+            studentScoreTable.Rows.Add("17011019", "최모씨", "56", "X");
+            studentScoreTable.Rows.Add("17011010", "이모씨", "78", "O");
+            studentScoreTable.Rows.Add("17011011", "김모씨", "78", "X");
+            studentScoreTable.Rows.Add("17011012", "홍길동", "78", "O");
+            studentScoreTable.Rows.Add("17011012", "홍길동", "78", "O");
 
             //상단바
             this.topBarPanel = new TopBarPanel(customFonts);
