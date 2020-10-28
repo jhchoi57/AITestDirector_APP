@@ -4,14 +4,17 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using program.Controller;
 using program.Model.Exams;
 using program.View.Components;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace program.View
 {
@@ -33,6 +36,10 @@ namespace program.View
 
         private void ProfessorLectureEditView_Load(object sender, EventArgs e)
         {
+            // 콤보박스 설정
+            setYearComboBox(1990, 2021);
+            setSemesterComboBox();
+
             // 이미지
             lecturePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             lecturePictureBox.Image = System.Drawing.Image.FromFile("../../src/Assets/Images/lecture.png");
@@ -56,7 +63,6 @@ namespace program.View
             lectureTotalStuentLbl.Font = customFonts.LabelFont();
             lectureTotalStudentTextBox.Font = customFonts.TextBoxFont();
             lectureSemesterLbl.Font = customFonts.LabelFont();
-            lectureSemesterTextBox.Font = customFonts.TextBoxFont();
             backButton.Font = customFonts.SubTitleFont();
             confirmBtn.Font = customFonts.TextBoxFont();
             addLectureBtn.Font = customFonts.TextBoxFont();
@@ -64,12 +70,12 @@ namespace program.View
             editBtn.Font = customFonts.TextBoxFont();
             infoLbl.Font = customFonts.NormalFont();
 
-            label1.Font = customFonts.SmallFont();
-            label2.Font = customFonts.SmallFont();
-            
+            yearComboBox.Font = customFonts.TextBoxFont();
+            semesterComboBox.Font = customFonts.TextBoxFont();
+     
             //상단바
             this.topBarPanel = new TopBarPanel(customFonts);
-            this.topBarPanel.Location = new Point(0, 0);
+            this.topBarPanel.Location = new System.Drawing.Point(0, 0);
             this.Controls.Add(topBarPanel);
 
             lectureTotalStudentTextBox.KeyPress += textBox_KeyPress_1;
@@ -94,7 +100,7 @@ namespace program.View
 
         private void myLectureExitBtn_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            System.Windows.Forms.Application.Exit();
         }
 
         private void myLectureTable_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -104,9 +110,9 @@ namespace program.View
             lectureNameTextBox.Text = myLectureTable.Rows[e.RowIndex].Cells[0].Value.ToString();
             lectureTimeTextBox.Text = myLectureTable.Rows[e.RowIndex].Cells[1].Value.ToString();
             lectureTotalStudentTextBox.Text = myLectureTable.Rows[e.RowIndex].Cells[2].Value.ToString();
-            lectureSemesterTextBox.Text = myLectureTable.Rows[e.RowIndex].Cells[3].Value.ToString();
+            yearComboBox.Text = myLectureTable.Rows[e.RowIndex].Cells[3].Value.ToString().Substring(0,4);
+            semesterComboBox.Text = myLectureTable.Rows[e.RowIndex].Cells[3].Value.ToString().Substring(5);
             selectedID = myLectureTable.Rows[e.RowIndex].Cells[4].Value.ToString();
-
             // 첫 글자에 화살표 없을때
             if (!myLectureTable.Rows[e.RowIndex].Cells[0].Value.ToString()[0].Equals('▶'))
             {
@@ -131,7 +137,8 @@ namespace program.View
             lectureNameTextBox.ReadOnly = true;
             lectureTimeTextBox.ReadOnly = true;
             lectureTotalStudentTextBox.ReadOnly = true;
-            lectureSemesterTextBox.ReadOnly = true;
+            yearComboBox.Enabled = false;
+            semesterComboBox.Enabled = false;
         }
 
         private void myLectureTable_CellLeave(object sender, DataGridViewCellEventArgs e)
@@ -148,11 +155,14 @@ namespace program.View
             lectureNameTextBox.Text = null;
             lectureTimeTextBox.Text = null;
             lectureTotalStudentTextBox.Text = null;
-            lectureSemesterTextBox.Text = null;
+            yearComboBox.Text = null;
+            semesterComboBox.Text = null;
+
             lectureNameTextBox.ReadOnly = false;
             lectureTimeTextBox.ReadOnly = false;
             lectureTotalStudentTextBox.ReadOnly = false;
-            lectureSemesterTextBox.ReadOnly = false;
+            yearComboBox.Enabled = true;
+            semesterComboBox.Enabled = true;
 
             // 다른 버튼 회색으로 변경, 강의 추가 버튼만 진하게
             addLectureBtn.BackColor = selectedColor;
@@ -180,7 +190,8 @@ namespace program.View
             //lectureNameTextBox.ReadOnly = false;
             lectureTimeTextBox.ReadOnly = false;
             lectureTotalStudentTextBox.ReadOnly = false;
-            lectureSemesterTextBox.ReadOnly = false;
+            yearComboBox.Enabled = true;
+            semesterComboBox.Enabled = true;
 
             // 다른 버튼 회색으로 변경, 강의 수정 버튼만 진하게
             addLectureBtn.BackColor = notSelectedColor;
@@ -201,7 +212,8 @@ namespace program.View
             if(lectureNameTextBox.ReadOnly &&
             lectureTimeTextBox.ReadOnly &&
             lectureTotalStudentTextBox.ReadOnly &&
-            lectureSemesterTextBox.ReadOnly)
+            yearComboBox.Enabled == false &&
+            semesterComboBox.Enabled == false)
             {
                 // 다른 버튼 회색으로 변경, 강의 삭제 버튼만 진하게
                 addLectureBtn.BackColor = notSelectedColor;
@@ -240,15 +252,22 @@ namespace program.View
                 MessageBox.Show("수강 학생 인원을 입력해주세요!!!");
                 return;
             }
-            // 강의년도-학기 입력 확인
-            if (lectureSemesterTextBox.Text == "")
+            // 강의년도 입력 확인
+            if (yearComboBox.Text == "")
             {
-                MessageBox.Show("강의년도-학기를 입력해주세요!!!");
+                MessageBox.Show("강의년도를 선택해주세요!!!");
+                return;
+            }
+            // 강의학기 입력 확인
+            if (semesterComboBox.Text == "")
+            {
+                MessageBox.Show("강의학기를 선택해주세요!!!");
                 return;
             }
             string name = lectureNameTextBox.Text;
             string time = lectureTimeTextBox.Text;
-            string semester = lectureSemesterTextBox.Text;
+            string semester = yearComboBox.Text + "-" + semesterComboBox.Text;
+
 
             try
             {
@@ -347,5 +366,140 @@ namespace program.View
                 e.Handled = true;
             }
         }
+
+        private void setYearComboBox(int minYear, int maxYear)
+        {
+            for(int i = minYear; i<=maxYear; i++)
+            {
+                yearComboBox.Items.Add(i);
+            }            
+        }
+
+        private void setSemesterComboBox()
+        {
+            semesterComboBox.Items.Add("겨울학기");
+            semesterComboBox.Items.Add("1학기");
+            semesterComboBox.Items.Add("여름학기");
+            semesterComboBox.Items.Add("2학기");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string path = null;
+            Excel.Application excelApp = null; 
+            Excel.Workbook workBook = null; 
+            Excel.Worksheet workSheet = null;
+
+
+            // 파일 여는 다이얼로그 path 추출
+            OpenFileDialog OFD = new OpenFileDialog();
+            if (OFD.ShowDialog() == DialogResult.OK)
+            {
+                path = OFD.FileName;
+                Console.WriteLine(path);
+            }
+            // 예외처리
+            if (path == null)
+            {
+                workBook.Close(true); // 워크북 닫기 
+                excelApp.Quit();     // 엑셀 어플리케이션 종료 
+                return;
+            }
+
+            try
+            {                
+                excelApp = new Excel.Application(); // 엑셀 어플리케이션 생성 
+                workBook = excelApp.Workbooks.Open(path); // 워크북 열기 
+                workSheet = workBook.Worksheets.get_Item(1) as Excel.Worksheet; // 엑셀 첫번째 워크시트 가져오기 
+                Excel.Range range = workSheet.UsedRange; // 사용중인 셀 범위를 가져오기 
+                // 1행은 제목
+                if (checkExcel(range)==false)
+                {
+                    MessageBox.Show("형식이 맞지 않습니다. 엑셀파일을 확인해주세요.");
+                    workBook.Close(true); // 워크북 닫기 
+                    excelApp.Quit();     // 엑셀 어플리케이션 종료 
+                    return;
+                }
+                for (int row = 2; row <= range.Rows.Count; row++) // 가져온 행 만큼 반복 
+                {
+                    string name, time, semester;
+                    int studentCnt;
+                    name = (range.Cells[row, 1] as Excel.Range).Value2.ToString();
+                    Console.Write(name + " ");
+                    time = (range.Cells[row, 2] as Excel.Range).Value2.ToString();
+                    Console.Write(time + " ");
+                    studentCnt = Convert.ToInt32((range.Cells[row, 3] as Excel.Range).Value2.ToString());
+                    Console.Write(studentCnt + " ");
+                    semester = (range.Cells[row, 4] as Excel.Range).Value2.ToString();
+                    Console.Write(semester + "\n");
+
+                    try
+                    {
+                        string response = mainController.professorAddLectureRequest(name, time, studentCnt, semester);
+                        JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                        string id = (string)jObject["uuid"];
+                        mainController.Me.Lectures.Add(new Lecture(id, name, mainController.Me.Name, studentCnt, semester, time));
+                        setMyLectureTable();
+                        //MessageBox.Show("강의 추가 완료", "강의 추가");
+                    }
+                    catch (Exception error)
+                    {
+                        Console.WriteLine(error);
+                    }
+                    workBook.Close(true); // 워크북 닫기 
+                    excelApp.Quit();     // 엑셀 어플리케이션 종료 
+                }                
+            } 
+            catch(Exception error)
+            {
+                Console.WriteLine(error);
+                MessageBox.Show("형식이 맞지 않습니다. 엑셀파일을 확인해주세요.");
+            }            
+            finally {
+                AllReleaseObject(workSheet, workBook, excelApp);                
+            }
+
+
+        }
+        private void AllReleaseObject(object workSheet, object workBook, object excelApp)
+        {
+            ReleaseObject(workSheet);
+            ReleaseObject(workBook);
+            ReleaseObject(excelApp);
+        }
+
+        private void ReleaseObject(object obj)
+        {
+            try
+            {
+                if (obj != null)
+                {
+                    Marshal.ReleaseComObject(obj); // 액셀 객체 해제 obj = null; 
+                } 
+            } 
+            catch (Exception ex) 
+            { 
+                obj = null; throw ex; 
+            } 
+            finally 
+            { 
+                GC.Collect(); // 가비지 수집 
+            } 
+        }
+        private Boolean checkExcel(Excel.Range range)
+        {
+            if ((range.Cells[1, 1] as Excel.Range).Value2.ToString() == "강의명" &&
+                    (range.Cells[1, 2] as Excel.Range).Value2.ToString() == "강의시간" &&
+                    (range.Cells[1, 3] as Excel.Range).Value2.ToString() == "수강 학생 인원" &&
+                    (range.Cells[1, 4] as Excel.Range).Value2.ToString() == "강의년도-학기")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }
