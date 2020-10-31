@@ -101,6 +101,7 @@ namespace program.View.Components
             inputTextBox.Size = new Size(210, 51);
             inputTextBox.Location = new Point(10, 10);
             inputPanel.Controls.Add(inputTextBox);
+            inputTextBox.MouseDown += inputTextBox_MouseDown_1;
 
             sendButton = new Button();
             sendButton.BackColor = Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(101)))), ((int)(((byte)(255)))));
@@ -177,6 +178,14 @@ namespace program.View.Components
             {
                 addChatContentPanel(new ChatContentPanel(customFonts, inputTextBox.Text, 0));
                 inputTextBox.Text = "";
+            }
+        }
+
+        private void inputTextBox_MouseDown_1(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                MessageBox.Show("마우스 오른쪽 클릭은 지원하지 않습니다.");
             }
         }
     }

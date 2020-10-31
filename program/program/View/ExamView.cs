@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using program.Controller;
 using program.View.Components;
@@ -32,6 +33,27 @@ namespace program.View
         private string student_key;
         private Boolean isStudent;
 
+        [DllImport("user32.dll")]
+        static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc callback, IntPtr hInstance, uint threadId);
+
+        [DllImport("user32.dll")]
+        static extern bool UnhookWindowsHookEx(IntPtr hInstance);
+
+        [DllImport("user32.dll")]
+        static extern IntPtr CallNextHookEx(IntPtr idHook, int nCode, int wParam, IntPtr lParam);
+
+        [DllImport("kernel32.dll")]
+        static extern IntPtr LoadLibrary(string lpFileName);
+
+        private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
+
+        const int WH_KEYBOARD_LL = 13;
+        const int WM_KEYDOWN = 0x100;
+
+        private LowLevelKeyboardProc _proc = hookProc;
+
+        private static IntPtr hhook = IntPtr.Zero;
+
         public ExamView(MainController mainController, string room_id, string student_key, Boolean isStudent)
         {
             InitializeComponent();
@@ -51,6 +73,9 @@ namespace program.View
             // 프로세스 제어
             //ProcessController processController = new ProcessController();
             //processController.KillProcess();
+
+            // 키보드 후킹
+            //SetHook();
 
             // 폰트
             customFonts = new CustomFonts();
@@ -503,5 +528,97 @@ namespace program.View
                 Console.WriteLine(error);
             }
         }
+
+        public void SetHook()
+        {
+            KillCtrlAltDelete();
+            IntPtr hInstance = LoadLibrary("User32");
+            hhook = SetWindowsHookEx(WH_KEYBOARD_LL, _proc, hInstance, 0);
+        }
+
+        public static void UnHook()
+        {
+            EnableCtrlAltDel();
+            UnhookWindowsHookEx(hhook);
+        }
+
+        public static IntPtr hookProc(int code, IntPtr wParam, IntPtr lParam)
+        {
+            // 이상하게 왼쪽 ALT 키 wParam이 다르게 찍혀서 후킹이 안됨.
+            // WM_KEYDOWN 이 256이고 떼는게 257인거 같은데
+            // 다른 키들은 누르면 256 잘 뜨는데 왼쪽 ALT 키 누르면 260이 뜸 뭐지?
+            // 일단 왼쪽 ALT키 값은 164
+            int vkCode = Marshal.ReadInt32(lParam);
+            Console.WriteLine(vkCode);
+
+            if (code >= 0 && wParam == (IntPtr)WM_KEYDOWN || wParam == (IntPtr)260)
+            {                
+                if (vkCode == 162 || vkCode == 25)
+                {
+                    //MessageBox.Show("CTRL 키는 지원하지 않습니다.");
+                    return (IntPtr)1;
+                }
+                if (vkCode == 160 || vkCode == 161)
+                {
+                    //MessageBox.Show("SHIFT 키는 지원하지 않습니다.");
+                    return (IntPtr)1;
+                }
+                if(vkCode == 9)
+                {
+                    //MessageBox.Show("TAB 키는 지원하지 않습니다.");
+                    return (IntPtr)1;
+                }
+                if(vkCode == 21 || vkCode == 164)
+                {
+                    //MessageBox.Show("ALT 키는 지원하지 않습니다.");
+                    return (IntPtr)1;
+                }
+                else return CallNextHookEx(hhook, code, (int)wParam, lParam);
+            }
+            else
+                return CallNextHookEx(hhook, code, (int)wParam, lParam);
+        }
+
+        private void ExamView_FormClosing(object sender, FormClosingEventArgs e)
+        {            
+            //UnHook();
+        }
+
+        //Ctrl + Alt + Delete 막기
+        public static void KillCtrlAltDelete()
+        {
+            RegistryKey regkey;
+            string keyValueInt = "1";
+            string subKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System";
+
+            try
+            {
+                regkey = Registry.CurrentUser.CreateSubKey(subKey);
+                regkey.SetValue("DisableTaskMgr", keyValueInt);
+                regkey.Close();
+            }
+            catch (Exception ex)
+            {
+                //  MessageBox.Show(ex.ToString());
+            }
+        }
+
+        public static void EnableCtrlAltDel()
+        {
+            try
+            {
+                string subKey = "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System";
+                RegistryKey rk = Registry.CurrentUser;
+                RegistryKey sk1 = rk.OpenSubKey(subKey);
+
+                if (sk1 != null)
+                    rk.DeleteSubKeyTree(subKey);
+            }
+            catch (Exception ex)
+            {
+                // MessageBox.Show(ex.ToString());
+            }
+        }
+
     }
 }
