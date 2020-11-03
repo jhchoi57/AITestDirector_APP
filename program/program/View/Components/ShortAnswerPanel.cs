@@ -49,6 +49,7 @@ namespace program.View.Components
             answerTextBox.Location = new Point(30, 0);
             this.Controls.Add(answerTextBox);
             answerTextBox.LostFocus += answerTextBox_LostFocus_1;
+            answerTextBox.MouseDown += answerTextBox_MouseDown_1;
 
             answerLabel = new Label();
             answerLabel.Size = new Size(170, 20);
@@ -77,6 +78,14 @@ namespace program.View.Components
             answerTextBox.Visible = true;
             answerLabel.Visible = false;
             answerTextBox.Focus();
+        }
+
+        private void answerTextBox_MouseDown_1(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                MessageBox.Show("마우스 오른쪽 클릭은 지원하지 않습니다.");
+            }
         }
     }
 }

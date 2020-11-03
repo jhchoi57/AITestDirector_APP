@@ -24,14 +24,16 @@ namespace program.View.Components
         public TopBarPanel(CustomFonts customFonts) : base()
         {
             this.Size = new Size(1264, 28);
-            this.BackColor = Color.White;
+            this.BackColor = Color.FromArgb(51, 71, 97);
 
             exitButton = new ExitButton(customFonts);
             exitButton.Location = new Point(1234, 0);
+            exitButton.ForeColor = Color.White;
             this.Controls.Add(exitButton);
             
             minimizeButton = new MinimizeButton(customFonts);
             minimizeButton.Location = new Point(1204, 0);
+            minimizeButton.ForeColor = Color.White;
             this.Controls.Add(minimizeButton);
             minimizeButton.Click += minimizeButton_Click_1;
 
@@ -39,6 +41,7 @@ namespace program.View.Components
             tabNameLabel.Text = "ExamDirector";
             tabNameLabel.Location = new Point(5, 5);
             tabNameLabel.Font = customFonts.NormalFont();
+            tabNameLabel.ForeColor = Color.White;
             this.Controls.Add(tabNameLabel);
 
             isMouseDown = false;
@@ -51,14 +54,16 @@ namespace program.View.Components
         public TopBarPanel(CustomFonts customFonts, Boolean isLoginView) : base()
         {
             this.Size = new Size(960, 28);
-            this.BackColor = Color.White;
+            this.BackColor = Color.FromArgb(51, 71, 97);
 
             exitButton = new ExitButton(customFonts);
             exitButton.Location = new Point(930, 0);
+            exitButton.ForeColor = Color.White;
             this.Controls.Add(exitButton);
 
             minimizeButton = new MinimizeButton(customFonts);
             minimizeButton.Location = new Point(900, 0);
+            minimizeButton.ForeColor = Color.White;
             this.Controls.Add(minimizeButton);
             minimizeButton.Click += minimizeButton_Click_1;
 
@@ -66,6 +71,7 @@ namespace program.View.Components
             tabNameLabel.Text = "ExamDirector";
             tabNameLabel.Location = new Point(5, 5);
             tabNameLabel.Font = customFonts.NormalFont();
+            tabNameLabel.ForeColor = Color.White;
             this.Controls.Add(tabNameLabel);
 
             isMouseDown = false;

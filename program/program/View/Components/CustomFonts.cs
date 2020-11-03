@@ -51,6 +51,11 @@ namespace program.View.Components
             return new Font(privateFont.Families[2], 8f);
         }
 
+        public Font LectureTitleFont()
+        {
+            return new Font(privateFont.Families[2], 30f, FontStyle.Bold);
+        }
+
         static CustomFonts()
         {
             privateFont = new PrivateFontCollection();

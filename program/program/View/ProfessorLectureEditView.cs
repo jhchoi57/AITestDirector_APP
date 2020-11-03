@@ -63,7 +63,7 @@ namespace program.View
             lectureTotalStuentLbl.Font = customFonts.LabelFont();
             lectureTotalStudentTextBox.Font = customFonts.TextBoxFont();
             lectureSemesterLbl.Font = customFonts.LabelFont();
-            backButton.Font = customFonts.SubTitleFont();
+            backButton.Font = customFonts.TextBoxFont();
             confirmBtn.Font = customFonts.TextBoxFont();
             addLectureBtn.Font = customFonts.TextBoxFont();
             deleteBtn.Font = customFonts.TextBoxFont();

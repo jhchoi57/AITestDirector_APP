@@ -32,13 +32,21 @@ namespace program.View
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.testInfoPanel = new System.Windows.Forms.Panel();
+            this.testInfoCancelBtn = new System.Windows.Forms.Button();
+            this.testInfoTestNameLbl = new System.Windows.Forms.Label();
+            this.testInfoTimeLbl = new System.Windows.Forms.Label();
+            this.testInfoDayLbl = new System.Windows.Forms.Label();
+            this.testInfoProfNameLbl = new System.Windows.Forms.Label();
+            this.testInfoLectureLbl = new System.Windows.Forms.Label();
+            this.testStartBtn = new System.Windows.Forms.Button();
             this.cameraPanel = new System.Windows.Forms.Panel();
             this.cameraPictureBox = new System.Windows.Forms.PictureBox();
             this.cameraCancelBtn = new System.Windows.Forms.Button();
@@ -52,6 +60,14 @@ namespace program.View
             this.testName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkScoreBtn = new System.Windows.Forms.Button();
             this.editLectureBtn = new System.Windows.Forms.Button();
+            this.myPagePanel = new System.Windows.Forms.Panel();
+            this.imageEditBtn = new System.Windows.Forms.Button();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
+            this.emailLabel = new System.Windows.Forms.Label();
+            this.nameLabel = new System.Windows.Forms.Label();
+            this.stuNumLabel = new System.Windows.Forms.Label();
+            this.univLabel = new System.Windows.Forms.Label();
+            this.editInfoBtn = new System.Windows.Forms.Button();
             this.editPanel = new System.Windows.Forms.Panel();
             this.editStdNumLabel = new System.Windows.Forms.Label();
             this.editStdNumPanel = new System.Windows.Forms.Panel();
@@ -76,27 +92,14 @@ namespace program.View
             this.editNameLabel = new System.Windows.Forms.Label();
             this.editNamePanel = new System.Windows.Forms.Panel();
             this.editNameTextBox = new System.Windows.Forms.TextBox();
-            this.myPagePanel = new System.Windows.Forms.Panel();
-            this.imageEditBtn = new System.Windows.Forms.Button();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
-            this.emailLabel = new System.Windows.Forms.Label();
-            this.nameLabel = new System.Windows.Forms.Label();
-            this.stuNumLabel = new System.Windows.Forms.Label();
-            this.univLabel = new System.Windows.Forms.Label();
-            this.editInfoBtn = new System.Windows.Forms.Button();
-            this.testInfoPanel = new System.Windows.Forms.Panel();
-            this.testInfoCancelBtn = new System.Windows.Forms.Button();
-            this.testInfoTestNameLbl = new System.Windows.Forms.Label();
-            this.testInfoTimeLbl = new System.Windows.Forms.Label();
-            this.testInfoDayLbl = new System.Windows.Forms.Label();
-            this.testInfoProfNameLbl = new System.Windows.Forms.Label();
-            this.testInfoLectureLbl = new System.Windows.Forms.Label();
-            this.testStartBtn = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
+            this.testInfoPanel.SuspendLayout();
             this.cameraPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cameraPictureBox)).BeginInit();
             this.testPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lectureTable)).BeginInit();
+            this.myPagePanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.editPanel.SuspendLayout();
             this.editStdNumPanel.SuspendLayout();
             this.editUnivPanel.SuspendLayout();
@@ -105,9 +108,6 @@ namespace program.View
             this.editPasswordPanel.SuspendLayout();
             this.editEmailPanel.SuspendLayout();
             this.editNamePanel.SuspendLayout();
-            this.myPagePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
-            this.testInfoPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -122,6 +122,97 @@ namespace program.View
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1264, 654);
             this.mainPanel.TabIndex = 0;
+            // 
+            // testInfoPanel
+            // 
+            this.testInfoPanel.BackColor = System.Drawing.Color.Indigo;
+            this.testInfoPanel.Controls.Add(this.testInfoCancelBtn);
+            this.testInfoPanel.Controls.Add(this.testInfoTestNameLbl);
+            this.testInfoPanel.Controls.Add(this.testInfoTimeLbl);
+            this.testInfoPanel.Controls.Add(this.testInfoDayLbl);
+            this.testInfoPanel.Controls.Add(this.testInfoProfNameLbl);
+            this.testInfoPanel.Controls.Add(this.testInfoLectureLbl);
+            this.testInfoPanel.Controls.Add(this.testStartBtn);
+            this.testInfoPanel.Location = new System.Drawing.Point(885, 0);
+            this.testInfoPanel.Name = "testInfoPanel";
+            this.testInfoPanel.Size = new System.Drawing.Size(379, 654);
+            this.testInfoPanel.TabIndex = 19;
+            this.testInfoPanel.Visible = false;
+            // 
+            // testInfoCancelBtn
+            // 
+            this.testInfoCancelBtn.BackColor = System.Drawing.Color.DimGray;
+            this.testInfoCancelBtn.FlatAppearance.BorderSize = 0;
+            this.testInfoCancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.testInfoCancelBtn.ForeColor = System.Drawing.Color.White;
+            this.testInfoCancelBtn.Location = new System.Drawing.Point(202, 598);
+            this.testInfoCancelBtn.Name = "testInfoCancelBtn";
+            this.testInfoCancelBtn.Size = new System.Drawing.Size(143, 34);
+            this.testInfoCancelBtn.TabIndex = 17;
+            this.testInfoCancelBtn.TabStop = false;
+            this.testInfoCancelBtn.Text = "취소";
+            this.testInfoCancelBtn.UseVisualStyleBackColor = false;
+            this.testInfoCancelBtn.Click += new System.EventHandler(this.testInfoCancelBtn_Click);
+            // 
+            // testInfoTestNameLbl
+            // 
+            this.testInfoTestNameLbl.ForeColor = System.Drawing.Color.White;
+            this.testInfoTestNameLbl.Location = new System.Drawing.Point(68, 135);
+            this.testInfoTestNameLbl.Name = "testInfoTestNameLbl";
+            this.testInfoTestNameLbl.Size = new System.Drawing.Size(221, 48);
+            this.testInfoTestNameLbl.TabIndex = 16;
+            this.testInfoTestNameLbl.Text = "[시험 제목]";
+            // 
+            // testInfoTimeLbl
+            // 
+            this.testInfoTimeLbl.ForeColor = System.Drawing.Color.White;
+            this.testInfoTimeLbl.Location = new System.Drawing.Point(70, 299);
+            this.testInfoTimeLbl.Name = "testInfoTimeLbl";
+            this.testInfoTimeLbl.Size = new System.Drawing.Size(208, 21);
+            this.testInfoTimeLbl.TabIndex = 15;
+            this.testInfoTimeLbl.Text = "[시간]";
+            // 
+            // testInfoDayLbl
+            // 
+            this.testInfoDayLbl.ForeColor = System.Drawing.Color.White;
+            this.testInfoDayLbl.Location = new System.Drawing.Point(70, 256);
+            this.testInfoDayLbl.Name = "testInfoDayLbl";
+            this.testInfoDayLbl.Size = new System.Drawing.Size(208, 21);
+            this.testInfoDayLbl.TabIndex = 14;
+            this.testInfoDayLbl.Text = "[날짜]";
+            // 
+            // testInfoProfNameLbl
+            // 
+            this.testInfoProfNameLbl.ForeColor = System.Drawing.Color.White;
+            this.testInfoProfNameLbl.Location = new System.Drawing.Point(70, 207);
+            this.testInfoProfNameLbl.Name = "testInfoProfNameLbl";
+            this.testInfoProfNameLbl.Size = new System.Drawing.Size(208, 21);
+            this.testInfoProfNameLbl.TabIndex = 13;
+            this.testInfoProfNameLbl.Text = "[교수명]";
+            // 
+            // testInfoLectureLbl
+            // 
+            this.testInfoLectureLbl.ForeColor = System.Drawing.Color.White;
+            this.testInfoLectureLbl.Location = new System.Drawing.Point(45, 61);
+            this.testInfoLectureLbl.Name = "testInfoLectureLbl";
+            this.testInfoLectureLbl.Size = new System.Drawing.Size(290, 55);
+            this.testInfoLectureLbl.TabIndex = 12;
+            this.testInfoLectureLbl.Text = "[강의명]";
+            // 
+            // testStartBtn
+            // 
+            this.testStartBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
+            this.testStartBtn.FlatAppearance.BorderSize = 0;
+            this.testStartBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.testStartBtn.ForeColor = System.Drawing.Color.White;
+            this.testStartBtn.Location = new System.Drawing.Point(47, 598);
+            this.testStartBtn.Name = "testStartBtn";
+            this.testStartBtn.Size = new System.Drawing.Size(143, 34);
+            this.testStartBtn.TabIndex = 11;
+            this.testStartBtn.TabStop = false;
+            this.testStartBtn.Text = "응시하기";
+            this.testStartBtn.UseVisualStyleBackColor = false;
+            this.testStartBtn.Click += new System.EventHandler(this.testStartBtn_Click);
             // 
             // cameraPanel
             // 
@@ -170,7 +261,7 @@ namespace program.View
             // 
             // testPanel
             // 
-            this.testPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
+            this.testPanel.BackColor = System.Drawing.Color.White;
             this.testPanel.Controls.Add(this.lectureTable);
             this.testPanel.Controls.Add(this.checkScoreBtn);
             this.testPanel.Controls.Add(this.editLectureBtn);
@@ -185,21 +276,21 @@ namespace program.View
             this.lectureTable.AllowUserToDeleteRows = false;
             this.lectureTable.AllowUserToResizeColumns = false;
             this.lectureTable.AllowUserToResizeRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.White;
-            this.lectureTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            this.lectureTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.lectureTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.lectureTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
+            this.lectureTable.BackgroundColor = System.Drawing.Color.White;
             this.lectureTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lectureTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.lectureTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.lectureTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.lectureTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.lectureTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.lectureName,
@@ -207,35 +298,35 @@ namespace program.View
             this.testDay,
             this.testTime,
             this.testName});
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.lectureTable.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.lectureTable.DefaultCellStyle = dataGridViewCellStyle4;
             this.lectureTable.GridColor = System.Drawing.Color.AliceBlue;
             this.lectureTable.Location = new System.Drawing.Point(12, 61);
             this.lectureTable.MultiSelect = false;
             this.lectureTable.Name = "lectureTable";
             this.lectureTable.ReadOnly = true;
             this.lectureTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.lectureTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.lectureTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.lectureTable.RowHeadersVisible = false;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lectureTable.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lectureTable.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.lectureTable.RowTemplate.Height = 23;
             this.lectureTable.Size = new System.Drawing.Size(862, 572);
             this.lectureTable.TabIndex = 11;
@@ -245,9 +336,9 @@ namespace program.View
             // 
             // lectureName
             // 
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.Black;
-            this.lectureName.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.lectureName.DefaultCellStyle = dataGridViewCellStyle3;
             this.lectureName.FillWeight = 17F;
             this.lectureName.HeaderText = "강의명";
             this.lectureName.Name = "lectureName";
@@ -315,6 +406,95 @@ namespace program.View
             this.editLectureBtn.Text = "강의 편집";
             this.editLectureBtn.UseVisualStyleBackColor = false;
             this.editLectureBtn.Click += new System.EventHandler(this.editLectureBtn_Click);
+            // 
+            // myPagePanel
+            // 
+            this.myPagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.myPagePanel.Controls.Add(this.imageEditBtn);
+            this.myPagePanel.Controls.Add(this.pictureBox);
+            this.myPagePanel.Controls.Add(this.emailLabel);
+            this.myPagePanel.Controls.Add(this.nameLabel);
+            this.myPagePanel.Controls.Add(this.stuNumLabel);
+            this.myPagePanel.Controls.Add(this.univLabel);
+            this.myPagePanel.Controls.Add(this.editInfoBtn);
+            this.myPagePanel.Location = new System.Drawing.Point(885, 0);
+            this.myPagePanel.Name = "myPagePanel";
+            this.myPagePanel.Size = new System.Drawing.Size(379, 654);
+            this.myPagePanel.TabIndex = 1;
+            // 
+            // imageEditBtn
+            // 
+            this.imageEditBtn.BackColor = System.Drawing.Color.Transparent;
+            this.imageEditBtn.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.imageEditBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.imageEditBtn.ForeColor = System.Drawing.Color.White;
+            this.imageEditBtn.Location = new System.Drawing.Point(23, 176);
+            this.imageEditBtn.Name = "imageEditBtn";
+            this.imageEditBtn.Size = new System.Drawing.Size(105, 28);
+            this.imageEditBtn.TabIndex = 20;
+            this.imageEditBtn.TabStop = false;
+            this.imageEditBtn.Text = "이미지 수정";
+            this.imageEditBtn.UseVisualStyleBackColor = false;
+            this.imageEditBtn.Click += new System.EventHandler(this.imageEditBtn_Click);
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.Location = new System.Drawing.Point(23, 55);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(105, 112);
+            this.pictureBox.TabIndex = 18;
+            this.pictureBox.TabStop = false;
+            // 
+            // emailLabel
+            // 
+            this.emailLabel.ForeColor = System.Drawing.Color.White;
+            this.emailLabel.Location = new System.Drawing.Point(161, 207);
+            this.emailLabel.Name = "emailLabel";
+            this.emailLabel.Size = new System.Drawing.Size(208, 21);
+            this.emailLabel.TabIndex = 15;
+            this.emailLabel.Text = "[이메일]";
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.ForeColor = System.Drawing.Color.White;
+            this.nameLabel.Location = new System.Drawing.Point(161, 162);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(208, 21);
+            this.nameLabel.TabIndex = 14;
+            this.nameLabel.Text = "[이름]";
+            // 
+            // stuNumLabel
+            // 
+            this.stuNumLabel.ForeColor = System.Drawing.Color.White;
+            this.stuNumLabel.Location = new System.Drawing.Point(161, 116);
+            this.stuNumLabel.Name = "stuNumLabel";
+            this.stuNumLabel.Size = new System.Drawing.Size(208, 21);
+            this.stuNumLabel.TabIndex = 13;
+            this.stuNumLabel.Text = "[학번]";
+            // 
+            // univLabel
+            // 
+            this.univLabel.ForeColor = System.Drawing.Color.White;
+            this.univLabel.Location = new System.Drawing.Point(161, 69);
+            this.univLabel.Name = "univLabel";
+            this.univLabel.Size = new System.Drawing.Size(208, 21);
+            this.univLabel.TabIndex = 12;
+            this.univLabel.Text = "[학교]";
+            // 
+            // editInfoBtn
+            // 
+            this.editInfoBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
+            this.editInfoBtn.FlatAppearance.BorderSize = 0;
+            this.editInfoBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.editInfoBtn.ForeColor = System.Drawing.Color.White;
+            this.editInfoBtn.Location = new System.Drawing.Point(259, 607);
+            this.editInfoBtn.Name = "editInfoBtn";
+            this.editInfoBtn.Size = new System.Drawing.Size(110, 34);
+            this.editInfoBtn.TabIndex = 11;
+            this.editInfoBtn.TabStop = false;
+            this.editInfoBtn.Text = "정보 수정";
+            this.editInfoBtn.UseVisualStyleBackColor = false;
+            this.editInfoBtn.Click += new System.EventHandler(this.editInfoBtn_Click);
             // 
             // editPanel
             // 
@@ -579,186 +759,6 @@ namespace program.View
             this.editNameTextBox.Size = new System.Drawing.Size(230, 19);
             this.editNameTextBox.TabIndex = 0;
             // 
-            // myPagePanel
-            // 
-            this.myPagePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
-            this.myPagePanel.Controls.Add(this.imageEditBtn);
-            this.myPagePanel.Controls.Add(this.pictureBox);
-            this.myPagePanel.Controls.Add(this.emailLabel);
-            this.myPagePanel.Controls.Add(this.nameLabel);
-            this.myPagePanel.Controls.Add(this.stuNumLabel);
-            this.myPagePanel.Controls.Add(this.univLabel);
-            this.myPagePanel.Controls.Add(this.editInfoBtn);
-            this.myPagePanel.Location = new System.Drawing.Point(885, 0);
-            this.myPagePanel.Name = "myPagePanel";
-            this.myPagePanel.Size = new System.Drawing.Size(379, 654);
-            this.myPagePanel.TabIndex = 1;
-            // 
-            // imageEditBtn
-            // 
-            this.imageEditBtn.BackColor = System.Drawing.Color.Transparent;
-            this.imageEditBtn.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.imageEditBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.imageEditBtn.ForeColor = System.Drawing.Color.White;
-            this.imageEditBtn.Location = new System.Drawing.Point(23, 176);
-            this.imageEditBtn.Name = "imageEditBtn";
-            this.imageEditBtn.Size = new System.Drawing.Size(105, 28);
-            this.imageEditBtn.TabIndex = 20;
-            this.imageEditBtn.TabStop = false;
-            this.imageEditBtn.Text = "이미지 수정";
-            this.imageEditBtn.UseVisualStyleBackColor = false;
-            this.imageEditBtn.Click += new System.EventHandler(this.imageEditBtn_Click);
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.Location = new System.Drawing.Point(23, 55);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(105, 112);
-            this.pictureBox.TabIndex = 18;
-            this.pictureBox.TabStop = false;
-            // 
-            // emailLabel
-            // 
-            this.emailLabel.ForeColor = System.Drawing.Color.White;
-            this.emailLabel.Location = new System.Drawing.Point(161, 207);
-            this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(208, 21);
-            this.emailLabel.TabIndex = 15;
-            this.emailLabel.Text = "[이메일]";
-            // 
-            // nameLabel
-            // 
-            this.nameLabel.ForeColor = System.Drawing.Color.White;
-            this.nameLabel.Location = new System.Drawing.Point(161, 162);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(208, 21);
-            this.nameLabel.TabIndex = 14;
-            this.nameLabel.Text = "[이름]";
-            // 
-            // stuNumLabel
-            // 
-            this.stuNumLabel.ForeColor = System.Drawing.Color.White;
-            this.stuNumLabel.Location = new System.Drawing.Point(161, 116);
-            this.stuNumLabel.Name = "stuNumLabel";
-            this.stuNumLabel.Size = new System.Drawing.Size(208, 21);
-            this.stuNumLabel.TabIndex = 13;
-            this.stuNumLabel.Text = "[학번]";
-            // 
-            // univLabel
-            // 
-            this.univLabel.ForeColor = System.Drawing.Color.White;
-            this.univLabel.Location = new System.Drawing.Point(161, 69);
-            this.univLabel.Name = "univLabel";
-            this.univLabel.Size = new System.Drawing.Size(208, 21);
-            this.univLabel.TabIndex = 12;
-            this.univLabel.Text = "[학교]";
-            // 
-            // editInfoBtn
-            // 
-            this.editInfoBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
-            this.editInfoBtn.FlatAppearance.BorderSize = 0;
-            this.editInfoBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.editInfoBtn.ForeColor = System.Drawing.Color.White;
-            this.editInfoBtn.Location = new System.Drawing.Point(259, 607);
-            this.editInfoBtn.Name = "editInfoBtn";
-            this.editInfoBtn.Size = new System.Drawing.Size(110, 34);
-            this.editInfoBtn.TabIndex = 11;
-            this.editInfoBtn.TabStop = false;
-            this.editInfoBtn.Text = "정보 수정";
-            this.editInfoBtn.UseVisualStyleBackColor = false;
-            this.editInfoBtn.Click += new System.EventHandler(this.editInfoBtn_Click);
-            // 
-            // testInfoPanel
-            // 
-            this.testInfoPanel.BackColor = System.Drawing.Color.Indigo;
-            this.testInfoPanel.Controls.Add(this.testInfoCancelBtn);
-            this.testInfoPanel.Controls.Add(this.testInfoTestNameLbl);
-            this.testInfoPanel.Controls.Add(this.testInfoTimeLbl);
-            this.testInfoPanel.Controls.Add(this.testInfoDayLbl);
-            this.testInfoPanel.Controls.Add(this.testInfoProfNameLbl);
-            this.testInfoPanel.Controls.Add(this.testInfoLectureLbl);
-            this.testInfoPanel.Controls.Add(this.testStartBtn);
-            this.testInfoPanel.Location = new System.Drawing.Point(885, 0);
-            this.testInfoPanel.Name = "testInfoPanel";
-            this.testInfoPanel.Size = new System.Drawing.Size(379, 654);
-            this.testInfoPanel.TabIndex = 19;
-            this.testInfoPanel.Visible = false;
-            // 
-            // testInfoCancelBtn
-            // 
-            this.testInfoCancelBtn.BackColor = System.Drawing.Color.DimGray;
-            this.testInfoCancelBtn.FlatAppearance.BorderSize = 0;
-            this.testInfoCancelBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.testInfoCancelBtn.ForeColor = System.Drawing.Color.White;
-            this.testInfoCancelBtn.Location = new System.Drawing.Point(202, 598);
-            this.testInfoCancelBtn.Name = "testInfoCancelBtn";
-            this.testInfoCancelBtn.Size = new System.Drawing.Size(143, 34);
-            this.testInfoCancelBtn.TabIndex = 17;
-            this.testInfoCancelBtn.TabStop = false;
-            this.testInfoCancelBtn.Text = "취소";
-            this.testInfoCancelBtn.UseVisualStyleBackColor = false;
-            this.testInfoCancelBtn.Click += new System.EventHandler(this.testInfoCancelBtn_Click);
-            // 
-            // testInfoTestNameLbl
-            // 
-            this.testInfoTestNameLbl.ForeColor = System.Drawing.Color.White;
-            this.testInfoTestNameLbl.Location = new System.Drawing.Point(68, 135);
-            this.testInfoTestNameLbl.Name = "testInfoTestNameLbl";
-            this.testInfoTestNameLbl.Size = new System.Drawing.Size(221, 48);
-            this.testInfoTestNameLbl.TabIndex = 16;
-            this.testInfoTestNameLbl.Text = "[시험 제목]";
-            // 
-            // testInfoTimeLbl
-            // 
-            this.testInfoTimeLbl.ForeColor = System.Drawing.Color.White;
-            this.testInfoTimeLbl.Location = new System.Drawing.Point(70, 299);
-            this.testInfoTimeLbl.Name = "testInfoTimeLbl";
-            this.testInfoTimeLbl.Size = new System.Drawing.Size(208, 21);
-            this.testInfoTimeLbl.TabIndex = 15;
-            this.testInfoTimeLbl.Text = "[시간]";
-            // 
-            // testInfoDayLbl
-            // 
-            this.testInfoDayLbl.ForeColor = System.Drawing.Color.White;
-            this.testInfoDayLbl.Location = new System.Drawing.Point(70, 256);
-            this.testInfoDayLbl.Name = "testInfoDayLbl";
-            this.testInfoDayLbl.Size = new System.Drawing.Size(208, 21);
-            this.testInfoDayLbl.TabIndex = 14;
-            this.testInfoDayLbl.Text = "[날짜]";
-            // 
-            // testInfoProfNameLbl
-            // 
-            this.testInfoProfNameLbl.ForeColor = System.Drawing.Color.White;
-            this.testInfoProfNameLbl.Location = new System.Drawing.Point(70, 207);
-            this.testInfoProfNameLbl.Name = "testInfoProfNameLbl";
-            this.testInfoProfNameLbl.Size = new System.Drawing.Size(208, 21);
-            this.testInfoProfNameLbl.TabIndex = 13;
-            this.testInfoProfNameLbl.Text = "[교수명]";
-            // 
-            // testInfoLectureLbl
-            // 
-            this.testInfoLectureLbl.ForeColor = System.Drawing.Color.White;
-            this.testInfoLectureLbl.Location = new System.Drawing.Point(45, 61);
-            this.testInfoLectureLbl.Name = "testInfoLectureLbl";
-            this.testInfoLectureLbl.Size = new System.Drawing.Size(290, 55);
-            this.testInfoLectureLbl.TabIndex = 12;
-            this.testInfoLectureLbl.Text = "[강의명]";
-            // 
-            // testStartBtn
-            // 
-            this.testStartBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
-            this.testStartBtn.FlatAppearance.BorderSize = 0;
-            this.testStartBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.testStartBtn.ForeColor = System.Drawing.Color.White;
-            this.testStartBtn.Location = new System.Drawing.Point(47, 598);
-            this.testStartBtn.Name = "testStartBtn";
-            this.testStartBtn.Size = new System.Drawing.Size(143, 34);
-            this.testStartBtn.TabIndex = 11;
-            this.testStartBtn.TabStop = false;
-            this.testStartBtn.Text = "응시하기";
-            this.testStartBtn.UseVisualStyleBackColor = false;
-            this.testStartBtn.Click += new System.EventHandler(this.testStartBtn_Click);
-            // 
             // StudentHomeView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -770,11 +770,14 @@ namespace program.View
             this.Text = "StudentHomeView";
             this.Load += new System.EventHandler(this.StudentHomeView_Load);
             this.mainPanel.ResumeLayout(false);
+            this.testInfoPanel.ResumeLayout(false);
             this.cameraPanel.ResumeLayout(false);
             this.cameraPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cameraPictureBox)).EndInit();
             this.testPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.lectureTable)).EndInit();
+            this.myPagePanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.editPanel.ResumeLayout(false);
             this.editStdNumPanel.ResumeLayout(false);
             this.editStdNumPanel.PerformLayout();
@@ -789,9 +792,6 @@ namespace program.View
             this.editEmailPanel.PerformLayout();
             this.editNamePanel.ResumeLayout(false);
             this.editNamePanel.PerformLayout();
-            this.myPagePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
-            this.testInfoPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

@@ -102,7 +102,7 @@
             // 
             // testPanel
             // 
-            this.testPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
+            this.testPanel.BackColor = System.Drawing.Color.White;
             this.testPanel.Controls.Add(this.lectureTable);
             this.testPanel.Controls.Add(this.checkScoreBtn);
             this.testPanel.Controls.Add(this.testAddBtn);
@@ -122,7 +122,7 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
             this.lectureTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.lectureTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.lectureTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
+            this.lectureTable.BackgroundColor = System.Drawing.Color.White;
             this.lectureTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lectureTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -516,10 +516,11 @@
             // 
             // lectureName
             // 
+            this.lectureName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             this.lectureName.DefaultCellStyle = dataGridViewCellStyle3;
-            this.lectureName.FillWeight = 17F;
+            this.lectureName.FillWeight = 16F;
             this.lectureName.HeaderText = "강의명";
             this.lectureName.Name = "lectureName";
             this.lectureName.ReadOnly = true;
@@ -527,7 +528,8 @@
             // 
             // professor
             // 
-            this.professor.FillWeight = 6F;
+            this.professor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.professor.FillWeight = 7F;
             this.professor.HeaderText = "담당 교수";
             this.professor.Name = "professor";
             this.professor.ReadOnly = true;
@@ -535,6 +537,7 @@
             // 
             // testDay
             // 
+            this.testDay.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.testDay.FillWeight = 7F;
             this.testDay.HeaderText = "날짜";
             this.testDay.Name = "testDay";
@@ -543,6 +546,7 @@
             // 
             // testTime
             // 
+            this.testTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.testTime.FillWeight = 7F;
             this.testTime.HeaderText = "시간";
             this.testTime.Name = "testTime";
@@ -551,6 +555,7 @@
             // 
             // testName
             // 
+            this.testName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.testName.FillWeight = 15F;
             this.testName.HeaderText = "시험 제목";
             this.testName.Name = "testName";
@@ -559,12 +564,15 @@
             // 
             // id
             // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.id.FillWeight = 10F;
             this.id.HeaderText = "id";
             this.id.Name = "id";
             this.id.ReadOnly = true;
             // 
             // editBtn
             // 
+            this.editBtn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.editBtn.FillWeight = 5F;
             this.editBtn.HeaderText = "   ";
             this.editBtn.Name = "editBtn";

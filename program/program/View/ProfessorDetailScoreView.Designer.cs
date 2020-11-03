@@ -34,6 +34,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.TopPanel = new System.Windows.Forms.Panel();
+            this.scoreCheckLabel = new System.Windows.Forms.Label();
+            this.scorePictureBox = new System.Windows.Forms.PictureBox();
             this.doubtBtn = new System.Windows.Forms.Button();
             this.excelDownBtn = new System.Windows.Forms.Button();
             this.avgScoreText = new System.Windows.Forms.Label();
@@ -43,11 +46,6 @@
             this.lectureText = new System.Windows.Forms.Label();
             this.avgScoreLbl = new System.Windows.Forms.Label();
             this.totalScoreLbl = new System.Windows.Forms.Label();
-            this.testDayLbl = new System.Windows.Forms.Label();
-            this.testNameLbl = new System.Windows.Forms.Label();
-            this.lectureLbl = new System.Windows.Forms.Label();
-            this.scoreCheckLabel = new System.Windows.Forms.Label();
-            this.scorePictureBox = new System.Windows.Forms.PictureBox();
             this.backBtn = new System.Windows.Forms.Button();
             this.studentScoreTable = new System.Windows.Forms.DataGridView();
             this.studentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,13 +53,15 @@
             this.studentScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mainPanel.SuspendLayout();
+            this.TopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scorePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentScoreTable)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
-            this.mainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.mainPanel.BackColor = System.Drawing.Color.White;
+            this.mainPanel.Controls.Add(this.TopPanel);
             this.mainPanel.Controls.Add(this.doubtBtn);
             this.mainPanel.Controls.Add(this.excelDownBtn);
             this.mainPanel.Controls.Add(this.avgScoreText);
@@ -71,11 +71,6 @@
             this.mainPanel.Controls.Add(this.lectureText);
             this.mainPanel.Controls.Add(this.avgScoreLbl);
             this.mainPanel.Controls.Add(this.totalScoreLbl);
-            this.mainPanel.Controls.Add(this.testDayLbl);
-            this.mainPanel.Controls.Add(this.testNameLbl);
-            this.mainPanel.Controls.Add(this.lectureLbl);
-            this.mainPanel.Controls.Add(this.scoreCheckLabel);
-            this.mainPanel.Controls.Add(this.scorePictureBox);
             this.mainPanel.Controls.Add(this.backBtn);
             this.mainPanel.Controls.Add(this.studentScoreTable);
             this.mainPanel.Location = new System.Drawing.Point(0, 28);
@@ -84,9 +79,37 @@
             this.mainPanel.TabIndex = 20;
             this.mainPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.mainPanel_Paint);
             // 
+            // TopPanel
+            // 
+            this.TopPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.TopPanel.Controls.Add(this.scoreCheckLabel);
+            this.TopPanel.Controls.Add(this.scorePictureBox);
+            this.TopPanel.Location = new System.Drawing.Point(0, 0);
+            this.TopPanel.Name = "TopPanel";
+            this.TopPanel.Size = new System.Drawing.Size(1264, 82);
+            this.TopPanel.TabIndex = 34;
+            // 
+            // scoreCheckLabel
+            // 
+            this.scoreCheckLabel.AutoSize = true;
+            this.scoreCheckLabel.ForeColor = System.Drawing.Color.White;
+            this.scoreCheckLabel.Location = new System.Drawing.Point(85, 25);
+            this.scoreCheckLabel.Name = "scoreCheckLabel";
+            this.scoreCheckLabel.Size = new System.Drawing.Size(97, 12);
+            this.scoreCheckLabel.TabIndex = 21;
+            this.scoreCheckLabel.Text = "학생별 성적 확인";
+            // 
+            // scorePictureBox
+            // 
+            this.scorePictureBox.Location = new System.Drawing.Point(11, 12);
+            this.scorePictureBox.Name = "scorePictureBox";
+            this.scorePictureBox.Size = new System.Drawing.Size(61, 59);
+            this.scorePictureBox.TabIndex = 20;
+            this.scorePictureBox.TabStop = false;
+            // 
             // doubtBtn
             // 
-            this.doubtBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
+            this.doubtBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
             this.doubtBtn.FlatAppearance.BorderSize = 0;
             this.doubtBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.doubtBtn.ForeColor = System.Drawing.Color.White;
@@ -101,7 +124,7 @@
             // 
             // excelDownBtn
             // 
-            this.excelDownBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
+            this.excelDownBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
             this.excelDownBtn.FlatAppearance.BorderSize = 0;
             this.excelDownBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.excelDownBtn.ForeColor = System.Drawing.Color.White;
@@ -117,8 +140,8 @@
             // avgScoreText
             // 
             this.avgScoreText.AutoSize = true;
-            this.avgScoreText.ForeColor = System.Drawing.Color.White;
-            this.avgScoreText.Location = new System.Drawing.Point(387, 505);
+            this.avgScoreText.ForeColor = System.Drawing.Color.Black;
+            this.avgScoreText.Location = new System.Drawing.Point(274, 476);
             this.avgScoreText.Name = "avgScoreText";
             this.avgScoreText.Size = new System.Drawing.Size(57, 12);
             this.avgScoreText.TabIndex = 31;
@@ -127,8 +150,8 @@
             // totalScoreText
             // 
             this.totalScoreText.AutoSize = true;
-            this.totalScoreText.ForeColor = System.Drawing.Color.White;
-            this.totalScoreText.Location = new System.Drawing.Point(387, 409);
+            this.totalScoreText.ForeColor = System.Drawing.Color.Black;
+            this.totalScoreText.Location = new System.Drawing.Point(274, 403);
             this.totalScoreText.Name = "totalScoreText";
             this.totalScoreText.Size = new System.Drawing.Size(45, 12);
             this.totalScoreText.TabIndex = 30;
@@ -137,8 +160,8 @@
             // testDayText
             // 
             this.testDayText.AutoSize = true;
-            this.testDayText.ForeColor = System.Drawing.Color.White;
-            this.testDayText.Location = new System.Drawing.Point(387, 317);
+            this.testDayText.ForeColor = System.Drawing.Color.Black;
+            this.testDayText.Location = new System.Drawing.Point(67, 319);
             this.testDayText.Name = "testDayText";
             this.testDayText.Size = new System.Drawing.Size(57, 12);
             this.testDayText.TabIndex = 29;
@@ -147,8 +170,8 @@
             // testNameText
             // 
             this.testNameText.AutoSize = true;
-            this.testNameText.ForeColor = System.Drawing.Color.White;
-            this.testNameText.Location = new System.Drawing.Point(387, 224);
+            this.testNameText.ForeColor = System.Drawing.Color.Black;
+            this.testNameText.Location = new System.Drawing.Point(67, 238);
             this.testNameText.Name = "testNameText";
             this.testNameText.Size = new System.Drawing.Size(41, 12);
             this.testNameText.TabIndex = 28;
@@ -157,8 +180,9 @@
             // lectureText
             // 
             this.lectureText.AutoSize = true;
-            this.lectureText.ForeColor = System.Drawing.Color.White;
-            this.lectureText.Location = new System.Drawing.Point(387, 132);
+            this.lectureText.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lectureText.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.lectureText.Location = new System.Drawing.Point(49, 129);
             this.lectureText.Name = "lectureText";
             this.lectureText.Size = new System.Drawing.Size(41, 12);
             this.lectureText.TabIndex = 27;
@@ -167,8 +191,8 @@
             // avgScoreLbl
             // 
             this.avgScoreLbl.AutoSize = true;
-            this.avgScoreLbl.ForeColor = System.Drawing.Color.White;
-            this.avgScoreLbl.Location = new System.Drawing.Point(180, 505);
+            this.avgScoreLbl.ForeColor = System.Drawing.Color.Black;
+            this.avgScoreLbl.Location = new System.Drawing.Point(67, 476);
             this.avgScoreLbl.Name = "avgScoreLbl";
             this.avgScoreLbl.Size = new System.Drawing.Size(57, 12);
             this.avgScoreLbl.TabIndex = 26;
@@ -177,64 +201,16 @@
             // totalScoreLbl
             // 
             this.totalScoreLbl.AutoSize = true;
-            this.totalScoreLbl.ForeColor = System.Drawing.Color.White;
-            this.totalScoreLbl.Location = new System.Drawing.Point(180, 409);
+            this.totalScoreLbl.ForeColor = System.Drawing.Color.Black;
+            this.totalScoreLbl.Location = new System.Drawing.Point(67, 403);
             this.totalScoreLbl.Name = "totalScoreLbl";
             this.totalScoreLbl.Size = new System.Drawing.Size(45, 12);
             this.totalScoreLbl.TabIndex = 25;
             this.totalScoreLbl.Text = "총 점수";
             // 
-            // testDayLbl
-            // 
-            this.testDayLbl.AutoSize = true;
-            this.testDayLbl.ForeColor = System.Drawing.Color.White;
-            this.testDayLbl.Location = new System.Drawing.Point(180, 317);
-            this.testDayLbl.Name = "testDayLbl";
-            this.testDayLbl.Size = new System.Drawing.Size(57, 12);
-            this.testDayLbl.TabIndex = 24;
-            this.testDayLbl.Text = "시험 날짜";
-            // 
-            // testNameLbl
-            // 
-            this.testNameLbl.AutoSize = true;
-            this.testNameLbl.ForeColor = System.Drawing.Color.White;
-            this.testNameLbl.Location = new System.Drawing.Point(180, 224);
-            this.testNameLbl.Name = "testNameLbl";
-            this.testNameLbl.Size = new System.Drawing.Size(41, 12);
-            this.testNameLbl.TabIndex = 23;
-            this.testNameLbl.Text = "시험명";
-            // 
-            // lectureLbl
-            // 
-            this.lectureLbl.AutoSize = true;
-            this.lectureLbl.ForeColor = System.Drawing.Color.White;
-            this.lectureLbl.Location = new System.Drawing.Point(180, 132);
-            this.lectureLbl.Name = "lectureLbl";
-            this.lectureLbl.Size = new System.Drawing.Size(41, 12);
-            this.lectureLbl.TabIndex = 22;
-            this.lectureLbl.Text = "강의명";
-            // 
-            // scoreCheckLabel
-            // 
-            this.scoreCheckLabel.AutoSize = true;
-            this.scoreCheckLabel.ForeColor = System.Drawing.Color.White;
-            this.scoreCheckLabel.Location = new System.Drawing.Point(111, 27);
-            this.scoreCheckLabel.Name = "scoreCheckLabel";
-            this.scoreCheckLabel.Size = new System.Drawing.Size(97, 12);
-            this.scoreCheckLabel.TabIndex = 21;
-            this.scoreCheckLabel.Text = "학생별 성적 확인";
-            // 
-            // scorePictureBox
-            // 
-            this.scorePictureBox.Location = new System.Drawing.Point(37, 14);
-            this.scorePictureBox.Name = "scorePictureBox";
-            this.scorePictureBox.Size = new System.Drawing.Size(61, 59);
-            this.scorePictureBox.TabIndex = 20;
-            this.scorePictureBox.TabStop = false;
-            // 
             // backBtn
             // 
-            this.backBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
+            this.backBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
             this.backBtn.FlatAppearance.BorderSize = 0;
             this.backBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.backBtn.ForeColor = System.Drawing.Color.White;
@@ -257,7 +233,7 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
             this.studentScoreTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.studentScoreTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.studentScoreTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.studentScoreTable.BackgroundColor = System.Drawing.Color.White;
             this.studentScoreTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.studentScoreTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -283,7 +259,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.studentScoreTable.DefaultCellStyle = dataGridViewCellStyle3;
             this.studentScoreTable.GridColor = System.Drawing.Color.AliceBlue;
-            this.studentScoreTable.Location = new System.Drawing.Point(665, 78);
+            this.studentScoreTable.Location = new System.Drawing.Point(665, 108);
             this.studentScoreTable.MultiSelect = false;
             this.studentScoreTable.Name = "studentScoreTable";
             this.studentScoreTable.ReadOnly = true;
@@ -304,7 +280,7 @@
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.studentScoreTable.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.studentScoreTable.RowTemplate.Height = 23;
-            this.studentScoreTable.Size = new System.Drawing.Size(523, 484);
+            this.studentScoreTable.Size = new System.Drawing.Size(523, 454);
             this.studentScoreTable.TabIndex = 12;
             // 
             // studentID
@@ -356,6 +332,8 @@
             this.Load += new System.EventHandler(this.ProfessorDetailScoreView_Load);
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
+            this.TopPanel.ResumeLayout(false);
+            this.TopPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scorePictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentScoreTable)).EndInit();
             this.ResumeLayout(false);
@@ -374,9 +352,6 @@
         private System.Windows.Forms.Label lectureText;
         private System.Windows.Forms.Label avgScoreLbl;
         private System.Windows.Forms.Label totalScoreLbl;
-        private System.Windows.Forms.Label testDayLbl;
-        private System.Windows.Forms.Label testNameLbl;
-        private System.Windows.Forms.Label lectureLbl;
         private System.Windows.Forms.Label avgScoreText;
         private System.Windows.Forms.Label totalScoreText;
         private System.Windows.Forms.Button excelDownBtn;
@@ -385,5 +360,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn studentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn studentScore;
         private System.Windows.Forms.DataGridViewTextBoxColumn scoreRate;
+        private System.Windows.Forms.Panel TopPanel;
     }
 }

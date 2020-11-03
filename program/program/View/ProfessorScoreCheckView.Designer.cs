@@ -45,16 +45,17 @@
             this.scoreScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreAvg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TopPanel = new System.Windows.Forms.Panel();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scorePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lectureTable)).BeginInit();
+            this.TopPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
-            this.mainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
-            this.mainPanel.Controls.Add(this.scoreCheckLabel);
-            this.mainPanel.Controls.Add(this.scorePictureBox);
+            this.mainPanel.BackColor = System.Drawing.Color.White;
+            this.mainPanel.Controls.Add(this.TopPanel);
             this.mainPanel.Controls.Add(this.backBtn);
             this.mainPanel.Controls.Add(this.lectureTable);
             this.mainPanel.Location = new System.Drawing.Point(0, 28);
@@ -66,7 +67,7 @@
             // 
             this.scoreCheckLabel.AutoSize = true;
             this.scoreCheckLabel.ForeColor = System.Drawing.Color.White;
-            this.scoreCheckLabel.Location = new System.Drawing.Point(111, 42);
+            this.scoreCheckLabel.Location = new System.Drawing.Point(86, 24);
             this.scoreCheckLabel.Name = "scoreCheckLabel";
             this.scoreCheckLabel.Size = new System.Drawing.Size(57, 12);
             this.scoreCheckLabel.TabIndex = 21;
@@ -74,7 +75,7 @@
             // 
             // scorePictureBox
             // 
-            this.scorePictureBox.Location = new System.Drawing.Point(37, 29);
+            this.scorePictureBox.Location = new System.Drawing.Point(12, 11);
             this.scorePictureBox.Name = "scorePictureBox";
             this.scorePictureBox.Size = new System.Drawing.Size(61, 59);
             this.scorePictureBox.TabIndex = 20;
@@ -82,7 +83,7 @@
             // 
             // backBtn
             // 
-            this.backBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
+            this.backBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
             this.backBtn.FlatAppearance.BorderSize = 0;
             this.backBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.backBtn.ForeColor = System.Drawing.Color.White;
@@ -105,7 +106,7 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
             this.lectureTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.lectureTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.lectureTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.lectureTable.BackgroundColor = System.Drawing.Color.White;
             this.lectureTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lectureTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -209,6 +210,16 @@
             this.scoreRate.ReadOnly = true;
             this.scoreRate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
+            // TopPanel
+            // 
+            this.TopPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.TopPanel.Controls.Add(this.scoreCheckLabel);
+            this.TopPanel.Controls.Add(this.scorePictureBox);
+            this.TopPanel.Location = new System.Drawing.Point(0, 0);
+            this.TopPanel.Name = "TopPanel";
+            this.TopPanel.Size = new System.Drawing.Size(1264, 82);
+            this.TopPanel.TabIndex = 22;
+            // 
             // ProfessorScoreCheckView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -220,9 +231,10 @@
             this.Text = "ProfessorScoreCheckView";
             this.Load += new System.EventHandler(this.ProfessorScoreCheckView_Load);
             this.mainPanel.ResumeLayout(false);
-            this.mainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scorePictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lectureTable)).EndInit();
+            this.TopPanel.ResumeLayout(false);
+            this.TopPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -240,5 +252,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn scoreScore;
         private System.Windows.Forms.DataGridViewTextBoxColumn scoreAvg;
         private System.Windows.Forms.DataGridViewTextBoxColumn scoreRate;
+        private System.Windows.Forms.Panel TopPanel;
     }
 }

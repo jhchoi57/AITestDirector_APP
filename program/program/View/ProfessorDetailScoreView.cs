@@ -79,15 +79,12 @@ namespace program.View
             scoreCheckLabel.Font = customFonts.TitleFont();
 
             // 강의명
-            lectureLbl.Font = customFonts.SubTitleFont();
-            lectureText.Font = customFonts.SubTitleFont();
+            lectureText.Font = customFonts.LectureTitleFont();
 
             // 시험명
-            testNameLbl.Font = customFonts.SubTitleFont();
             testNameText.Font = customFonts.SubTitleFont();
 
             // 시험 날짜
-            testDayLbl.Font = customFonts.SubTitleFont();
             testDayText.Font = customFonts.SubTitleFont();
 
             // 총 점수

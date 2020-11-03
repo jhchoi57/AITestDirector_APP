@@ -61,6 +61,7 @@ namespace program.View.Components
             this.Controls.Add(maxLengthTextBox);
             maxLengthTextBox.KeyPress += maxLengthTextBox_KeyPress_1;
             maxLengthTextBox.LostFocus += maxLengthTextBox_LostFocus_1;
+            maxLengthTextBox.MouseDown += maxLengthTextBox_MouseDown_1;
 
             textLabel = new Label();
             textLabel.Text = "답:";
@@ -88,6 +89,7 @@ namespace program.View.Components
             answerTextBox.Multiline = true;
             this.Controls.Add(answerTextBox);
             answerTextBox.LostFocus += answerTextBox_LostFocus_1;
+            answerTextBox.MouseDown += answerTextBox_MouseDown_1;
         }
         private void maxLengthTextBox_KeyPress_1(object sender, KeyPressEventArgs e)
         {
@@ -127,6 +129,22 @@ namespace program.View.Components
             answerTextBox.Visible = true;
             answerLabel.Visible = false;
             answerTextBox.Focus();
+        }
+
+        private void maxLengthTextBox_MouseDown_1(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                MessageBox.Show("마우스 오른쪽 클릭은 지원하지 않습니다.");
+            }
+        }
+
+        private void answerTextBox_MouseDown_1(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                MessageBox.Show("마우스 오른쪽 클릭은 지원하지 않습니다.");
+            }
         }
     }
 }

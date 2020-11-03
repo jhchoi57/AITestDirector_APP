@@ -71,11 +71,11 @@ namespace program.View
         private void ExamView_Load1(object sender, EventArgs e)
         {
             // 프로세스 제어
-            //ProcessController processController = new ProcessController();
-            //processController.KillProcess();
+            ProcessController processController = new ProcessController();
+            processController.KillProcess();
 
             // 키보드 후킹
-            //SetHook();
+            SetHook();
 
             // 폰트
             customFonts = new CustomFonts();
@@ -573,6 +573,16 @@ namespace program.View
                     //MessageBox.Show("ALT 키는 지원하지 않습니다.");
                     return (IntPtr)1;
                 }
+                if(vkCode == 91)
+                {
+                    // windows 키
+                    return (IntPtr)1;
+                }
+                if(vkCode == 44)
+                {
+                    //print screen key
+                    return (IntPtr)1;
+                }
                 else return CallNextHookEx(hhook, code, (int)wParam, lParam);
             }
             else
@@ -581,7 +591,7 @@ namespace program.View
 
         private void ExamView_FormClosing(object sender, FormClosingEventArgs e)
         {            
-            //UnHook();
+            UnHook();
         }
 
         //Ctrl + Alt + Delete 막기

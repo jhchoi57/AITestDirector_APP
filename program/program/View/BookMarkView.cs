@@ -41,6 +41,7 @@ namespace program.View
             exitBtn.Font = customFonts.TextBoxFont();
             bookMarkTable.Font = customFonts.NormalFont();
 
+
             // 이미지
             bookMarkPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             bookMarkPictureBox.Image = System.Drawing.Image.FromFile("../../src/Assets/Images/face.png");

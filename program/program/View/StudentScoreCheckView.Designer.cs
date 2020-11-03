@@ -45,9 +45,11 @@
             this.scoreCheckLabel = new System.Windows.Forms.Label();
             this.scorePictureBox = new System.Windows.Forms.PictureBox();
             this.backBtn = new System.Windows.Forms.Button();
+            this.TopPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.lectureTable)).BeginInit();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scorePictureBox)).BeginInit();
+            this.TopPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // lectureTable
@@ -60,7 +62,7 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
             this.lectureTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.lectureTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.lectureTable.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.lectureTable.BackgroundColor = System.Drawing.Color.White;
             this.lectureTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.lectureTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -88,7 +90,7 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.lectureTable.DefaultCellStyle = dataGridViewCellStyle4;
             this.lectureTable.GridColor = System.Drawing.Color.AliceBlue;
-            this.lectureTable.Location = new System.Drawing.Point(35, 86);
+            this.lectureTable.Location = new System.Drawing.Point(35, 101);
             this.lectureTable.MultiSelect = false;
             this.lectureTable.Name = "lectureTable";
             this.lectureTable.ReadOnly = true;
@@ -109,7 +111,7 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lectureTable.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.lectureTable.RowTemplate.Height = 23;
-            this.lectureTable.Size = new System.Drawing.Size(1187, 500);
+            this.lectureTable.Size = new System.Drawing.Size(1187, 485);
             this.lectureTable.TabIndex = 12;
             // 
             // scoreLectureName
@@ -165,21 +167,20 @@
             // 
             // mainPanel
             // 
-            this.mainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
-            this.mainPanel.Controls.Add(this.scoreCheckLabel);
-            this.mainPanel.Controls.Add(this.scorePictureBox);
+            this.mainPanel.BackColor = System.Drawing.Color.White;
+            this.mainPanel.Controls.Add(this.TopPanel);
             this.mainPanel.Controls.Add(this.backBtn);
             this.mainPanel.Controls.Add(this.lectureTable);
             this.mainPanel.Location = new System.Drawing.Point(0, 28);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1264, 682);
+            this.mainPanel.Size = new System.Drawing.Size(1264, 655);
             this.mainPanel.TabIndex = 18;
             // 
             // scoreCheckLabel
             // 
             this.scoreCheckLabel.AutoSize = true;
             this.scoreCheckLabel.ForeColor = System.Drawing.Color.White;
-            this.scoreCheckLabel.Location = new System.Drawing.Point(111, 27);
+            this.scoreCheckLabel.Location = new System.Drawing.Point(86, 25);
             this.scoreCheckLabel.Name = "scoreCheckLabel";
             this.scoreCheckLabel.Size = new System.Drawing.Size(57, 12);
             this.scoreCheckLabel.TabIndex = 21;
@@ -187,7 +188,7 @@
             // 
             // scorePictureBox
             // 
-            this.scorePictureBox.Location = new System.Drawing.Point(37, 14);
+            this.scorePictureBox.Location = new System.Drawing.Point(12, 12);
             this.scorePictureBox.Name = "scorePictureBox";
             this.scorePictureBox.Size = new System.Drawing.Size(61, 59);
             this.scorePictureBox.TabIndex = 20;
@@ -195,18 +196,28 @@
             // 
             // backBtn
             // 
-            this.backBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(57)))), ((int)(((byte)(71)))), ((int)(((byte)(97)))));
+            this.backBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
             this.backBtn.FlatAppearance.BorderSize = 0;
             this.backBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.backBtn.ForeColor = System.Drawing.Color.White;
-            this.backBtn.Location = new System.Drawing.Point(1079, 606);
+            this.backBtn.Location = new System.Drawing.Point(1113, 607);
             this.backBtn.Name = "backBtn";
-            this.backBtn.Size = new System.Drawing.Size(143, 34);
+            this.backBtn.Size = new System.Drawing.Size(130, 34);
             this.backBtn.TabIndex = 19;
             this.backBtn.TabStop = false;
             this.backBtn.Text = "나가기";
             this.backBtn.UseVisualStyleBackColor = false;
             this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
+            // 
+            // TopPanel
+            // 
+            this.TopPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.TopPanel.Controls.Add(this.scorePictureBox);
+            this.TopPanel.Controls.Add(this.scoreCheckLabel);
+            this.TopPanel.Location = new System.Drawing.Point(0, 0);
+            this.TopPanel.Name = "TopPanel";
+            this.TopPanel.Size = new System.Drawing.Size(1264, 82);
+            this.TopPanel.TabIndex = 23;
             // 
             // StudentScoreCheckView
             // 
@@ -220,8 +231,9 @@
             this.Load += new System.EventHandler(this.StudentScoreCheckView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.lectureTable)).EndInit();
             this.mainPanel.ResumeLayout(false);
-            this.mainPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scorePictureBox)).EndInit();
+            this.TopPanel.ResumeLayout(false);
+            this.TopPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -239,5 +251,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn scoreRate;
         private System.Windows.Forms.Label scoreCheckLabel;
         private System.Windows.Forms.PictureBox scorePictureBox;
+        private System.Windows.Forms.Panel TopPanel;
     }
 }

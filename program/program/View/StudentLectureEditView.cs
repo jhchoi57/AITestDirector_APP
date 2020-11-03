@@ -57,8 +57,6 @@ namespace program.View
             setMyLectures();
 
             // 이미지
-            homePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            homePictureBox.Image = System.Drawing.Image.FromFile("../../src/Assets/Images/home.png");
             lecturePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             lecturePictureBox.Image = System.Drawing.Image.FromFile("../../src/Assets/Images/lecture.png");
 
@@ -272,6 +270,11 @@ namespace program.View
             {
                 searchBtn.PerformClick();
             }
+        }
+
+        private void exitBtn_Click(object sender, EventArgs e)
+        {
+            mainController.moveToPreviousForm();
         }
     }
 }
