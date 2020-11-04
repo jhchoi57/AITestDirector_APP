@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Text;
@@ -11,6 +12,8 @@ namespace program.View.Components
     public class CustomFonts
     {
         private static PrivateFontCollection privateFont;
+        private static FontFamily fontFamilyBold;
+        private static FontFamily fontFamilyLight;
         public Font NormalFont()
         {
             return new Font(privateFont.Families[1], 10f);
@@ -59,10 +62,32 @@ namespace program.View.Components
         static CustomFonts()
         {
             privateFont = new PrivateFontCollection();
-            privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothic.ttf");
-            privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicBold.ttf");
-            privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicLight.ttf");
-            privateFont.AddFontFile("../../src/Assets/Fonts/NanumBarunGothicUltraLight.ttf");
+
+
+
+            //string targetURL = "https://test.inchang.dev:9000/static/NanumBarunGothicBold.ttf";
+
+            //var client = new RestClient(targetURL);
+            //client.Timeout = -1;
+            //var request = new RestRequest(Method.GET);
+            ////request.AddParameter("id", email);
+            ////request.AddParameter("password", password);
+            //IRestResponse response = client.Execute(request);
+
+            //IntPtr ptr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(response.Content.Length);
+
+
+            //privateFont = new PrivateFontCollection();
+
+            //privateFont.AddMemoryFont(ptr, response.Content.le)
+
+            //FontFamily fontFamilyBold = new System.Windows.Media.FontFamily(new Uri("https://test.inchange.dev:9000/static/NanumBarunGothicBold.ttf", "NanumBarunGothicBold");
+            //FontFamily fontFamilyLight = new System.Windows.Media.FontFamily(new Uri("https://test.inchange.dev:9000/static/NanumBarunGothicLight.ttf", "light"));
+
+            privateFont.AddFontFile("./src/Assets/Fonts/NanumBarunGothic.ttf");
+            privateFont.AddFontFile("./src/Assets/Fonts/NanumBarunGothicBold.ttf");
+            privateFont.AddFontFile("./src/Assets/Fonts/NanumBarunGothicLight.ttf");
+            privateFont.AddFontFile("./src/Assets/Fonts/NanumBarunGothicUltraLight.ttf");
         }
     }
 }

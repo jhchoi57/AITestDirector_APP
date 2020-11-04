@@ -44,7 +44,7 @@ namespace program.View
 
             // 이미지
             bookMarkPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            bookMarkPictureBox.Image = System.Drawing.Image.FromFile("../../src/Assets/Images/face.png");
+            bookMarkPictureBox.Image = System.Drawing.Image.FromFile("./src/Assets/Images/face.png");
 
             // 상단바
             this.topBarPanel = new TopBarPanel(customFonts);

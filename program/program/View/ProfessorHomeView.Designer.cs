@@ -37,6 +37,14 @@
             this.mainPanel = new System.Windows.Forms.Panel();
             this.testPanel = new System.Windows.Forms.Panel();
             this.lectureTable = new System.Windows.Forms.DataGridView();
+            this.lectureName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.professor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.editBtn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.checkScoreBtn = new System.Windows.Forms.Button();
             this.testAddBtn = new System.Windows.Forms.Button();
             this.editLectureBtn = new System.Windows.Forms.Button();
@@ -67,14 +75,6 @@
             this.nameLabel = new System.Windows.Forms.Label();
             this.univLabel = new System.Windows.Forms.Label();
             this.editInfoBtn = new System.Windows.Forms.Button();
-            this.lectureName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.professor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.editBtn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.deleteColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.mainPanel.SuspendLayout();
             this.testPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lectureTable)).BeginInit();
@@ -176,6 +176,86 @@
             this.lectureTable.Size = new System.Drawing.Size(862, 581);
             this.lectureTable.TabIndex = 12;
             this.lectureTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.lectureTable_CellClick);
+            // 
+            // lectureName
+            // 
+            this.lectureName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.lectureName.DefaultCellStyle = dataGridViewCellStyle3;
+            this.lectureName.FillWeight = 16F;
+            this.lectureName.HeaderText = "강의명";
+            this.lectureName.Name = "lectureName";
+            this.lectureName.ReadOnly = true;
+            this.lectureName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // professor
+            // 
+            this.professor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.professor.FillWeight = 7F;
+            this.professor.HeaderText = "담당 교수";
+            this.professor.Name = "professor";
+            this.professor.ReadOnly = true;
+            this.professor.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // testDay
+            // 
+            this.testDay.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.testDay.FillWeight = 7F;
+            this.testDay.HeaderText = "날짜";
+            this.testDay.Name = "testDay";
+            this.testDay.ReadOnly = true;
+            this.testDay.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // testTime
+            // 
+            this.testTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.testTime.FillWeight = 7F;
+            this.testTime.HeaderText = "시간";
+            this.testTime.Name = "testTime";
+            this.testTime.ReadOnly = true;
+            this.testTime.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // testName
+            // 
+            this.testName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.testName.FillWeight = 15F;
+            this.testName.HeaderText = "시험 제목";
+            this.testName.Name = "testName";
+            this.testName.ReadOnly = true;
+            this.testName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // id
+            // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.id.FillWeight = 10F;
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            // 
+            // editBtn
+            // 
+            this.editBtn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.editBtn.FillWeight = 5F;
+            this.editBtn.HeaderText = "   ";
+            this.editBtn.Name = "editBtn";
+            this.editBtn.ReadOnly = true;
+            this.editBtn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.editBtn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.editBtn.Text = "수정";
+            this.editBtn.ToolTipText = "수정";
+            this.editBtn.UseColumnTextForButtonValue = true;
+            // 
+            // deleteColumn
+            // 
+            this.deleteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.deleteColumn.FillWeight = 5F;
+            this.deleteColumn.HeaderText = "  ";
+            this.deleteColumn.Name = "deleteColumn";
+            this.deleteColumn.ReadOnly = true;
+            this.deleteColumn.Text = "삭제";
+            this.deleteColumn.ToolTipText = "삭제";
+            this.deleteColumn.UseColumnTextForButtonValue = true;
             // 
             // checkScoreBtn
             // 
@@ -513,86 +593,6 @@
             this.editInfoBtn.Text = "정보 수정";
             this.editInfoBtn.UseVisualStyleBackColor = false;
             this.editInfoBtn.Click += new System.EventHandler(this.editInfoBtn_Click);
-            // 
-            // lectureName
-            // 
-            this.lectureName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            this.lectureName.DefaultCellStyle = dataGridViewCellStyle3;
-            this.lectureName.FillWeight = 16F;
-            this.lectureName.HeaderText = "강의명";
-            this.lectureName.Name = "lectureName";
-            this.lectureName.ReadOnly = true;
-            this.lectureName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // professor
-            // 
-            this.professor.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.professor.FillWeight = 7F;
-            this.professor.HeaderText = "담당 교수";
-            this.professor.Name = "professor";
-            this.professor.ReadOnly = true;
-            this.professor.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // testDay
-            // 
-            this.testDay.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.testDay.FillWeight = 7F;
-            this.testDay.HeaderText = "날짜";
-            this.testDay.Name = "testDay";
-            this.testDay.ReadOnly = true;
-            this.testDay.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // testTime
-            // 
-            this.testTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.testTime.FillWeight = 7F;
-            this.testTime.HeaderText = "시간";
-            this.testTime.Name = "testTime";
-            this.testTime.ReadOnly = true;
-            this.testTime.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // testName
-            // 
-            this.testName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.testName.FillWeight = 15F;
-            this.testName.HeaderText = "시험 제목";
-            this.testName.Name = "testName";
-            this.testName.ReadOnly = true;
-            this.testName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // id
-            // 
-            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.id.FillWeight = 10F;
-            this.id.HeaderText = "id";
-            this.id.Name = "id";
-            this.id.ReadOnly = true;
-            // 
-            // editBtn
-            // 
-            this.editBtn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.editBtn.FillWeight = 5F;
-            this.editBtn.HeaderText = "   ";
-            this.editBtn.Name = "editBtn";
-            this.editBtn.ReadOnly = true;
-            this.editBtn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.editBtn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.editBtn.Text = "수정";
-            this.editBtn.ToolTipText = "수정";
-            this.editBtn.UseColumnTextForButtonValue = true;
-            // 
-            // deleteColumn
-            // 
-            this.deleteColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.deleteColumn.FillWeight = 5F;
-            this.deleteColumn.HeaderText = "  ";
-            this.deleteColumn.Name = "deleteColumn";
-            this.deleteColumn.ReadOnly = true;
-            this.deleteColumn.Text = "삭제";
-            this.deleteColumn.ToolTipText = "삭제";
-            this.deleteColumn.UseColumnTextForButtonValue = true;
             // 
             // ProfessorHomeView
             // 

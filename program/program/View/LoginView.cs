@@ -187,7 +187,7 @@ namespace program.View
             this.Controls.Add(topBarPanel);
 
             //Image panel backgroundimage setting
-            string backgroundImageRoute = "../../src/Assets/Images/Login.jpg";
+            string backgroundImageRoute = "./src/Assets/Images/Login.jpg";
             System.IO.FileInfo backgroundImage = new System.IO.FileInfo(backgroundImageRoute);
             if (backgroundImage.Exists)
             {

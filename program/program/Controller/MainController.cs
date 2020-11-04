@@ -43,7 +43,7 @@ namespace program.Controller
             //nowForm = new StudentHomeView(this);
             //nowForm = new ProfessorLectureEditView(this);
             //nowForm = new ProfessorScoreCheckView(this);
-            //nowForm = new VideoView(this);
+            //nowForm = new ProfessorExamView(this);
         }
 
         public string professorLoginRequest(string email, string password)

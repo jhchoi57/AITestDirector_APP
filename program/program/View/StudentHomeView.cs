@@ -61,9 +61,9 @@ namespace program.View
 
             // 이미지
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox.Image = System.Drawing.Image.FromFile("../../src/Assets/Images/user.png");
+            pictureBox.Image = System.Drawing.Image.FromFile("./src/Assets/Images/user.png");
             cameraPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            cameraPictureBox.Image = System.Drawing.Image.FromFile("../../src/Assets/Images/LinkImage.png");
+            cameraPictureBox.Image = System.Drawing.Image.FromFile("./src/Assets/Images/LinkImage.png");
 
             // 폰트
             
@@ -312,26 +312,37 @@ namespace program.View
 
         private void imageEditBtn_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("이미지 수정 이벤트 !");
-            OpenFileDialog openFile = new OpenFileDialog();
-            openFile.DefaultExt = "jpg";
-            openFile.Multiselect = false;
-            openFile.Filter = "Images Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg;*.jpeg;*.gif;*.bmp;*.png";
-            openFile.ShowDialog();
-            if (openFile.FileNames.Length > 0)
+            try
             {
-                Console.WriteLine(openFile);
-                string response = mainController.modifyStudentImageRequest(openFile.FileName);
-                JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
-                string code = (string)jObject["code"];
-                if (code.Equals("OK"))
+                MessageBox.Show("이미지 수정 이벤트 !");
+                OpenFileDialog openFile = new OpenFileDialog();
+                openFile.DefaultExt = "jpg";
+                openFile.Multiselect = false;
+                openFile.Filter = "Images Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png)|*.jpg;*.jpeg;*.gif;*.bmp;*.png";
+                openFile.ShowDialog();
+                if (openFile.FileNames.Length > 0)
                 {
-                    pictureBox.Load("https://test.inchang.dev:9000/account/student/" + mainController.Me.ID + "/profile-image");
+                    Console.WriteLine(openFile);
+                    string response = mainController.modifyStudentImageRequest(openFile.FileName);
+                    JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                    string code = (string)jObject["code"];
+                    if (code.Equals("OK"))
+                    {
+                        pictureBox.Load("https://test.inchang.dev:9000/account/student/" + mainController.Me.ID + "/profile-image");
+                    }
+                    else if (code.Equals("Many_Faces"))
+                    {
+                        MessageBox.Show("이미지 등록에 실패했습니다.\n 다시 시도해 주세요.", "본인 한 명의 얼굴만 들어간 사진을 선택해주세요.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show("이미지 등록에 실패했습니다.\n 다시 시도해 주세요.", "본인의 얼굴이 반드시 존재해야합니다.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("이미지 등록에 실패했습니다.\n 다시 시도해 주세요.", "이미지 등록 실패", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            catch(Exception error)
+            {
+                Console.WriteLine(error);
             }
         }
     }

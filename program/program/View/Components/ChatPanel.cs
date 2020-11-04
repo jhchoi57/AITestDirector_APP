@@ -123,6 +123,67 @@ namespace program.View.Components
             alignChatContentPanel(0);
         }
 
+        public ChatPanel(CustomFonts customFonts, string studentID, string studentName) : base()
+        {
+            this.customFonts = customFonts;
+            this.Size = new Size(328, 350);
+            this.BackColor = Color.White;
+
+            headerPanel = new Panel();
+            headerPanel.Size = new Size(328, 28);
+            headerPanel.BackColor = Color.BlueViolet;
+            this.Controls.Add(headerPanel);
+
+            headerLabel = new Label();
+            headerLabel.Font = customFonts.NormalFont();
+            headerLabel.Text = studentID + " " + studentName;
+            headerLabel.Size = new Size(200, 14);
+            headerLabel.Location = new Point(10, 7);
+            headerLabel.ForeColor = Color.White;
+            headerPanel.Controls.Add(headerLabel);
+
+            mainPanel = new Panel();
+            mainPanel.Size = new Size(326, 250);
+            mainPanel.Location = new Point(1, 28);
+            mainPanel.BackColor = Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            mainPanel.AutoScroll = true;
+            this.Controls.Add(mainPanel);
+
+            inputPanel = new Panel();
+            inputPanel.Size = new Size(326, 71);
+            inputPanel.Location = new Point(1, 278);
+            inputPanel.BackColor = Color.White;
+            this.Controls.Add(inputPanel);
+
+            inputTextBox = new TextBox();
+            inputTextBox.Font = customFonts.NormalFont();
+            inputTextBox.BorderStyle = BorderStyle.None;
+            inputTextBox.Multiline = true;
+            inputTextBox.Size = new Size(238, 51);
+            inputTextBox.Location = new Point(10, 10);
+            inputPanel.Controls.Add(inputTextBox);
+            inputTextBox.MouseDown += inputTextBox_MouseDown_1;
+
+            sendButton = new Button();
+            sendButton.BackColor = Color.FromArgb(((int)(((byte)(178)))), ((int)(((byte)(101)))), ((int)(((byte)(255)))));
+            sendButton.ForeColor = Color.White;
+            sendButton.Size = new Size(48, 30);
+            sendButton.Location = new Point(263, 20);
+            sendButton.Text = "전 송";
+            sendButton.Font = customFonts.SmallFont();
+            sendButton.FlatAppearance.BorderSize = 0;
+            sendButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            inputPanel.Controls.Add(sendButton);
+            sendButton.Click += sendButton_Click_1;
+
+            chatContentPanelList = new List<ChatContentPanel>();
+            chatContentPanelList.Add(new ChatContentPanel(customFonts, "안녕하세요. 저는 컴퓨터공학과 4학년 이승민이라고 합니다. 다름이 아니라 기말고사 내용에 대한 질문이 있어서 문의드립니다.", 0));
+            chatContentPanelList.Add(new ChatContentPanel(customFonts, "그래요. 안녕하신가요. 어떤 일로 문의 주셨나요?", 1));
+            mainPanel.Controls.Add(chatContentPanelList[0]);
+            mainPanel.Controls.Add(chatContentPanelList[1]);
+            alignChatContentPanel(0);
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -187,6 +248,11 @@ namespace program.View.Components
             {
                 MessageBox.Show("마우스 오른쪽 클릭은 지원하지 않습니다.");
             }
+        }
+
+        public void changeHeaderLabelText(string studentID, string studentName)
+        {
+            this.headerLabel.Text = studentID + " " + studentName;
         }
     }
 }

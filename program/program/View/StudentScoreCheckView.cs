@@ -50,7 +50,7 @@ namespace program.View
 
             // PictureBox Setting
             scorePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            scorePictureBox.Image = System.Drawing.Image.FromFile("../../src/Assets/Images/score.png");
+            scorePictureBox.Image = System.Drawing.Image.FromFile("./src/Assets/Images/score.png");
 
 
             // 테이블 Sample 값 추가

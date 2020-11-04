@@ -37,7 +37,7 @@ namespace program.View
 
             // 이미지
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox.Image = System.Drawing.Image.FromFile("../../src/Assets/Images/user.png");
+            pictureBox.Image = System.Drawing.Image.FromFile("./src/Assets/Images/user.png");
 
             // SampleText
             univLabel.Text = "세종대학교";

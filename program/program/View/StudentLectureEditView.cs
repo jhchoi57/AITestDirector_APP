@@ -58,7 +58,7 @@ namespace program.View
 
             // 이미지
             lecturePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            lecturePictureBox.Image = System.Drawing.Image.FromFile("../../src/Assets/Images/lecture.png");
+            lecturePictureBox.Image = System.Drawing.Image.FromFile("./src/Assets/Images/lecture.png");
 
             // 폰트
             CustomFonts customFonts = new CustomFonts();
