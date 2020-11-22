@@ -44,6 +44,7 @@ namespace program.Controller
                 if(processInfo.ProcessName == "chrome")
                 {                    
                     Console.WriteLine(" 크롬 종료 이벤트 ");
+                    //processInfo.Kill();
                 }
                 */
             }
