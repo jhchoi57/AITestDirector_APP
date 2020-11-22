@@ -45,15 +45,17 @@ namespace program.View.Components
             totalScorePanel.ScoreTextBox.BackColor = Color.White;
             totalScorePanel.ScoreTextBox.ReadOnly = true;
             this.Controls.Add(totalScorePanel);
-
+            
             mainQuestionLabel = new Label();
-            mainQuestionLabel.Text = question;
             mainQuestionLabel.Location = new Point(50, 53);
+            mainQuestionLabel.Visible = true;
             mainQuestionLabel.MaximumSize = new Size(700, 0);
             mainQuestionLabel.AutoSize = true;
+            mainQuestionLabel.Text = question;
             mainQuestionLabel.Font = customFonts.TextBoxFont();
             this.Controls.Add(mainQuestionLabel);
 
+            //mainQuestionLabel.Size = new Size(700, 300);
             this.subQuestionPanelsList = subQuestionPanelsList;
             addSubQuestions();
             moveListItems(0);

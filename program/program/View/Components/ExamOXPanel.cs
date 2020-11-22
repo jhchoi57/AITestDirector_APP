@@ -60,7 +60,7 @@ namespace program.View.Components
             this.Controls.Add(xButton);
             xButton.Click += xButton_Click_1;
 
-            QuestionLabel.MaximumSize = new System.Drawing.Size(500, 0);
+            QuestionLabel.MaximumSize = new System.Drawing.Size(450, 0);
 
             QuestionLabel.Location = new Point(0, 10);
             height = margin * 2 + QuestionLabel.Height;

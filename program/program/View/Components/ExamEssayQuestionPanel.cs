@@ -29,6 +29,7 @@ namespace program.View.Components
             this.Controls.Add(answerPanel);
             answerPanel.MaxLengthTextBox.Text = maxLength.ToString();
             answerPanel.MaxLengthTextBox.ReadOnly = true;
+            answerPanel.AnswerTextBox.MaxLength = maxLength;
             answerPanel.AnswerTextBox.LostFocus += answerTextBox_LostFocus_2;
             answerPanel.AnswerLabel.Click += answerLabel_Click_2;
 

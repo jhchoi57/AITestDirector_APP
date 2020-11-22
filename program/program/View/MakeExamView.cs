@@ -112,11 +112,12 @@ namespace program.View
                 string qJson = (string)jObject["questions_json"];
                 JArray questions = JArray.Parse(qJson);
 
-                Console.WriteLine(questions);
+                //Console.WriteLine(questions);
                 setExamSettingPanel(lectureID, examName, percent.ToString(), startTime, endTime);
 
                 response = mainController.professorGetAllAnswer(room_id);
                 JArray answers = (JArray)JsonConvert.DeserializeObject(response);
+                //Console.WriteLine(answers);
 
                 setSavedQuestions(questions, answers);
             }
@@ -181,7 +182,7 @@ namespace program.View
                     string subQuestion = (string)subQuestions[j]["question"];
                     mainQuestionPanelList[i].QuestionKind.QuestionKindComboBox.SelectedIndex = type;
                     mainQuestionPanelList[i].AddQuestionButton.PerformClick();
-                    SubQuestionPanel subQuestionPanel = mainQuestionPanelList[0].SubQuestionPanelsList[j];
+                    SubQuestionPanel subQuestionPanel = mainQuestionPanelList[i].SubQuestionPanelsList[j];
                     subQuestionPanel.QuestionLabel.Text = subQuestion;
                     subQuestionPanel.QuestionTextBox.Text = subQuestion;
                     subQuestionPanel.QuestionLabel.Visible = true;
@@ -198,6 +199,7 @@ namespace program.View
                         {
                             oxPanel.XButton.PerformClick();
                         }
+                        oxPanel.setLayout();
                     }
                     else if (type == 1)
                     {
@@ -209,10 +211,14 @@ namespace program.View
                             shortAnswerQuestionPanel.AnswerPanel.AnswerLabel.Visible = true;
                             shortAnswerQuestionPanel.AnswerPanel.AnswerTextBox.Visible = false;
                         }
+                        shortAnswerQuestionPanel.setLayout();
                     }
                     else if (type == 2)
                     {
                         EssayQuestionPanel essayQuestionPanel = (EssayQuestionPanel)subQuestionPanel;
+                        int maxLength = (int)subQuestions[j]["maxLength"];
+                        essayQuestionPanel.AnswerPanel.AnswerTextBox.MaxLength = maxLength;
+                        essayQuestionPanel.AnswerPanel.MaxLengthTextBox.Text = maxLength.ToString();
                         essayQuestionPanel.AnswerPanel.AnswerLabel.Text = answer;
                         essayQuestionPanel.AnswerPanel.AnswerTextBox.Text = answer;
                         if (!answer.Equals(""))
@@ -220,6 +226,7 @@ namespace program.View
                             essayQuestionPanel.AnswerPanel.AnswerLabel.Visible = true;
                             essayQuestionPanel.AnswerPanel.AnswerTextBox.Visible = false;
                         }
+                        essayQuestionPanel.setLayout();
                     }
                     else
                     {
@@ -237,6 +244,7 @@ namespace program.View
                             multipleChoiceQuestionPanel.ChoicePaneList[t].ExampleTextBox.Visible = false;
                         }
                         multipleChoiceQuestionPanel.ChoicePaneList[int.Parse(answer)].ExampleRadioButton.PerformClick();
+                        multipleChoiceQuestionPanel.setLayout();
                     }
                     index++;
                 }
@@ -478,8 +486,8 @@ namespace program.View
                 MessageBox.Show("하나 이상의 문제를 출제하셔야 합니다.", "출제 오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            Console.WriteLine(jProblemArray);
-            Console.WriteLine(jAnswerArray);
+            //Console.WriteLine(jProblemArray);
+            //Console.WriteLine(jAnswerArray);
             makeExam(jProblemArray, jAnswerArray);
         }
 
@@ -540,7 +548,7 @@ namespace program.View
             int locationY;
 
             locationY = mainQuestionPanelList[i].SubQuestionPanelsList[j].Location.Y;
-            Console.WriteLine("Click" + i.ToString() + "," + j.ToString() + ", " + locationY.ToString());
+            //Console.WriteLine("Click" + i.ToString() + "," + j.ToString() + ", " + locationY.ToString());
             this.examPageNavigationPanel.NowPageTextBox.Text = (i + 1).ToString();
 
             try

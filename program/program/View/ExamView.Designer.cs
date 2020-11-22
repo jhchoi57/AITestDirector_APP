@@ -34,6 +34,7 @@ namespace program.View
         private void InitializeComponent()
         {
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.webrtcPanel = new System.Windows.Forms.Panel();
             this.examPanel = new System.Windows.Forms.Panel();
             this.examInfoPanel = new System.Windows.Forms.Panel();
             this.endExamButton = new System.Windows.Forms.Button();
@@ -57,12 +58,20 @@ namespace program.View
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.webrtcPanel);
             this.mainPanel.Controls.Add(this.examPanel);
             this.mainPanel.Controls.Add(this.examInfoPanel);
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1264, 682);
             this.mainPanel.TabIndex = 0;
+            // 
+            // webrtcPanel
+            // 
+            this.webrtcPanel.Location = new System.Drawing.Point(0, 0);
+            this.webrtcPanel.Name = "webrtcPanel";
+            this.webrtcPanel.Size = new System.Drawing.Size(885, 640);
+            this.webrtcPanel.TabIndex = 0;
             // 
             // examPanel
             // 
@@ -124,7 +133,7 @@ namespace program.View
             this.examShortCutLabel.ForeColor = System.Drawing.Color.Black;
             this.examShortCutLabel.Location = new System.Drawing.Point(30, 120);
             this.examShortCutLabel.Name = "examShortCutLabel";
-            this.examShortCutLabel.Size = new System.Drawing.Size(100, 20);
+            this.examShortCutLabel.Size = new System.Drawing.Size(120, 20);
             this.examShortCutLabel.TabIndex = 2;
             this.examShortCutLabel.Text = "문제 바로가기";
             // 
@@ -228,6 +237,7 @@ namespace program.View
         private Panel examShortCutPanel;
         private Panel openChatBoxPanel;
         private Panel openChatAlertPanel;
+        private Panel webrtcPanel;
         private List<ExamMainQuestionPanel> examMainQuestionPanelList;
 
         private ExamPageNavigationPanel examPageNavigationPanel;

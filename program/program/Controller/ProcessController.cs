@@ -25,9 +25,9 @@ namespace program.Controller
                 Console.WriteLine("현재 실행중은 모든 프로세스 수 : {0}", allProc.Length);
 
                 foreach (Process p in allProc) {
-                    Console.WriteLine("***** {0}번째 프로세스 ******", i++);
-                    WriteProcessInfo(p);
-                    Console.WriteLine();
+                    //Console.WriteLine("***** {0}번째 프로세스 ******", i++);
+                    //WriteProcessInfo(p);
+                    //Console.WriteLine();
                 }
             }
 
@@ -40,10 +40,12 @@ namespace program.Controller
         {
             foreach (Process processInfo in allProc)
             {
+                /*
                 if(processInfo.ProcessName == "chrome")
                 {                    
                     Console.WriteLine(" 크롬 종료 이벤트 ");
                 }
+                */
             }
         }
 

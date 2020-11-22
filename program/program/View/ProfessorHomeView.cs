@@ -226,19 +226,23 @@ namespace program.View
 
         private void lectureTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 6)
+            selectedID = lectureTable.Rows[e.RowIndex].Cells[5].Value.ToString();
+            if (e.ColumnIndex == 6 && e.RowIndex >= 0)
             { // 버튼 컬럼 위치
-                selectedID = lectureTable.Rows[e.RowIndex].Cells[5].Value.ToString();
                 MakeExamView makeExamView = new MakeExamView(mainController, selectedID);
                 mainController.moveToNextForm(makeExamView);
             }
-            else if(e.ColumnIndex == 6 && e.RowIndex >= 0)
+            else if(e.ColumnIndex == 7 && e.RowIndex >= 0)
             {
-                MessageBox.Show("삭제  \n" +
-                    lectureTable.Rows[e.RowIndex].Cells[0].Value.ToString() + "\n"
-                    + lectureTable.Rows[e.RowIndex].Cells[1].Value.ToString() + "\n"
-                    + lectureTable.Rows[e.RowIndex].Cells[2].Value.ToString()
-                    );
+                try
+                {
+                    mainController.professorRemoveExamRequest(selectedID);
+                    setUserExam();
+                }
+                catch(Exception error)
+                {
+                    Console.WriteLine(error);
+                }
             }
         }
 

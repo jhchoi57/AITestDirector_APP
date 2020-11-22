@@ -33,14 +33,14 @@ namespace program.View.Components
             answer = -1;
             Type = 3;
 
+            QuestionLabel.MaximumSize = new System.Drawing.Size(500, 0);
+            QuestionLabel.Location = new Point(0, 10);
+
             choicePanelList = new List<ExamMultipleChoicePanel>();
             setMultipleQuestions(multipleQuestions);
 
             count = choicePanelList.Count;
             this.Height = choicePanelList[count - 1].Location.Y + choicePanelList[count - 1].Height + 20;
-
-            QuestionLabel.MaximumSize = new System.Drawing.Size(500, 0);
-            QuestionLabel.Location = new Point(0, 10);
 
             ExamScorePanel.Location = new Point(520, (this.Height - ExamScorePanel.Height) / 2);
         }

@@ -21,6 +21,7 @@ namespace program.View
         private MainController mainController;
         private TopBarPanel topBarPanel;
         private string selectedID;
+        private string selectedTime;
         public StudentHomeView(MainController mainController)
         {
             InitializeComponent();
@@ -171,7 +172,8 @@ namespace program.View
                     string date = startTime.Substring(0, 10);
                     string time = startTime.Substring(11, 5) + " - " + endTime.Substring(11, 5);
 
-                    lectureTable.Rows.Add(lectureName, professor, date, time, examName, id);
+                    if ((getDateTime(endTime) - DateTime.Now).TotalSeconds > 0)
+                        lectureTable.Rows.Add(lectureName, professor, date, time, examName, id);
 
                 }
             }
@@ -179,6 +181,17 @@ namespace program.View
             {
                 Console.WriteLine(error);
             }
+        }
+        private DateTime getDateTime(string time)
+        {
+            int year = int.Parse(time.Substring(0, 4));
+            int month = int.Parse(time.Substring(5, 2));
+            int day = int.Parse(time.Substring(8, 2));
+            int hour = int.Parse(time.Substring(11, 2));
+            int minute = int.Parse(time.Substring(14, 2));
+            int sec = int.Parse(time.Substring(17, 2));
+
+            return new DateTime(year, month, day, hour, minute, sec);
         }
 
         private void editInfoBtn_Click(object sender, EventArgs e)
@@ -314,7 +327,6 @@ namespace program.View
         {
             try
             {
-                MessageBox.Show("이미지 수정 이벤트 !");
                 OpenFileDialog openFile = new OpenFileDialog();
                 openFile.DefaultExt = "jpg";
                 openFile.Multiselect = false;

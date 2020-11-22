@@ -1,4 +1,6 @@
-﻿using Microsoft.Win32;
+﻿using CefSharp;
+using CefSharp.WinForms;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using program.Controller;
@@ -13,6 +15,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -21,8 +24,10 @@ namespace program.View
     public partial class ExamView : Form
     {
         private CustomFonts customFonts;
+        private ChromiumWebBrowser browser;
+        private ExamController examController;
 
-        private Timer timer;
+        private System.Windows.Forms.Timer timer;
         private DateTime examDate;
         private List<ShortCutButton> shortCutButtonList;
         private ChatPanel chatPanel;
@@ -61,7 +66,6 @@ namespace program.View
             this.FormBorderStyle = FormBorderStyle.None;
             // 프로그램 화면 크기 모니터 해상도에 맞춤
             //this.WindowState = FormWindowState.Maximized;
-            examDate = DateTime.Now;
             this.mainController = mainController;
             this.room_id = room_id;
             this.student_key = student_key;
@@ -80,10 +84,16 @@ namespace program.View
             // 폰트
             customFonts = new CustomFonts();
 
-            timer = new Timer();
+            timer = new System.Windows.Forms.Timer();
             timer.Interval = 1000;
             timer.Tick += timer_Tick_1;
             timer.Start();
+
+            if (isStudent)
+            {
+                //initwebrtc();
+                connectWebsocket();
+            }
 
             shortCutButtonList = new List<ShortCutButton>();
 
@@ -91,6 +101,7 @@ namespace program.View
             this.chatPanel.Location = new Point(30, 240);
             this.mainPanel.Controls.Add(this.chatPanel);
             this.chatPanel.BringToFront();
+            this.chatPanel.Visible = false;
             this.chatPanel.MinimizeBtn.Click += chatPanelMinimizeButton_Click_1;
 
             this.openChatBoxPanel.Click += openChatBoxPanel_Click_1;
@@ -134,8 +145,35 @@ namespace program.View
             loadExam();
             initShortCutButton();
 
+            webrtcPanel.SendToBack();
+
             this.endExamButton.Click += endExamButton_Click_1;
 
+        }
+
+        private void initwebrtc()
+        {
+            CefSettings settings = new CefSettings();
+            settings.CefCommandLineArgs.Add("enable-media-stream", "1");
+            if(!Cef.IsInitialized) Cef.Initialize(settings);
+            browser = new ChromiumWebBrowser("https://www.naver.com");
+            browser.Dock = DockStyle.Fill;
+            this.webrtcPanel.Controls.Add(browser);
+        }
+
+        private void connectWebsocket()
+        {
+            (new Thread(new ThreadStart(() =>
+                {
+                    examController = new ExamController(this, room_id, mainController.Me.Token);
+                    Boolean conn = examController.connect();
+                    //Console.WriteLine(conn);
+                }))).Start();
+        }
+
+        private void disconnectWebsocket()
+        {
+            examController.disconnect();
         }
 
         private void loadExam()
@@ -153,7 +191,7 @@ namespace program.View
                 examLectureLabel.Text = "강의명:  " + lectureName;
                 examNameLabel.Text = "시험명:  " + examName;
                 examPercentLabel.Text = "성적 반영 비율:  " + percent;
-                Console.WriteLine(questionArray);
+                //Console.WriteLine(questionArray);
                 setTime(endTime);
                 loadQuestions(questionArray);
             }
@@ -172,6 +210,8 @@ namespace program.View
             int sec = int.Parse(time.Substring(17, 2));
 
             examDate = new DateTime(year, month, day, hour, minute, sec);
+            double diffTotalSeconds = (examDate - DateTime.Now).TotalSeconds;
+            setTimeLabel(diffTotalSeconds);
         }
 
         private void loadQuestions(JArray questions)
@@ -314,10 +354,15 @@ namespace program.View
             double diffTotalSeconds = (examDate - date).TotalSeconds;
             if (diffTotalSeconds <= 0)
             {
-                MessageBox.Show("시험이 종료됐습니다.", "시험 종료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                timer.Stop();
+                MessageBox.Show("시험이 종료됐습니다.", "시험 종료", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 mainController.moveToPreviousForm();
             }
+            setTimeLabel(diffTotalSeconds);
+        }
 
+        private void setTimeLabel(double diffTotalSeconds)
+        {
             int hour = (int)diffTotalSeconds / 3600;
             int minute = (int)diffTotalSeconds % 3600 / 60;
             int second = (int)diffTotalSeconds % 60;
@@ -549,7 +594,7 @@ namespace program.View
             // 다른 키들은 누르면 256 잘 뜨는데 왼쪽 ALT 키 누르면 260이 뜸 뭐지?
             // 일단 왼쪽 ALT키 값은 164
             int vkCode = Marshal.ReadInt32(lParam);
-            Console.WriteLine(vkCode);
+            //Console.WriteLine(vkCode);
 
             if (code >= 0 && wParam == (IntPtr)WM_KEYDOWN || wParam == (IntPtr)260)
             {                
@@ -592,6 +637,7 @@ namespace program.View
         private void ExamView_FormClosing(object sender, FormClosingEventArgs e)
         {            
             UnHook();
+            disconnectWebsocket();
         }
 
         //Ctrl + Alt + Delete 막기
@@ -624,8 +670,9 @@ namespace program.View
                 if (sk1 != null)
                     rk.DeleteSubKeyTree(subKey);
             }
-            catch (Exception ex)
+            catch (Exception error)
             {
+                Console.WriteLine(error);
                 // MessageBox.Show(ex.ToString());
             }
         }

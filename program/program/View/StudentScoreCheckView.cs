@@ -27,11 +27,6 @@ namespace program.View
             this.mainController = mainController;
         }
 
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void StudentScoreCheckView_Load(object sender, EventArgs e)
         {
             
@@ -94,10 +89,6 @@ namespace program.View
             this.Controls.Add(topBarPanel);
 
         }
-
-        private void minimizeBtn_Click(object sender, EventArgs e) { this.WindowState = FormWindowState.Minimized; }
-
-        private void exitBtn_Click(object sender, EventArgs e) { Application.Exit(); }
 
         private void backBtn_Click(object sender, EventArgs e)
         {

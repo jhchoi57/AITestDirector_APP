@@ -34,10 +34,10 @@ namespace program.View.Components
         public ExamSubQuestionPanel(CustomFonts customFonts, string question, int score) : base()
         {
             questionLabel = new Label();
+            questionLabel.Text = question;
             questionLabel.AutoSize = true;
             questionLabel.Font = customFonts.TextBoxFont();
             this.Controls.Add(questionLabel);
-            questionLabel.Text = question;
 
             examScorePanel = new ScorePanel(customFonts);
             examScorePanel.ScoreTextBox.ReadOnly = true;

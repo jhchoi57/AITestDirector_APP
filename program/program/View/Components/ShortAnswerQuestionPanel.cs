@@ -43,6 +43,17 @@ namespace program.View.Components
             DeleteButton.Location = new Point(605, (this.Height - DeleteButton.Height) / 2);
         }
 
+        public void setLayout()
+        {
+            int height;
+            QuestionLabel.Location = new Point(0, 10);
+            answerPanel.Location = new Point(300, QuestionLabel.Location.Y + QuestionLabel.Height + 20);
+            height = answerPanel.Location.Y + answerPanel.Height;
+            this.Height = height;
+            ExamScorePanel.Location = new Point(520, (height - ExamScorePanel.Height) / 2);
+            DeleteButton.Location = new Point(605, (height - DeleteButton.Height) / 2);
+        }
+
         private void questionTextBox_LostFocus_1(object sender, EventArgs e)
         {
             string str = QuestionTextBox.Text.Replace(" ", "");
@@ -50,16 +61,10 @@ namespace program.View.Components
             str = str.Replace("\n", "");
             if (str != "")
             {
-                int height;
                 QuestionTextBox.Visible = false;
                 QuestionLabel.Visible = true;
                 QuestionLabel.Text = QuestionTextBox.Text;
-                answerPanel.Location = new Point(300, QuestionLabel.Location.Y + QuestionLabel.Height + 20);
-                height = answerPanel.Location.Y + answerPanel.Height;
-                this.Height = height;
-                QuestionLabel.Location = new Point(0, 10);
-                ExamScorePanel.Location = new Point(520, (height - ExamScorePanel.Height) / 2);
-                DeleteButton.Location = new Point(605, (height - DeleteButton.Height) / 2);
+                setLayout();
             }
         }
 

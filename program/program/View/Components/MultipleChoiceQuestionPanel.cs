@@ -56,6 +56,13 @@ namespace program.View.Components
 
             DeleteButton.Location = new Point(605, (this.Height - DeleteButton.Height) / 2);
         }
+        public void setLayout()
+        {
+            addButton.Location = new Point(420, QuestionLabel.Location.Y + QuestionLabel.Height + 10);
+            moveListItems(0);
+            ExamScorePanel.Location = new Point(520, (this.Height - ExamScorePanel.Height) / 2);
+            DeleteButton.Location = new Point(605, (this.Height - DeleteButton.Height) / 2);
+        }
 
         private void addButton_Click_1(object sender, EventArgs e)
         {
@@ -89,10 +96,7 @@ namespace program.View.Components
                 QuestionTextBox.Visible = false;
                 QuestionLabel.Visible = true;
                 QuestionLabel.Text = QuestionTextBox.Text;
-                addButton.Location = new Point(420, QuestionLabel.Location.Y + QuestionLabel.Height + 10);
-                moveListItems(0);
-                ExamScorePanel.Location = new Point(520, (this.Height - ExamScorePanel.Height) / 2);
-                DeleteButton.Location = new Point(605, (this.Height - DeleteButton.Height) / 2);
+                setLayout();
             }
         }
 

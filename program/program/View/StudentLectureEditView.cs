@@ -248,11 +248,48 @@ namespace program.View
         {
             if (professorNameTxtBox.Text.Equals("") && lectureNameTxtBox.Text.Equals(""))
             {
-                MessageBox.Show("교수명 또는 강의명을 입력해주세요!!");
+                setAllLectrues();
             }
             else
             {
-                MessageBox.Show("검색 이벤트!");
+                try
+                {
+                    lectureTable.Rows.Clear();
+                    string response;
+                    string lecture_name = lectureNameTxtBox.Text;
+                    string professor_name = professorNameTxtBox.Text;
+                    if (professor.Equals(""))
+                    {
+                        response = mainController.findLectureByNameReqeust(lecture_name);
+                    }
+                    else if (lecture_name.Equals(""))
+                    {
+                        response = mainController.findLectureByProfessorReqeust(professor_name);
+                    }
+                    else
+                    {
+                        response = mainController.findLectureReqeust(lecture_name, professor_name);
+                    }
+
+                    JArray jArray = (JArray)JsonConvert.DeserializeObject(response);
+                    int cnt = jArray.Count;
+
+                    for (int i = 0; i < cnt; i++)
+                    {
+                        JObject jObject = (JObject)jArray[i];
+                        string id = (string)jObject["uuid"];
+                        string name = (string)jObject["name"];
+                        string professor = (string)jObject["professor_name"];
+                        string semester = (string)jObject["semester"];
+                        string time = (string)jObject["time"];
+
+                        lectureTable.Rows.Add(false, name, professor, time, semester, id);
+                    }
+                }
+                catch(Exception error)
+                {
+                    Console.WriteLine(error);
+                }
             }
         }
 

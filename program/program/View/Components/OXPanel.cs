@@ -66,12 +66,21 @@ namespace program.View
             QuestionTextBox.Size = new System.Drawing.Size(450, 45);
             QuestionTextBox.LostFocus += questionTextBox_LostFocus_1;
 
-            QuestionLabel.MaximumSize = new System.Drawing.Size(500, 0);
+            QuestionLabel.MaximumSize = new System.Drawing.Size(450, 0);
             QuestionLabel.Click += questionLabel_Click_1;
+        }
 
-            ExamScorePanel.Location = new Point(520, 8);
-
-            DeleteButton.Location = new Point(605, 8);
+        public void setLayout()
+        {
+            int margin = 10;
+            int height;
+            height = margin * 2 + QuestionLabel.Height;
+            this.Height = height;
+            QuestionLabel.Location = new Point(0, 10);
+            oButton.Location = new Point(460, (height - oButton.Height) / 2);
+            xButton.Location = new Point(490, (height - xButton.Height) / 2);
+            ExamScorePanel.Location = new Point(520, (height - ExamScorePanel.Height) / 2);
+            DeleteButton.Location = new Point(605, (height - DeleteButton.Height) / 2);
         }
 
         private void questionTextBox_LostFocus_1 (object sender, EventArgs e)
@@ -81,18 +90,10 @@ namespace program.View
             str = str.Replace("\n", "");
             if (str != "")
             {
-                int margin = 10;
-                int height;
                 QuestionTextBox.Visible = false;
                 QuestionLabel.Visible = true;
                 QuestionLabel.Text = QuestionTextBox.Text;
-                height = margin * 2 + QuestionLabel.Height;
-                this.Height = height;
-                QuestionLabel.Location = new Point(0, 10);
-                oButton.Location = new Point(460, (height - oButton.Height) / 2);
-                xButton.Location = new Point(490, (height - xButton.Height) / 2);
-                ExamScorePanel.Location = new Point(520, (height - ExamScorePanel.Height) / 2);
-                DeleteButton.Location = new Point(605, (height - DeleteButton.Height) / 2);
+                setLayout();
             }
         }
 
