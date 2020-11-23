@@ -99,6 +99,7 @@ namespace program.View
 
         private void lectureTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             String lectureName, testName , testDay, totalScore, avgScore;
 
             // 강의명

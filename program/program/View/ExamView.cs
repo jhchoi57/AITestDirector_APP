@@ -603,17 +603,18 @@ namespace program.View
                     //MessageBox.Show("CTRL 키는 지원하지 않습니다.");
                     return (IntPtr)1;
                 }
-                if (vkCode == 160 || vkCode == 161)
-                {
-                    //MessageBox.Show("SHIFT 키는 지원하지 않습니다.");
-                    return (IntPtr)1;
-                }
+                //if (vkCode == 160 || vkCode == 161)
+                //{
+                //    //MessageBox.Show("SHIFT 키는 지원하지 않습니다.");
+                //    return (IntPtr)1;
+                //}
                 if(vkCode == 9)
                 {
                     //MessageBox.Show("TAB 키는 지원하지 않습니다.");
                     return (IntPtr)1;
                 }
-                if(vkCode == 21 || vkCode == 164)
+                //if(vkCode == 21 || vkCode == 164)
+                if (vkCode == 164)
                 {
                     //MessageBox.Show("ALT 키는 지원하지 않습니다.");
                     return (IntPtr)1;

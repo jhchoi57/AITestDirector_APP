@@ -92,6 +92,12 @@ namespace program.View
             editPasswordTextBox.Font = customFonts.TextBoxFont();
             editPasswordCheckTextBox.Font = customFonts.TextBoxFont();
             editBirthPicker.Font = customFonts.TextBoxFont();
+
+            testInfoLectureLbl.Font = customFonts.TitleFont();
+            testInfoTestNameLbl.Font = customFonts.SubTitleFont();
+            testInfoProfNameLbl.Font = customFonts.LabelFont();
+            testInfoDayLbl.Font = customFonts.LabelFont();
+            testInfoTimeLbl.Font = customFonts.LabelFont();
         }
 
         private void setUserInfo()
@@ -226,6 +232,8 @@ namespace program.View
 
         private void lectureTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
+
             selectedID = lectureTable.Rows[e.RowIndex].Cells[5].Value.ToString();
             if (e.ColumnIndex == 6 && e.RowIndex >= 0)
             { // 버튼 컬럼 위치
@@ -244,6 +252,25 @@ namespace program.View
                     Console.WriteLine(error);
                 }
             }
+
+            // 마이페이지 가리고 시험 정보 패널 보여줌
+            testInfoPanel.Visible = true;
+            myPagePanel.Visible = false;
+
+            // 초기화            
+
+            testInfoTestNameLbl.Text = lectureTable.Rows[e.RowIndex].Cells[4].Value.ToString();
+            testInfoProfNameLbl.Text = lectureTable.Rows[e.RowIndex].Cells[1].Value.ToString();
+            testInfoDayLbl.Text = lectureTable.Rows[e.RowIndex].Cells[2].Value.ToString();
+            testInfoTimeLbl.Text = lectureTable.Rows[e.RowIndex].Cells[3].Value.ToString();
+            if (!lectureTable.Rows[e.RowIndex].Cells[0].Value.ToString()[0].Equals('▶'))
+            {
+                testInfoLectureLbl.Text = lectureTable.Rows[e.RowIndex].Cells[0].Value.ToString();
+                lectureTable.Rows[e.RowIndex].Cells[0].Value = "▶" + lectureTable.Rows[e.RowIndex].Cells[0].Value;
+                selectedID = lectureTable.Rows[e.RowIndex].Cells[5].Value.ToString();
+            }
+
+
         }
 
         private void editMinimizeButton_Click(object sender, EventArgs e) { this.WindowState = FormWindowState.Minimized; }
@@ -275,6 +302,28 @@ namespace program.View
         {
             ProfessorLectureEditView professorLectureEditView = new ProfessorLectureEditView(mainController);
             mainController.moveToNextForm(professorLectureEditView);
+        }
+
+        private void lectureTable_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (lectureTable.Rows[e.RowIndex].Cells[0].Value.ToString()[0].Equals('▶'))
+            {
+                lectureTable.Rows[e.RowIndex].Cells[0].Value = lectureTable.Rows[e.RowIndex].Cells[0].Value.ToString().Substring(1);
+            }
+        }
+
+        private void testInfoCancelBtn_Click(object sender, EventArgs e)
+        {
+            // 시험정보 패널 가리고 마이페이지 보여줌
+            testInfoPanel.Visible = false;
+            myPagePanel.Visible = true;
+        }
+
+        private void testStartBtn_Click(object sender, EventArgs e)
+        {
+            // 현재 진행중인 시험 들어갈 수 있게 //
+            MessageBox.Show(" 시험  입장 ~~");
+
         }
     }
 }
