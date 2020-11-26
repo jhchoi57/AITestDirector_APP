@@ -147,11 +147,6 @@ namespace program.View
             Application.Exit();
         }
 
-        private void mainPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void doubtBtn_Click(object sender, EventArgs e)
         {
             BookMarkView bookMarkView = new BookMarkView(mainController);
