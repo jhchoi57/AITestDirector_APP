@@ -115,7 +115,7 @@ namespace program.View
                     {
                         string name = (string)jObject["name"];
                         string id = ((int)jObject["id"]).ToString();
-                        mainController.setUserInfo(name, id, message, true);
+                        mainController.setUserInfo(name, id, message, "", "", true);
                         StudentHomeView studentHomeView = new StudentHomeView(mainController);
                         mainController.moveToNextForm(studentHomeView);
                     }
@@ -134,7 +134,9 @@ namespace program.View
                     {
                         string name = (string)jObject["name"];
                         string id = (string)jObject["id"];
-                        mainController.setUserInfo(name, id, message, false);
+                        string birth = (string)jObject["birth_day"];
+                        string school = (string)jObject["institute"];
+                        mainController.setUserInfo(name, id, message, school, birth, false);
                         ProfessorHomeView professorHome = new ProfessorHomeView(mainController);
                         mainController.moveToNextForm(professorHome);
                     }

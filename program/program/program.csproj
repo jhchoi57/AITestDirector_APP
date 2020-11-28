@@ -115,11 +115,11 @@
     <Compile Include="Controller\ExamController.cs" />
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="Controller\ProcessController.cs" />
+    <Compile Include="Model\Exams\Chat.cs" />
+    <Compile Include="Model\Exams\Doubt.cs" />
     <Compile Include="Model\Exams\Lecture.cs" />
-    <Compile Include="Model\Exams\MainQuestion.cs" />
     <Compile Include="Model\Users\Professor.cs" />
     <Compile Include="Model\Users\Student.cs" />
-    <Compile Include="Model\Exams\SubQuestion.cs" />
     <Compile Include="Model\Exams\Exam.cs" />
     <Compile Include="Model\Users\User.cs" />
     <Compile Include="Program.cs" />
@@ -183,6 +183,9 @@
     <Compile Include="View\Components\MultipleChoiceQuestionPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="View\Components\NoticePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="View\Components\QuestionDeleteButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -197,6 +200,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\Components\ShortCutButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Components\StudentWebRTCPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="View\Components\SubQuestionPanel.cs">

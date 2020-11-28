@@ -238,6 +238,7 @@ namespace program.View
         private Panel openChatBoxPanel;
         private Panel openChatAlertPanel;
         private Panel webrtcPanel;
+        private NoticePanel noticePanel;
         private List<ExamMainQuestionPanel> examMainQuestionPanelList;
 
         private ExamPageNavigationPanel examPageNavigationPanel;

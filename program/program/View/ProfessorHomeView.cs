@@ -5,11 +5,13 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using program.Controller;
+using program.Model;
 using program.Model.Exams;
 using program.View.Components;
 
@@ -39,10 +41,11 @@ namespace program.View
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox.Image = System.Drawing.Image.FromFile("./src/Assets/Images/user.png");
 
+            Professor professor = (Professor)mainController.Me;
             // SampleText
-            univLabel.Text = "세종대학교";
-            nameLabel.Text = "홍길동 교수님";
-            emailLabel.Text = "exam@naver.com";
+            univLabel.Text = professor.School;
+            nameLabel.Text = professor.Name;
+            emailLabel.Text = professor.ID;
 
             // 폰트
             CustomFonts customFonts = new CustomFonts();
@@ -64,7 +67,6 @@ namespace program.View
 
             this.lectureTable.Columns[5].Visible = false;
 
-            setUserInfo();
             setUserLecture();
             setUserExam();
             mainController.getAllExamReqeust();
@@ -102,84 +104,93 @@ namespace program.View
 
         private void setUserInfo()
         {
-            try
+            new Thread(new ThreadStart(() =>
             {
-                string response = mainController.getProfessorInfoRequest();
-                JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
-                string birth = (string)jObject["birth_day"];
-                string school = (string)jObject["institute"];
-                int year = int.Parse(birth.Substring(0, 4));
-                int month = int.Parse(birth.Substring(5, 2));
-                int day = int.Parse(birth.Substring(8));
-                editUnivTextBox.Text = school;
-                editNameTextBox.Text = mainController.Me.Name;
-                editEmailTextBox.Text = mainController.Me.ID;
-                editBirthPicker.Value = new DateTime(year, month, day);
-                univLabel.Text = school;
-                nameLabel.Text = mainController.Me.Name;
-                emailLabel.Text = mainController.Me.ID;
-            } 
-            catch (Exception error)
-            {
-                Console.WriteLine(error);
-            } 
+                try
+                {
+                    string response = mainController.getProfessorInfoRequest();
+                    JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                    string birth = (string)jObject["birth_day"];
+                    string school = (string)jObject["institute"];
+                    int year = int.Parse(birth.Substring(0, 4));
+                    int month = int.Parse(birth.Substring(5, 2));
+                    int day = int.Parse(birth.Substring(8));
+                    editUnivTextBox.Text = school;
+                    editNameTextBox.Text = mainController.Me.Name;
+                    editEmailTextBox.Text = mainController.Me.ID;
+                    editBirthPicker.Value = new DateTime(year, month, day);
+                    univLabel.Text = school;
+                    nameLabel.Text = mainController.Me.Name;
+                    emailLabel.Text = mainController.Me.ID;
+                }
+                catch (Exception error)
+                {
+                    Console.WriteLine(error);
+                }
+            })).Start();
         }
 
         private void setUserLecture()
         {
-            try
+            new Thread(new ThreadStart(() =>
             {
-                string response = mainController.getProfessorAllLecturesRequest();
-                JArray jArray = (JArray)JsonConvert.DeserializeObject(response);
-                int cnt = jArray.Count;
-                List<Lecture> lectures = new List<Lecture>();
-                for (int i = 0; i < cnt; i++)
+                try
                 {
-                    string id = (string)jArray[i]["uuid"];
-                    string name = (string)jArray[i]["name"];
-                    int studentCnt = (int)jArray[i]["student_cnt"];
-                    string professor = (string)jArray[i]["professor_name"];
-                    string semester = (string)jArray[i]["semester"];
-                    string time = (string)jArray[i]["time"];
-                    lectures.Add(new Lecture(id, name, professor, studentCnt, semester, time));
+                    string response = mainController.getProfessorAllLecturesRequest();
+                    JArray jArray = (JArray)JsonConvert.DeserializeObject(response);
+                    int cnt = jArray.Count;
+                    List<Lecture> lectures = new List<Lecture>();
+                    for (int i = 0; i < cnt; i++)
+                    {
+                        string id = (string)jArray[i]["uuid"];
+                        string name = (string)jArray[i]["name"];
+                        int studentCnt = (int)jArray[i]["student_cnt"];
+                        string professor = (string)jArray[i]["professor_name"];
+                        string semester = (string)jArray[i]["semester"];
+                        string time = (string)jArray[i]["time"];
+                        lectures.Add(new Lecture(id, name, professor, studentCnt, semester, time));
+                    }
+                    mainController.Me.Lectures = lectures;
                 }
-                mainController.Me.Lectures = lectures;
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine(error);
-            }
+                catch (Exception error)
+                {
+                    Console.WriteLine(error);
+                }
+            })).Start();
         }
 
-        private void setUserExam()
+        public void setUserExam()
         {
             lectureTable.Rows.Clear();
-            try
+            new Thread(new ThreadStart(() =>
             {
-                string response = mainController.getAllExamReqeust();
-                JArray jArray = (JArray)JsonConvert.DeserializeObject(response);
-                int cnt = jArray.Count;
-                for (int i = 0; i < cnt; i++)
+                try
                 {
-                    string id = (string)jArray[i]["uuid"];
-                    string examName = (string)jArray[i]["exam_name"];
-                    string startTime = (string)jArray[i]["start_at"];
-                    string endTime = (string)jArray[i]["finish_at"];
-                    string lectureName = (string)jArray[i]["lecture_name"];
-                    string professor = (string)jArray[i]["professor_name"];
-                    string date = startTime.Substring(0, 10);
-                    string time = startTime.Substring(11, 5) + " - " + endTime.Substring(11, 5);
+                    string response = mainController.getAllExamReqeust();
+                    JArray jArray = (JArray)JsonConvert.DeserializeObject(response);
+                    int cnt = jArray.Count;
+                    for (int i = 0; i < cnt; i++)
+                    {
+                        string id = (string)jArray[i]["uuid"];
+                        string examName = (string)jArray[i]["exam_name"];
+                        string startTime = (string)jArray[i]["start_at"];
+                        string endTime = (string)jArray[i]["finish_at"];
+                        string lectureName = (string)jArray[i]["lecture_name"];
+                        string professor = (string)jArray[i]["professor_name"];
+                        string date = startTime.Substring(0, 10);
+                        string time = startTime.Substring(11, 5) + " - " + endTime.Substring(11, 5);
 
-                    // 테이블 행 추가
-                    // Sample
-                    lectureTable.Rows.Add(lectureName, professor, date, time, examName, id);
+                        // 테이블 행 추가
+                        // Sample
+                        lectureTable.Rows.Add(lectureName, professor, date, time, examName, id);
 
+                    }
                 }
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine(error);
-            }
+                catch (Exception error)
+                {
+                    Console.WriteLine(error);
+                }
+            })).Start();
         }
 
         private void editInfoBtn_Click(object sender, EventArgs e)
@@ -322,8 +333,8 @@ namespace program.View
         private void testStartBtn_Click(object sender, EventArgs e)
         {
             // 현재 진행중인 시험 들어갈 수 있게 //
-            MessageBox.Show(" 시험  입장 ~~");
-
+            ProfessorExamView professorExamView = new ProfessorExamView(mainController, selectedID);
+            mainController.moveToNextForm(professorExamView);
         }
     }
 }

@@ -31,13 +31,6 @@ namespace program.Model
             set { totalScore = value; }
         }
 
-        private List<MainQuestion> mainQuestions { get; set; }
-        public List<MainQuestion> MainQuestions
-        {
-            get { return mainQuestions; }
-            set { mainQuestions = value; }
-        }
-
         private DateTime startTime { get; set; }
         public DateTime StartTime
         {

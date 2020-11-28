@@ -18,6 +18,18 @@ namespace program.Model
      */
     class Professor : User
     {
+        private string school { get; set; }
+        public string School
+        {
+            get { return school; }
+            set { school = value; }
+        }
+        private string birth { get; set; }
+        public string Birth
+        {
+            get { return birth; }
+            set { birth = value; }
+        }
         /**
          * 생성자 초기화 without data
          */
@@ -28,10 +40,11 @@ namespace program.Model
         /**
          * 생성자 초기화 
          */
-        public Professor(string name, string id, string token)
+        public Professor(string name, string id, string token, string school, string birth)
             : base(name, id, token)
         {
-
+            this.school = school;
+            this.birth = birth;
         }
     }
 }

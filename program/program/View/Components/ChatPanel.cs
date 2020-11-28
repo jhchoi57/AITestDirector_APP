@@ -12,6 +12,7 @@ namespace program.View.Components
     class ChatPanel : Panel
     {
         private CustomFonts customFonts;
+        private string studentNumber { get; set; }
         private Panel headerPanel { get; set; }
         private Panel mainPanel { get; set; }
         private Panel inputPanel { get; set; }
@@ -22,6 +23,11 @@ namespace program.View.Components
         private TextBox inputTextBox { get; set; }
         private Button sendButton { get; set; }
         private MinimizeButton minimizeBtn { get; set; }
+        public string StudentNumber
+        {
+            get { return studentNumber; }
+            set { studentNumber = value; }
+        }
         public Panel HeaderPanel
         {
             get { return headerPanel; }
@@ -113,14 +119,8 @@ namespace program.View.Components
             sendButton.FlatAppearance.BorderSize = 0;
             sendButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             inputPanel.Controls.Add(sendButton);
-            sendButton.Click += sendButton_Click_1;
 
             chatContentPanelList = new List<ChatContentPanel>();
-            chatContentPanelList.Add(new ChatContentPanel(customFonts, "안녕하세요. 저는 컴퓨터공학과 4학년 이승민이라고 합니다. 다름이 아니라 기말고사 내용에 대한 질문이 있어서 문의드립니다.", 0));
-            chatContentPanelList.Add(new ChatContentPanel(customFonts, "그래요. 안녕하신가요. 어떤 일로 문의 주셨나요?", 1));
-            mainPanel.Controls.Add(chatContentPanelList[0]);
-            mainPanel.Controls.Add(chatContentPanelList[1]);
-            alignChatContentPanel(0);
         }
 
         public ChatPanel(CustomFonts customFonts, string studentID, string studentName) : base()
@@ -174,14 +174,10 @@ namespace program.View.Components
             sendButton.FlatAppearance.BorderSize = 0;
             sendButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             inputPanel.Controls.Add(sendButton);
-            sendButton.Click += sendButton_Click_1;
+
+            this.studentNumber = studentID;
 
             chatContentPanelList = new List<ChatContentPanel>();
-            chatContentPanelList.Add(new ChatContentPanel(customFonts, "안녕하세요. 저는 컴퓨터공학과 4학년 이승민이라고 합니다. 다름이 아니라 기말고사 내용에 대한 질문이 있어서 문의드립니다.", 0));
-            chatContentPanelList.Add(new ChatContentPanel(customFonts, "그래요. 안녕하신가요. 어떤 일로 문의 주셨나요?", 1));
-            mainPanel.Controls.Add(chatContentPanelList[0]);
-            mainPanel.Controls.Add(chatContentPanelList[1]);
-            alignChatContentPanel(0);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -198,7 +194,7 @@ namespace program.View.Components
             );
         }
 
-        private void alignChatContentPanel (int start)
+        public void alignChatContentPanel (int start)
         {
             int count = chatContentPanelList.Count;
 
@@ -223,23 +219,9 @@ namespace program.View.Components
 
         public void addChatContentPanel (ChatContentPanel chatContentPanel)
         {
-            int count = chatContentPanelList.Count;
-
             chatContentPanelList.Add(chatContentPanel);
             mainPanel.Controls.Add(chatContentPanel);
-            alignChatContentPanel(count);
-        }
-
-        private void sendButton_Click_1(object sender, EventArgs e)
-        {
-            string str = inputTextBox.Text.Replace(" ", "");
-            str = str.Replace("\r", "");
-            str = str.Replace("\n", "");
-            if (str != "")
-            {
-                addChatContentPanel(new ChatContentPanel(customFonts, inputTextBox.Text, 0));
-                inputTextBox.Text = "";
-            }
+            alignChatContentPanel(0);
         }
 
         private void inputTextBox_MouseDown_1(object sender, MouseEventArgs e)

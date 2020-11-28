@@ -28,15 +28,19 @@ namespace program.View
         private ExamController examController;
 
         private System.Windows.Forms.Timer timer;
+        private DateTime startDate;
         private DateTime examDate;
         private List<ShortCutButton> shortCutButtonList;
         private ChatPanel chatPanel;
 
         private MainController mainController;
+        private Queue<string> messageQueue;
+        private Queue<string> noticeQueue;
 
         private string room_id;
         private string student_key;
         private Boolean isStudent;
+        private int webrtcConnectCount;
 
         [DllImport("user32.dll")]
         static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc callback, IntPtr hInstance, uint threadId);
@@ -66,10 +70,13 @@ namespace program.View
             this.FormBorderStyle = FormBorderStyle.None;
             // 프로그램 화면 크기 모니터 해상도에 맞춤
             //this.WindowState = FormWindowState.Maximized;
+            Console.WriteLine(room_id);
             this.mainController = mainController;
             this.room_id = room_id;
             this.student_key = student_key;
             this.isStudent = isStudent;
+            messageQueue = new Queue<string>();
+            noticeQueue = new Queue<string>();
         }
 
         private void ExamView_Load1(object sender, EventArgs e)
@@ -79,8 +86,8 @@ namespace program.View
             processController.KillProcess();
 
             // 키보드 후킹
-            SetHook();
-
+            //SetHook();
+            webrtcConnectCount = 0;
             // 폰트
             customFonts = new CustomFonts();
 
@@ -88,12 +95,6 @@ namespace program.View
             timer.Interval = 1000;
             timer.Tick += timer_Tick_1;
             timer.Start();
-
-            if (isStudent)
-            {
-                //initwebrtc();
-                connectWebsocket();
-            }
 
             shortCutButtonList = new List<ShortCutButton>();
 
@@ -103,6 +104,7 @@ namespace program.View
             this.chatPanel.BringToFront();
             this.chatPanel.Visible = false;
             this.chatPanel.MinimizeBtn.Click += chatPanelMinimizeButton_Click_1;
+            this.chatPanel.SendButton.Click += chatPanelSendButton_Click_1;
 
             this.openChatBoxPanel.Click += openChatBoxPanel_Click_1;
             this.openChatBoxLabel.Click += openChatBoxPanel_Click_1;
@@ -141,11 +143,20 @@ namespace program.View
             this.examPageNavigationPanel.NowPageTextBox.LostFocus += nowPageTextBox_LostFocus_1;
             this.examPageNavigationPanel.NowPageTextBox.TextChanged += nowPageTextBox_TextChanged_1;
 
+            this.noticePanel = new NoticePanel(customFonts);
+            this.noticePanel.Location = new Point(100, 150);
+            this.noticePanel.Visible = false;
+            this.Controls.Add(this.noticePanel);
+
+            if (isStudent)
+            {
+                initwebrtc();
+                connectWebsocket();
+            }
+
             this.examPageNavigationPanel.Controls.Add(this.openChatBoxPanel);
             loadExam();
             initShortCutButton();
-
-            webrtcPanel.SendToBack();
 
             this.endExamButton.Click += endExamButton_Click_1;
 
@@ -156,7 +167,7 @@ namespace program.View
             CefSettings settings = new CefSettings();
             settings.CefCommandLineArgs.Add("enable-media-stream", "1");
             if(!Cef.IsInitialized) Cef.Initialize(settings);
-            browser = new ChromiumWebBrowser("https://www.naver.com");
+            browser = new ChromiumWebBrowser("https://test.inchang.dev:10001/?mode=sender&autoStart=true&userId=" + mainController.Me.ID + "&roomId=" + this.room_id);
             browser.Dock = DockStyle.Fill;
             this.webrtcPanel.Controls.Add(browser);
         }
@@ -165,9 +176,20 @@ namespace program.View
         {
             (new Thread(new ThreadStart(() =>
                 {
-                    examController = new ExamController(this, room_id, mainController.Me.Token);
+                    examController = new ExamController(messageQueue, noticeQueue, room_id, mainController.Me.Token);
                     Boolean conn = examController.connect();
-                    //Console.WriteLine(conn);
+                    
+                    if (!conn)
+                    {
+                        if (browser != null)
+                        {
+                            browser.Dispose();
+                            browser = null;
+                        }
+                        UnHook();
+                        MessageBox.Show("네트워크 연결상태를 확인해주세요.", "네트워크 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        endExamButton.PerformClick();
+                    }
                 }))).Start();
         }
 
@@ -182,9 +204,11 @@ namespace program.View
             {
                 string response = mainController.getExamRequest(room_id);
                 JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                Console.WriteLine(jObject);
                 string lectureName = (string)jObject["lecture_name"];
                 string examName = (string)jObject["exam_name"];
                 int percent = (int)jObject["score_rate"];
+                string startTime = (string)jObject["start_at"];
                 string endTime = (string)jObject["finish_at"];
                 string questions = (string)jObject["questions_json"];
                 JArray questionArray = JArray.Parse(questions);
@@ -192,7 +216,8 @@ namespace program.View
                 examNameLabel.Text = "시험명:  " + examName;
                 examPercentLabel.Text = "성적 반영 비율:  " + percent;
                 //Console.WriteLine(questionArray);
-                setTime(endTime);
+                setStartTime(startTime);
+                setEndTime(endTime);
                 loadQuestions(questionArray);
             }
             catch (Exception error)
@@ -200,7 +225,18 @@ namespace program.View
                 Console.WriteLine(error);
             }
         }
-        private void setTime(string time)
+        private void setStartTime(string time)
+        {
+            int year = int.Parse(time.Substring(0, 4));
+            int month = int.Parse(time.Substring(5, 2));
+            int day = int.Parse(time.Substring(8, 2));
+            int hour = int.Parse(time.Substring(11, 2));
+            int minute = int.Parse(time.Substring(14, 2));
+            int sec = int.Parse(time.Substring(17, 2));
+
+            startDate = new DateTime(year, month, day, hour, minute, sec);
+        }
+        private void setEndTime(string time)
         {
             int year = int.Parse(time.Substring(0, 4));
             int month = int.Parse(time.Substring(5, 2));
@@ -349,16 +385,103 @@ namespace program.View
 
         private void timer_Tick_1(object sender, EventArgs e)
         {
-            DateTime date = DateTime.Now;
 
-            double diffTotalSeconds = (examDate - date).TotalSeconds;
-            if (diffTotalSeconds <= 0)
+            try
             {
-                timer.Stop();
-                MessageBox.Show("시험이 종료됐습니다.", "시험 종료", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                mainController.moveToPreviousForm();
+                DateTime date = DateTime.Now;
+
+                if (noticeQueue.Count > 0 && !noticePanel.Visible)
+                {
+                    noticePanel.showNotice(noticeQueue.Dequeue());
+                }
+
+                if (chatPanel.Visible)
+                {
+                    writeAllMessages();
+                }
+                else
+                {
+                    if (messageQueue.Count > 0)
+                    {
+                        openChatAlertPanel.Visible = true;
+                        openChatAlertPanel.BringToFront();
+                        openChatAlertLabel.Text = messageQueue.Count.ToString();
+                    }
+                    else
+                    {
+                        openChatAlertPanel.Visible = false;
+                        openChatAlertPanel.BringToFront();
+                    }
+                }
+
+                (new Thread(new ThreadStart(() =>
+                {
+                    try
+                    {
+                        DateTime now = DateTime.Now;
+                        double diffSeconds = (startDate - now).TotalSeconds;
+
+                        JavascriptResponse jr = browser.EvaluateScriptAsync(string.Format("(function() {{return getState();}})()")).Result;
+
+                        Boolean jrResult = (Boolean)jr.Result;
+                        if (jrResult)
+                        {
+                            if (webrtcConnectCount > 3 && diffSeconds <= 0)
+                            {
+                                webrtcPanel.SendToBack();
+                            }
+                            else
+                            {
+                                webrtcConnectCount++;
+                            }
+                        }
+                        else
+                        {
+                            webrtcConnectCount = 0;
+                            webrtcPanel.BringToFront();
+                        }
+                        
+                        if (examController.isConnected())
+                        {
+                            examController.healthCheck();
+                        }
+                    }
+                    catch (Exception error)
+                    {
+                        webrtcConnectCount = 0;
+                        Console.WriteLine(error);
+                    }
+                }))).Start();
+
+                double diffTotalSeconds = (examDate - date).TotalSeconds;
+                if (diffTotalSeconds <= 0)
+                {
+                    timer.Stop();
+                    if (browser != null)
+                    {
+                        browser.Dispose();
+                        browser = null;
+                    }
+                    UnHook();
+                    examController.disconnect();
+                    MessageBox.Show("시험이 종료됐습니다.", "시험 종료", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mainController.moveToPreviousForm();
+                }
+                setTimeLabel(diffTotalSeconds);
             }
-            setTimeLabel(diffTotalSeconds);
+            catch(Exception error)
+            {
+                //webrtcPanel.BringToFront();
+                Console.WriteLine(error);
+            }
+        }
+
+        private void writeAllMessages()
+        {
+            while (messageQueue.Count > 0)
+            {
+                chatPanel.addChatContentPanel(new ChatContentPanel(customFonts, messageQueue.Dequeue(), 1));
+            }
         }
 
         private void setTimeLabel(double diffTotalSeconds)
@@ -544,7 +667,9 @@ namespace program.View
         }
         private void openChatBoxPanel_Click_1(object sender, EventArgs e)
         {
+            openChatAlertPanel.Visible = false;
             openChatBoxPanel.Visible = false;
+            writeAllMessages();
             chatPanel.Visible = true;
         }
 
@@ -556,22 +681,40 @@ namespace program.View
 
         private void endExamButton_Click_1(object sender, EventArgs e)
         {
-            if (MessageBox.Show("시험을 종료하시겠습니까?\n(시험 종료 시 재접속이 불가능합니다.)", "시험 종료", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                mainController.moveToPreviousForm();
-            }
-        }
-
-        private void submitAnswer(string answer, int num)
-        {
             try
             {
-                string response = mainController.studentAddAnswer(room_id, answer, num);
+                if (MessageBox.Show("시험을 종료하시겠습니까?", "시험 종료", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    timer.Stop();
+                    examController.disconnect();
+                    UnHook();
+                    if (browser != null)
+                    {
+                        browser.Dispose();
+                        browser = null;
+                    }
+                    mainController.moveToPreviousForm();
+                }
             }
             catch (Exception error)
             {
                 Console.WriteLine(error);
             }
+        }
+
+        private void submitAnswer(string answer, int num)
+        {
+            (new Thread(new ThreadStart(() =>
+            {
+                try
+                {
+                    string response = mainController.studentAddAnswer(room_id, answer, num);
+                }
+                catch (Exception error)
+                {
+                    Console.WriteLine(error);
+                }
+            }))).Start();
         }
 
         public void SetHook()
@@ -678,5 +821,24 @@ namespace program.View
             }
         }
 
+        private void chatPanelSendButton_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                string str = chatPanel.InputTextBox.Text.Replace(" ", "");
+                str = str.Replace("\r", "");
+                str = str.Replace("\n", "");
+                if (str != "")
+                {
+                    examController.studentSendMessage(chatPanel.InputTextBox.Text);
+                    chatPanel.addChatContentPanel(new ChatContentPanel(customFonts, chatPanel.InputTextBox.Text, 0));
+                    chatPanel.InputTextBox.Text = "";
+                }
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            }
+        }
     }
 }

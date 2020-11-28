@@ -1,4 +1,6 @@
-﻿namespace program.View
+﻿using program.View.Components;
+
+namespace program.View
 {
     partial class ProfessorExamView
     {
@@ -34,30 +36,62 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.testInfoPanel = new System.Windows.Forms.Panel();
-            this.studentTable = new System.Windows.Forms.DataGridView();
-            this.webViewPanel = new System.Windows.Forms.Panel();
-            this.sendNoticeBtn = new System.Windows.Forms.Button();
-            this.testEndBtn = new System.Windows.Forms.Button();
+            this.studentListPanel = new System.Windows.Forms.Panel();
             this.exitBtn = new System.Windows.Forms.Button();
+            this.sendNoticeBtn = new System.Windows.Forms.Button();
+            this.studentTable = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chatReceiveColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testInfoPanel.SuspendLayout();
+            this.webViewPanel = new System.Windows.Forms.Panel();
+            this.examInfoPanel = new System.Windows.Forms.Panel();
+            this.examTimePanel = new System.Windows.Forms.Panel();
+            this.examTimeLabel = new System.Windows.Forms.Label();
+            this.examLectureLabel = new System.Windows.Forms.Label();
+            this.examNameLabel = new System.Windows.Forms.Label();
+            this.examPercentLabel = new System.Windows.Forms.Label();
+            this.studentListPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.studentTable)).BeginInit();
+            this.examInfoPanel.SuspendLayout();
+            this.examTimePanel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // testInfoPanel
+            // studentListPanel
             // 
-            this.testInfoPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
-            this.testInfoPanel.Controls.Add(this.exitBtn);
-            this.testInfoPanel.Controls.Add(this.testEndBtn);
-            this.testInfoPanel.Controls.Add(this.sendNoticeBtn);
-            this.testInfoPanel.Controls.Add(this.studentTable);
-            this.testInfoPanel.Location = new System.Drawing.Point(900, 28);
-            this.testInfoPanel.Name = "testInfoPanel";
-            this.testInfoPanel.Size = new System.Drawing.Size(363, 654);
-            this.testInfoPanel.TabIndex = 20;
+            this.studentListPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.studentListPanel.Controls.Add(this.exitBtn);
+            this.studentListPanel.Controls.Add(this.sendNoticeBtn);
+            this.studentListPanel.Controls.Add(this.studentTable);
+            this.studentListPanel.Location = new System.Drawing.Point(900, 28);
+            this.studentListPanel.Name = "studentListPanel";
+            this.studentListPanel.Size = new System.Drawing.Size(364, 654);
+            this.studentListPanel.TabIndex = 20;
+            // 
+            // exitBtn
+            // 
+            this.exitBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exitBtn.ForeColor = System.Drawing.Color.White;
+            this.exitBtn.Location = new System.Drawing.Point(197, 607);
+            this.exitBtn.Name = "exitBtn";
+            this.exitBtn.Size = new System.Drawing.Size(150, 34);
+            this.exitBtn.TabIndex = 24;
+            this.exitBtn.TabStop = false;
+            this.exitBtn.Text = "나가기";
+            this.exitBtn.UseVisualStyleBackColor = false;
+            // 
+            // sendNoticeBtn
+            // 
+            this.sendNoticeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.sendNoticeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sendNoticeBtn.ForeColor = System.Drawing.Color.White;
+            this.sendNoticeBtn.Location = new System.Drawing.Point(18, 607);
+            this.sendNoticeBtn.Name = "sendNoticeBtn";
+            this.sendNoticeBtn.Size = new System.Drawing.Size(150, 34);
+            this.sendNoticeBtn.TabIndex = 22;
+            this.sendNoticeBtn.TabStop = false;
+            this.sendNoticeBtn.Text = "공지사항 전송";
+            this.sendNoticeBtn.UseVisualStyleBackColor = false;
             // 
             // studentTable
             // 
@@ -119,54 +153,6 @@
             this.studentTable.TabIndex = 21;
             this.studentTable.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.studentTable_CellClick);
             // 
-            // webViewPanel
-            // 
-            this.webViewPanel.BackColor = System.Drawing.Color.Yellow;
-            this.webViewPanel.Location = new System.Drawing.Point(0, 28);
-            this.webViewPanel.Name = "webViewPanel";
-            this.webViewPanel.Size = new System.Drawing.Size(900, 460);
-            this.webViewPanel.TabIndex = 22;
-            // 
-            // sendNoticeBtn
-            // 
-            this.sendNoticeBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
-            this.sendNoticeBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.sendNoticeBtn.ForeColor = System.Drawing.Color.White;
-            this.sendNoticeBtn.Location = new System.Drawing.Point(18, 607);
-            this.sendNoticeBtn.Name = "sendNoticeBtn";
-            this.sendNoticeBtn.Size = new System.Drawing.Size(100, 34);
-            this.sendNoticeBtn.TabIndex = 22;
-            this.sendNoticeBtn.TabStop = false;
-            this.sendNoticeBtn.Text = "공지사항 전송";
-            this.sendNoticeBtn.UseVisualStyleBackColor = false;
-            // 
-            // testEndBtn
-            // 
-            this.testEndBtn.BackColor = System.Drawing.Color.Black;
-            this.testEndBtn.FlatAppearance.BorderSize = 0;
-            this.testEndBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.testEndBtn.ForeColor = System.Drawing.Color.White;
-            this.testEndBtn.Location = new System.Drawing.Point(132, 607);
-            this.testEndBtn.Name = "testEndBtn";
-            this.testEndBtn.Size = new System.Drawing.Size(101, 34);
-            this.testEndBtn.TabIndex = 23;
-            this.testEndBtn.TabStop = false;
-            this.testEndBtn.Text = "시험 종료";
-            this.testEndBtn.UseVisualStyleBackColor = false;
-            // 
-            // exitBtn
-            // 
-            this.exitBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
-            this.exitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.exitBtn.ForeColor = System.Drawing.Color.White;
-            this.exitBtn.Location = new System.Drawing.Point(246, 607);
-            this.exitBtn.Name = "exitBtn";
-            this.exitBtn.Size = new System.Drawing.Size(100, 34);
-            this.exitBtn.TabIndex = 24;
-            this.exitBtn.TabStop = false;
-            this.exitBtn.Text = "나가기";
-            this.exitBtn.UseVisualStyleBackColor = false;
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -195,33 +181,105 @@
             this.chatReceiveColumn.Name = "chatReceiveColumn";
             this.chatReceiveColumn.ReadOnly = true;
             // 
+            // webViewPanel
+            // 
+            this.webViewPanel.BackColor = System.Drawing.Color.White;
+            this.webViewPanel.Location = new System.Drawing.Point(0, 28);
+            this.webViewPanel.Name = "webViewPanel";
+            this.webViewPanel.Size = new System.Drawing.Size(900, 460);
+            this.webViewPanel.TabIndex = 22;
+            // 
+            // examInfoPanel
+            // 
+            this.examInfoPanel.BackColor = System.Drawing.Color.White;
+            this.examInfoPanel.Controls.Add(this.examTimePanel);
+            this.examInfoPanel.Controls.Add(this.examLectureLabel);
+            this.examInfoPanel.Controls.Add(this.examNameLabel);
+            this.examInfoPanel.Controls.Add(this.examPercentLabel);
+            this.examInfoPanel.Location = new System.Drawing.Point(0, 530);
+            this.examInfoPanel.Name = "examInfoPanel";
+            this.examInfoPanel.Size = new System.Drawing.Size(900, 151);
+            this.examInfoPanel.TabIndex = 23;
+            // 
+            // examTimePanel
+            // 
+            this.examTimePanel.BackColor = System.Drawing.Color.White;
+            this.examTimePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.examTimePanel.Controls.Add(this.examTimeLabel);
+            this.examTimePanel.Location = new System.Drawing.Point(760, 20);
+            this.examTimePanel.Name = "examTimePanel";
+            this.examTimePanel.Size = new System.Drawing.Size(110, 50);
+            this.examTimePanel.TabIndex = 1;
+            // 
+            // examTimeLabel
+            // 
+            this.examTimeLabel.ForeColor = System.Drawing.Color.Black;
+            this.examTimeLabel.Location = new System.Drawing.Point(3, 10);
+            this.examTimeLabel.Name = "examTimeLabel";
+            this.examTimeLabel.Size = new System.Drawing.Size(110, 30);
+            this.examTimeLabel.TabIndex = 0;
+            this.examTimeLabel.Text = "1:00:00";
+            // 
+            // examLectureLabel
+            // 
+            this.examLectureLabel.Location = new System.Drawing.Point(30, 23);
+            this.examLectureLabel.Name = "examLectureLabel";
+            this.examLectureLabel.Size = new System.Drawing.Size(350, 21);
+            this.examLectureLabel.TabIndex = 4;
+            this.examLectureLabel.Text = "강의명:  운영체제";
+            // 
+            // examNameLabel
+            // 
+            this.examNameLabel.Location = new System.Drawing.Point(30, 63);
+            this.examNameLabel.Name = "examNameLabel";
+            this.examNameLabel.Size = new System.Drawing.Size(350, 21);
+            this.examNameLabel.TabIndex = 5;
+            this.examNameLabel.Text = "시험명:  중간고사";
+            // 
+            // examPercentLabel
+            // 
+            this.examPercentLabel.Location = new System.Drawing.Point(30, 103);
+            this.examPercentLabel.Name = "examPercentLabel";
+            this.examPercentLabel.Size = new System.Drawing.Size(350, 21);
+            this.examPercentLabel.TabIndex = 6;
+            this.examPercentLabel.Text = "성적 반영 비율:  25%";
+            // 
             // ProfessorExamView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.webViewPanel);
-            this.Controls.Add(this.testInfoPanel);
+            this.Controls.Add(this.studentListPanel);
+            this.Controls.Add(this.examInfoPanel);
             this.Name = "ProfessorExamView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProfessorExamView";
             this.Load += new System.EventHandler(this.ProfessorExamView_Load);
-            this.testInfoPanel.ResumeLayout(false);
+            this.studentListPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.studentTable)).EndInit();
+            this.examInfoPanel.ResumeLayout(false);
+            this.examTimePanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel testInfoPanel;
+        private System.Windows.Forms.Panel studentListPanel;
         private System.Windows.Forms.DataGridView studentTable;
         private System.Windows.Forms.Panel webViewPanel;
         private System.Windows.Forms.Button sendNoticeBtn;
         private System.Windows.Forms.Button exitBtn;
-        private System.Windows.Forms.Button testEndBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn chatReceiveColumn;
+        private System.Windows.Forms.Panel examTimePanel;
+        private System.Windows.Forms.Label examTimeLabel;
+        private System.Windows.Forms.Panel examInfoPanel;
+        private System.Windows.Forms.Label examLectureLabel;
+        private System.Windows.Forms.Label examNameLabel;
+        private System.Windows.Forms.Label examPercentLabel;
+        private ExamPageNavigationPanel examPageNavigationPanel;
     }
 }

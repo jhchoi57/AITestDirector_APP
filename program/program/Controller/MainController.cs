@@ -38,13 +38,7 @@ namespace program.Controller
         {
             me = null;
             formNavigator = new Stack<Form>();
-            //nowForm = new ExamView(this);
             nowForm = new LoginView(this);
-            //nowForm = new ProfessorDetailScoreView(this);
-            //nowForm = new StudentHomeView(this);
-            //nowForm = new ProfessorLectureEditView(this);
-            //nowForm = new ProfessorScoreCheckView(this);
-            //nowForm = new ProfessorExamView(this);
         }
 
         public string professorLoginRequest(string email, string password)
@@ -59,7 +53,7 @@ namespace program.Controller
             //request.AddParameter("id", email);
             //request.AddParameter("password", password);
             IRestResponse response = client.Execute(request);
-            //Console.WriteLine(response.Content);
+            Console.WriteLine(response.Content);
 
             return response.Content;
         }
@@ -70,17 +64,17 @@ namespace program.Controller
             var client = new RestClient(targetURL);
             client.Timeout = -1;
             var request = new RestRequest(Method.POST);
-            request.AddParameter("email", "stu_test_id100");
-            request.AddParameter("password", "1234");
-            //request.AddParameter("email", email);
-            //request.AddParameter("password", password);
+            //request.AddParameter("email", "stu_test_id20");
+            //request.AddParameter("password", "1234");
+            request.AddParameter("email", email);
+            request.AddParameter("password", password);
             IRestResponse response = client.Execute(request);
-            //Console.WriteLine(response.Content);
+            Console.WriteLine(response.Content);
 
             return response.Content;
         }
 
-        public void setUserInfo(string name, string id, string token, Boolean isStudent)
+        public void setUserInfo(string name, string id, string token, string school, string birth, Boolean isStudent)
         {
             if (isStudent)
             {
@@ -88,7 +82,7 @@ namespace program.Controller
             }
             else
             {
-                me = new Professor(name, id, token);
+                me = new Professor(name, id, token, school, birth);
             }
             Console.WriteLine("이름: " + me.Name + ", 아이디: " + me.ID + ", 토큰: " + me.Token);
         }
@@ -209,7 +203,7 @@ namespace program.Controller
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
-            //Console.WriteLine(response.Content);
+            Console.WriteLine(response.Content);
 
             return response.Content;
         }
@@ -268,7 +262,7 @@ namespace program.Controller
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
-            //Console.WriteLine(response.Content);
+            Console.WriteLine(response.Content);
 
             return response.Content;
         }
@@ -328,7 +322,7 @@ namespace program.Controller
             var request = new RestRequest(Method.POST);
             request.AddParameter("key", me.Token);
             IRestResponse response = client.Execute(request);
-            //Console.WriteLine(response.Content);
+            Console.WriteLine(response.Content);
 
             return response.Content;
         }
@@ -340,7 +334,7 @@ namespace program.Controller
             client.Timeout = -1;
             var request = new RestRequest(Method.DELETE);
             IRestResponse response = client.Execute(request);
-            //Console.WriteLine(response.Content);
+            Console.WriteLine(response.Content);
 
             return response.Content;
         }
@@ -489,13 +483,16 @@ namespace program.Controller
         {
             Form prevForm = nowForm;
             nowForm = formNavigator.Pop();
-            if (nowForm is StudentHomeView)
+            if (nowForm is StudentHomeView && (prevForm is StudentLectureEditView || prevForm is ExamView))
             {
-                nowForm = new StudentHomeView(this);
+                StudentHomeView studentHomeView = (StudentHomeView)nowForm;
+                studentHomeView.TestInfoCancelBtn.PerformClick();
+                studentHomeView.setUserExam();
             }
-            else if (nowForm is ProfessorHomeView)
+            else if (nowForm is ProfessorHomeView && prevForm is MakeExamView)
             {
-                nowForm = new ProfessorHomeView(this);
+                ProfessorHomeView professorHomeView = (ProfessorHomeView)nowForm;
+                professorHomeView.setUserExam();
             }
             nowForm.Show();
             prevForm.Visible = false;

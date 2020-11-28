@@ -25,6 +25,10 @@ namespace program.View
         public StudentLectureEditView(MainController mainController)
         {
             InitializeComponent();
+
+            this.SetStyle(ControlStyles.DoubleBuffer, true);
+            this.SetStyle(ControlStyles.UserPaint, true);
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             // 프로그램 상단바 및 테두리 제거
             this.FormBorderStyle = FormBorderStyle.None;
             // 프로그램 중앙에 메인패널 위치

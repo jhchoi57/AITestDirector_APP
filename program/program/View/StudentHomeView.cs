@@ -13,6 +13,7 @@ using program.View.Components;
 using program.Controller;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Threading;
 
 namespace program.View
 {
@@ -21,11 +22,20 @@ namespace program.View
         private MainController mainController;
         private TopBarPanel topBarPanel;
         private string selectedID;
-        private string selectedTime;
+        private DateTime selectedTime;
+        private Boolean doesExistImage;
+        public Button TestInfoCancelBtn
+        {
+            get { return testInfoCancelBtn; }
+            set { testInfoCancelBtn = value; }
+        }
         public StudentHomeView(MainController mainController)
         {
             InitializeComponent();
-                  // 프로그램 상단바 및 테두리 제거
+            this.SetStyle(ControlStyles.DoubleBuffer, true);
+            this.SetStyle(ControlStyles.UserPaint, true);
+            this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+            // 프로그램 상단바 및 테두리 제거
             this.FormBorderStyle = FormBorderStyle.None;
             // 프로그램 중앙에 메인패널 위치
             //this.mainPanel.Location = new System.Drawing.Point((this.Width - this.mainPanel.Width) / 2, (this.Height - this.mainPanel.Height) / 2);
@@ -130,6 +140,7 @@ namespace program.View
                 string school = (string)jObject["institute"];
                 string email = (string)jObject["email"];
                 Boolean profileImage = (Boolean)jObject["profile_image"];
+                doesExistImage = profileImage;
                 int year = int.Parse(birth.Substring(0, 4));
                 int month = int.Parse(birth.Substring(5, 2));
                 int day = int.Parse(birth.Substring(8));
@@ -153,34 +164,38 @@ namespace program.View
             }
         }
 
-        private void setUserExam()
+        public void setUserExam()
         {
-            try
+            lectureTable.Rows.Clear();
+            (new Thread(new ThreadStart(() =>
             {
-                string response = mainController.getAllExamReqeust();
-                JArray jArray = (JArray)JsonConvert.DeserializeObject(response);
-                int cnt = jArray.Count;
-                for (int i = 0; i < cnt; i++)
+                try
                 {
-                    JObject jObject = (JObject)jArray[i];
-                    string id = (string)jObject["uuid"];
-                    string examName = (string)jObject["exam_name"];
-                    string startTime = (string)jObject["start_at"];
-                    string endTime = (string)jObject["finish_at"];
-                    string professor = (string)jObject["professor_name"];
-                    string lectureName = (string)jObject["lecture_name"];
-                    string date = startTime.Substring(0, 10);
-                    string time = startTime.Substring(11, 5) + " - " + endTime.Substring(11, 5);
+                    string response = mainController.getAllExamReqeust();
+                    JArray jArray = (JArray)JsonConvert.DeserializeObject(response);
+                    int cnt = jArray.Count;
+                    for (int i = 0; i < cnt; i++)
+                    {
+                        JObject jObject = (JObject)jArray[i];
+                        string id = (string)jObject["uuid"];
+                        string examName = (string)jObject["exam_name"];
+                        string startTime = (string)jObject["start_at"];
+                        string endTime = (string)jObject["finish_at"];
+                        string professor = (string)jObject["professor_name"];
+                        string lectureName = (string)jObject["lecture_name"];
+                        string date = startTime.Substring(0, 10);
+                        string time = startTime.Substring(11, 5) + " - " + endTime.Substring(11, 5);
 
-                    if ((getDateTime(endTime) - DateTime.Now).TotalSeconds > 0)
-                        lectureTable.Rows.Add(lectureName, professor, date, time, examName, id);
+                        if ((getDateTime(endTime) - DateTime.Now).TotalSeconds > 0)
+                            lectureTable.Rows.Add(lectureName, professor, date, time, examName, id);
 
+                    }
                 }
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine(error);
-            }
+                catch (Exception error)
+                {
+                    Console.WriteLine(error);
+                }
+            }))).Start();
         }
         private DateTime getDateTime(string time)
         {
@@ -283,7 +298,21 @@ namespace program.View
                 testInfoLectureLbl.Text = lectureTable.Rows[e.RowIndex].Cells[0].Value.ToString();
                 lectureTable.Rows[e.RowIndex].Cells[0].Value = "▶" + lectureTable.Rows[e.RowIndex].Cells[0].Value;
                 selectedID = lectureTable.Rows[e.RowIndex].Cells[5].Value.ToString();
+                string time = lectureTable.Rows[e.RowIndex].Cells[2].Value.ToString() + " " +  lectureTable.Rows[e.RowIndex].Cells[3].Value.ToString().Substring(0, 5) + ":00";
+                setTime(time);
             }
+        }
+        private void setTime(string time)
+        {
+            int year = int.Parse(time.Substring(0, 4));
+            int month = int.Parse(time.Substring(5, 2));
+            int day = int.Parse(time.Substring(8, 2));
+            int hour = int.Parse(time.Substring(11, 2));
+            int minute = int.Parse(time.Substring(14, 2));
+            int sec = int.Parse(time.Substring(17, 2));
+
+            selectedTime = new DateTime(year, month, day, hour, minute, sec);
+            Console.WriteLine(selectedTime);
         }
 
         private void testStartBtn_Click(object sender, EventArgs e)
@@ -297,6 +326,19 @@ namespace program.View
             if (selectedID == "")
             {
                 MessageBox.Show("시험을 선택해주세요.", "시험 선택 오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!doesExistImage)
+            {
+                MessageBox.Show("본인을 식별할 수 있는 얼굴 이미지를 먼저 등록해주세요.", "이미지 등록", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            DateTime date = DateTime.Now;
+            double diffTotalSeconds = (selectedTime - date).TotalSeconds;
+            Console.WriteLine(diffTotalSeconds);
+            if (diffTotalSeconds > 60 * 5)
+            {
+                MessageBox.Show("시험 5분 전부터 입장가능합니다.", "입장 불가", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             ExamView examView = new ExamView(mainController, selectedID, mainController.Me.Token, true);
@@ -340,6 +382,7 @@ namespace program.View
                     string code = (string)jObject["code"];
                     if (code.Equals("OK"))
                     {
+                        doesExistImage = true;
                         pictureBox.Load("https://test.inchang.dev:9000/account/student/" + mainController.Me.ID + "/profile-image");
                     }
                     else if (code.Equals("Many_Faces"))
