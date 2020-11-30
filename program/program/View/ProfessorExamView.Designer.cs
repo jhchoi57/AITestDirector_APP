@@ -253,7 +253,6 @@ namespace program.View
             this.Controls.Add(this.studentListPanel);
             this.Controls.Add(this.examInfoPanel);
             this.Name = "ProfessorExamView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProfessorExamView";
             this.Load += new System.EventHandler(this.ProfessorExamView_Load);
             this.studentListPanel.ResumeLayout(false);

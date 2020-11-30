@@ -527,6 +527,9 @@ namespace program.Controller
             nowForm = targetForm;
             nowForm.Show();
             prevForm.Visible = false;
+
+            if (nowForm is ExamView) return;
+            nowForm.Location = new Point(prevForm.Location.X + ((prevForm.Width - nowForm.Width) / 2), prevForm.Location.Y + ((prevForm.Height - nowForm.Height) / 2));
         }
 
         public void moveToPreviousForm()
@@ -546,6 +549,10 @@ namespace program.Controller
             }
             nowForm.Show();
             prevForm.Visible = false;
+
+            if (nowForm is ExamView) return;
+            nowForm.Location = new Point(prevForm.Location.X + ((prevForm.Width - nowForm.Width) / 2), prevForm.Location.Y + ((prevForm.Height - nowForm.Height) / 2));
+
         }
 
         private void resizeImage(string importPath, string exportPath)

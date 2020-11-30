@@ -237,7 +237,6 @@
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.mainPanel);
             this.Name = "ProfessorScoreCheckView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProfessorScoreCheckView";
             this.Load += new System.EventHandler(this.ProfessorScoreCheckView_Load);
             this.mainPanel.ResumeLayout(false);

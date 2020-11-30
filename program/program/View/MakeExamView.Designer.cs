@@ -54,8 +54,8 @@ namespace program.View
             this.endDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.saveButton = new System.Windows.Forms.Button();
             this.cancelButton = new System.Windows.Forms.Button();
-            this.examShortCutLabel = new Label();
-            this.examShortCutPanel = new Panel();
+            this.examShortCutLabel = new System.Windows.Forms.Label();
+            this.examShortCutPanel = new System.Windows.Forms.Panel();
             this.mainPanel.SuspendLayout();
             this.settingPanel.SuspendLayout();
             this.examNamePanel.SuspendLayout();
@@ -216,20 +216,6 @@ namespace program.View
             this.endDateTimePicker.Name = "endDateTimePicker";
             this.endDateTimePicker.Size = new System.Drawing.Size(195, 21);
             this.endDateTimePicker.TabIndex = 13;
-            //
-            // examShortCutLabel
-            //
-            this.examShortCutLabel.ForeColor = Color.Black;
-            this.examShortCutLabel.Text = "문제 바로가기";
-            this.examShortCutLabel.Location = new Point(30, 340);
-            this.examShortCutLabel.Size = new Size(110, 20);
-            //
-            // examShortCutPanel
-            //
-            this.examShortCutPanel.BackColor = Color.White;
-            this.examShortCutPanel.Size = new Size(324, 108);
-            this.examShortCutPanel.Location = new Point(30, 370);
-            this.examShortCutPanel.AutoScroll = true;
             // 
             // saveButton
             // 
@@ -255,6 +241,24 @@ namespace program.View
             this.cancelButton.Text = "취 소";
             this.cancelButton.UseVisualStyleBackColor = false;
             // 
+            // examShortCutLabel
+            // 
+            this.examShortCutLabel.ForeColor = System.Drawing.Color.Black;
+            this.examShortCutLabel.Location = new System.Drawing.Point(30, 340);
+            this.examShortCutLabel.Name = "examShortCutLabel";
+            this.examShortCutLabel.Size = new System.Drawing.Size(110, 20);
+            this.examShortCutLabel.TabIndex = 19;
+            this.examShortCutLabel.Text = "문제 바로가기";
+            // 
+            // examShortCutPanel
+            // 
+            this.examShortCutPanel.AutoScroll = true;
+            this.examShortCutPanel.BackColor = System.Drawing.Color.White;
+            this.examShortCutPanel.Location = new System.Drawing.Point(30, 370);
+            this.examShortCutPanel.Name = "examShortCutPanel";
+            this.examShortCutPanel.Size = new System.Drawing.Size(324, 108);
+            this.examShortCutPanel.TabIndex = 20;
+            // 
             // MakeExamView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -262,7 +266,6 @@ namespace program.View
             this.ClientSize = new System.Drawing.Size(1264, 682);
             this.Controls.Add(this.mainPanel);
             this.Name = "MakeExamView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MakeExamView";
             this.Load += new System.EventHandler(this.MakeExamView_Load1);
             this.mainPanel.ResumeLayout(false);

@@ -113,6 +113,36 @@ namespace program.View
             this.Controls.Add(topBarPanel);
 
             loadAllStudentExamResult();
+
+            /*
+            // 학생명 학생점수 채점 여부 표시
+            studentScoreTable.Rows.Add("17011010", "홍길동", "78", "O");
+            studentScoreTable.Rows.Add("17011011", "최모씨", "56", "X");
+            studentScoreTable.Rows.Add("17011012", "이모씨", "78", "O");
+            studentScoreTable.Rows.Add("17011013", "김모씨", "78", "X");
+            studentScoreTable.Rows.Add("17011014", "홍길동", "78", "O");
+            studentScoreTable.Rows.Add("17011015", "최모씨", "56", "X");
+            studentScoreTable.Rows.Add("17011016", "이모씨", "78", "O");
+            studentScoreTable.Rows.Add("17011017", "김모씨", "78", "X");
+            studentScoreTable.Rows.Add("17011018", "홍길동", "78", "O");
+            studentScoreTable.Rows.Add("17011019", "최모씨", "56", "X");
+            studentScoreTable.Rows.Add("17011010", "이모씨", "78", "O");
+            studentScoreTable.Rows.Add("17011011", "김모씨", "78", "X");
+            studentScoreTable.Rows.Add("17011012", "홍길동", "78", "O");
+            studentScoreTable.Rows.Add("17011013", "최모씨", "56", "X");
+            studentScoreTable.Rows.Add("17011014", "이모씨", "78", "O");
+            studentScoreTable.Rows.Add("17011015", "김모씨", "78", "X");
+            studentScoreTable.Rows.Add("17011016", "홍길동", "78", "O");
+            studentScoreTable.Rows.Add("17011017", "김모씨", "78", "X");
+            studentScoreTable.Rows.Add("17011018", "홍길동", "78", "O");
+            studentScoreTable.Rows.Add("17011019", "최모씨", "56", "X");
+            studentScoreTable.Rows.Add("17011010", "이모씨", "78", "O");
+            studentScoreTable.Rows.Add("17011011", "김모씨", "78", "X");
+            studentScoreTable.Rows.Add("17011012", "홍길동", "78", "O");
+            studentScoreTable.Rows.Add("17011012", "홍길동", "78", "O");
+
+            this.avgScoreText.Text = "73.21";
+            */
         }
 
         private void loadAllStudentExamResult()
@@ -148,6 +178,7 @@ namespace program.View
 
                 sum += score;
                 studentScoreTable.Rows.Add(id, name, score.ToString(), is_checked);
+                //studentScoreTable.Rows.Add("17011484", "백인창", score.ToString(), is_checked);
             }
 
             avg = (double)sum / count;
@@ -253,7 +284,7 @@ namespace program.View
 
             saveDialog.DefaultExt = ".xlsx";
             saveDialog.Filter = "Microsoft Excel Workbook (*.xls)|*.xlsx";
-            saveDialog.FileName = "학생별 성적 확인".ToString();
+            saveDialog.FileName = lectureName + "_" + testName + "_(" + testDay.Replace('/', '-').Replace('~', '-').Replace(':', '_') + ")";
 
             return saveDialog;
         }
@@ -265,6 +296,9 @@ namespace program.View
                 if (e.RowIndex < 0) return;
                 string student_id = studentScoreTable.Rows[e.RowIndex].Cells[0].Value.ToString();
                 string student_name = studentScoreTable.Rows[e.RowIndex].Cells[1].Value.ToString();
+                //string student_name = "손조나단";
+                //string student_id = "17011445";
+                
                 BookMarkView bookMarkView = new BookMarkView(mainController, student_id, room_id, student_name);
                 mainController.moveToNextForm(bookMarkView);
             }

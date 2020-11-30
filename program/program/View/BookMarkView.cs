@@ -72,11 +72,16 @@ namespace program.View
 
             // 테이블 Sample
             /*
-            bookMarkTable.Rows.Add("가나다", "2020-11-29 15:55:56", "음성?");
-            bookMarkTable.Rows.Add("가나다", "2020-11-29 15:58:56", "화면에 다른 사람?");
-            bookMarkTable.Rows.Add("가나다", "2020-11-29 15:59:56", "시선 이탈?");
-            string time = "2020-11-29 15-54-18";
-            startTime = setTime(time);
+            bookMarkTable.Rows.Add("17011484", "백인창", "2020-12-01 00:57:04", "Audio");
+            bookMarkTable.Rows.Add("17011484", "백인창", "2020-12-01 00:57:14", "Audio");
+            bookMarkTable.Rows.Add("17011484", "백인창", "2020-12-01 00:57:27", "Audio");
+            bookMarkTable.Rows.Add("17011484", "백인창", "2020-12-01 00:57:40", "Audio");
+            bookMarkTable.Rows.Add("17011484", "백인창", "2020-12-01 00:57:43", "Audio");
+            bookMarkTable.Rows.Add("17011484", "백인창", "2020-12-01 00:57:48", "Gaze");
+            bookMarkTable.Rows.Add("17011484", "백인창", "2020-12-01 00:58:01", "Audio");
+            bookMarkTable.Rows.Add("17011484", "백인창", "2020-12-01 00:58:07", "Gaze");
+            //string time = "2020-11-29 15-54-18";
+            //startTime = setTime(time);
             
             //initBookmarkVideo();
 
@@ -128,8 +133,8 @@ namespace program.View
 
                 if (count > 0)
                 {
-                    string url = (string)jArray[0]["url"];
-                    string started_at = (string)jArray[0]["started_at"];
+                    string url = (string)jArray[count - 1]["url"];
+                    string started_at = (string)jArray[count - 1]["started_at"];
 
                     startTime = setTime(started_at);
 
@@ -143,6 +148,8 @@ namespace program.View
                     videoView.BringToFront();
                     videoView.Dock = DockStyle.Fill;
                     status = true;
+
+                    Console.WriteLine(startTime);
                 }
 
             }
@@ -164,6 +171,7 @@ namespace program.View
                 try
                 {
                     string response = mainController.professorGetStudentExamBookmark(room_id, student_id);
+                    Console.WriteLine(response);
                     JArray jArray = (JArray)JsonConvert.DeserializeObject(response);
 
                     int count = jArray.Count;
@@ -198,17 +206,17 @@ namespace program.View
             try
             {
                 if (e.RowIndex < 0) return;
-                string time = bookMarkTable.Rows[e.RowIndex].Cells[1].Value.ToString();
+                string time = bookMarkTable.Rows[e.RowIndex].Cells[2].Value.ToString();
                 DateTime doubtTime = setTime(time);
                 Console.WriteLine(doubtTime + ", " + startTime);
                 long diffTotalMilliSeconds = (long)(doubtTime - startTime).TotalMilliseconds;
-                if (diffTotalMilliSeconds - 1000 < 0)
+                if (diffTotalMilliSeconds - 500 < 0)
                 {
                     diffTotalMilliSeconds = 0;
                 }
                 else
                 {
-                    diffTotalMilliSeconds -= 1000;
+                    diffTotalMilliSeconds -= 500;
                 }
                 Console.WriteLine(diffTotalMilliSeconds);
 

@@ -28,12 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.percentLabelText = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.percentLabel = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.avgScoreText = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -58,11 +62,9 @@
             this.studentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.studentScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.percentLabelText = new System.Windows.Forms.Label();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.percentLabel = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -73,8 +75,6 @@
             this.TopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scorePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentScoreTable)).BeginInit();
-            this.panel8.SuspendLayout();
-            this.panel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -97,6 +97,46 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1264, 654);
             this.mainPanel.TabIndex = 20;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.White;
+            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel8.Controls.Add(this.percentLabelText);
+            this.panel8.Location = new System.Drawing.Point(245, 400);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(245, 60);
+            this.panel8.TabIndex = 42;
+            // 
+            // percentLabelText
+            // 
+            this.percentLabelText.AutoSize = true;
+            this.percentLabelText.ForeColor = System.Drawing.Color.Black;
+            this.percentLabelText.Location = new System.Drawing.Point(30, 16);
+            this.percentLabelText.Name = "percentLabelText";
+            this.percentLabelText.Size = new System.Drawing.Size(57, 12);
+            this.percentLabelText.TabIndex = 31;
+            this.percentLabelText.Text = "반영 비율";
+            // 
+            // panel9
+            // 
+            this.panel9.BackColor = System.Drawing.Color.White;
+            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel9.Controls.Add(this.percentLabel);
+            this.panel9.Location = new System.Drawing.Point(0, 400);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(245, 60);
+            this.panel9.TabIndex = 41;
+            // 
+            // percentLabel
+            // 
+            this.percentLabel.AutoSize = true;
+            this.percentLabel.ForeColor = System.Drawing.Color.Black;
+            this.percentLabel.Location = new System.Drawing.Point(30, 16);
+            this.percentLabel.Name = "percentLabel";
+            this.percentLabel.Size = new System.Drawing.Size(57, 12);
+            this.percentLabel.TabIndex = 26;
+            this.percentLabel.Text = "반영 비율";
             // 
             // panel7
             // 
@@ -302,56 +342,56 @@
             this.studentScoreTable.AllowUserToDeleteRows = false;
             this.studentScoreTable.AllowUserToResizeColumns = false;
             this.studentScoreTable.AllowUserToResizeRows = false;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.White;
-            this.studentScoreTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            this.studentScoreTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.studentScoreTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.studentScoreTable.BackgroundColor = System.Drawing.Color.White;
             this.studentScoreTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.studentScoreTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.studentScoreTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.studentScoreTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.studentScoreTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.studentScoreTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.studentID,
             this.studentName,
             this.studentScore,
             this.scoreRate});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.studentScoreTable.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.studentScoreTable.DefaultCellStyle = dataGridViewCellStyle3;
             this.studentScoreTable.GridColor = System.Drawing.Color.AliceBlue;
             this.studentScoreTable.Location = new System.Drawing.Point(656, 108);
             this.studentScoreTable.MultiSelect = false;
             this.studentScoreTable.Name = "studentScoreTable";
             this.studentScoreTable.ReadOnly = true;
             this.studentScoreTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.studentScoreTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.studentScoreTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.studentScoreTable.RowHeadersVisible = false;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.studentScoreTable.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.studentScoreTable.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.studentScoreTable.RowTemplate.Height = 23;
             this.studentScoreTable.Size = new System.Drawing.Size(537, 454);
             this.studentScoreTable.TabIndex = 12;
@@ -394,46 +434,6 @@
             this.scoreRate.ReadOnly = true;
             this.scoreRate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.White;
-            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel8.Controls.Add(this.percentLabelText);
-            this.panel8.Location = new System.Drawing.Point(245, 400);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(245, 60);
-            this.panel8.TabIndex = 42;
-            // 
-            // percentLabelText
-            // 
-            this.percentLabelText.AutoSize = true;
-            this.percentLabelText.ForeColor = System.Drawing.Color.Black;
-            this.percentLabelText.Location = new System.Drawing.Point(30, 16);
-            this.percentLabelText.Name = "percentLabelText";
-            this.percentLabelText.Size = new System.Drawing.Size(57, 12);
-            this.percentLabelText.TabIndex = 31;
-            this.percentLabelText.Text = "반영 비율";
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.White;
-            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel9.Controls.Add(this.percentLabel);
-            this.panel9.Location = new System.Drawing.Point(0, 400);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(245, 60);
-            this.panel9.TabIndex = 41;
-            // 
-            // percentLabel
-            // 
-            this.percentLabel.AutoSize = true;
-            this.percentLabel.ForeColor = System.Drawing.Color.Black;
-            this.percentLabel.Location = new System.Drawing.Point(30, 16);
-            this.percentLabel.Name = "percentLabel";
-            this.percentLabel.Size = new System.Drawing.Size(57, 12);
-            this.percentLabel.TabIndex = 26;
-            this.percentLabel.Text = "반영 비율";
-            // 
             // ProfessorDetailScoreView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -441,10 +441,13 @@
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.mainPanel);
             this.Name = "ProfessorDetailScoreView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProfessorDetailScoreView";
             this.Load += new System.EventHandler(this.ProfessorDetailScoreView_Load);
             this.mainPanel.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             this.panel6.ResumeLayout(false);
@@ -463,10 +466,6 @@
             this.TopPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scorePictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentScoreTable)).EndInit();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
             this.ResumeLayout(false);
 
         }

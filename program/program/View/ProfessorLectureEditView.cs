@@ -325,7 +325,9 @@ namespace program.View
                     try
                     {
                         string response = mainController.professorRemoveLectureRequest(selectedID);
+                        Console.WriteLine(response);
                         JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                        Console.WriteLine(jObject);
                         int cnt = mainController.Me.Lectures.Count;
                         for (int i = 0; i < cnt; i++)
                         {
@@ -437,6 +439,7 @@ namespace program.View
                     {
                         string response = mainController.professorAddLectureRequest(name, time, studentCnt, semester);
                         JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
+                        Console.WriteLine(jObject);
                         string id = (string)jObject["uuid"];
                         mainController.Me.Lectures.Add(new Lecture(id, name, mainController.Me.Name, studentCnt, semester, time));
                         setMyLectureTable();
@@ -446,9 +449,10 @@ namespace program.View
                     {
                         Console.WriteLine(error);
                     }
-                    workBook.Close(true); // 워크북 닫기 
-                    excelApp.Quit();     // 엑셀 어플리케이션 종료 
-                }                
+                    
+                }
+                workBook.Close(true); // 워크북 닫기 
+                excelApp.Quit();     // 엑셀 어플리케이션 종료 
             } 
             catch(Exception error)
             {

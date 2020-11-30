@@ -174,7 +174,9 @@ namespace program.View
 
             try
             {
-                DateTime date = DateTime.Now;
+                DateTime date = DateTime.Now; 
+                
+                makeAllWebRTCNormal();
 
                 if (enterQueue.Count > 0)
                 {
@@ -215,8 +217,6 @@ namespace program.View
         {
             int count = doubtQueue.Count;
 
-            makeAllWebRTCNormal();
-
             for (int i = 0; i < count; i++)
             {
                 Doubt doubt = doubtQueue.Dequeue();
@@ -229,6 +229,14 @@ namespace program.View
                 else if (doubt.Type.Equals("Gaze"))
                 {
                     studentScreenList[webRTCIndex].setGazeDoubtColor();
+                }
+                else if (doubt.Type.Equals("No_Face"))
+                {
+                    studentScreenList[webRTCIndex].setNoPersonDoubtColor();
+                }
+                else if (doubt.Type.Equals("SIMILAR"))
+                {
+                    studentScreenList[webRTCIndex].setDifferentPersonColor();
                 }
                 else
                 {
@@ -246,7 +254,18 @@ namespace program.View
             int count = studentScreenList.Count;
             for(int i = 0; i < count; i++)
             {
-                studentScreenList[i].setNormalColor();
+                if (studentScreenList[i].TimeCount <= 0)
+                {
+                    continue;
+                }
+                else if (studentScreenList[i].TimeCount > 3)
+                {
+                    studentScreenList[i].setNormalColor();
+                }
+                else
+                {
+                    studentScreenList[i].TimeCount++;
+                }
             }
         }
 
@@ -322,6 +341,7 @@ namespace program.View
                 chatPanelList[chatPanelList.Count - 1].SendButton.Click += sendButton_Click_1;
                 StudentWebRTCPanel studentWebRTCPanel = new StudentWebRTCPanel(customFonts, student.ID, student.Name, room_id);
                 int cnt = studentScreenList.Count;
+                studentWebRTCPanel.StatusButton.Click += statusButton_Click_1;
                 if (cnt < 6)
                 {
                     studentWebRTCPanel.Location = new Point((cnt % 3) * 300, (cnt / 3) * 230);
@@ -333,6 +353,28 @@ namespace program.View
                 studentScreenList.Add(studentWebRTCPanel);
                 this.webViewPanel.Controls.Add(studentWebRTCPanel);
             }
+        }
+
+        private void statusButton_Click_1(object sender, EventArgs e)
+        {
+            Button statusButton = (Button)sender;
+            Panel infoPanel = (Panel)statusButton.Parent;
+            StudentWebRTCPanel studentWebRTCPanel = (StudentWebRTCPanel)infoPanel.Parent;
+
+            studentWebRTCPanel.IsBaned = !studentWebRTCPanel.IsBaned;
+            studentWebRTCPanel.setButtonText();
+
+            (new Thread(new ThreadStart(() =>
+            {
+                if (studentWebRTCPanel.IsBaned)
+                {
+                    examController.professorBanStudent(studentWebRTCPanel.Student_id);
+                }
+                else
+                {
+                    examController.professorUnBanStudent(studentWebRTCPanel.Student_id);
+                }
+            }))).Start();
         }
 
         private void studentExit()

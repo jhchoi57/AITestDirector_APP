@@ -21,15 +21,17 @@ namespace program.Controller
         private Queue<Doubt> doubtQueue;
         private Queue<string> messageQueue;
         private Queue<string> noticeQueue;
+        private Queue<string> banQueue;
         private Queue<Chat> chatQueue;
         private WebSocketSharp.WebSocket ws;
         private string URL;
         private Boolean isStudent;
 
-        public ExamController(Queue<string> messageQueue, Queue<string> noticeQueue, string room_id, string user_token)
+        public ExamController(Queue<string> messageQueue, Queue<string> noticeQueue, Queue<string> banQueue, string room_id, string user_token)
         {
             this.noticeQueue = noticeQueue;
             this.messageQueue = messageQueue;
+            this.banQueue = banQueue;
             URL = "wss://test.inchang.dev:9000/ws/" + room_id + "/" + user_token + "/pc/";
             //Console.WriteLine(URL);
             isStudent = true;
@@ -184,6 +186,20 @@ namespace program.Controller
                             }
                         }
                     }
+                    else if (type.Equals("personal_state"))
+                    {
+                        Console.WriteLine(jObject);
+                        string status = (string)jObject["status"];
+                        string receiver_id = (string)jObject["receiver_id"];
+                        string receiver_name = (string)jObject["receive_name"];
+                        string transmitter_id = (string)jObject["transmitter_id"];
+                        string transmitter_name = (string)jObject["transmitter_name"];
+
+                        if (isStudent)
+                        {
+                            banQueue.Enqueue(status);
+                        }
+                    }
                     else
                     {
                         //Console.WriteLine(jObject);
@@ -328,6 +344,42 @@ namespace program.Controller
                 JObject jMessage = new JObject();
                 jMessage.Add("type", "whisper");
                 jMessage.Add("message", message);
+                ws.Send(jMessage.ToString());
+                return true;
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+                return false;
+            }
+        }
+
+        public Boolean professorBanStudent(string student_id)
+        {
+            try
+            {
+                JObject jMessage = new JObject();
+                jMessage.Add("type", "personal_state");
+                jMessage.Add("receiver", student_id);
+                jMessage.Add("status", "ban");
+                ws.Send(jMessage.ToString());
+                return true;
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+                return false;
+            }
+        }
+
+        public Boolean professorUnBanStudent(string student_id)
+        {
+            try
+            {
+                JObject jMessage = new JObject();
+                jMessage.Add("type", "personal_state");
+                jMessage.Add("receiver", student_id);
+                jMessage.Add("status", "unban");
                 ws.Send(jMessage.ToString());
                 return true;
             }

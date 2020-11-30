@@ -36,11 +36,13 @@ namespace program.View
         private MainController mainController;
         private Queue<string> messageQueue;
         private Queue<string> noticeQueue;
+        private Queue<string> banQueue;
 
         private string room_id;
         private string student_key;
         private Boolean isStudent;
         private int webrtcConnectCount;
+        private Boolean isBaned;
 
         [DllImport("user32.dll")]
         static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc callback, IntPtr hInstance, uint threadId);
@@ -77,6 +79,8 @@ namespace program.View
             this.isStudent = isStudent;
             messageQueue = new Queue<string>();
             noticeQueue = new Queue<string>();
+            banQueue = new Queue<string>();
+            isBaned = false;
         }
 
         private void ExamView_Load1(object sender, EventArgs e)
@@ -176,7 +180,7 @@ namespace program.View
         {
             (new Thread(new ThreadStart(() =>
                 {
-                    examController = new ExamController(messageQueue, noticeQueue, room_id, mainController.Me.Token);
+                    examController = new ExamController(messageQueue, noticeQueue, banQueue, room_id, mainController.Me.Token);
                     Boolean conn = examController.connect();
                     
                     if (!conn)
@@ -401,10 +405,36 @@ namespace program.View
                     }
                 }
 
+                if (banQueue.Count > 0)
+                {
+                    changeBanStatus();
+                }
+
+                double diffTotalSeconds = (examDate - date).TotalSeconds;
+                if (diffTotalSeconds <= 0)
+                {
+                    timer.Stop();
+                    if (browser != null)
+                    {
+                        browser.Dispose();
+                        browser = null;
+                    }
+                    UnHook();
+                    examController.disconnect();
+                    MessageBox.Show("시험이 종료됐습니다.", "시험 종료", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    mainController.moveToPreviousForm();
+                }
+                setTimeLabel(diffTotalSeconds);
+
                 (new Thread(new ThreadStart(() =>
                 {
                     try
                     {
+                        if (isBaned)
+                        {
+                            webrtcPanel.BringToFront();
+                            return;
+                        }
                         DateTime now = DateTime.Now;
                         double diffSeconds = (startDate - now).TotalSeconds;
 
@@ -413,7 +443,7 @@ namespace program.View
                         Boolean jrResult = (Boolean)jr.Result;
                         if (jrResult)
                         {
-                            if (webrtcConnectCount > 3 && diffSeconds <= 0)
+                            if (webrtcConnectCount > 10 && diffSeconds <= 0)
                             {
                                 webrtcPanel.SendToBack();
                             }
@@ -439,27 +469,30 @@ namespace program.View
                         Console.WriteLine(error);
                     }
                 }))).Start();
-
-                double diffTotalSeconds = (examDate - date).TotalSeconds;
-                if (diffTotalSeconds <= 0)
-                {
-                    timer.Stop();
-                    if (browser != null)
-                    {
-                        browser.Dispose();
-                        browser = null;
-                    }
-                    UnHook();
-                    examController.disconnect();
-                    MessageBox.Show("시험이 종료됐습니다.", "시험 종료", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    mainController.moveToPreviousForm();
-                }
-                setTimeLabel(diffTotalSeconds);
             }
             catch(Exception error)
             {
                 //webrtcPanel.BringToFront();
                 Console.WriteLine(error);
+            }
+        }
+
+        private void changeBanStatus()
+        {
+            int count = banQueue.Count;
+
+            for (int i = 0; i < count; i++)
+            {
+                string status = banQueue.Dequeue();
+
+                if (status.Equals("ban"))
+                {
+                    isBaned = true;
+                }
+                else
+                {
+                    isBaned = false;
+                }
             }
         }
 
@@ -658,6 +691,7 @@ namespace program.View
             openChatBoxPanel.Visible = false;
             writeAllMessages();
             chatPanel.Visible = true;
+            chatPanel.BringToFront();
         }
 
         private void chatPanelMinimizeButton_Click_1(object sender, EventArgs e)

@@ -28,22 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.myLecturePanel = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.backButton = new System.Windows.Forms.Button();
+            this.TopPanel = new System.Windows.Forms.Panel();
+            this.myLectureLbl = new System.Windows.Forms.Label();
+            this.lecturePictureBox = new System.Windows.Forms.PictureBox();
             this.myLectureTable = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lectureSemester = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.myLectureLbl = new System.Windows.Forms.Label();
-            this.lecturePictureBox = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.backButton = new System.Windows.Forms.Button();
             this.addLectureBtn = new System.Windows.Forms.Button();
             this.editLecturePanel = new System.Windows.Forms.Panel();
             this.yearComboBox = new System.Windows.Forms.ComboBox();
@@ -62,15 +63,14 @@
             this.editBtn = new System.Windows.Forms.Button();
             this.lectureNameLbl = new System.Windows.Forms.Label();
             this.deleteBtn = new System.Windows.Forms.Button();
-            this.TopPanel = new System.Windows.Forms.Panel();
             this.myLecturePanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.myLectureTable)).BeginInit();
+            this.TopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lecturePictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myLectureTable)).BeginInit();
             this.editLecturePanel.SuspendLayout();
             this.lectureTotalStudentPanel.SuspendLayout();
             this.lectureTimePanel.SuspendLayout();
             this.lectureNamePanel.SuspendLayout();
-            this.TopPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // myLecturePanel
@@ -83,34 +83,33 @@
             this.myLecturePanel.Size = new System.Drawing.Size(883, 653);
             this.myLecturePanel.TabIndex = 21;
             // 
-            // button1
+            // TopPanel
             // 
-            this.button1.BackColor = System.Drawing.Color.Gray;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(263, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 34);
-            this.button1.TabIndex = 31;
-            this.button1.TabStop = false;
-            this.button1.Text = "Excel로 추가";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.TopPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.TopPanel.Controls.Add(this.myLectureLbl);
+            this.TopPanel.Controls.Add(this.lecturePictureBox);
+            this.TopPanel.Location = new System.Drawing.Point(0, 0);
+            this.TopPanel.Name = "TopPanel";
+            this.TopPanel.Size = new System.Drawing.Size(1264, 82);
+            this.TopPanel.TabIndex = 35;
             // 
-            // backButton
+            // myLectureLbl
             // 
-            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
-            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.backButton.ForeColor = System.Drawing.Color.White;
-            this.backButton.Location = new System.Drawing.Point(263, 600);
-            this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(107, 41);
-            this.backButton.TabIndex = 17;
-            this.backButton.TabStop = false;
-            this.backButton.Text = "나가기";
-            this.backButton.UseVisualStyleBackColor = false;
-            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            this.myLectureLbl.AutoSize = true;
+            this.myLectureLbl.ForeColor = System.Drawing.Color.White;
+            this.myLectureLbl.Location = new System.Drawing.Point(85, 29);
+            this.myLectureLbl.Name = "myLectureLbl";
+            this.myLectureLbl.Size = new System.Drawing.Size(85, 12);
+            this.myLectureLbl.TabIndex = 16;
+            this.myLectureLbl.Text = "담당 강의 목록";
+            // 
+            // lecturePictureBox
+            // 
+            this.lecturePictureBox.Location = new System.Drawing.Point(18, 17);
+            this.lecturePictureBox.Name = "lecturePictureBox";
+            this.lecturePictureBox.Size = new System.Drawing.Size(50, 50);
+            this.lecturePictureBox.TabIndex = 16;
+            this.lecturePictureBox.TabStop = false;
             // 
             // myLectureTable
             // 
@@ -118,56 +117,56 @@
             this.myLectureTable.AllowUserToDeleteRows = false;
             this.myLectureTable.AllowUserToResizeColumns = false;
             this.myLectureTable.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
-            this.myLectureTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            this.myLectureTable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.myLectureTable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.myLectureTable.BackgroundColor = System.Drawing.Color.White;
             this.myLectureTable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.myLectureTable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.myLectureTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.myLectureTable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.myLectureTable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.myLectureTable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn4,
             this.lectureSemester});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.myLectureTable.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.myLectureTable.DefaultCellStyle = dataGridViewCellStyle4;
             this.myLectureTable.GridColor = System.Drawing.Color.AliceBlue;
             this.myLectureTable.Location = new System.Drawing.Point(18, 110);
             this.myLectureTable.MultiSelect = false;
             this.myLectureTable.Name = "myLectureTable";
             this.myLectureTable.ReadOnly = true;
             this.myLectureTable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.myLectureTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.myLectureTable.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.myLectureTable.RowHeadersVisible = false;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.myLectureTable.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.myLectureTable.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.myLectureTable.RowTemplate.Height = 23;
             this.myLectureTable.Size = new System.Drawing.Size(845, 494);
             this.myLectureTable.TabIndex = 16;
@@ -176,9 +175,9 @@
             // 
             // dataGridViewTextBoxColumn1
             // 
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxColumn1.FillWeight = 13F;
             this.dataGridViewTextBoxColumn1.HeaderText = "강의명";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
@@ -208,23 +207,34 @@
             this.lectureSemester.Name = "lectureSemester";
             this.lectureSemester.ReadOnly = true;
             // 
-            // myLectureLbl
+            // button1
             // 
-            this.myLectureLbl.AutoSize = true;
-            this.myLectureLbl.ForeColor = System.Drawing.Color.White;
-            this.myLectureLbl.Location = new System.Drawing.Point(85, 29);
-            this.myLectureLbl.Name = "myLectureLbl";
-            this.myLectureLbl.Size = new System.Drawing.Size(85, 12);
-            this.myLectureLbl.TabIndex = 16;
-            this.myLectureLbl.Text = "담당 강의 목록";
+            this.button1.BackColor = System.Drawing.Color.Gray;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(263, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 34);
+            this.button1.TabIndex = 31;
+            this.button1.TabStop = false;
+            this.button1.Text = "Excel로 추가";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // lecturePictureBox
+            // backButton
             // 
-            this.lecturePictureBox.Location = new System.Drawing.Point(18, 17);
-            this.lecturePictureBox.Name = "lecturePictureBox";
-            this.lecturePictureBox.Size = new System.Drawing.Size(50, 50);
-            this.lecturePictureBox.TabIndex = 16;
-            this.lecturePictureBox.TabStop = false;
+            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.backButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.backButton.ForeColor = System.Drawing.Color.White;
+            this.backButton.Location = new System.Drawing.Point(263, 600);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(107, 41);
+            this.backButton.TabIndex = 17;
+            this.backButton.TabStop = false;
+            this.backButton.Text = "나가기";
+            this.backButton.UseVisualStyleBackColor = false;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // addLectureBtn
             // 
@@ -439,16 +449,6 @@
             this.deleteBtn.UseVisualStyleBackColor = false;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
-            // TopPanel
-            // 
-            this.TopPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
-            this.TopPanel.Controls.Add(this.myLectureLbl);
-            this.TopPanel.Controls.Add(this.lecturePictureBox);
-            this.TopPanel.Location = new System.Drawing.Point(0, 0);
-            this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(1264, 82);
-            this.TopPanel.TabIndex = 35;
-            // 
             // ProfessorLectureEditView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -457,12 +457,13 @@
             this.Controls.Add(this.editLecturePanel);
             this.Controls.Add(this.myLecturePanel);
             this.Name = "ProfessorLectureEditView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProfessorLectureEditView";
             this.Load += new System.EventHandler(this.ProfessorLectureEditView_Load);
             this.myLecturePanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.myLectureTable)).EndInit();
+            this.TopPanel.ResumeLayout(false);
+            this.TopPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lecturePictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.myLectureTable)).EndInit();
             this.editLecturePanel.ResumeLayout(false);
             this.editLecturePanel.PerformLayout();
             this.lectureTotalStudentPanel.ResumeLayout(false);
@@ -471,8 +472,6 @@
             this.lectureTimePanel.PerformLayout();
             this.lectureNamePanel.ResumeLayout(false);
             this.lectureNamePanel.PerformLayout();
-            this.TopPanel.ResumeLayout(false);
-            this.TopPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }

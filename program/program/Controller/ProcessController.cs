@@ -40,13 +40,18 @@ namespace program.Controller
         {
             foreach (Process processInfo in allProc)
             {
+             
                 /*
                 if(processInfo.ProcessName == "chrome")
                 {                    
                     Console.WriteLine(" 크롬 종료 이벤트 ");
-                    //processInfo.Kill();
+                    processInfo.Kill();
                 }
-                */
+                if (processInfo.ProcessName == "KakaoTalk")
+                {
+                    Console.WriteLine(" 크롬 종료 이벤트 ");
+                    processInfo.Kill();
+                }*/
             }
         }
 

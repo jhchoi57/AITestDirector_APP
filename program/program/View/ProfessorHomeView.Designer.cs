@@ -703,7 +703,6 @@
             this.ClientSize = new System.Drawing.Size(1264, 681);
             this.Controls.Add(this.mainPanel);
             this.Name = "ProfessorHomeView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProfessorHomeView";
             this.Load += new System.EventHandler(this.ProfessorHomeView_Load);
             this.mainPanel.ResumeLayout(false);
