@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using program.Controller;
 using program.View.Components;
 
@@ -16,6 +18,7 @@ namespace program.View
     {
         private MainController mainController;
         private TopBarPanel topBarPanel;
+
         public ProfessorScoreCheckView(MainController mainController)
         {
             InitializeComponent();
@@ -43,48 +46,55 @@ namespace program.View
             scorePictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             scorePictureBox.Image = System.Drawing.Image.FromFile("./src/Assets/Images/score.png");
 
-
-            // 테이블 Sample 값 추가
-
-            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "100", "67", "35%");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "100", "67", "35%");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "100", "67", "35%");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("운영체제", "퀴즈1", "2020/4/27 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "100", "67", "35%");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("데이터베이스", "퀴즈5", "2020/6/29 13:00~14:30", "100", "67", "35%");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("컴퓨터구조", "퀴즈3", "2020/4/27 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "100", "67", "35%");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("컴퓨터구조", "퀴즈4", "2020/4/27 16:00~17:30", "80", "65", "30%");
-            lectureTable.Rows.Add("운영체제", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "100", "67", "35%");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("운영체제", "퀴즈1", "2020/4/27 16:00~17:30", "90", "65", "30%");
-            lectureTable.Rows.Add("데이터베이스", "기말고사", "2020/6/29 13:00~14:30", "100", "67", "35%");
-            lectureTable.Rows.Add("Unix프로그래밍", "중간고사", "2020/4/25 16:00~17:30", "100", "65", "30%");
-            lectureTable.Rows.Add("컴퓨터구조", "중간고사", "2020/4/27 16:00~17:30", "100", "65", "30%");
+            loadAllExamResults();
 
             //상단바
             this.topBarPanel = new TopBarPanel(customFonts);
             this.topBarPanel.Location = new Point(0, 0);
             this.Controls.Add(topBarPanel);
+        }
 
+        private void loadAllExamResults()
+        {
+            try
+            {
+                string response = mainController.professorGetAllExamResult();
+                JArray jArray = (JArray)JsonConvert.DeserializeObject(response);
+                Console.WriteLine(jArray);
+                setLectureTable(jArray);
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            }
+        }
 
+        private void setLectureTable(JArray jArray)
+        {
+            int count = jArray.Count;
+            lectureTable.Rows.Clear();
+            for (int i = 0; i < count; i++)
+            {
+                string lecture_name = (string)jArray[i]["name"];
+                JArray jExamArray = (JArray)jArray[i]["rooms"];
+                Console.WriteLine(jExamArray);
+                int cnt = jExamArray.Count;
+                for (int j = 0; j < cnt; j++)
+                {
+                    string room_id = (string)jExamArray[j]["uuid"];
+                    string startTime = (string)jExamArray[j]["start_at"];
+                    string endTime = (string)jExamArray[j]["finish_at"];
+                    string exam_name = (string)jExamArray[j]["exam_name"];
+                    int percent = (int)jExamArray[j]["score_rate"];
+                    int total_score = (int)jExamArray[j]["all_score"];
+                    Console.WriteLine(startTime);
+                    Console.WriteLine(endTime);
+                    string time = startTime.Substring(6, 4) + "/" + startTime.Substring(0, 5) + " " + startTime.Substring(11, 5) + " ~ " + endTime.Substring(11, 5);
+                    Console.WriteLine(time);
+
+                    lectureTable.Rows.Add(lecture_name, exam_name, time, total_score, percent.ToString() + "%", "", room_id);
+                }
+            }
         }
 
         private void backBtn_Click(object sender, EventArgs e)
@@ -100,7 +110,7 @@ namespace program.View
         private void lectureTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
-            String lectureName, testName , testDay, totalScore, avgScore;
+            string lectureName, testName , testDay, totalScore, avgScore, room_id;
 
             // 강의명
             lectureName = lectureTable.Rows[e.RowIndex].Cells[0].Value.ToString();
@@ -117,14 +127,17 @@ namespace program.View
             // 평균 점수
             avgScore = lectureTable.Rows[e.RowIndex].Cells[4].Value.ToString();
 
+            room_id = lectureTable.Rows[e.RowIndex].Cells[6].Value.ToString();
+
             MessageBox.Show("강의명 : " + lectureName + "\n" +
                 "시험명 : " + testName + "\n" +
                 "시험 날짜 " + testDay + "\n" +
                 "총 점수 : " + totalScore + "\n" +
-                "평균 점수 : " + avgScore + "\n"
+                "반영 비율 : " + avgScore + "\n" +
+                "room_id : " + room_id + "\n"
                 );
 
-            ProfessorDetailScoreView professorDetailScoreView = new ProfessorDetailScoreView(mainController);
+            ProfessorDetailScoreView professorDetailScoreView = new ProfessorDetailScoreView(mainController, room_id);
             professorDetailScoreView.SetScoreData(lectureName, testName, testDay, totalScore, avgScore);
             mainController.moveToNextForm(professorDetailScoreView);
         }

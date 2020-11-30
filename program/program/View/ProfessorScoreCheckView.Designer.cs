@@ -35,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainPanel = new System.Windows.Forms.Panel();
+            this.TopPanel = new System.Windows.Forms.Panel();
             this.scoreCheckLabel = new System.Windows.Forms.Label();
             this.scorePictureBox = new System.Windows.Forms.PictureBox();
             this.backBtn = new System.Windows.Forms.Button();
@@ -43,13 +44,13 @@
             this.scoreTestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreTestDay = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.scoreAvg = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TopPanel = new System.Windows.Forms.Panel();
+            this.scoreAvg = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mainPanel.SuspendLayout();
+            this.TopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scorePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lectureTable)).BeginInit();
-            this.TopPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -62,6 +63,16 @@
             this.mainPanel.Name = "mainPanel";
             this.mainPanel.Size = new System.Drawing.Size(1264, 654);
             this.mainPanel.TabIndex = 19;
+            // 
+            // TopPanel
+            // 
+            this.TopPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
+            this.TopPanel.Controls.Add(this.scoreCheckLabel);
+            this.TopPanel.Controls.Add(this.scorePictureBox);
+            this.TopPanel.Location = new System.Drawing.Point(0, 0);
+            this.TopPanel.Name = "TopPanel";
+            this.TopPanel.Size = new System.Drawing.Size(1264, 82);
+            this.TopPanel.TabIndex = 22;
             // 
             // scoreCheckLabel
             // 
@@ -123,8 +134,9 @@
             this.scoreTestName,
             this.scoreTestDay,
             this.scoreScore,
+            this.scoreRate,
             this.scoreAvg,
-            this.scoreRate});
+            this.id});
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
@@ -194,14 +206,6 @@
             this.scoreScore.ReadOnly = true;
             this.scoreScore.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // scoreAvg
-            // 
-            this.scoreAvg.FillWeight = 3F;
-            this.scoreAvg.HeaderText = "평균점수";
-            this.scoreAvg.Name = "scoreAvg";
-            this.scoreAvg.ReadOnly = true;
-            this.scoreAvg.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
             // scoreRate
             // 
             this.scoreRate.FillWeight = 3F;
@@ -210,15 +214,21 @@
             this.scoreRate.ReadOnly = true;
             this.scoreRate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // TopPanel
+            // scoreAvg
             // 
-            this.TopPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
-            this.TopPanel.Controls.Add(this.scoreCheckLabel);
-            this.TopPanel.Controls.Add(this.scorePictureBox);
-            this.TopPanel.Location = new System.Drawing.Point(0, 0);
-            this.TopPanel.Name = "TopPanel";
-            this.TopPanel.Size = new System.Drawing.Size(1264, 82);
-            this.TopPanel.TabIndex = 22;
+            this.scoreAvg.FillWeight = 3F;
+            this.scoreAvg.HeaderText = "평균점수";
+            this.scoreAvg.Name = "scoreAvg";
+            this.scoreAvg.ReadOnly = true;
+            this.scoreAvg.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.scoreAvg.Visible = false;
+            // 
+            // id
+            // 
+            this.id.HeaderText = "id";
+            this.id.Name = "id";
+            this.id.ReadOnly = true;
+            this.id.Visible = false;
             // 
             // ProfessorScoreCheckView
             // 
@@ -231,10 +241,10 @@
             this.Text = "ProfessorScoreCheckView";
             this.Load += new System.EventHandler(this.ProfessorScoreCheckView_Load);
             this.mainPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.scorePictureBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lectureTable)).EndInit();
             this.TopPanel.ResumeLayout(false);
             this.TopPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scorePictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lectureTable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -246,12 +256,13 @@
         private System.Windows.Forms.PictureBox scorePictureBox;
         private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.DataGridView lectureTable;
+        private System.Windows.Forms.Panel TopPanel;
         private System.Windows.Forms.DataGridViewTextBoxColumn scoreLectureName;
         private System.Windows.Forms.DataGridViewTextBoxColumn scoreTestName;
         private System.Windows.Forms.DataGridViewTextBoxColumn scoreTestDay;
         private System.Windows.Forms.DataGridViewTextBoxColumn scoreScore;
-        private System.Windows.Forms.DataGridViewTextBoxColumn scoreAvg;
         private System.Windows.Forms.DataGridViewTextBoxColumn scoreRate;
-        private System.Windows.Forms.Panel TopPanel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn scoreAvg;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id;
     }
 }

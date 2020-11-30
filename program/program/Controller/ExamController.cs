@@ -186,8 +186,8 @@ namespace program.Controller
                     }
                     else
                     {
-                        Console.WriteLine(jObject);
-                        Console.WriteLine("여긴가?");
+                        //Console.WriteLine(jObject);
+                        //Console.WriteLine("여긴가?");
                     }
                 };
                 ws.OnClose += (send, e) =>

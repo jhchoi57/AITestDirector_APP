@@ -57,7 +57,7 @@ namespace program.View.Components
             CefSettings settings = new CefSettings();
             settings.CefCommandLineArgs.Add("enable-media-stream", "1");
             if (!Cef.IsInitialized) Cef.Initialize(settings);
-            browser = new ChromiumWebBrowser("https://test.inchang.dev:10001/?mode=receiver&autoStart=true&userId=" + student_id + "&roomId=" + room_id);
+            browser = new ChromiumWebBrowser("https://webrtc.inchang.dev:10001/?mode=receiver&autoStart=true&userId=" + student_id + "&roomId=" + room_id);
             browser.Dock = DockStyle.Fill;
             this.webrtcPanel.Controls.Add(browser);
         }
@@ -84,10 +84,15 @@ namespace program.View.Components
             );
         }
 
-        public void setLookDoubtColor()
+        public void setFaceDoubtColor()
         {
-            infoPanel.BackColor = Color.IndianRed;
+            infoPanel.BackColor = Color.Purple;
             infoLabel.ForeColor = Color.White;
+        }
+        public void setGazeDoubtColor()
+        {
+            infoPanel.BackColor = Color.Yellow;
+            infoLabel.ForeColor = Color.Black;
         }
 
         public void setSoundDoubtColor()

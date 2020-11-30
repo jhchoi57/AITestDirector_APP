@@ -34,8 +34,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.avgScoreText = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.totalScoreText = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.avgScoreLbl = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.totalScoreLbl = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.testDayText = new System.Windows.Forms.Label();
@@ -46,20 +51,21 @@
             this.TopPanel = new System.Windows.Forms.Panel();
             this.scoreCheckLabel = new System.Windows.Forms.Label();
             this.scorePictureBox = new System.Windows.Forms.PictureBox();
-            this.doubtBtn = new System.Windows.Forms.Button();
             this.excelDownBtn = new System.Windows.Forms.Button();
-            this.avgScoreText = new System.Windows.Forms.Label();
-            this.avgScoreLbl = new System.Windows.Forms.Label();
             this.backBtn = new System.Windows.Forms.Button();
             this.studentScoreTable = new System.Windows.Forms.DataGridView();
             this.studentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.studentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.studentScore = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.scoreRate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.percentLabelText = new System.Windows.Forms.Label();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.percentLabel = new System.Windows.Forms.Label();
             this.mainPanel.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -67,14 +73,15 @@
             this.TopPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scorePictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentScoreTable)).BeginInit();
-            this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
             this.mainPanel.BackColor = System.Drawing.Color.White;
+            this.mainPanel.Controls.Add(this.panel8);
+            this.mainPanel.Controls.Add(this.panel9);
             this.mainPanel.Controls.Add(this.panel7);
             this.mainPanel.Controls.Add(this.panel6);
             this.mainPanel.Controls.Add(this.panel5);
@@ -83,7 +90,6 @@
             this.mainPanel.Controls.Add(this.panel2);
             this.mainPanel.Controls.Add(this.panel1);
             this.mainPanel.Controls.Add(this.TopPanel);
-            this.mainPanel.Controls.Add(this.doubtBtn);
             this.mainPanel.Controls.Add(this.excelDownBtn);
             this.mainPanel.Controls.Add(this.backBtn);
             this.mainPanel.Controls.Add(this.studentScoreTable);
@@ -92,15 +98,35 @@
             this.mainPanel.Size = new System.Drawing.Size(1264, 654);
             this.mainPanel.TabIndex = 20;
             // 
-            // panel4
+            // panel7
             // 
-            this.panel4.BackColor = System.Drawing.Color.White;
-            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.totalScoreLbl);
-            this.panel4.Location = new System.Drawing.Point(0, 282);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(245, 60);
-            this.panel4.TabIndex = 38;
+            this.panel7.BackColor = System.Drawing.Color.White;
+            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel7.Controls.Add(this.avgScoreText);
+            this.panel7.Location = new System.Drawing.Point(245, 341);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(245, 60);
+            this.panel7.TabIndex = 40;
+            // 
+            // avgScoreText
+            // 
+            this.avgScoreText.AutoSize = true;
+            this.avgScoreText.ForeColor = System.Drawing.Color.Black;
+            this.avgScoreText.Location = new System.Drawing.Point(30, 16);
+            this.avgScoreText.Name = "avgScoreText";
+            this.avgScoreText.Size = new System.Drawing.Size(57, 12);
+            this.avgScoreText.TabIndex = 31;
+            this.avgScoreText.Text = "평균 점수";
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.totalScoreText);
+            this.panel6.Location = new System.Drawing.Point(245, 282);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(245, 60);
+            this.panel6.TabIndex = 39;
             // 
             // totalScoreText
             // 
@@ -111,6 +137,36 @@
             this.totalScoreText.Size = new System.Drawing.Size(45, 12);
             this.totalScoreText.TabIndex = 30;
             this.totalScoreText.Text = "총 점수";
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.avgScoreLbl);
+            this.panel5.Location = new System.Drawing.Point(0, 341);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(245, 60);
+            this.panel5.TabIndex = 39;
+            // 
+            // avgScoreLbl
+            // 
+            this.avgScoreLbl.AutoSize = true;
+            this.avgScoreLbl.ForeColor = System.Drawing.Color.Black;
+            this.avgScoreLbl.Location = new System.Drawing.Point(30, 16);
+            this.avgScoreLbl.Name = "avgScoreLbl";
+            this.avgScoreLbl.Size = new System.Drawing.Size(57, 12);
+            this.avgScoreLbl.TabIndex = 26;
+            this.avgScoreLbl.Text = "평균 점수";
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.totalScoreLbl);
+            this.panel4.Location = new System.Drawing.Point(0, 282);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(245, 60);
+            this.panel4.TabIndex = 38;
             // 
             // totalScoreLbl
             // 
@@ -210,21 +266,6 @@
             this.scorePictureBox.TabIndex = 20;
             this.scorePictureBox.TabStop = false;
             // 
-            // doubtBtn
-            // 
-            this.doubtBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
-            this.doubtBtn.FlatAppearance.BorderSize = 0;
-            this.doubtBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.doubtBtn.ForeColor = System.Drawing.Color.White;
-            this.doubtBtn.Location = new System.Drawing.Point(733, 603);
-            this.doubtBtn.Name = "doubtBtn";
-            this.doubtBtn.Size = new System.Drawing.Size(143, 34);
-            this.doubtBtn.TabIndex = 33;
-            this.doubtBtn.TabStop = false;
-            this.doubtBtn.Text = "부정행위 의심 학생";
-            this.doubtBtn.UseVisualStyleBackColor = false;
-            this.doubtBtn.Click += new System.EventHandler(this.doubtBtn_Click);
-            // 
             // excelDownBtn
             // 
             this.excelDownBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(14)))), ((int)(((byte)(16)))));
@@ -239,26 +280,6 @@
             this.excelDownBtn.Text = "엑셀 다운로드";
             this.excelDownBtn.UseVisualStyleBackColor = false;
             this.excelDownBtn.Click += new System.EventHandler(this.excelDownBtn_Click);
-            // 
-            // avgScoreText
-            // 
-            this.avgScoreText.AutoSize = true;
-            this.avgScoreText.ForeColor = System.Drawing.Color.Black;
-            this.avgScoreText.Location = new System.Drawing.Point(30, 16);
-            this.avgScoreText.Name = "avgScoreText";
-            this.avgScoreText.Size = new System.Drawing.Size(57, 12);
-            this.avgScoreText.TabIndex = 31;
-            this.avgScoreText.Text = "평균 점수";
-            // 
-            // avgScoreLbl
-            // 
-            this.avgScoreLbl.AutoSize = true;
-            this.avgScoreLbl.ForeColor = System.Drawing.Color.Black;
-            this.avgScoreLbl.Location = new System.Drawing.Point(30, 16);
-            this.avgScoreLbl.Name = "avgScoreLbl";
-            this.avgScoreLbl.Size = new System.Drawing.Size(57, 12);
-            this.avgScoreLbl.TabIndex = 26;
-            this.avgScoreLbl.Text = "평균 점수";
             // 
             // backBtn
             // 
@@ -334,6 +355,7 @@
             this.studentScoreTable.RowTemplate.Height = 23;
             this.studentScoreTable.Size = new System.Drawing.Size(537, 454);
             this.studentScoreTable.TabIndex = 12;
+            this.studentScoreTable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.studentScoreTable_CellDoubleClick);
             // 
             // studentID
             // 
@@ -372,35 +394,45 @@
             this.scoreRate.ReadOnly = true;
             this.scoreRate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // panel5
+            // panel8
             // 
-            this.panel5.BackColor = System.Drawing.Color.White;
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Controls.Add(this.avgScoreLbl);
-            this.panel5.Location = new System.Drawing.Point(0, 341);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(245, 60);
-            this.panel5.TabIndex = 39;
+            this.panel8.BackColor = System.Drawing.Color.White;
+            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel8.Controls.Add(this.percentLabelText);
+            this.panel8.Location = new System.Drawing.Point(245, 400);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(245, 60);
+            this.panel8.TabIndex = 42;
             // 
-            // panel6
+            // percentLabelText
             // 
-            this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.totalScoreText);
-            this.panel6.Location = new System.Drawing.Point(245, 282);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(245, 60);
-            this.panel6.TabIndex = 39;
+            this.percentLabelText.AutoSize = true;
+            this.percentLabelText.ForeColor = System.Drawing.Color.Black;
+            this.percentLabelText.Location = new System.Drawing.Point(30, 16);
+            this.percentLabelText.Name = "percentLabelText";
+            this.percentLabelText.Size = new System.Drawing.Size(57, 12);
+            this.percentLabelText.TabIndex = 31;
+            this.percentLabelText.Text = "반영 비율";
             // 
-            // panel7
+            // panel9
             // 
-            this.panel7.BackColor = System.Drawing.Color.White;
-            this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel7.Controls.Add(this.avgScoreText);
-            this.panel7.Location = new System.Drawing.Point(245, 341);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(245, 60);
-            this.panel7.TabIndex = 40;
+            this.panel9.BackColor = System.Drawing.Color.White;
+            this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel9.Controls.Add(this.percentLabel);
+            this.panel9.Location = new System.Drawing.Point(0, 400);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(245, 60);
+            this.panel9.TabIndex = 41;
+            // 
+            // percentLabel
+            // 
+            this.percentLabel.AutoSize = true;
+            this.percentLabel.ForeColor = System.Drawing.Color.Black;
+            this.percentLabel.Location = new System.Drawing.Point(30, 16);
+            this.percentLabel.Name = "percentLabel";
+            this.percentLabel.Size = new System.Drawing.Size(57, 12);
+            this.percentLabel.TabIndex = 26;
+            this.percentLabel.Text = "반영 비율";
             // 
             // ProfessorDetailScoreView
             // 
@@ -413,6 +445,12 @@
             this.Text = "ProfessorDetailScoreView";
             this.Load += new System.EventHandler(this.ProfessorDetailScoreView_Load);
             this.mainPanel.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -425,12 +463,10 @@
             this.TopPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scorePictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentScoreTable)).EndInit();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -450,7 +486,6 @@
         private System.Windows.Forms.Label avgScoreText;
         private System.Windows.Forms.Label totalScoreText;
         private System.Windows.Forms.Button excelDownBtn;
-        private System.Windows.Forms.Button doubtBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn studentID;
         private System.Windows.Forms.DataGridViewTextBoxColumn studentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn studentScore;
@@ -463,5 +498,9 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Label percentLabelText;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Label percentLabel;
     }
 }

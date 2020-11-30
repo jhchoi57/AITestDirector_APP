@@ -69,7 +69,7 @@ namespace program.View
 
             setUserLecture();
             setUserExam();
-            mainController.getAllExamReqeust();
+
             selectedID = "";
         }
 

@@ -22,6 +22,7 @@ namespace program.View
         private TopBarPanel topBarPanel;
         private List<string> selectedID;
         private List<string> myLectureID;
+
         public StudentLectureEditView(MainController mainController)
         {
             InitializeComponent();

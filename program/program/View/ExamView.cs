@@ -167,7 +167,7 @@ namespace program.View
             CefSettings settings = new CefSettings();
             settings.CefCommandLineArgs.Add("enable-media-stream", "1");
             if(!Cef.IsInitialized) Cef.Initialize(settings);
-            browser = new ChromiumWebBrowser("https://test.inchang.dev:10001/?mode=sender&autoStart=true&userId=" + mainController.Me.ID + "&roomId=" + this.room_id);
+            browser = new ChromiumWebBrowser("https://webrtc.inchang.dev:10001/?mode=sender&autoStart=true&userId=" + mainController.Me.ID + "&roomId=" + this.room_id);
             browser.Dock = DockStyle.Fill;
             this.webrtcPanel.Controls.Add(browser);
         }
@@ -216,8 +216,8 @@ namespace program.View
                 examNameLabel.Text = "시험명:  " + examName;
                 examPercentLabel.Text = "성적 반영 비율:  " + percent;
                 //Console.WriteLine(questionArray);
-                setStartTime(startTime);
-                setEndTime(endTime);
+                startDate = setTime(startTime);
+                examDate = setTime(endTime);
                 loadQuestions(questionArray);
             }
             catch (Exception error)
@@ -225,7 +225,7 @@ namespace program.View
                 Console.WriteLine(error);
             }
         }
-        private void setStartTime(string time)
+        private DateTime setTime(string time)
         {
             int year = int.Parse(time.Substring(0, 4));
             int month = int.Parse(time.Substring(5, 2));
@@ -234,20 +234,7 @@ namespace program.View
             int minute = int.Parse(time.Substring(14, 2));
             int sec = int.Parse(time.Substring(17, 2));
 
-            startDate = new DateTime(year, month, day, hour, minute, sec);
-        }
-        private void setEndTime(string time)
-        {
-            int year = int.Parse(time.Substring(0, 4));
-            int month = int.Parse(time.Substring(5, 2));
-            int day = int.Parse(time.Substring(8, 2));
-            int hour = int.Parse(time.Substring(11, 2));
-            int minute = int.Parse(time.Substring(14, 2));
-            int sec = int.Parse(time.Substring(17, 2));
-
-            examDate = new DateTime(year, month, day, hour, minute, sec);
-            double diffTotalSeconds = (examDate - DateTime.Now).TotalSeconds;
-            setTimeLabel(diffTotalSeconds);
+            return new DateTime(year, month, day, hour, minute, sec);
         }
 
         private void loadQuestions(JArray questions)

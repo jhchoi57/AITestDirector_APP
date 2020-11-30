@@ -53,7 +53,7 @@ namespace program.Controller
             //request.AddParameter("id", email);
             //request.AddParameter("password", password);
             IRestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
+            //Console.WriteLine(response.Content);
 
             return response.Content;
         }
@@ -69,7 +69,7 @@ namespace program.Controller
             request.AddParameter("email", email);
             request.AddParameter("password", password);
             IRestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
+            //Console.WriteLine(response.Content);
 
             return response.Content;
         }
@@ -203,7 +203,7 @@ namespace program.Controller
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
+            //Console.WriteLine(response.Content);
 
             return response.Content;
         }
@@ -262,7 +262,7 @@ namespace program.Controller
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
+            //Console.WriteLine(response.Content);
 
             return response.Content;
         }
@@ -334,7 +334,7 @@ namespace program.Controller
             client.Timeout = -1;
             var request = new RestRequest(Method.DELETE);
             IRestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
+            //Console.WriteLine(response.Content);
 
             return response.Content;
         }
@@ -464,6 +464,56 @@ namespace program.Controller
             request.AddParameter("value", answer);
             request.AddParameter("room", room_id);
             request.AddParameter("problem_num", num);
+            IRestResponse response = client.Execute(request);
+            //Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string professorGetAllExamResult()
+        {
+            string targetURL = URL + "/account/professor/" + me.ID + "/scores?key=" + me.Token;
+            Console.WriteLine(URL);
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            //Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string professorGetAllStudentExamResult(string room_id)
+        {
+            string targetURL = URL + "/room/" + room_id + "/score?key=" + me.Token;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            //Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string professorGetStudentExamVideo(string room_id, string student_id)
+        {
+            string targetURL = URL + "/room/" + room_id + "/video/" + student_id + "?key=" + me.Token;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            //Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string professorGetStudentExamBookmark(string room_id, string student_id)
+        {
+            string targetURL = URL + "/room/" + room_id + "/bookmark?user_id=" + student_id + "&key=" + me.Token;
+            Console.WriteLine(targetURL);
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
             //Console.WriteLine(response.Content);
 

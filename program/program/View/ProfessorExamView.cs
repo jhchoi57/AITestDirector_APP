@@ -224,11 +224,15 @@ namespace program.View
                 StudentWebRTCPanel studentWebRTCPanel = studentScreenList[webRTCIndex];
                 if (doubt.Type.Equals("Audio"))
                 {
-                    studentScreenList[i].setSoundDoubtColor();
+                    studentScreenList[webRTCIndex].setSoundDoubtColor();
+                }
+                else if (doubt.Type.Equals("Gaze"))
+                {
+                    studentScreenList[webRTCIndex].setGazeDoubtColor();
                 }
                 else
                 {
-                    studentScreenList[i].setLookDoubtColor();
+                    studentScreenList[webRTCIndex].setFaceDoubtColor();
                 }
                 studentScreenList.RemoveAt(webRTCIndex);
                 studentScreenList.Insert(0, studentWebRTCPanel);
