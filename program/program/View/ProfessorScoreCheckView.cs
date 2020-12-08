@@ -60,7 +60,6 @@ namespace program.View
             {
                 string response = mainController.professorGetAllExamResult();
                 JArray jArray = (JArray)JsonConvert.DeserializeObject(response);
-                Console.WriteLine(jArray);
                 setLectureTable(jArray);
             }
             catch (Exception error)
@@ -77,7 +76,6 @@ namespace program.View
             {
                 string lecture_name = (string)jArray[i]["name"];
                 JArray jExamArray = (JArray)jArray[i]["rooms"];
-                Console.WriteLine(jExamArray);
                 int cnt = jExamArray.Count;
                 for (int j = 0; j < cnt; j++)
                 {
@@ -87,10 +85,8 @@ namespace program.View
                     string exam_name = (string)jExamArray[j]["exam_name"];
                     int percent = (int)jExamArray[j]["score_rate"];
                     int total_score = (int)jExamArray[j]["all_score"];
-                    Console.WriteLine(startTime);
-                    Console.WriteLine(endTime);
+
                     string time = startTime.Substring(6, 4) + "/" + startTime.Substring(0, 5) + " " + startTime.Substring(11, 5) + " ~ " + endTime.Substring(11, 5);
-                    Console.WriteLine(time);
 
                     lectureTable.Rows.Add(lecture_name, exam_name, time, total_score, percent.ToString() + "%", "", room_id);
                 }

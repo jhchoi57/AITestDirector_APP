@@ -27,7 +27,7 @@ namespace program.View.Components
         {
             int height;
 
-            this.Size = new Size(645, 147);
+            this.Size = new Size(725, 147);
             this.Click += Click_1;
 
             Type = 1;
@@ -42,6 +42,7 @@ namespace program.View.Components
             height = answerPanel.Location.Y + answerPanel.Height;
             this.Height = height;
             ExamScorePanel.Location = new Point(520, (height - ExamScorePanel.Height) / 2);
+            StudentScorePanel.Location = new Point(600, (height - StudentScorePanel.Height) / 2);
         }
         
         private void Click_1(object sender, EventArgs e)

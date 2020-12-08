@@ -19,7 +19,7 @@ namespace program.View.Components
 
         public ExamEssayQuestionPanel(CustomFonts customFonts, string question, int score, int maxLength) : base(customFonts, question, score)
         {
-            this.Size = new Size(645, 400);
+            this.Size = new Size(725, 400);
             this.Click += Click_1;
 
             Type = 2;
@@ -38,6 +38,7 @@ namespace program.View.Components
             answerPanel.Location = new Point(0, QuestionLabel.Location.Y + QuestionLabel.Height + 20);
             this.Height = answerPanel.Location.Y + answerPanel.Height;
             ExamScorePanel.Location = new Point(520, (this.Height - ExamScorePanel.Height) / 2);
+            StudentScorePanel.Location = new Point(600, (this.Height - StudentScorePanel.Height) / 2);
         }
         private void Click_1(object sender, EventArgs e)
         {

@@ -341,7 +341,7 @@ namespace program.View
                 MessageBox.Show("시험 5분 전부터 입장가능합니다.", "입장 불가", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            ExamView examView = new ExamView(mainController, selectedID, mainController.Me.Token, true);
+            ExamView examView = new ExamView(mainController, selectedID, mainController.Me.ID, true);
             mainController.moveToNextForm(examView);
         }
 

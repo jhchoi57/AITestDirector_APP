@@ -304,7 +304,6 @@ namespace program.Controller
         public string professorRemoveLectureRequest(string id)
         {
             string targetURL = URL + "/lecture/" + id + "?key=" + me.Token;
-            Console.WriteLine(targetURL);
             var client = new RestClient(targetURL);
             client.Timeout = -1;
             var request = new RestRequest(Method.DELETE);
@@ -322,7 +321,6 @@ namespace program.Controller
             var request = new RestRequest(Method.POST);
             request.AddParameter("key", me.Token);
             IRestResponse response = client.Execute(request);
-            Console.WriteLine(response.Content);
 
             return response.Content;
         }
@@ -417,19 +415,6 @@ namespace program.Controller
             return response.Content;
         }
 
-        public string professorAddExamAnswer(string room_id, JArray answers)
-        {
-            string targetURL = URL + "/room/" + room_id + "/problem";
-            var client = new RestClient(targetURL);
-            client.Timeout = -1;
-            var request = new RestRequest(Method.POST);
-            request.AddParameter("problems", answers);
-            IRestResponse response = client.Execute(request);
-            //Console.WriteLine(response.Content);
-
-            return response.Content;
-        }
-
         public string professorGetAllAnswer(string room_id)
         {
             string targetURL = URL + "/room/" + room_id + "/problem?key=" + me.Token;
@@ -473,7 +458,6 @@ namespace program.Controller
         public string professorGetAllExamResult()
         {
             string targetURL = URL + "/account/professor/" + me.ID + "/scores?key=" + me.Token;
-            Console.WriteLine(URL);
             var client = new RestClient(targetURL);
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
@@ -510,12 +494,41 @@ namespace program.Controller
         public string professorGetStudentExamBookmark(string room_id, string student_id)
         {
             string targetURL = URL + "/room/" + room_id + "/bookmark?user_id=" + student_id + "&key=" + me.Token;
-            Console.WriteLine(targetURL);
             var client = new RestClient(targetURL);
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
             //Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string professorGetStudentAllAnswer(string room_id, string student_id)
+        {
+            string targetURL = URL + "/room/" + room_id + "/answer?user_id=" + student_id + "&key=" + me.Token;
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            //Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string professorChangeScore(string value, string room_id, int problem_num, string student_id, int score)
+        {
+            string targetURL = URL + "/room/" + room_id + "/answer";
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddParameter("key", me.Token);
+            request.AddParameter("value", value);
+            request.AddParameter("room", room_id);
+            request.AddParameter("problem_num", problem_num);
+            request.AddParameter("user_id", student_id);
+            request.AddParameter("score", score);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
 
             return response.Content;
         }

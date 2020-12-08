@@ -151,7 +151,6 @@ namespace program.View
             {
                 string response = mainController.professorGetAllStudentExamResult(room_id);
                 JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
-                Console.WriteLine(jObject);
                 JArray student_result = (JArray)jObject["results"];
 
                 setStudentScore(student_result);
@@ -294,13 +293,23 @@ namespace program.View
             try
             {
                 if (e.RowIndex < 0) return;
-                string student_id = studentScoreTable.Rows[e.RowIndex].Cells[0].Value.ToString();
-                string student_name = studentScoreTable.Rows[e.RowIndex].Cells[1].Value.ToString();
-                //string student_name = "손조나단";
-                //string student_id = "17011445";
-                
-                BookMarkView bookMarkView = new BookMarkView(mainController, student_id, room_id, student_name);
-                mainController.moveToNextForm(bookMarkView);
+
+                if(MessageBox.Show("예: 학생 성적 수정\n아니오: 학생 북마크 확인", "학생 시험 정보", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    string student_id = studentScoreTable.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    ExamView examView = new ExamView(mainController, room_id, student_id, false);
+                    mainController.moveToNextForm(examView);
+                }
+                else
+                {
+                    string student_id = studentScoreTable.Rows[e.RowIndex].Cells[0].Value.ToString();
+                    string student_name = studentScoreTable.Rows[e.RowIndex].Cells[1].Value.ToString();
+                    //string student_name = "손조나단";
+                    //string student_id = "17011445";
+
+                    BookMarkView bookMarkView = new BookMarkView(mainController, student_id, room_id, student_name);
+                    mainController.moveToNextForm(bookMarkView);
+                }
             }
             catch (Exception error)
             {

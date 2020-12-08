@@ -33,13 +33,15 @@ namespace program.View
         private List<ShortCutButton> shortCutButtonList;
         private ChatPanel chatPanel;
 
+        private List<Boolean> isScoredList;
+
         private MainController mainController;
         private Queue<string> messageQueue;
         private Queue<string> noticeQueue;
         private Queue<string> banQueue;
 
         private string room_id;
-        private string student_key;
+        private string student_id;
         private Boolean isStudent;
         private int webrtcConnectCount;
         private Boolean isBaned;
@@ -65,17 +67,16 @@ namespace program.View
 
         private static IntPtr hhook = IntPtr.Zero;
 
-        public ExamView(MainController mainController, string room_id, string student_key, Boolean isStudent)
+        public ExamView(MainController mainController, string room_id, string student_id, Boolean isStudent)
         {
             InitializeComponent();
             // 프로그램 상단바 및 테두리 제거
             this.FormBorderStyle = FormBorderStyle.None;
             // 프로그램 화면 크기 모니터 해상도에 맞춤
             //this.WindowState = FormWindowState.Maximized;
-            Console.WriteLine(room_id);
             this.mainController = mainController;
             this.room_id = room_id;
-            this.student_key = student_key;
+            this.student_id = student_id;
             this.isStudent = isStudent;
             messageQueue = new Queue<string>();
             noticeQueue = new Queue<string>();
@@ -85,39 +86,14 @@ namespace program.View
 
         private void ExamView_Load1(object sender, EventArgs e)
         {
-            // 프로세스 제어
-            ProcessController processController = new ProcessController();
-            processController.KillProcess();
-
-            // 키보드 후킹
-            //SetHook();
-            webrtcConnectCount = 0;
             // 폰트
             customFonts = new CustomFonts();
 
-            timer = new System.Windows.Forms.Timer();
-            timer.Interval = 1000;
-            timer.Tick += timer_Tick_1;
-            timer.Start();
-
             shortCutButtonList = new List<ShortCutButton>();
-
-            this.chatPanel = new ChatPanel(customFonts);
-            this.chatPanel.Location = new Point(30, 240);
-            this.mainPanel.Controls.Add(this.chatPanel);
-            this.chatPanel.BringToFront();
-            this.chatPanel.Visible = false;
-            this.chatPanel.MinimizeBtn.Click += chatPanelMinimizeButton_Click_1;
-            this.chatPanel.SendButton.Click += chatPanelSendButton_Click_1;
-
-            this.openChatBoxPanel.Click += openChatBoxPanel_Click_1;
-            this.openChatBoxLabel.Click += openChatBoxPanel_Click_1;
 
             this.examLectureLabel.Font = customFonts.LabelFont();
             this.examNameLabel.Font = customFonts.LabelFont();
             this.examPercentLabel.Font = customFonts.LabelFont();
-            this.openChatBoxLabel.Font = customFonts.NormalFont();
-            this.openChatAlertLabel.Font = customFonts.SmallFont();
 
             this.exitButton = new ExitButton(customFonts);
             this.examInfoPanel.Controls.Add(this.exitButton);
@@ -152,18 +128,122 @@ namespace program.View
             this.noticePanel.Visible = false;
             this.Controls.Add(this.noticePanel);
 
+            this.examPageNavigationPanel.Controls.Add(this.openChatBoxPanel);
+
             if (isStudent)
             {
+                this.chatPanel = new ChatPanel(customFonts);
+                this.chatPanel.Location = new Point(30, 240);
+                this.mainPanel.Controls.Add(this.chatPanel);
+                this.chatPanel.BringToFront();
+                this.chatPanel.Visible = false;
+                this.chatPanel.MinimizeBtn.Click += chatPanelMinimizeButton_Click_1;
+                this.chatPanel.SendButton.Click += chatPanelSendButton_Click_1;
+
+                this.openChatBoxPanel.Click += openChatBoxPanel_Click_1;
+                this.openChatBoxLabel.Click += openChatBoxPanel_Click_1;
+
+                this.openChatBoxLabel.Font = customFonts.NormalFont();
+                this.openChatAlertLabel.Font = customFonts.SmallFont();
+
+                // 프로세스 제어
+                ProcessController processController = new ProcessController();
+                processController.KillProcess();
+
+                // 키보드 후킹
+                SetHook();
+
+                timer = new System.Windows.Forms.Timer();
+                timer.Interval = 1000;
+                timer.Tick += timer_Tick_1;
+                timer.Start();
+
+                webrtcConnectCount = 0;
                 initwebrtc();
                 connectWebsocket();
             }
 
-            this.examPageNavigationPanel.Controls.Add(this.openChatBoxPanel);
+            isScoredList = new List<Boolean>();
+
             loadExam();
             initShortCutButton();
 
+            if (!isStudent)
+            {
+                this.examPanel.BringToFront();
+                this.examTimePanel.Visible = false;
+                this.openChatBoxPanel.Visible = false;
+                this.endExamButton.Text = "채점 종료";
+                loadStudentAllAnswers();
+            }
+
             this.endExamButton.Click += endExamButton_Click_1;
 
+        }
+
+        private void loadStudentAllAnswers()
+        {
+            try
+            {
+                string response = mainController.professorGetStudentAllAnswer(room_id, student_id);
+                JArray jArray = (JArray)JsonConvert.DeserializeObject(response);
+                Console.WriteLine(jArray);
+                setAnswers(jArray);
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            }
+        }
+
+        private void setAnswers(JArray jArray)
+        {
+            int count = jArray.Count;
+
+            for(int i = 0; i < count; i++)
+            {
+                int num = (int)jArray[i]["question_num"];
+                int score = (int)jArray[i]["score"];
+                string value = (string)jArray[i]["value"];
+                Boolean isScored = (Boolean)jArray[i]["is_scored"];
+
+                isScoredList[num - 1] = isScored;
+                ExamSubQuestionPanel subQuestionPanel = examMainQuestionPanelList[shortCutButtonList[num - 1].MainQuestionNo].SubQuestionPanelsList[shortCutButtonList[num - 1].SubQuestionNo];
+                subQuestionPanel.StudentScorePanel.ScoreTextBox.Text = score.ToString();
+                int type = subQuestionPanel.Type;
+                if (type == 0)
+                {
+                    ExamOXPanel oxPanel = (ExamOXPanel)subQuestionPanel;
+                    oxPanel.checkAnswer(value);
+                }
+                else if (type == 1)
+                {
+                    ExamShortAnswerQuestionPanel shortAnswerQuestionPanel = (ExamShortAnswerQuestionPanel)subQuestionPanel;
+                    shortAnswerQuestionPanel.AnswerPanel.AnswerLabel.Text = value;
+                    shortAnswerQuestionPanel.AnswerPanel.AnswerTextBox.Text = value;
+                    if (!value.Equals(""))
+                    {
+                        shortAnswerQuestionPanel.AnswerPanel.AnswerLabel.Visible = true;
+                        shortAnswerQuestionPanel.AnswerPanel.AnswerTextBox.Visible = false;
+                    }
+                }
+                else if (type == 2)
+                {
+                    ExamEssayQuestionPanel essayQuestionPanel = (ExamEssayQuestionPanel)subQuestionPanel;
+                    essayQuestionPanel.AnswerPanel.AnswerLabel.Text = value;
+                    essayQuestionPanel.AnswerPanel.AnswerTextBox.Text = value;
+                    if (!value.Equals(""))
+                    {
+                        essayQuestionPanel.AnswerPanel.AnswerLabel.Visible = true;
+                        essayQuestionPanel.AnswerPanel.AnswerTextBox.Visible = false;
+                    }
+                }
+                else
+                {
+                    ExamMultipleChoiceQuestionPanel multipleChoiceQuestionPanel = (ExamMultipleChoiceQuestionPanel)subQuestionPanel;
+                    multipleChoiceQuestionPanel.checkAnswer(value);
+                }
+            }
         }
 
         private void initwebrtc()
@@ -208,7 +288,6 @@ namespace program.View
             {
                 string response = mainController.getExamRequest(room_id);
                 JObject jObject = (JObject)JsonConvert.DeserializeObject(response);
-                Console.WriteLine(jObject);
                 string lectureName = (string)jObject["lecture_name"];
                 string examName = (string)jObject["exam_name"];
                 int percent = (int)jObject["score_rate"];
@@ -218,8 +297,8 @@ namespace program.View
                 JArray questionArray = JArray.Parse(questions);
                 examLectureLabel.Text = "강의명:  " + lectureName;
                 examNameLabel.Text = "시험명:  " + examName;
-                examPercentLabel.Text = "성적 반영 비율:  " + percent;
-                //Console.WriteLine(questionArray);
+                examPercentLabel.Text = "성적 반영 비율:  " + percent + "%";
+                Console.WriteLine(questionArray);
                 startDate = setTime(startTime);
                 examDate = setTime(endTime);
                 loadQuestions(questionArray);
@@ -263,17 +342,31 @@ namespace program.View
                     {
                         ExamOXPanel examOXPanel = new ExamOXPanel(customFonts, (index++).ToString() + ". " + subQuestion, score);
                         examSubQuestionPanelList.Add(examOXPanel);
+                        if (!isStudent)
+                        {
+                            examOXPanel.OButton.Click -= examOXPanel.oButton_Click_1;
+                            examOXPanel.XButton.Click -= examOXPanel.xButton_Click_1;
+                        }
                     }
                     else if (type == 1)
                     {
                         ExamShortAnswerQuestionPanel examShortAnswerQuestionPanel = new ExamShortAnswerQuestionPanel(customFonts, (index++).ToString() + ". " + subQuestion, score);
                         examSubQuestionPanelList.Add(examShortAnswerQuestionPanel);
+                        if (!isStudent)
+                        {
+                            examShortAnswerQuestionPanel.AnswerPanel.AnswerTextBox.ReadOnly = true;
+                        }
+                        
                     }
                     else if (type == 2)
                     {
                         int maxLength = (int)subQuestions[j]["maxLength"];
                         ExamEssayQuestionPanel examEssayQuestionPanel = new ExamEssayQuestionPanel(customFonts, (index++).ToString() + ". " + subQuestion, score, maxLength);
                         examSubQuestionPanelList.Add(examEssayQuestionPanel);
+                        if (!isStudent)
+                        {
+                            examEssayQuestionPanel.AnswerPanel.AnswerTextBox.ReadOnly = true;
+                        }
                     }
                     else
                     {
@@ -284,7 +377,7 @@ namespace program.View
                         {
                             example[t] = (string)examples[t]["example"];
                         }
-                        ExamMultipleChoiceQuestionPanel examMultipleChoiceQuestionPanel = new ExamMultipleChoiceQuestionPanel(customFonts, (index++).ToString() + ". " + subQuestion, score, example);
+                        ExamMultipleChoiceQuestionPanel examMultipleChoiceQuestionPanel = new ExamMultipleChoiceQuestionPanel(customFonts, (index++).ToString() + ". " + subQuestion, score, example, isStudent);
                         examSubQuestionPanelList.Add(examMultipleChoiceQuestionPanel);
                     }
                 }
@@ -548,30 +641,140 @@ namespace program.View
                     shortCutButton.SubQuestionNo = j;
                     shortCutButton.Click += shortCutButton_Click_1;
                     index++;
-                    ExamSubQuestionPanel examSubQuestionPanel = examMainQuestionPanelList[i].SubQuestionPanelsList[j];
-                    switch (examSubQuestionPanel.Type)
+
+                    if (!isStudent)
                     {
-                        case 0:
-                            ExamOXPanel examOXPanel = (ExamOXPanel)examSubQuestionPanel;
-                            examOXPanel.OButton.Click += ox_enter_answer;
-                            examOXPanel.XButton.Click += ox_enter_answer;
-                            break;
-                        case 1:
-                            ExamShortAnswerQuestionPanel examShortAnswerQuestionPanel = (ExamShortAnswerQuestionPanel)examSubQuestionPanel;
-                            examShortAnswerQuestionPanel.AnswerPanel.AnswerTextBox.LostFocus += short_enter_answer;
-                            break;
-                        case 2:
-                            ExamEssayQuestionPanel examEssayQuestionPanel = (ExamEssayQuestionPanel)examSubQuestionPanel;
-                            examEssayQuestionPanel.AnswerPanel.AnswerTextBox.LostFocus += essay_enter_answer;
-                            break;
-                        case 3:
-                            ExamMultipleChoiceQuestionPanel examMultipleChoiceQuestionPanel = (ExamMultipleChoiceQuestionPanel)examSubQuestionPanel;
-                            add_event_at_radiobutton(examMultipleChoiceQuestionPanel.ChoicePaneList);
-                            break;
-                        default: break;
+                        isScoredList.Add(false);
+                        examMainQuestionPanelList[i].SubQuestionPanelsList[j].StudentScorePanel.Visible = true;
+                        examMainQuestionPanelList[i].SubQuestionPanelsList[j].StudentScorePanel.ScoreTextBox.LostFocus += ScoreTextBox_LostFocus;
+                    }
+                    if (isStudent)
+                    {
+                        ExamSubQuestionPanel examSubQuestionPanel = examMainQuestionPanelList[i].SubQuestionPanelsList[j];
+
+                        switch (examSubQuestionPanel.Type)
+                        {
+                            case 0:
+                                ExamOXPanel examOXPanel = (ExamOXPanel)examSubQuestionPanel;
+                                examOXPanel.OButton.Click += ox_enter_answer;
+                                examOXPanel.XButton.Click += ox_enter_answer;
+                                break;
+                            case 1:
+                                ExamShortAnswerQuestionPanel examShortAnswerQuestionPanel = (ExamShortAnswerQuestionPanel)examSubQuestionPanel;
+                                examShortAnswerQuestionPanel.AnswerPanel.AnswerTextBox.LostFocus += short_enter_answer;
+                                break;
+                            case 2:
+                                ExamEssayQuestionPanel examEssayQuestionPanel = (ExamEssayQuestionPanel)examSubQuestionPanel;
+                                examEssayQuestionPanel.AnswerPanel.AnswerTextBox.LostFocus += essay_enter_answer;
+                                break;
+                            case 3:
+                                ExamMultipleChoiceQuestionPanel examMultipleChoiceQuestionPanel = (ExamMultipleChoiceQuestionPanel)examSubQuestionPanel;
+                                add_event_at_radiobutton(examMultipleChoiceQuestionPanel.ChoicePaneList);
+                                break;
+                            default: break;
+                        }
                     }
                 }
             }
+        }
+
+        private void ScoreTextBox_LostFocus(object sender, EventArgs e)
+        {
+            try
+            {
+                TextBox scoreTextBox = (TextBox)sender;
+                string str = scoreTextBox.Text.Replace(" ", "");
+                str = str.Replace("\r", "");
+                str = str.Replace("\n", "");
+                if (str != "")
+                {
+                    ScorePanel scorePanel = (ScorePanel)scoreTextBox.Parent;
+                    ExamSubQuestionPanel examSubQuestionPanel = (ExamSubQuestionPanel)scorePanel.Parent;
+                    int index = Find_shortCutButton_index(examSubQuestionPanel);
+                    int problem_score = int.Parse(examSubQuestionPanel.ExamScorePanel.ScoreTextBox.Text);
+                    int score = int.Parse(scoreTextBox.Text);
+                    if (score > problem_score)
+                    {
+                        MessageBox.Show("문제의 최고 점수보다 높게 점수를 부여할 수 없습니다.", "점수 오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        examSubQuestionPanel.StudentScorePanel.ScoreTextBox.Text = "0";
+                        return;
+                    }
+                    setScore(index, false);
+                }
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(error);
+            }
+        }
+
+        private void setScore(int index, Boolean isEnd)
+        {
+            ExamSubQuestionPanel examSubQuestionPanel = examMainQuestionPanelList[shortCutButtonList[index].MainQuestionNo].SubQuestionPanelsList[shortCutButtonList[index].SubQuestionNo];
+            int score = int.Parse(examSubQuestionPanel.StudentScorePanel.ScoreTextBox.Text);
+            
+            string value = "";
+            switch (examSubQuestionPanel.Type)
+            {
+                case 0:
+                    ExamOXPanel examOXPanel = (ExamOXPanel)examSubQuestionPanel;
+                    value = examOXPanel.Answer.ToString();
+                    break;
+                case 1:
+                    ExamShortAnswerQuestionPanel examShortAnswerQuestionPanel = (ExamShortAnswerQuestionPanel)examSubQuestionPanel;
+                    value = examShortAnswerQuestionPanel.AnswerPanel.AnswerLabel.Text;
+                    break;
+                case 2:
+                    ExamEssayQuestionPanel examEssayQuestionPanel = (ExamEssayQuestionPanel)examSubQuestionPanel;
+                    value = examEssayQuestionPanel.AnswerPanel.AnswerLabel.Text;
+                    break;
+                case 3:
+                    ExamMultipleChoiceQuestionPanel examMultipleChoiceQuestionPanel = (ExamMultipleChoiceQuestionPanel)examSubQuestionPanel;
+                    value = examMultipleChoiceQuestionPanel.Answer.ToString();
+                    break;
+                default: break;
+            }
+
+            isScoredList[index] = true;
+
+            if (isEnd)
+            {
+                try 
+                {
+                    mainController.professorChangeScore(value, room_id, index + 1, student_id, score);
+                }
+                catch(Exception error) 
+                {
+                    Console.WriteLine(error);
+                }
+            }
+            else
+            {
+                (new Thread(new ThreadStart(() =>
+                {
+                    try
+                    {
+                        mainController.professorChangeScore(value, room_id, index + 1, student_id, score);
+                    }
+                    catch (Exception error)
+                    {
+                        Console.WriteLine(error);
+                    }
+                }))).Start();
+            }
+        }
+
+        private void setAllScore()
+        {
+            int count = isScoredList.Count;
+            for (int i = 0; i < count; i++)
+            {
+                if (!isScoredList[i])
+                {
+                    setScore(i, true);
+                }
+            }
+
         }
 
         private void add_event_at_radiobutton(List<ExamMultipleChoicePanel> choicePanelList)
@@ -704,16 +907,24 @@ namespace program.View
         {
             try
             {
-                if (MessageBox.Show("시험을 종료하시겠습니까?", "시험 종료", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    timer.Stop();
-                    examController.disconnect();
-                    UnHook();
-                    if (browser != null)
+                if (isStudent)
+                { 
+                    if (MessageBox.Show("시험을 종료하시겠습니까?", "시험 종료", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        browser.Dispose();
-                        browser = null;
+                        timer.Stop();
+                        examController.disconnect();
+                        UnHook();
+                        if (browser != null)
+                        {
+                            browser.Dispose();
+                            browser = null;
+                        }
+                        mainController.moveToPreviousForm();
                     }
+                }
+                else
+                {
+                    setAllScore();
                     mainController.moveToPreviousForm();
                 }
             }
@@ -725,6 +936,7 @@ namespace program.View
 
         private void submitAnswer(string answer, int num)
         {
+            if (!isStudent) return;
             (new Thread(new ThreadStart(() =>
             {
                 try
@@ -800,9 +1012,12 @@ namespace program.View
         }
 
         private void ExamView_FormClosing(object sender, FormClosingEventArgs e)
-        {            
-            UnHook();
-            disconnectWebsocket();
+        {
+            if (isStudent)
+            {
+                UnHook();
+                disconnectWebsocket();
+            }
         }
 
         //Ctrl + Alt + Delete 막기

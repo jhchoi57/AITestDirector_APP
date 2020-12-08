@@ -12,6 +12,7 @@ namespace program.View.Components
     {
         private CustomFonts customFonts;
         private int answer { get; set; }
+        private Boolean isStudent;
         private List<ExamMultipleChoicePanel> choicePanelList { get; set; }
         public int Answer
         {
@@ -23,12 +24,13 @@ namespace program.View.Components
             get { return choicePanelList; }
             set { choicePanelList = value; }
         }
-        public ExamMultipleChoiceQuestionPanel(CustomFonts customFonts, string question, int score, string[] multipleQuestions) : base(customFonts, question, score)
+        public ExamMultipleChoiceQuestionPanel(CustomFonts customFonts, string question, int score, string[] multipleQuestions, Boolean isStudent) : base(customFonts, question, score)
         {
-            int count;
+            int count; 
+            this.isStudent = isStudent;
 
             this.customFonts = customFonts;
-            this.Size = new Size(645, 160);
+            this.Size = new Size(725, 160);
 
             answer = -1;
             Type = 3;
@@ -43,6 +45,7 @@ namespace program.View.Components
             this.Height = choicePanelList[count - 1].Location.Y + choicePanelList[count - 1].Height + 20;
 
             ExamScorePanel.Location = new Point(520, (this.Height - ExamScorePanel.Height) / 2);
+            StudentScorePanel.Location = new Point(600, (this.Height - StudentScorePanel.Height) / 2);
         }
 
         private void setMultipleQuestions(string[] multipleQuestions)
@@ -62,7 +65,12 @@ namespace program.View.Components
                 }
                 this.Controls.Add(choicePanel);
                 choicePanelList.Add(choicePanel);
-                choicePanel.ExampleRadioButton.Click += exampleRadioButton_Click_1;
+
+                if (isStudent)
+                {
+                    choicePanel.ExampleRadioButton.Click += exampleRadioButton_Click_1;
+                }
+                
             }
         }
 
@@ -81,6 +89,12 @@ namespace program.View.Components
             }
 
             answer = choicePanelList.IndexOf(choicePanel);
+        }
+
+        public void checkAnswer(string value)
+        {
+            answer = int.Parse(value);
+            choicePanelList[answer].ExampleRadioButton.Checked = true;
         }
     }
 }

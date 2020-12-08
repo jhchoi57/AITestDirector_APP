@@ -36,7 +36,7 @@ namespace program.View.Components
             int margin = 10;
             int height;
 
-            this.Size = new System.Drawing.Size(645, 45);
+            this.Size = new System.Drawing.Size(725, 45);
 
             answer = 0;
 
@@ -68,9 +68,30 @@ namespace program.View.Components
             oButton.Location = new Point(460, (height - oButton.Height) / 2);
             xButton.Location = new Point(490, (height - xButton.Height) / 2);
             ExamScorePanel.Location = new Point(520, (height - ExamScorePanel.Height) / 2);
+            StudentScorePanel.Location = new Point(600, (height - StudentScorePanel.Height) / 2);
         }
 
-        private void oButton_Click_1(object sender, EventArgs e)
+        public void checkAnswer(string value)
+        {
+            if (value == "1")
+            {
+                answer = 1;
+                oButton.ForeColor = Color.White;
+                oButton.BackColor = Color.Black;
+                xButton.ForeColor = Color.Black;
+                xButton.BackColor = Color.White;
+            }
+            else
+            {
+                answer = 2;
+                xButton.ForeColor = Color.White;
+                xButton.BackColor = Color.Black;
+                oButton.ForeColor = Color.Black;
+                oButton.BackColor = Color.White;
+            }
+        }
+
+        public void oButton_Click_1(object sender, EventArgs e)
         {
             answer = 1;
             oButton.ForeColor = Color.White;
@@ -79,7 +100,7 @@ namespace program.View.Components
             xButton.BackColor = Color.White;
         }
 
-        private void xButton_Click_1(object sender, EventArgs e)
+        public void xButton_Click_1(object sender, EventArgs e)
         {
             answer = 2;
             xButton.ForeColor = Color.White;

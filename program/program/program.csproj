@@ -221,6 +221,9 @@
     <Compile Include="View\Components\ShortCutButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="View\Components\StudentScorePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="View\Components\StudentWebRTCPanel.cs">
       <SubType>Component</SubType>
     </Compile>
