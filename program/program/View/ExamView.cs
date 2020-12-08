@@ -46,6 +46,8 @@ namespace program.View
         private int webrtcConnectCount;
         private Boolean isBaned;
 
+        private ProcessController processController;
+
         [DllImport("user32.dll")]
         static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc callback, IntPtr hInstance, uint threadId);
 
@@ -147,7 +149,8 @@ namespace program.View
                 this.openChatAlertLabel.Font = customFonts.SmallFont();
 
                 // 프로세스 제어
-                ProcessController processController = new ProcessController();
+                this.processController = new ProcessController();
+                processController.CheckProcess();
                 processController.KillProcess();
 
                 // 키보드 후킹
@@ -969,43 +972,105 @@ namespace program.View
             // WM_KEYDOWN 이 256이고 떼는게 257인거 같은데
             // 다른 키들은 누르면 256 잘 뜨는데 왼쪽 ALT 키 누르면 260이 뜸 뭐지?
             // 일단 왼쪽 ALT키 값은 164
+
+
             int vkCode = Marshal.ReadInt32(lParam);
             //Console.WriteLine(vkCode);
 
             if (code >= 0 && wParam == (IntPtr)WM_KEYDOWN || wParam == (IntPtr)260)
             {                
+                // CTRL
                 if (vkCode == 162 || vkCode == 25)
                 {
-                    //MessageBox.Show("CTRL 키는 지원하지 않습니다.");
+                    Console.WriteLine("컨트롤키");
                     return (IntPtr)1;
                 }
-                //if (vkCode == 160 || vkCode == 161)
-                //{
-                //    //MessageBox.Show("SHIFT 키는 지원하지 않습니다.");
-                //    return (IntPtr)1;
-                //}
-                if(vkCode == 9)
+
+                // SHIFT
+                else if (vkCode == 160 || vkCode == 161) Console.WriteLine("시프트키");
+
+                // TAB
+                else if (vkCode == 9)
                 {
-                    //MessageBox.Show("TAB 키는 지원하지 않습니다.");
+                    Console.WriteLine("탭키");
                     return (IntPtr)1;
                 }
-                //if(vkCode == 21 || vkCode == 164)
-                if (vkCode == 164)
+
+                // 왼쪽 ALT
+                else if (vkCode == 164)
                 {
-                    //MessageBox.Show("ALT 키는 지원하지 않습니다.");
+                    Console.WriteLine("알트키");
                     return (IntPtr)1;
                 }
-                if(vkCode == 91)
+
+                // 우측 ALT, 한/영
+                else if (vkCode == 21)
                 {
-                    // windows 키
-                    return (IntPtr)1;
+                    Console.WriteLine("한/영키");
                 }
-                if(vkCode == 44)
+
+                // Windows
+                else if (vkCode == 91)
                 {
-                    //print screen key
+                    Console.WriteLine("Windows키");
                     return (IntPtr)1;
                 }
-                else return CallNextHookEx(hhook, code, (int)wParam, lParam);
+
+                // print screen
+                else if (vkCode == 44)
+                {
+                    Console.WriteLine("프린트스크린키");
+                    return (IntPtr)1;
+                }
+
+                // 메뉴키
+                else if (vkCode == 93)
+                {
+                    Console.WriteLine("메뉴키");
+                    MessageBox.Show("사용할 수 없습니다");
+                    return (IntPtr)1;
+                }
+
+                // 32 스페이스바
+                else if (vkCode == 32) Console.WriteLine("스페이스키");
+
+                // 8 백스페이스
+                else if (vkCode == 8) Console.WriteLine("백스페이스키");
+
+                // 27 esc
+                else if (vkCode == 27) Console.WriteLine("ESC키");
+
+                // 115 f4
+                else if (vkCode == 115) Console.WriteLine("F4키");
+
+                // 13 엔터
+                else if (vkCode == 13) Console.WriteLine("Enter키");
+
+                // 37 좌화살표
+                else if (vkCode == 37) Console.WriteLine("좌화살표키");
+
+                // 38 위화살표
+                else if (vkCode == 38) Console.WriteLine("위화살표키");
+
+                // 39 우화살표
+                else if (vkCode == 39) Console.WriteLine("우화살표키");
+
+                // 40 아래화살표
+                else if (vkCode == 40) Console.WriteLine("아래화살표키");
+
+                // 46 del키
+                else if (vkCode == 46) Console.WriteLine("Delete키");
+
+                // 45 insert키
+                else if (vkCode == 45) Console.WriteLine("Insert키");
+
+                // 36 home키
+                else if (vkCode == 36) Console.WriteLine("Home키");
+
+                // 35 end키
+                else if (vkCode == 35) Console.WriteLine("End키");
+
+                return CallNextHookEx(hhook, code, (int)wParam, lParam);
             }
             else
                 return CallNextHookEx(hhook, code, (int)wParam, lParam);
@@ -1016,6 +1081,7 @@ namespace program.View
             if (isStudent)
             {
                 UnHook();
+                processController.StopTimer();
                 disconnectWebsocket();
             }
         }

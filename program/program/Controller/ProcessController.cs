@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace program.Controller
 {
     public class ProcessController
     {
         private Process[] allProc;
+        Timer timer;
         public ProcessController()
         {
             GetProcess();
@@ -17,6 +19,8 @@ namespace program.Controller
 
         public void GetProcess()
         {
+            allProc = null;
+
             try {
                 allProc = Process.GetProcesses();    //시스템의 모든 프로세스 정보 출력
                 int i = 1;
@@ -33,6 +37,31 @@ namespace program.Controller
 
             catch (Exception e) {
                 Console.WriteLine(e.Message);
+            }
+        }
+
+        /////////////////////////////
+        /// 5초마다 프로세스 확인 ///
+        /////////////////////////////
+
+        public void CheckProcess()
+        {
+            timer = new Timer();
+            timer.Enabled = true;
+            timer.Interval = 5000;
+            timer.Tick += new EventHandler(time_tick_1);
+            timer.Start();
+        }
+
+        private void time_tick_1(object sender, EventArgs e)
+        {
+            GetProcess();
+            foreach (Process processInfo in allProc)
+            {
+                if (processInfo.ProcessName == "chrome")
+                {
+                    Console.WriteLine(" 크롬 지금 켜져잇음!! ");
+                }
             }
         }
 
@@ -53,6 +82,11 @@ namespace program.Controller
                     processInfo.Kill();
                 }*/
             }
+        }
+
+        public void StopTimer()
+        {
+            if(timer.Enabled) timer.Dispose();
         }
 
         private void WriteProcessInfo(Process processInfo) 
