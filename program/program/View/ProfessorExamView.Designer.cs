@@ -224,7 +224,7 @@ namespace program.View
             // 
             this.examLectureLabel.Location = new System.Drawing.Point(30, 23);
             this.examLectureLabel.Name = "examLectureLabel";
-            this.examLectureLabel.Size = new System.Drawing.Size(350, 21);
+            this.examLectureLabel.Size = new System.Drawing.Size(180, 21);
             this.examLectureLabel.TabIndex = 4;
             this.examLectureLabel.Text = "강의명:  운영체제";
             // 
@@ -232,7 +232,7 @@ namespace program.View
             // 
             this.examNameLabel.Location = new System.Drawing.Point(30, 63);
             this.examNameLabel.Name = "examNameLabel";
-            this.examNameLabel.Size = new System.Drawing.Size(350, 21);
+            this.examNameLabel.Size = new System.Drawing.Size(180, 21);
             this.examNameLabel.TabIndex = 5;
             this.examNameLabel.Text = "시험명:  중간고사";
             // 
@@ -240,7 +240,7 @@ namespace program.View
             // 
             this.examPercentLabel.Location = new System.Drawing.Point(30, 103);
             this.examPercentLabel.Name = "examPercentLabel";
-            this.examPercentLabel.Size = new System.Drawing.Size(350, 21);
+            this.examPercentLabel.Size = new System.Drawing.Size(180, 21);
             this.examPercentLabel.TabIndex = 6;
             this.examPercentLabel.Text = "성적 반영 비율:  25%";
             // 

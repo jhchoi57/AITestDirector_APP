@@ -85,6 +85,8 @@ namespace program.View
             this.examPageNavigationPanel.AddPageButton.Visible = false;
             this.examPageNavigationPanel.RemovePageButton.Visible = false;
 
+            setCheatTypePanels();
+
             chatQueue = new Queue<Chat>();
             studentList = new List<Student>();
             enterQueue = new Queue<Student>();
@@ -95,6 +97,25 @@ namespace program.View
 
             exitBtn.Click += exitBtn_Click_1;
             sendNoticeBtn.Click += sendNoticeBtn_Click_1;
+        }
+
+        private void setCheatTypePanels()
+        {
+            CheatTypePanel cheatTypePanel = new CheatTypePanel(customFonts, Color.Black, "대리 시험");
+            cheatTypePanel.Location = new Point(300, 17);
+            this.examInfoPanel.Controls.Add(cheatTypePanel);
+            cheatTypePanel = new CheatTypePanel(customFonts, Color.HotPink, "자리 비움");
+            cheatTypePanel.Location = new Point(300, 55);
+            this.examInfoPanel.Controls.Add(cheatTypePanel);
+            cheatTypePanel = new CheatTypePanel(customFonts, Color.Purple, "다수 인원");
+            cheatTypePanel.Location = new Point(300, 93);
+            this.examInfoPanel.Controls.Add(cheatTypePanel);
+            cheatTypePanel = new CheatTypePanel(customFonts, Color.Yellow, "눈동자 추적");
+            cheatTypePanel.Location = new Point(460, 17);
+            this.examInfoPanel.Controls.Add(cheatTypePanel);
+            cheatTypePanel = new CheatTypePanel(customFonts, Color.OrangeRed, "사람 음성");
+            cheatTypePanel.Location = new Point(460, 55);
+            this.examInfoPanel.Controls.Add(cheatTypePanel);
         }
 
         private void connectWebsocket()
@@ -126,7 +147,7 @@ namespace program.View
                 string endTime = (string)jObject["finish_at"];
                 examLectureLabel.Text = "강의명:  " + lectureName;
                 examNameLabel.Text = "시험명:  " + examName;
-                examPercentLabel.Text = "성적 반영 비율:  " + percent;
+                examPercentLabel.Text = "성적 반영 비율:  " + percent + "%";
                 setTime(endTime);
             }
             catch (Exception error)

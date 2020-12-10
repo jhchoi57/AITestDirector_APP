@@ -20,7 +20,7 @@ namespace program.Controller
 {
     public class MainController
     {
-        private string URL = "https://test.inchang.dev:9000";
+        private string URL = "http://test.inchang.dev:9000";
         private Stack<Form> formNavigator;
         private Form nowForm { get; set; }
         public Form NowForm
@@ -527,6 +527,23 @@ namespace program.Controller
             request.AddParameter("problem_num", problem_num);
             request.AddParameter("user_id", student_id);
             request.AddParameter("score", score);
+            IRestResponse response = client.Execute(request);
+            Console.WriteLine(response.Content);
+
+            return response.Content;
+        }
+
+        public string examLog(string type, string desc, string detected_at, string room_id)
+        {
+            string targetURL = URL + "/room/inputlog";
+            var client = new RestClient(targetURL);
+            client.Timeout = -1;
+            var request = new RestRequest(Method.POST);
+            request.AddParameter("source", type);
+            request.AddParameter("desc", desc);
+            request.AddParameter("detected_at", detected_at);
+            request.AddParameter("key", me.Token);
+            request.AddParameter("room_id", room_id);
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
 

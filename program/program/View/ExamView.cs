@@ -48,6 +48,8 @@ namespace program.View
 
         private ProcessController processController;
 
+        private static Queue<string> keyboard = new Queue<string>();
+
         [DllImport("user32.dll")]
         static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProc callback, IntPtr hInstance, uint threadId);
 
@@ -74,8 +76,6 @@ namespace program.View
             InitializeComponent();
             // 프로그램 상단바 및 테두리 제거
             this.FormBorderStyle = FormBorderStyle.None;
-            // 프로그램 화면 크기 모니터 해상도에 맞춤
-            //this.WindowState = FormWindowState.Maximized;
             this.mainController = mainController;
             this.room_id = room_id;
             this.student_id = student_id;
@@ -84,6 +84,12 @@ namespace program.View
             noticeQueue = new Queue<string>();
             banQueue = new Queue<string>();
             isBaned = false;
+
+            if (isStudent)
+            {
+                // 프로그램 화면 크기 모니터 해상도에 맞춤
+                this.WindowState = FormWindowState.Maximized;
+            }
         }
 
         private void ExamView_Load1(object sender, EventArgs e)
@@ -134,6 +140,7 @@ namespace program.View
 
             if (isStudent)
             {
+                this.examPanel.BringToFront();
                 this.chatPanel = new ChatPanel(customFonts);
                 this.chatPanel.Location = new Point(30, 240);
                 this.mainPanel.Controls.Add(this.chatPanel);
@@ -148,8 +155,16 @@ namespace program.View
                 this.openChatBoxLabel.Font = customFonts.NormalFont();
                 this.openChatAlertLabel.Font = customFonts.SmallFont();
 
+                this.BackColor = Color.DarkGray;
+                // 프로그램 중앙에 메인패널 위치
+                this.mainPanel.BackColor = Color.WhiteSmoke;
+                this.mainPanel.Location = new System.Drawing.Point((this.Width - this.mainPanel.Width) / 2, (this.Height - this.mainPanel.Height) / 2);
+
+                exitButton.Visible = false;
+                minimizeButton.Visible = false;
+
                 // 프로세스 제어
-                this.processController = new ProcessController();
+                this.processController = new ProcessController(mainController, room_id);
                 processController.CheckProcess();
                 processController.KillProcess();
 
@@ -506,10 +521,16 @@ namespace program.View
                     changeBanStatus();
                 }
 
+                if (keyboard.Count > 0)
+                {
+                    keyboardLog();
+                }
+
                 double diffTotalSeconds = (examDate - date).TotalSeconds;
                 if (diffTotalSeconds <= 0)
                 {
                     timer.Stop();
+                    timer.Dispose();
                     if (browser != null)
                     {
                         browser.Dispose();
@@ -571,6 +592,22 @@ namespace program.View
                 //webrtcPanel.BringToFront();
                 Console.WriteLine(error);
             }
+        }
+
+        private void keyboardLog()
+        {
+            (new Thread(new ThreadStart(() =>
+            {
+                try
+                {
+                    mainController.examLog("Keyboard", keyboard.Dequeue(), DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), room_id);
+                }
+                catch (Exception error)
+                {
+                    webrtcConnectCount = 0;
+                    Console.WriteLine(error);
+                }
+            }))).Start();
         }
 
         private void changeBanStatus()
@@ -648,6 +685,7 @@ namespace program.View
                     if (!isStudent)
                     {
                         isScoredList.Add(false);
+                        examMainQuestionPanelList[i].SubQuestionPanelsList[j].ExamScorePanel.ScoreTextBox.BackColor = Color.White;
                         examMainQuestionPanelList[i].SubQuestionPanelsList[j].StudentScorePanel.Visible = true;
                         examMainQuestionPanelList[i].SubQuestionPanelsList[j].StudentScorePanel.ScoreTextBox.LostFocus += ScoreTextBox_LostFocus;
                     }
@@ -978,12 +1016,15 @@ namespace program.View
             //Console.WriteLine(vkCode);
 
             if (code >= 0 && wParam == (IntPtr)WM_KEYDOWN || wParam == (IntPtr)260)
-            {                
+            {
+                IntPtr intPtr = (IntPtr)0;
+                string key = "";
                 // CTRL
                 if (vkCode == 162 || vkCode == 25)
                 {
                     Console.WriteLine("컨트롤키");
-                    return (IntPtr)1;
+                    key = "Ctrl";
+                    intPtr = (IntPtr)1;
                 }
 
                 // SHIFT
@@ -993,14 +1034,16 @@ namespace program.View
                 else if (vkCode == 9)
                 {
                     Console.WriteLine("탭키");
-                    return (IntPtr)1;
+                    key = "Tab";
+                    intPtr = (IntPtr)1;
                 }
 
                 // 왼쪽 ALT
                 else if (vkCode == 164)
                 {
                     Console.WriteLine("알트키");
-                    return (IntPtr)1;
+                    key = "Alt";
+                    intPtr = (IntPtr)1;
                 }
 
                 // 우측 ALT, 한/영
@@ -1013,14 +1056,16 @@ namespace program.View
                 else if (vkCode == 91)
                 {
                     Console.WriteLine("Windows키");
-                    return (IntPtr)1;
+                    key = "Window";
+                    intPtr = (IntPtr)1;
                 }
 
                 // print screen
                 else if (vkCode == 44)
                 {
                     Console.WriteLine("프린트스크린키");
-                    return (IntPtr)1;
+                    key = "PrtSc";
+                    intPtr = (IntPtr)1;
                 }
 
                 // 메뉴키
@@ -1028,11 +1073,18 @@ namespace program.View
                 {
                     Console.WriteLine("메뉴키");
                     MessageBox.Show("사용할 수 없습니다");
-                    return (IntPtr)1;
+                    key = "Window";
+                    intPtr = (IntPtr)1;
+                }
+
+                if (intPtr == (IntPtr)1)
+                {
+                    keyboard.Enqueue(key);
+                    return intPtr;
                 }
 
                 // 32 스페이스바
-                else if (vkCode == 32) Console.WriteLine("스페이스키");
+                if (vkCode == 32) Console.WriteLine("스페이스키");
 
                 // 8 백스페이스
                 else if (vkCode == 8) Console.WriteLine("백스페이스키");
@@ -1096,7 +1148,7 @@ namespace program.View
             try
             {
                 regkey = Registry.CurrentUser.CreateSubKey(subKey);
-                regkey.SetValue("DisableTaskMgr", keyValueInt);
+                //regkey.SetValue("DisableTaskMgr", keyValueInt);
                 regkey.Close();
             }
             catch (Exception ex)

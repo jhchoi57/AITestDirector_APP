@@ -5,15 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace program.Controller
 {
     public class ProcessController
     {
+        MainController mainController;
         private Process[] allProc;
-        Timer timer;
-        public ProcessController()
+        System.Windows.Forms.Timer timer;
+        string room_id;
+        public ProcessController(MainController mainController, string room_id)
         {
+            this.mainController = mainController;
+            this.room_id = room_id;
             GetProcess();
         }
 
@@ -46,7 +51,7 @@ namespace program.Controller
 
         public void CheckProcess()
         {
-            timer = new Timer();
+            timer = new System.Windows.Forms.Timer();
             timer.Enabled = true;
             timer.Interval = 5000;
             timer.Tick += new EventHandler(time_tick_1);
@@ -55,14 +60,25 @@ namespace program.Controller
 
         private void time_tick_1(object sender, EventArgs e)
         {
-            GetProcess();
-            foreach (Process processInfo in allProc)
+            (new Thread(new ThreadStart(() =>
             {
-                if (processInfo.ProcessName == "chrome")
+                try
                 {
-                    Console.WriteLine(" 크롬 지금 켜져잇음!! ");
+                    string now = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    GetProcess();
+                    foreach (Process processInfo in allProc)
+                    {
+                        if (processInfo.ProcessName == "chrome")
+                        {
+                            mainController.examLog("Process", processInfo.ProcessName, now, room_id);
+                        }
+                    }
                 }
-            }
+                catch (Exception error)
+                {
+                    Console.WriteLine(error);
+                }
+            }))).Start();
         }
 
         public void KillProcess()
@@ -86,7 +102,11 @@ namespace program.Controller
 
         public void StopTimer()
         {
-            if(timer.Enabled) timer.Dispose();
+            if (timer.Enabled)
+            {
+                timer.Stop();
+                timer.Dispose();
+            }
         }
 
         private void WriteProcessInfo(Process processInfo) 

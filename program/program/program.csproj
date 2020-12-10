@@ -156,6 +156,9 @@
     <Compile Include="View\Components\ChatPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="View\Components\CheatTypePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="View\Components\CustomFonts.cs" />
     <Compile Include="View\Components\EssayAnswerPanel.cs">
       <SubType>Component</SubType>
