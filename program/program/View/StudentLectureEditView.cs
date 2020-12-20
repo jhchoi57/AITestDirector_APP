@@ -192,6 +192,7 @@ namespace program.View
 
         private void lectureTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             //MessageBox.Show(lectureTable.Rows[e.RowIndex].Cells[0].Value.ToString());
             if(lectureTable.Rows[e.RowIndex].Cells[0].Value.ToString().Equals("False"))
                 lectureTable.Rows[e.RowIndex].Cells[0].Value = true;
@@ -201,6 +202,7 @@ namespace program.View
 
         private void myLectureTable_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             if (myLectureTable.Rows[e.RowIndex].Cells[0].Value.ToString().Equals("False"))
                 myLectureTable.Rows[e.RowIndex].Cells[0].Value = true;
             else

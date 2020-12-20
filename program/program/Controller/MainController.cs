@@ -20,7 +20,7 @@ namespace program.Controller
 {
     public class MainController
     {
-        private string URL = "http://test.inchang.dev:9000";
+        private string URL = "https://test.inchang.dev:9000";
         private Stack<Form> formNavigator;
         private Form nowForm { get; set; }
         public Form NowForm

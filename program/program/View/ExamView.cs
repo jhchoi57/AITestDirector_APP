@@ -88,7 +88,7 @@ namespace program.View
             if (isStudent)
             {
                 // 프로그램 화면 크기 모니터 해상도에 맞춤
-                this.WindowState = FormWindowState.Maximized;
+                //this.WindowState = FormWindowState.Maximized;
             }
         }
 
@@ -157,8 +157,8 @@ namespace program.View
 
                 this.BackColor = Color.DarkGray;
                 // 프로그램 중앙에 메인패널 위치
-                this.mainPanel.BackColor = Color.WhiteSmoke;
-                this.mainPanel.Location = new System.Drawing.Point((this.Width - this.mainPanel.Width) / 2, (this.Height - this.mainPanel.Height) / 2);
+                //this.mainPanel.BackColor = Color.WhiteSmoke;
+                //this.mainPanel.Location = new System.Drawing.Point((this.Width - this.mainPanel.Width) / 2, (this.Height - this.mainPanel.Height) / 2);
 
                 exitButton.Visible = false;
                 minimizeButton.Visible = false;
@@ -269,9 +269,10 @@ namespace program.View
             CefSettings settings = new CefSettings();
             settings.CefCommandLineArgs.Add("enable-media-stream", "1");
             if(!Cef.IsInitialized) Cef.Initialize(settings);
-            browser = new ChromiumWebBrowser("https://webrtc.inchang.dev:10001/?mode=sender&autoStart=true&userId=" + mainController.Me.ID + "&roomId=" + this.room_id);
+            browser = new ChromiumWebBrowser("https://test.inchang.dev:10001/?mode=sender&autoStart=true&userId=" + mainController.Me.ID + "&roomId=" + this.room_id);
             browser.Dock = DockStyle.Fill;
             this.webrtcPanel.Controls.Add(browser);
+            this.webrtcPanel.BringToFront();
         }
 
         private void connectWebsocket()
@@ -523,7 +524,7 @@ namespace program.View
 
                 if (keyboard.Count > 0)
                 {
-                    keyboardLog();
+                    //keyboardLog();
                 }
 
                 double diffTotalSeconds = (examDate - date).TotalSeconds;

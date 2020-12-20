@@ -30,14 +30,15 @@ namespace program.Controller
                 allProc = Process.GetProcesses();    //시스템의 모든 프로세스 정보 출력
                 int i = 1;
 
-                Console.WriteLine("****** 모든 프로세스 정보 ******");
-                Console.WriteLine("현재 실행중은 모든 프로세스 수 : {0}", allProc.Length);
-
+                //Console.WriteLine("****** 모든 프로세스 정보 ******");
+                //Console.WriteLine("현재 실행중은 모든 프로세스 수 : {0}", allProc.Length);
+                /*
                 foreach (Process p in allProc) {
                     //Console.WriteLine("***** {0}번째 프로세스 ******", i++);
                     //WriteProcessInfo(p);
                     //Console.WriteLine();
                 }
+                */
             }
 
             catch (Exception e) {
@@ -70,7 +71,7 @@ namespace program.Controller
                     {
                         if (processInfo.ProcessName == "chrome")
                         {
-                            mainController.examLog("Process", processInfo.ProcessName, now, room_id);
+                            //mainController.examLog("Process", processInfo.ProcessName, now, room_id);
                         }
                     }
                 }

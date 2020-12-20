@@ -89,7 +89,7 @@ namespace program.View.Components
             CefSettings settings = new CefSettings();
             settings.CefCommandLineArgs.Add("enable-media-stream", "1");
             if (!Cef.IsInitialized) Cef.Initialize(settings);
-            browser = new ChromiumWebBrowser("https://webrtc.inchang.dev:10001/?mode=receiver&autoStart=true&userId=" + student_id + "&roomId=" + room_id);
+            browser = new ChromiumWebBrowser("https://test.inchang.dev:10001/?mode=receiver&autoStart=true&userId=" + student_id + "&roomId=" + room_id);
             browser.Dock = DockStyle.Fill;
             this.webrtcPanel.Controls.Add(browser);
         }
